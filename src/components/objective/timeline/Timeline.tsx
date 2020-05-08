@@ -1,10 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ObjectiveModel } from '../Objective';
 import Cell from '../cell/Cell';
 
+export interface _CellList {
+    cellList: _Cell[];
+}
 
-const Timeline = ({cellList}: ObjectiveModel) => {
+export interface _Cell {
+    id: number,
+    title: string,
+    description: string,
+    priority: number,
+    deadline: string
+}
+
+const Timeline = ({cellList}: _CellList) => {
 
     return (
         <Container>

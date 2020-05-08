@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { CellModel } from '../Objective';
+import { _Cell } from '../timeline/Timeline';
 
-const Cell = ({id, title, description, priority, deadline}: CellModel) => {
+const Cell = ({id, title, description, priority, deadline}: _Cell) => {
 
     return (
         <Container>

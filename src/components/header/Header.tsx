@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components'
 import LoginModal from '../header/loginModal/LoginModal';
 import Menu, { _Menu } from './menu/Menu';
-import { _HeaderMenuListener } from '../../App';
+
+interface _HeaderMenuListener {
+    setObjectiveVisible: (flag: boolean) => void,
+    setPlanVisible: (flag: boolean) => void,
+    setTodoVisible: (flag: boolean) => void
+}
 
 
 export interface _HeaderMenu {
@@ -10,7 +15,7 @@ export interface _HeaderMenu {
     right: _Menu
 };
 
-const Header = ({setObjectiveShow, setPlanShow, setTodoShow}: _HeaderMenuListener) => {
+const Header = ({setObjectiveVisible, setPlanVisible, setTodoVisible}: _HeaderMenuListener) => {
     const [loginShow, setLoginShow] = React.useState(false);
 
     const [left, setLeft] = React.useState({
@@ -20,30 +25,27 @@ const Header = ({setObjectiveShow, setPlanShow, setTodoShow}: _HeaderMenuListene
                 type: 'text',
                 title: 'Objective',
                 onClick: () => {
-                    console.log("Objective!!!");
-                    setObjectiveShow(true);
-                    setPlanShow(false);
-                    setTodoShow(false);
+                    setObjectiveVisible(true);
+                    setPlanVisible(false);
+                    setTodoVisible(false);
                 }
             },
             {
                 type: 'text',
                 title: 'Plan',
                 onClick: () => {
-                    console.log("Plan!!!");
-                    setObjectiveShow(false);
-                    setPlanShow(true);
-                    setTodoShow(false);
+                    setObjectiveVisible(false);
+                    setPlanVisible(true);
+                    setTodoVisible(false);
                 }
             },
             {
                 type: 'text',
                 title: 'Todo',
                 onClick: () => {
-                    console.log("Todo!!!");
-                    setObjectiveShow(false);
-                    setPlanShow(false);
-                    setTodoShow(true);
+                    setObjectiveVisible(false);
+                    setPlanVisible(false);
+                    setTodoVisible(true);
                 }
             }
         ]
@@ -64,7 +66,7 @@ const Header = ({setObjectiveShow, setPlanShow, setTodoShow}: _HeaderMenuListene
         <Container>
             <Menu align={left.align} tabs={left.tabs} />
             <Menu align={right.align} tabs={right.tabs} />
-            <LoginModal show={loginShow} closeClick={() => setLoginShow(false)} />
+            <LoginModal visible={loginShow} closeClick={() => setLoginShow(false)} />
         </Container>
     )
 }

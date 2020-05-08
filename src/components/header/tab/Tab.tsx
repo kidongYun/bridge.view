@@ -28,7 +28,7 @@ const Tab = ({type, title, onClick}: _Tab) => {
 
 const Container = styled.div`
     display: flex;
-    width: 10%;
+    width: 15%;
     min-width: 100px;
     height: 100%;
 

@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export interface _Todo {
-    show: boolean
+interface _Visible {
+    visible: boolean
 }
 
-const Todo = ({show}: _Todo) => {
+const Todo = ({visible}: _Visible) => {
     let view;
 
-    if(show) {
+    if(visible) {
         view = <Container>Todo</Container>
     } else {
         view = <Container></Container>

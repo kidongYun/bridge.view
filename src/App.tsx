@@ -3,24 +3,23 @@ import Header from './components/header/Header';
 import Objective from './components/objective/Objective';
 import Plan from './components/plan/Plan';
 import Todo from './components/todo/Todo';
-
-export interface _HeaderMenuListener {
-    setObjectiveShow: (flag: boolean) => void,
-    setPlanShow: (flag: boolean) => void,
-    setTodoShow: (flag: boolean) => void
-}
+import AddButton from './components/addButton/AddButton';
+import AddObjectiveModal from './components/addButton/addObjectiveModal/AddObjectiveModal'
 
 const App = () => {
-    const [objectiveShow, setObjectiveShow] = React.useState(true);
-    const [planShow, setPlanShow] = React.useState(false);
-    const [todoShow, setTodoShow] = React.useState(false);
+    const [objectiveVisible, setObjectiveVisible] = React.useState(true);
+    const [planVisible, setPlanVisible] = React.useState(false);
+    const [todoVisible, setTodoVisible] = React.useState(false);
+    const [addButtonVisible, setAddButtonVisible] = React.useState(false);
 
     return (
         <>
-            <Header setObjectiveShow={setObjectiveShow} setPlanShow={setPlanShow} setTodoShow={setTodoShow} />
-            {/* <Objective show={objectiveShow}/> */}
-            <Plan show={planShow} />
-            <Todo show={todoShow} />
+            <Header setObjectiveVisible={setObjectiveVisible} setPlanVisible={setPlanVisible} setTodoVisible={setTodoVisible} />
+            <Objective visible={objectiveVisible}/>
+            <Plan visible={planVisible} />
+            <Todo visible={todoVisible} />
+            <AddButton onClick={() => setAddButtonVisible(true)}/>
+            <AddObjectiveModal visible={addButtonVisible} closeClick={() => setAddButtonVisible(false)}/>
         </>
     );
 }

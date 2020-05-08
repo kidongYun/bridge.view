@@ -2,14 +2,15 @@ import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
-interface _LoginModal {
+interface _AddObjectiveModal {
     visible: boolean,
     closeClick: () => void
 }
 
-const LoginModal = ({visible, closeClick}: _LoginModal) => {
+const AddObjectiveModal = ({visible, closeClick}: _AddObjectiveModal) => {
 
-    return(
+
+    return (
         <Modal show={visible}>
             <Modal.Header closeButton onClick={closeClick}>
                 <Modal.Title>Modal title</Modal.Title>
@@ -27,4 +28,4 @@ const LoginModal = ({visible, closeClick}: _LoginModal) => {
     )
 }
 
-export default LoginModal;
+export default AddObjectiveModal;

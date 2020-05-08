@@ -1,52 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Timeline from './timeline/Timeline';
 
 import * as service from '../../service/objective'
 
-export interface ObjectiveModel {
-    cellList: _Cell[];
+interface _Visible {
+    visible: boolean
 }
 
-export interface _Cell {
-    id: number,
-    title: string,
-    description: string,
-    priority: number,
-    deadline: string
-}
+const Objective = ({visible}: _Visible) => {
+    let view;
 
-class Objective extends React.Component<{}, ObjectiveModel> {
-
-    constructor(props: {}) {
-        super(props);
-
-        this.state = {
-            cellList: []
+    const [cellList, postCellList] = React.useState([
+        {
+            id: 1,
+            title: 'title1',
+            description: 'des1',
+            priority: 1,
+            deadline: 'deadline1'
+        },
+        {
+            id: 2,
+            title: 'title2',
+            description: 'des2',
+            priority: 2,
+            deadline: 'deadline2'
+        },
+        {
+            id: 3,
+            title: 'title3',
+            description: 'des3',
+            priority: 3,
+            deadline: 'deadline3'
         }
+    ]);
+
+    if(visible) {
+        view = <Container><Timeline cellList={cellList}/></Container>
+    } else {
+        view = <Container></Container>
     }
 
-    componentDidMount() {
-        this.postObjective();
-    }
-
-    postObjective = async () => {
-        const response = await service.postObjective();
-
-        this.setState({
-            cellList: response.data as _Cell[]
-        });
-   }
-
-    render() {
-        const {cellList}: ObjectiveModel = this.state;
-        
-        return(
-            <Container>
-                <Timeline cellList={cellList} />
-            </Container>
-        )
-    }
+    return (
+        view
+    );
 }
 
 const Container = styled.div`

@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export interface _Plan {
-    show: boolean
+interface _Visible {
+    visible: boolean
 }
 
-const Plan = ({show}: _Plan) => {
+const Plan = ({visible}: _Visible) => {
     let view;
 
-    if(show) {
+    if(visible) {
         view = <Container>Plan</Container>
     } else {
         view = <Container></Container>
