@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/header/Header';
+import Objective from './components/objective/Objective';
+import Plan from './components/plan/Plan';
+import Todo from './components/todo/Todo';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export interface _HeaderMenuListener {
+    setObjectiveShow: (flag: boolean) => void,
+    setPlanShow: (flag: boolean) => void,
+    setTodoShow: (flag: boolean) => void
+}
+
+const App = () => {
+    const [objectiveShow, setObjectiveShow] = React.useState(true);
+    const [planShow, setPlanShow] = React.useState(false);
+    const [todoShow, setTodoShow] = React.useState(false);
+
+    return (
+        <>
+            <Header setObjectiveShow={setObjectiveShow} setPlanShow={setPlanShow} setTodoShow={setTodoShow} />
+            {/* <Objective show={objectiveShow}/> */}
+            <Plan show={planShow} />
+            <Todo show={todoShow} />
+        </>
+    );
 }
 
 export default App;
