@@ -1,27 +1,36 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form'
 
 interface _LoginModal {
     visible: boolean,
     closeClick: () => void
+    loginClick: (id :string, pw :string) => void
 }
 
-const LoginModal = ({visible, closeClick}: _LoginModal) => {
+const LoginModal = ({ visible, closeClick, loginClick }: _LoginModal) => {
 
-    return(
+    return (
         <Modal show={visible}>
             <Modal.Header closeButton onClick={closeClick}>
-                <Modal.Title>Modal title</Modal.Title>
+                <Modal.Title>Login</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
-                <p>Modal body text goes here.</p>
+                <Form>
+                    <Form.Group>
+                        <Form.Control type="text" placeholder="ID"></Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control type="text" placeholder="Password"></Form.Control>
+                    </Form.Group>
+                </Form>
             </Modal.Body>
 
             <Modal.Footer>
                 <Button variant="secondary" onClick={closeClick}>Close</Button>
-                <Button variant="primary">Save changes</Button>
+                <Button variant="primary">Login</Button>
             </Modal.Footer>
         </Modal>
     )

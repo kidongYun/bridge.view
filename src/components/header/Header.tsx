@@ -66,7 +66,7 @@ const Header = ({setObjectiveVisible, setPlanVisible, setTodoVisible}: _HeaderMe
         <Container>
             <Menu align={left.align} tabs={left.tabs} />
             <Menu align={right.align} tabs={right.tabs} />
-            <LoginModal visible={loginShow} closeClick={() => setLoginShow(false)} />
+            <LoginModal visible={loginShow} closeClick={() => setLoginShow(false)} loginClick={(id: string, pw) => setLoginShow(false)} />
         </Container>
     )
 }
