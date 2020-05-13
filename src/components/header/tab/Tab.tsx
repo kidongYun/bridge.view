@@ -20,7 +20,7 @@ const Tab = ({type, title, onClick}: _Tab) => {
 
 
     return(
-        <Container>
+        <Container>`¡
             {view}
         </Container>
     )

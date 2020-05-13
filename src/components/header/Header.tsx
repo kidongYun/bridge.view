@@ -16,7 +16,7 @@ export interface _HeaderMenu {
 };
 
 const Header = ({setObjectiveVisible, setPlanVisible, setTodoVisible}: _HeaderMenuListener) => {
-    const [loginShow, setLoginShow] = React.useState(false);
+    const [loginModalVisible, setLoginModalVisible] = React.useState(false);
 
     const [left, setLeft] = React.useState({
         align: 'flex-start',
@@ -57,7 +57,7 @@ const Header = ({setObjectiveVisible, setPlanVisible, setTodoVisible}: _HeaderMe
             {
                 type: 'button',
                 title: 'Login',
-                onClick: () => setLoginShow(true)
+                onClick: () => setLoginModalVisible(true)
             }
         ]
     });
@@ -66,7 +66,7 @@ const Header = ({setObjectiveVisible, setPlanVisible, setTodoVisible}: _HeaderMe
         <Container>
             <Menu align={left.align} tabs={left.tabs} />
             <Menu align={right.align} tabs={right.tabs} />
-            <LoginModal visible={loginShow} closeClick={() => setLoginShow(false)} loginClick={(id: string, pw) => setLoginShow(false)} />
+            <LoginModal visible={loginModalVisible} showOff={() => setLoginModalVisible(false)}/>
         </Container>
     )
 }
