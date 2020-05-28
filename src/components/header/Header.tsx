@@ -9,13 +9,16 @@ interface _HeaderMenuListener {
     setTodoVisible: (flag: boolean) => void
 }
 
+interface _Stage {
+    setStage: (stageName: string) => void   
+}
 
 export interface _HeaderMenu {
     left: _Menu,
     right: _Menu
 };
 
-const Header = ({setObjectiveVisible, setPlanVisible, setTodoVisible}: _HeaderMenuListener) => {
+const Header = (setStage : _Stage) => {
     const [loginModalVisible, setLoginModalVisible] = React.useState(false);
 
     const [left, setLeft] = React.useState({
@@ -24,29 +27,17 @@ const Header = ({setObjectiveVisible, setPlanVisible, setTodoVisible}: _HeaderMe
             {
                 type: 'left',
                 title: 'Objective',
-                onClick: () => {
-                    setObjectiveVisible(true);
-                    setPlanVisible(false);
-                    setTodoVisible(false);
-                }
+                onClick: () => { setStage("Objective"); }
             },
             {
                 type: 'left',
                 title: 'Plan',
-                onClick: () => {
-                    setObjectiveVisible(false);
-                    setPlanVisible(true);
-                    setTodoVisible(false);
-                }
+                onClick: () => { setStage("Plan"); }
             },
             {
                 type: 'left',
                 title: 'Todo',
-                onClick: () => {
-                    setObjectiveVisible(false);
-                    setPlanVisible(false);
-                    setTodoVisible(true);
-                }
+                onClick: () => { setStage("Todo"); }
             }
         ]
     });

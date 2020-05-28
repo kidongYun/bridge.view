@@ -7,17 +7,15 @@ import AddButton from './components/addButton/AddButton';
 import AddObjectiveModal from './components/addButton/addObjectiveModal/AddObjectiveModal'
 
 const App = () => {
-    const [objectiveVisible, setObjectiveVisible] = React.useState(true);
-    const [planVisible, setPlanVisible] = React.useState(false);
-    const [todoVisible, setTodoVisible] = React.useState(false);
+    const [stage, setStage] = React.useState("Objective");
     const [addButtonVisible, setAddButtonVisible] = React.useState(false);
 
     return (
         <>
-            <Header setObjectiveVisible={setObjectiveVisible} setPlanVisible={setPlanVisible} setTodoVisible={setTodoVisible} />
-            <Objective visible={objectiveVisible}/>
+            <Header setStage={setStage} />
+            {/* <Objective visible={objectiveVisible}/>
             <Plan visible={planVisible} />
-            <Todo visible={todoVisible} />
+            <Todo visible={todoVisible} /> */}
             <AddButton onClick={() => setAddButtonVisible(true)}/>
             <AddObjectiveModal visible={addButtonVisible} closeClick={() => setAddButtonVisible(false)}/>
         </>
