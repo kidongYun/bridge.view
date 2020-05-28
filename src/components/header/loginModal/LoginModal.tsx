@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+import FormControl from 'react-bootstrap/FormControl'
 
 interface _LoginModal {
     visible: boolean,
@@ -15,8 +16,10 @@ const LoginModal = ({ visible, showOff }: _LoginModal) => {
         description: ''
     });
 
-    const testChange = (event: React.FormEvent<FormControlElement>) => {
-        console.log(id);
+    const testChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { id, value } = event.target;
+
+        console.log(id + ", " + value);
     }
 
     const submitLoginInfo = (id: string, pw: string) => {
@@ -34,10 +37,10 @@ const LoginModal = ({ visible, showOff }: _LoginModal) => {
             <Modal.Body>
                 <Form>
                     <Form.Group>
-                        <Form.Control type="text" value={id} onChange={testChange} placeholder="ID"></Form.Control>
+                        <Form.Control id="identity" onChange={testChange} />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Control type="text" id="pw" placeholder="Password"></Form.Control>
+                        <Form.Control id="password" onChange={testChange} />
                     </Form.Group>
                 </Form>
             </Modal.Body>
