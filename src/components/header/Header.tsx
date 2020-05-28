@@ -22,7 +22,7 @@ const Header = ({setObjectiveVisible, setPlanVisible, setTodoVisible}: _HeaderMe
         align: 'flex-start',
         tabs: [
             {
-                type: 'text',
+                type: 'left',
                 title: 'Objective',
                 onClick: () => {
                     setObjectiveVisible(true);
@@ -31,7 +31,7 @@ const Header = ({setObjectiveVisible, setPlanVisible, setTodoVisible}: _HeaderMe
                 }
             },
             {
-                type: 'text',
+                type: 'left',
                 title: 'Plan',
                 onClick: () => {
                     setObjectiveVisible(false);
@@ -40,7 +40,7 @@ const Header = ({setObjectiveVisible, setPlanVisible, setTodoVisible}: _HeaderMe
                 }
             },
             {
-                type: 'text',
+                type: 'left',
                 title: 'Todo',
                 onClick: () => {
                     setObjectiveVisible(false);
@@ -55,7 +55,7 @@ const Header = ({setObjectiveVisible, setPlanVisible, setTodoVisible}: _HeaderMe
         align: 'flex-end',
         tabs: [
             {
-                type: 'button',
+                type: 'right',
                 title: 'Login',
                 onClick: () => setLoginModalVisible(true)
             }

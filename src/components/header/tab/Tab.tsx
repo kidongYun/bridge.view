@@ -12,9 +12,9 @@ const Tab = ({type, title, onClick}: _Tab) => {
 
     let view;
 
-    if(type === "text") {
-        view = <div onClick={onClick}>{title}</div>
-    } else if(type === "button") {
+    if(type === "left") {
+        view = <Button variant="outline-light" onClick={onClick}>{title}</Button>
+    } else if(type === "right") {
         view = <Button variant="primary" onClick={onClick}>{title}</Button>
     }
 
