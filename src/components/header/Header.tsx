@@ -18,7 +18,7 @@ export interface _HeaderMenu {
     right: _Menu
 };
 
-const Header = (setStage : _Stage) => {
+const Header = ({ setStage } : _Stage) => {
     const [loginModalVisible, setLoginModalVisible] = React.useState(false);
 
     const [left, setLeft] = React.useState({
@@ -27,17 +27,17 @@ const Header = (setStage : _Stage) => {
             {
                 type: 'left',
                 title: 'Objective',
-                onClick: () => { setStage("Objective"); }
+                onClick: () => { setStage("Objective") }
             },
             {
                 type: 'left',
                 title: 'Plan',
-                onClick: () => { setStage("Plan"); }
+                onClick: () => { setStage("Plan") }
             },
             {
                 type: 'left',
                 title: 'Todo',
-                onClick: () => { setStage("Todo"); }
+                onClick: () => { setStage("Todo") }
             }
         ]
     });
