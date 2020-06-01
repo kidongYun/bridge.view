@@ -3,61 +3,26 @@ import styled from 'styled-components'
 import LoginModal from '../header/loginModal/LoginModal';
 import Menu, { _Menu } from './menu/Menu';
 
-interface _HeaderMenuListener {
-    setObjectiveVisible: (flag: boolean) => void,
-    setPlanVisible: (flag: boolean) => void,
-    setTodoVisible: (flag: boolean) => void
-}
+import * as data from '../../service/data'
 
-interface _Stage {
+export interface _SetStage {
     setStage: (stageName: string) => void   
 }
 
-export interface _HeaderMenu {
+export interface _MenuList {
     left: _Menu,
     right: _Menu
 };
 
-const Header = ({ setStage } : _Stage) => {
+const Header = ({ setStage } : _SetStage) => {
     const [loginModalVisible, setLoginModalVisible] = React.useState(false);
-
-    const [left, setLeft] = React.useState({
-        align: 'flex-start',
-        tabs: [
-            {
-                type: 'left',
-                title: 'Objective',
-                onClick: () => { setStage("Objective") }
-            },
-            {
-                type: 'left',
-                title: 'Plan',
-                onClick: () => { setStage("Plan") }
-            },
-            {
-                type: 'left',
-                title: 'Todo',
-                onClick: () => { setStage("Todo") }
-            }
-        ]
-    });
-
-    const [right, setRight] = React.useState({
-        align: 'flex-end',
-        tabs: [
-            {
-                type: 'right',
-                title: 'Login',
-                onClick: () => setLoginModalVisible(true)
-            }
-        ]
-    });
+    const menu = data.postHeaderMenuList(setStage, setLoginModalVisible);
 
     return (
         <Container>
-            <Menu align={left.align} tabs={left.tabs} />
-            <Menu align={right.align} tabs={right.tabs} />
-            <LoginModal visible={loginModalVisible} showOff={() => setLoginModalVisible(false)}/>
+            <Menu align={menu.left.align} tabs={menu.left.tabs} />
+            <Menu align={menu.right.align} tabs={menu.right.tabs} />
+            <LoginModal visible={loginModalVisible} showOff={() => setLoginModalVisible(false)} />
         </Container>
     )
 }

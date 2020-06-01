@@ -6,6 +6,10 @@ import Todo from './components/todo/Todo';
 import AddButton from './components/addButton/AddButton';
 import AddObjectiveModal from './components/addButton/addObjectiveModal/AddObjectiveModal'
 
+export interface _Stage {
+    stage: string
+}
+
 const App = () => {
     const [stage, setStage] = React.useState("Objective");
     const [addButtonVisible, setAddButtonVisible] = React.useState(false);
@@ -13,9 +17,9 @@ const App = () => {
     return (
         <>
             <Header setStage={setStage} />
-            {/* <Objective visible={objectiveVisible}/>
-            <Plan visible={planVisible} />
-            <Todo visible={todoVisible} /> */}
+            <Objective stage={stage}/>
+            <Plan stage={stage} />
+            <Todo stage={stage} />
             <AddButton onClick={() => setAddButtonVisible(true)}/>
             <AddObjectiveModal visible={addButtonVisible} closeClick={() => setAddButtonVisible(false)}/>
         </>

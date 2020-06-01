@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Button from 'react-bootstrap/Button';
 
 export interface _Tab {
-    type: string,
+    type: string
     title: string,
     onClick: () => void;
 };
@@ -12,9 +12,9 @@ const Tab = ({type, title, onClick}: _Tab) => {
 
     let view;
 
-    if(type === "left") {
+    if(type === "outline-light") {
         view = <Button variant="outline-light" onClick={onClick}>{title}</Button>
-    } else if(type === "right") {
+    } else if(type === "primary") {
         view = <Button variant="primary" onClick={onClick}>{title}</Button>
     }
 

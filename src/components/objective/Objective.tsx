@@ -2,43 +2,18 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Timeline from './timeline/Timeline';
 
-import * as service from '../../service/objective'
+import * as data from '../../service/data'
+import { _Stage } from '../../App';
 
-interface _Visible {
-    visible: boolean
-}
-
-const Objective = ({visible}: _Visible) => {
+const Objective = ({ stage } : _Stage) => {
     let view;
 
-    const [cellList, postCellList] = React.useState([
-        {
-            id: 1,
-            title: 'title1',
-            description: 'des1',
-            priority: 1,
-            deadline: 'deadline1'
-        },
-        {
-            id: 2,
-            title: 'title2',
-            description: 'des2',
-            priority: 2,
-            deadline: 'deadline2'
-        },
-        {
-            id: 3,
-            title: 'title3',
-            description: 'des3',
-            priority: 3,
-            deadline: 'deadline3'
-        }
-    ]);
+    const objectiveList = data.postObjectiveList();
 
-    if(visible) {
-        view = <Container><Timeline cellList={cellList}/></Container>
+    if(stage === "Objective") {
+        view = <Container><Timeline objectiveList={objectiveList}/></Container>
     } else {
-        view = <Container></Container>
+        view = <></>
     }
 
     return (

@@ -1,17 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import { _Stage } from '../../App';
 
-interface _Visible {
-    visible: boolean
-}
-
-const Plan = ({visible}: _Visible) => {
+const Plan = ({ stage } : _Stage) => {
     let view;
 
-    if(visible) {
+    if(stage === "Plan") {
         view = <Container>Plan</Container>
     } else {
-        view = <Container></Container>
+        view = <></>
     }
 
     return (
