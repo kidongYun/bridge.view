@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
-import { _Objective } from '../timeline/Timeline'
+import { _Cell } from '../timeline/Timeline'
 
-const Objective = ({id, title, description, priority, deadline}: _Objective) => {
+const Cell = ({id, title, description, priority, deadline}: _Cell) => {
 
     return (
         <Container>
@@ -12,7 +12,7 @@ const Objective = ({id, title, description, priority, deadline}: _Objective) => 
                     {title}
                 </TitleFrame>
                 <DelFrame>
-                    <Button variant="outline-danger">Delete</Button>
+                    <Button variant="outline-danger" onClick={() => { }}>Delete</Button>
                 </DelFrame>
             </Frame>
         </Container>
@@ -55,4 +55,4 @@ const DelFrame = styled.div`
     align-items: center;
 `;
 
-export default Objective;
+export default Cell;

@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import Cell from '../cell/Cell';
 
-export interface _ObjectiveList {
-    objectiveList: _Objective[];
+export interface _CellList {
+    cellList: _Cell[];
 }
 
-export interface _Objective {
+export interface _Cell {
     id: number,
     title: string,
     description: string,
@@ -14,14 +14,14 @@ export interface _Objective {
     deadline: string
 }
 
-const Timeline = ({ objectiveList } : _ObjectiveList) => {
+const Timeline = ({ cellList } : _CellList) => {
 
     return (
         <Container>
             {
-                objectiveList.map(
-                    (objective) => (
-                        <Cell id={objective.id} title={objective.title} description={objective.description} priority={objective.priority} deadline={objective.deadline} />
+                cellList.map(
+                    (cell) => (
+                        <Cell id={cell.id} title={cell.title} description={cell.description} priority={cell.priority} deadline={cell.deadline} />
                     )
                 )
             }
