@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components'
 import LoginModal from '../header/loginModal/LoginModal';
-import Menu, { _Menu } from './menu/Menu';
+import Menu from './menu/Menu';
 
 import * as data from '../../service/data'
 
-export interface _SetStage {
-    setStage: (stageName: string) => void   
+// export interface _MenuList {
+//     left: _Menu,
+//     right: _Menu
+// };
+
+interface HeaderProps {
+    setStage: (stageName: string) => void
 }
 
-export interface _MenuList {
-    left: _Menu,
-    right: _Menu
-};
-
-const Header = ({ setStage } : _SetStage) => {
+const Header = ({ setStage } : HeaderProps) => {
     const [loginModalVisible, setLoginModalVisible] = React.useState(false);
-    const menu = data.postHeaderMenuList(setStage, setLoginModalVisible);
+    const menuList = data.postHeaderMenuList(setStage, setLoginModalVisible);
 
     return (
         <Container>
-            <Menu align={menu.left.align} tabs={menu.left.tabs} />
-            <Menu align={menu.right.align} tabs={menu.right.tabs} />
+            <Menu menu={menuList[0]} />
+            <Menu menu={menuList[1]} />
             <LoginModal visible={loginModalVisible} showOff={() => setLoginModalVisible(false)} />
         </Container>
     )

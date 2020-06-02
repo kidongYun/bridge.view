@@ -1,18 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
-import { _Cell } from '../timeline/Timeline'
+import CellType from '../../../model/CellType'
+import * as data from '../../../service/data'
 
-const Cell = ({id, title, description, priority, deadline}: _Cell) => {
+interface CellProps {
+    cell: CellType;
+}
+
+const Cell = ({ cell }: CellProps) => {
 
     return (
         <Container>
             <Frame>
                 <TitleFrame>
-                    {title}
+                    {cell.title}
                 </TitleFrame>
                 <DelFrame>
-                    <Button variant="outline-danger" onClick={() => { }}>Delete</Button>
+                    <Button variant="outline-danger" onClick={() => { data.cellList.push(new CellType(1, "1", "1", 1, "1")); console.log(data.cellList); }}>Delete</Button>
                 </DelFrame>
             </Frame>
         </Container>

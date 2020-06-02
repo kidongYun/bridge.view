@@ -1,21 +1,20 @@
 import React from 'react';
 import styled from 'styled-components'
 import Button from 'react-bootstrap/Button';
+import TabType from '../../../model/TabType';
 
-export interface _Tab {
-    type: string
-    title: string,
-    onClick: () => void;
-};
+interface TabProps {
+    tab: TabType
+}
 
-const Tab = ({type, title, onClick}: _Tab) => {
+const Tab = ({tab}: TabProps) => {
 
     let view;
 
-    if(type === "outline-light") {
-        view = <Button variant="outline-light" onClick={onClick}>{title}</Button>
-    } else if(type === "primary") {
-        view = <Button variant="primary" onClick={onClick}>{title}</Button>
+    if(tab.type === "outline-light") {
+        view = <Button variant="outline-light" onClick={tab.onClick}>{tab.title}</Button>
+    } else if(tab.type === "primary") {
+        view = <Button variant="primary" onClick={tab.onClick}>{tab.title}</Button>
     }
 
 

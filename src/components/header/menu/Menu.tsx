@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import Tab, { _Tab } from '../tab/Tab';
+import Tab from '../tab/Tab';
+import MenuType from '../../../model/MenuType';
 
-export interface _Menu {
-    align: string,
-    tabs: _Tab[]
+interface MenuProps {
+    menu: MenuType;
 }
 
-const Menu = ({align, tabs}: _Menu) => {
+const Menu = ({menu}: MenuProps) => {
 
     return(
-        <Container align={align}>
+        <Container align={menu.align}>
             {
-                tabs.map(
+                menu.tabs.map(
                     (tab) => (
-                        <Tab type={tab.type} title={tab.title} onClick={tab.onClick} />
+                        <Tab tab={tab} />
                     )
                 )
             }

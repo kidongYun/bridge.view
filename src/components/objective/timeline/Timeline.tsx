@@ -1,27 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
-import Cell from '../cell/Cell';
+import CellType from '../../../model/CellType';
+import Cell from '../cell/Cell'
 
-export interface _CellList {
-    cellList: _Cell[];
+interface TimelineProps {
+    cellList: CellType[]
 }
 
-export interface _Cell {
-    id: number,
-    title: string,
-    description: string,
-    priority: number,
-    deadline: string
-}
-
-const Timeline = ({ cellList } : _CellList) => {
+const Timeline = ({ cellList }: TimelineProps) => {
 
     return (
         <Container>
             {
                 cellList.map(
                     (cell) => (
-                        <Cell id={cell.id} title={cell.title} description={cell.description} priority={cell.priority} deadline={cell.deadline} />
+                        <Cell cell={ cell } />
                     )
                 )
             }

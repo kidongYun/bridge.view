@@ -1,31 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Timeline, { _CellList, _Cell } from './timeline/Timeline';
+import Timeline from './timeline/Timeline';
 
 import * as data from '../../service/data'
-import { _Stage } from '../../App';
-import Cell from '../../model/Cell';
+import CellType from '../../model/CellType';
 
-const Objective = ({ stage } : _Stage) => {
+interface ObjectiveProps {
+    stage: string
+}
+
+const Objective = ({ stage } : ObjectiveProps) => {
     let view;
 
-    const cellList = data.postObjectiveList();
+    const [cellList, setCellList] = React.useState<CellType[]>(data.cellList);
 
-    cellList.push({
-        id: 4,
-        title: 'Its my new objective',
-        description: 'des5',
-        priority: 5,
-        deadline: 'deadline5'
-    })
-
-    cellList.push(new Cell(4, 'hello123', 'desc323', 5,'deadline123123'));
-
-
-    cellList.splice(0, 1);
+    cellList.push(new CellType(1, 'a', 'b', 2, 'c'));
+    // setCellList(cellList);
 
     if(stage === "Objective") {
-        view = <Container><Timeline cellList={cellList}/></Container>
+        view = <Container><Timeline cellList={cellList} /></Container>
     } else {
         view = <></>
     }
