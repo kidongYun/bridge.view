@@ -5,10 +5,11 @@ import CellType from '../../../model/CellType'
 import * as data from '../../../service/data'
 
 interface CellProps {
-    cell: CellType;
+    cell: CellType
+    remove: (index: number) => void
 }
 
-const Cell = ({ cell }: CellProps) => {
+const Cell = ({ cell, remove }: CellProps) => {
 
     return (
         <Container>
@@ -17,7 +18,7 @@ const Cell = ({ cell }: CellProps) => {
                     {cell.title}
                 </TitleFrame>
                 <DelFrame>
-                    <Button variant="outline-danger" onClick={() => { data.cellList.push(new CellType(1, "1", "1", 1, "1")); console.log(data.cellList); }}>Delete</Button>
+                    <Button variant="outline-danger" onClick={() => remove(cell.id)}>Delete</Button>
                 </DelFrame>
             </Frame>
         </Container>

@@ -4,10 +4,7 @@ import CellType from '../model/CellType';
 import MenuType from '../model/MenuType';
 import TabType from '../model/TabType';
 
-/** 임시로 전역 처리 */
-export let cellList = postObjectiveList();
-
-function postObjectiveList() {
+export function postObjList() {
     // return axios.post('http://192.168.0.10/objective');
 
     let cellList: Array<CellType> = new Array();
@@ -17,7 +14,8 @@ function postObjectiveList() {
     cellList.push(new CellType(2, 'title2', 'description2', 2, 'deadline2'))
     cellList.push(new CellType(3, 'title3', 'description3', 3, 'deadline3'))
     cellList.push(new CellType(4, 'title4', 'description4', 4, 'deadline4'))
-    cellList.push(new CellType(5, 'title5', 'description5', 4, 'deadline5'))
+    cellList.push(new CellType(5, 'title5', 'description5', 5, 'deadline5'))
+    cellList.push(new CellType(6, 'title6', 'description6', 6, 'deadline6'))
 
     return cellList;
 }

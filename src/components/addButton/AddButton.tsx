@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from 'react-bootstrap/Button';
 
-interface _AddButton {
+interface AddButtonProps {
     onClick: () => void;
 }
 
-const AddButton = ({onClick}: _AddButton) => {
+const AddButton = ({onClick}: AddButtonProps) => {
     return (
         <Container>
             <Button onClick={onClick}>Add</Button>

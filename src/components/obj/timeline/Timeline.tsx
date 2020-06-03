@@ -5,16 +5,17 @@ import Cell from '../cell/Cell'
 
 interface TimelineProps {
     cellList: CellType[]
+    remove: (index: number) => void
 }
 
-const Timeline = ({ cellList }: TimelineProps) => {
+const Timeline = ({ cellList, remove }: TimelineProps) => {
 
     return (
         <Container>
             {
                 cellList.map(
                     (cell) => (
-                        <Cell cell={ cell } />
+                        <Cell cell={cell} remove={remove} />
                     )
                 )
             }

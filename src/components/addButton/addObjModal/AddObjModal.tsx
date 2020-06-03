@@ -2,12 +2,13 @@ import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
-interface _AddObjectiveModal {
+interface AddObjModalProps {
     visible: boolean,
+    addClick: (id: number, title: string, description: string, priority: number, deadline: string) => void,
     closeClick: () => void
 }
 
-const AddObjectiveModal = ({visible, closeClick}: _AddObjectiveModal) => {
+const AddObjModal = ({visible, addClick, closeClick}: AddObjModalProps) => {
 
 
     return (
@@ -22,10 +23,10 @@ const AddObjectiveModal = ({visible, closeClick}: _AddObjectiveModal) => {
 
             <Modal.Footer>
                 <Button variant="secondary" onClick={closeClick}>Close</Button>
-                <Button variant="primary">Save changes</Button>
+                <Button variant="primary" onClick={() => addClick(1, '2', '3', 4, '5')}>Save changes</Button>
             </Modal.Footer>
         </Modal>
     )
 }
 
-export default AddObjectiveModal;
+export default AddObjModal;
