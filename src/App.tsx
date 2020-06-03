@@ -9,7 +9,7 @@ export interface _Stage {
 }
 
 const App = () => {
-    const [stage, setStage] = React.useState("Obj");
+    const [stage, setStage] = React.useState("Objective");
 
     return (
         <>

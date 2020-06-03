@@ -1,19 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 
-interface _LoginModal {
+interface LoginModalProps {
     visible: boolean,
     showOff: () => void
 }
 
-const LoginModal = ({ visible, showOff }: _LoginModal) => {
+const LoginModal = ({ visible, showOff }: LoginModalProps) => {
 
-    const [form, setForm] = useState({
-        name: '',
-        description: ''
-    });
+    let id: string
+    let pw: string
 
     const testChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = event.target;
@@ -22,8 +20,6 @@ const LoginModal = ({ visible, showOff }: _LoginModal) => {
     }
 
     const submitLoginInfo = (id: string, pw: string) => {
-
-
         showOff();
     }
 

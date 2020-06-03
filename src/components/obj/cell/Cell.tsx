@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
 import CellType from '../../../model/CellType'
-import * as data from '../../../service/data'
 
 interface CellProps {
     cell: CellType
@@ -17,9 +16,9 @@ const Cell = ({ cell, remove }: CellProps) => {
                 <TitleFrame>
                     {cell.title}
                 </TitleFrame>
-                <DelFrame>
-                    <Button variant="outline-danger" onClick={() => remove(cell.id)}>Delete</Button>
-                </DelFrame>
+                <RemoveFrame>
+                    <Button variant="outline-danger" onClick={() => remove(cell.id)}>Remove</Button>
+                </RemoveFrame>
             </Frame>
         </Container>
     )
@@ -52,7 +51,7 @@ const TitleFrame = styled.div`
     align-items: center;
 `;
 
-const DelFrame = styled.div`
+const RemoveFrame = styled.div`
     width: 100%;
     height: 100%;
 

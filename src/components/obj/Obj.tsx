@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Timeline from './timeline/Timeline';
 import * as data from '../../service/data'
 import CellType from '../../model/CellType';
-import AddButton from '../addButton/AddButton';
-import AddObjModal from '../addButton/addObjModal/AddObjModal'
+import AddButton from './addObjButton/AddObjButton';
+import AddObjModal from './addObjButton/addObjModal/AddObjModal'
 
 interface ObjProps {
     stage: string
@@ -16,8 +16,8 @@ const Obj = ({ stage } : ObjProps) => {
     const [cellList, setCellList] = React.useState<CellType[]>(data.postObjList());
     const [addModalVisible, setAddModalVisible] = React.useState(false);
 
-    const remove = (index: number) => {
-        cellList.splice(index, 1);
+    const remove = (id: number) => {
+        cellList.splice(id, 1);
 
         setCellList([
             ...cellList
@@ -25,16 +25,14 @@ const Obj = ({ stage } : ObjProps) => {
     }
 
     const add = (id: number, title: string, description: string, priority: number, deadline: string) => {
-        const index: number = cellList.length;
-
         setCellList([
-            ...cellList, new CellType(index, 'title' + index, 'desc' + index, index, 'dead' + index)
+            ...cellList, new CellType(id, title, description, priority, deadline)
         ])
 
-        setAddModalVisible(false);
+        setAddModalVisible(false)
     }
 
-    if(stage === "Obj") {
+    if(stage === "Objective") {
         view = 
         <Container>
             <Timeline cellList={cellList} remove={remove} />
