@@ -5,6 +5,8 @@ import * as data from '../../service/data'
 import CellType from '../../model/CellType';
 import AddButton from './addObjButton/AddObjButton';
 import AddObjModal from './addObjButton/addObjModal/AddObjModal'
+import RemoveObjModal from './removeObjModal/RemoveObjModal';
+import AlertObj from './alert/AlertObj';
 
 interface ObjProps {
     stage: string
@@ -15,6 +17,8 @@ const Obj = ({ stage } : ObjProps) => {
 
     const [cellList, setCellList] = React.useState<CellType[]>(data.postObjList());
     const [addModalVisible, setAddModalVisible] = React.useState(false);
+    const [removeModalVisible, setRemoveModalVisible] = React.useState(false);
+    const [alertVisible, setAlertVisible] = React.useState(true);
 
     const remove = (id: number) => {
         cellList.splice(id, 1);
@@ -22,6 +26,8 @@ const Obj = ({ stage } : ObjProps) => {
         setCellList([
             ...cellList
         ])
+
+        setRemoveModalVisible(false);
     }
 
     const add = (id: number, title: string, description: string, priority: number, deadline: string) => {
@@ -35,9 +41,11 @@ const Obj = ({ stage } : ObjProps) => {
     if(stage === "Objective") {
         view = 
         <Container>
-            <Timeline cellList={cellList} remove={remove} />
+            <AlertObj alertVisible={alertVisible} setAlertVisible={() => setAlertVisible(false)} />
+            <Timeline cellList={cellList} setRemoveModalVisible={() => setRemoveModalVisible(true)} remove={remove} />
             <AddButton onClick={() => setAddModalVisible(true)}/>
             <AddObjModal visible={addModalVisible} addClick={add} closeClick={() => setAddModalVisible(false)}/>
+            <RemoveObjModal visible={removeModalVisible} removeClick={() => remove(1)} closeClick={() => setRemoveModalVisible(false)}/>
         </Container>
     } else {
         view = <></>

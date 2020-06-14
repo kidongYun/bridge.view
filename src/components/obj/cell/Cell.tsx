@@ -4,11 +4,12 @@ import Button from 'react-bootstrap/Button'
 import CellType from '../../../model/CellType'
 
 interface CellProps {
-    cell: CellType
+    cell: CellType,
+    setRemoveModalVisible: () => void
     remove: (index: number) => void
 }
 
-const Cell = ({ cell, remove }: CellProps) => {
+const Cell = ({ cell, setRemoveModalVisible, remove }: CellProps) => {
 
     return (
         <Container>
@@ -17,7 +18,7 @@ const Cell = ({ cell, remove }: CellProps) => {
                     {cell.title}
                 </TitleFrame>
                 <RemoveFrame>
-                    <Button variant="outline-danger" onClick={() => remove(cell.id)}>Remove</Button>
+                    <Button variant="outline-danger" onClick={setRemoveModalVisible}>Remove</Button>
                 </RemoveFrame>
             </Frame>
         </Container>
