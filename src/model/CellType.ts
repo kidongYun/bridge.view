@@ -1,16 +1,8 @@
 class CellType {
     id: number
-    title: string
-    description: string
-    priority: number
-    deadline: string
 
-    constructor(id: number, title: string, description: string, priority: number, deadline: string) {
+    constructor(id: number) {
         this.id = id;
-        this.title = title;
-        this.description = description;
-        this.priority = priority;
-        this.deadline = deadline;
     }
 }
 

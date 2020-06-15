@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
 import CellType from '../../../model/CellType'
+import ObjCellType from '../../../model/ObjCellType'
+import DateCellType from '../../../model/DateCellType'
 
 interface CellProps {
     cell: CellType,
@@ -10,17 +12,28 @@ interface CellProps {
 }
 
 const Cell = ({ cell, setRemoveModalVisible, remove }: CellProps) => {
+    let view;
+
+    if(cell instanceof ObjCellType) {
+        view =
+        <ObjFrame>
+            <TitleFrame>
+                {cell.title}
+            </TitleFrame>
+            <RemoveFrame>
+                <Button variant="outline-danger" onClick={setRemoveModalVisible}>Remove</Button>
+            </RemoveFrame>
+        </ObjFrame>
+    } else if(cell instanceof DateCellType) {
+        view =
+        <DateFrame>
+            {cell.date.toDateString()}
+        </DateFrame>
+    }
 
     return (
         <Container>
-            <Frame>
-                <TitleFrame>
-                    {cell.title}
-                </TitleFrame>
-                <RemoveFrame>
-                    <Button variant="outline-danger" onClick={setRemoveModalVisible}>Remove</Button>
-                </RemoveFrame>
-            </Frame>
+            {view}
         </Container>
     )
 }
@@ -31,7 +44,7 @@ const Container = styled.div`
     padding: 5px;
 `;
 
-const Frame = styled.div`
+const ObjFrame = styled.div`
     width: 100%;
     height: 100%;
     background-color: #eeeeee;
@@ -41,6 +54,15 @@ const Frame = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
+`;
+
+const DateFrame = styled.div`
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
 `;
 
 const TitleFrame = styled.div`

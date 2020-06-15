@@ -8,6 +8,7 @@ import AddButton from './addObjButton/AddObjButton';
 import AddObjModal from './addObjButton/addObjModal/AddObjModal'
 import RemoveObjModal from './removeObjModal/RemoveObjModal';
 import Noti from './noti/Noti';
+import ObjCellType from '../../model/ObjCellType';
 
 interface ObjProps {
     stage: string
@@ -21,7 +22,6 @@ const Obj = ({ stage } : ObjProps) => {
 
     const [addModalVisible, setAddModalVisible] = React.useState(false);
     const [removeModalVisible, setRemoveModalVisible] = React.useState(false);
-    // const [alertVisible, setAlertVisible] = React.useState(false);
 
     const remove = (id: number) => {
         cellList.splice(id, 1);
@@ -31,18 +31,16 @@ const Obj = ({ stage } : ObjProps) => {
         ])
 
         setRemoveModalVisible(false)
-
-        showNoti(new NotiType("It's removed", 2000, true))
+        showNoti(new NotiType("It's removed", 2500, true))
     }
 
-    const add = (id: number, title: string, description: string, priority: number, deadline: string) => {
+    const add = (id: number, title: string, description: string, priority: number, deadline: Date) => {
         setCellList([
-            ...cellList, new CellType(id, title, description, priority, deadline)
+            ...cellList, new ObjCellType(id, title, description, priority, deadline)
         ])
 
         setAddModalVisible(false)
-
-        showNoti(new NotiType("It's added", 2000, true));
+        showNoti(new NotiType("It's added", 2500, true));
     }
 
     const showNoti = (noti: NotiType) => {

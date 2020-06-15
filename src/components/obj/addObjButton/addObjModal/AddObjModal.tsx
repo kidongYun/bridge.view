@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 
 interface AddObjModalProps {
     visible: boolean,
-    addClick: (id: number, title: string, description: string, priority: number, deadline: string) => void,
+    addClick: (id: number, title: string, description: string, priority: number, deadline: Date) => void,
     closeClick: () => void
 }
 
@@ -73,7 +73,7 @@ const AddObjModal = ({visible, addClick, closeClick}: AddObjModalProps) => {
 
             <Modal.Footer>
                 <Button variant="secondary" onClick={closeClick}>Close</Button>
-                <Button variant="primary" onClick={() => addClick(1, title, description, priority, deadline)}>Add</Button>
+                <Button variant="primary" onClick={() => addClick(1, title, description, priority, new Date(deadline))}>Add</Button>
             </Modal.Footer>
         </Modal>
     )
