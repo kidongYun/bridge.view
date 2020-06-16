@@ -1,19 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
-import { _Stage } from '../../App';
 
-const Todo = ({ stage }: _Stage) => {
-    let view;
+interface TodoProps {
+    stage: string
+}
 
-    if(stage === "Todo") {
-        view = <Container>Todo</Container>
-    } else {
-        view = <></>
+const Todo = ({ stage }: TodoProps) => {
+    let view = <></>
+
+    if(stage !== "Todo") {
+        return (view)
     }
 
-    return (
-        view
-    )
+    view = 
+    <Container>
+        Todo
+    </Container>
+
+    return (view)
 }
 
 const Container = styled.div`

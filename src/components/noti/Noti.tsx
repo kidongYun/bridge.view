@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import Alert from 'react-bootstrap/Alert'
-import NotiType from '../../../model/NotiType';
+import NotiType from '../../model/NotiType';
 
 interface NotiProps {
     noti: NotiType

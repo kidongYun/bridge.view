@@ -1,21 +1,17 @@
-import React from 'react';
-import Header from './components/header/Header';
-import Obj from './components/obj/Obj';
-import Plan from './components/plan/Plan';
-import Todo from './components/todo/Todo';
-
-export interface _Stage {
-    stage: string
-}
+import React from 'react'
+import Obj from './layouts/obj/Obj'
+import Plan from './layouts/plan/Plan'
+import Todo from './layouts/todo/Todo'
+import Header from './layouts/header/Header';
 
 const App = () => {
-    const [stage, setStage] = React.useState("Objective");
+    const [stage, setStage] = React.useState("Plan");
 
     return (
         <>
             <Header setStage={setStage} />
-            <Obj stage={stage}/>
-            <Plan stage={stage} />
+            <Obj stage={stage} />
+            <Plan stage={stage}/>
             <Todo stage={stage} />
         </>
     );

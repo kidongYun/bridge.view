@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import CellType from '../../../model/CellType';
-import Cell from '../cell/Cell'
+import CellType from '../../model/CellType';
+import Cell from './cell/Cell'
 
 interface TimelineProps {
     cellList: CellType[],
-    setRemoveModalVisible: () => void,
-    remove: (index: number) => void
+    setRemoveModalVisible: () => void | undefined,
+    remove: (index: number) => void | undefined
 }
 
 const Timeline = ({ cellList, setRemoveModalVisible, remove }: TimelineProps) => {

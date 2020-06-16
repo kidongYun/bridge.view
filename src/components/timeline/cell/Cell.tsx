@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import CellType from '../../../model/CellType'
 import ObjCellType from '../../../model/ObjCellType'
 import DateCellType from '../../../model/DateCellType'
+import PlanCellType from '../../../model/PlanCellType';
 
 interface CellProps {
     cell: CellType,
@@ -24,7 +25,13 @@ const Cell = ({ cell, setRemoveModalVisible, remove }: CellProps) => {
                 <Button variant="outline-danger" onClick={setRemoveModalVisible}>Remove</Button>
             </RemoveFrame>
         </ObjFrame>
-    } else if(cell instanceof DateCellType) {
+    } 
+
+    if(cell instanceof PlanCellType) {
+        view =  <PlanFrame>{cell.plan}</PlanFrame>
+    }
+    
+    if(cell instanceof DateCellType) {
         view =
         <DateFrame>
             {cell.date.toDateString()}
@@ -81,6 +88,11 @@ const RemoveFrame = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
+`;
+
+const PlanFrame = styled.div`
+    width: 100%;
+    height: 100%;
 `;
 
 export default Cell;
