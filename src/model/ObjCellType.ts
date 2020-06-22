@@ -6,12 +6,12 @@ class ObjCellType extends CellType {
     priority: number
     deadline: Date
 
-    constructor(id: number, title: string, description: string, priority: number, deadline: Date) {
+    constructor(id: number, title: string, description: string, priority: number, deadline: string) {
         super(id)
-        this.title = title;
-        this.description = description;
-        this.priority = priority;
-        this.deadline = deadline;
+        this.title = title
+        this.description = description
+        this.priority = priority
+        this.deadline = new Date(deadline)
     }
 }
 

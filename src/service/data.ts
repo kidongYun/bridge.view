@@ -1,4 +1,4 @@
-// import axios from 'axios'
+import axios from 'axios'
 
 import CellType from '../model/CellType';
 import MenuType from '../model/MenuType';
@@ -6,6 +6,7 @@ import TabType from '../model/TabType';
 import ObjCellType from '../model/ObjCellType';
 import PlanCellType from '../model/PlanCellType';
 import DateCellType from '../model/DateCellType';
+
 
 export function postPlanList() {
     let planList: Array<CellType> = [];
@@ -27,26 +28,8 @@ export function postPlanList() {
     return planList;
 }
 
-export function postObjList() {
-    // return axios.post('http://192.168.0.10/objective');
-
-    let objList: Array<CellType> = [];
-
-    objList.push(new DateCellType(20, new Date('2020-06-20')))
-    objList.push(new ObjCellType(0, 'title0', 'description0', 0, new Date('2020-06-20')))
-    objList.push(new ObjCellType(1, 'title1', 'description1', 1, new Date('2020-06-30')))
-    objList.push(new ObjCellType(2, 'title2', 'description2', 2, new Date('2020-07-10')))
-    objList.push(new DateCellType(20, new Date('2020-07-30')))
-    objList.push(new ObjCellType(3, 'title3', 'description3', 3, new Date('2020-07-20')))
-    objList.push(new ObjCellType(4, 'title4', 'description4', 4, new Date('2020-07-30')))
-    objList.push(new ObjCellType(4, 'title4', 'description4', 4, new Date('2020-07-30')))
-    objList.push(new ObjCellType(4, 'title4', 'description4', 4, new Date('2020-07-30')))
-    objList.push(new DateCellType(20, new Date('2020-08-10')))
-    objList.push(new ObjCellType(5, 'title5', 'description5', 5, new Date('2020-08-10')))
-    objList.push(new DateCellType(20, new Date('2020-08-20')))
-    objList.push(new ObjCellType(6, 'title6', 'description6', 6, new Date('2020-08-20')))
-
-    return objList;
+export async function postObjList() {
+    return await axios.post("http://localhost:8080/tempObj");
 }
 
 export function postHeaderMenuList(setStage : (name: string) => void, setLoginModalVisible: (visible: boolean) => void) {

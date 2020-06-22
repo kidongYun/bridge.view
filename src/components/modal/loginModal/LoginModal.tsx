@@ -4,14 +4,12 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 
 interface LoginModalProps {
-    visible: boolean,
-    showOff: () => void
+    isShow: boolean
+    onClose: () => void
+    // onExecute: () => void
 }
 
-const LoginModal = ({ visible, showOff }: LoginModalProps) => {
-
-    let id: string
-    let pw: string
+const LoginModal = ({ isShow, onClose }: LoginModalProps) => {
 
     const testChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = event.target;
@@ -19,13 +17,9 @@ const LoginModal = ({ visible, showOff }: LoginModalProps) => {
         console.log(id + ", " + value);
     }
 
-    const submitLoginInfo = (id: string, pw: string) => {
-        showOff();
-    }
-
     return (
-        <Modal show={visible}>
-            <Modal.Header closeButton onClick={showOff}>
+        <Modal show={isShow}>
+            <Modal.Header closeButton onClick={onClose}>
                 <Modal.Title>Login</Modal.Title>
             </Modal.Header>
 
@@ -41,8 +35,8 @@ const LoginModal = ({ visible, showOff }: LoginModalProps) => {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={showOff}>Close</Button>
-                <Button variant="primary" onClick={() => { submitLoginInfo("ididid", "pwpwpw") }}>Login</Button>
+                <Button variant="secondary" onClick={onClose}>Close</Button>
+                <Button variant="primary">Login</Button>
             </Modal.Footer>
         </Modal>
     )

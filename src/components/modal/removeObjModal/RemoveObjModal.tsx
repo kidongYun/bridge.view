@@ -4,15 +4,20 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form';
 
 interface RemoveObjModalProps {
-    visible: boolean,
-    removeClick: () => void,
-    closeClick: () => void
+    isShow: boolean
+    onClose: () => void
+    // onExecute: () => void
 }
 
-const RemoveObjModal = ({ visible, removeClick, closeClick }: RemoveObjModalProps) => {
+const RemoveObjModal = ({ isShow, onClose }: RemoveObjModalProps) => {
+
+    const onExecute = () => {
+        // Do Something.
+        onClose()
+    }
     return(
-        <Modal show={visible}>
-            <Modal.Header closeButton onClick={closeClick}>
+        <Modal show={isShow}>
+            <Modal.Header closeButton onClick={onClose}>
                 <Modal.Title>Warning</Modal.Title>
             </Modal.Header>
 
@@ -21,8 +26,8 @@ const RemoveObjModal = ({ visible, removeClick, closeClick }: RemoveObjModalProp
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={closeClick}>Close</Button>
-                <Button variant="primary" onClick={removeClick}>Remove</Button>
+                <Button variant="secondary" onClick={onClose}>Close</Button>
+                <Button variant="primary" onClick={onExecute}>Remove</Button>
             </Modal.Footer>
         </Modal>
     )

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import LoginModal from '../navigation/loginModal/LoginModal';
+import LoginModal from '../modal/loginModal/LoginModal';
 import Menu from './menu/Menu';
 
 import * as data from '../../service/data'
@@ -17,7 +17,7 @@ const Navigation = ({ setStage } : NavigationProps) => {
         <Container>
             <Menu menu={menuList[0]} />
             <Menu menu={menuList[1]} />
-            <LoginModal visible={loginModalVisible} showOff={() => setLoginModalVisible(false)} />
+            {/* <LoginModal visible={loginModalVisible} showOff={() => setLoginModalVisible(false)} /> */}
         </Container>
     )
 }

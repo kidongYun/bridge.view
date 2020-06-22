@@ -4,12 +4,12 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form';
 
 interface AddObjModalProps {
-    visible: boolean,
-    addClick: (id: number, title: string, description: string, priority: number, deadline: Date) => void,
-    closeClick: () => void
+    visible: boolean
+    onClose: () => void
+    // onExecute: (id: number, title: string, description: string, priority: number, deadline: Date) => void
 }
 
-const AddObjModal = ({visible, addClick, closeClick}: AddObjModalProps) => {
+const AddObjModal = ({visible, onClose}: AddObjModalProps) => {
 
     let title: string
     let description: string
@@ -40,7 +40,7 @@ const AddObjModal = ({visible, addClick, closeClick}: AddObjModalProps) => {
 
     return (
         <Modal show={visible}>
-            <Modal.Header closeButton onClick={closeClick}>
+            <Modal.Header closeButton onClick={onClose}>
                 <Modal.Title>New Objective</Modal.Title>
             </Modal.Header>
 
@@ -72,8 +72,8 @@ const AddObjModal = ({visible, addClick, closeClick}: AddObjModalProps) => {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={closeClick}>Close</Button>
-                <Button variant="primary" onClick={() => addClick(1, title, description, priority, new Date(deadline))}>Add</Button>
+                <Button variant="secondary" onClick={onClose}>Close</Button>
+                {/* <Button variant="primary" onClick={() => addClick(1, title, description, priority, new Date(deadline))}>Add</Button> */}
             </Modal.Footer>
         </Modal>
     )

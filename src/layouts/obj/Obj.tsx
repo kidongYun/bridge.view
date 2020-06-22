@@ -7,8 +7,8 @@ import * as data from '../../service/data'
 /* Component */
 import Timeline from '../../components/timeline/Timeline'
 import AddButton from './addObjButton/AddObjButton'
-import AddObjModal from './addObjButton/addObjModal/AddObjModal'
-import RemoveObjModal from './removeObjModal/RemoveObjModal'
+import AddObjModal from '../../components/modal/addObjModal/AddObjModal'
+import RemoveObjModal from '../../components/modal/removeObjModal/RemoveObjModal'
 import Noti from '../../components/noti/Noti'
 
 /* Model */
@@ -23,11 +23,27 @@ interface ObjProps {
 const Obj = ({ stage } : ObjProps) => {
     let view = <></>;
 
-    const [objList, setObjList] = React.useState<CellType[]>(data.postObjList());
+    const [objList, setObjList] = React.useState<CellType[]>([])
     const [noti, setNoti] = React.useState<NotiType>(new NotiType("Default", 2000, false));
 
     const [addModalVisible, setAddModalVisible] = React.useState(false);
     const [removeModalVisible, setRemoveModalVisible] = React.useState(false);
+
+    React.useEffect(() => {
+        data.postObjList().then(response => {
+            console.log(response.data);
+
+            let tempObjList : Array<ObjCellType> = [];
+            for(let i=0; i<response.data.length; i++) {
+                tempObjList.push(new ObjCellType(response.data[i].id, response.data[i].title, response.data[i].description, response.data[i].priority, response.data[i].deadline))
+            }
+
+            setObjList(tempObjList)
+
+            console.log(objList);
+        })
+        console.log(objList);
+    }, [])
 
     const remove = (id: number) => {
         objList.splice(id, 1);
@@ -42,7 +58,7 @@ const Obj = ({ stage } : ObjProps) => {
 
     const add = (id: number, title: string, description: string, priority: number, deadline: Date) => {
         setObjList([
-            ...objList, new ObjCellType(id, title, description, priority, deadline)
+            // ...objList, new ObjCellType(id, title, description, priority, deadline)
         ])
 
         setAddModalVisible(false)
@@ -70,8 +86,8 @@ const Obj = ({ stage } : ObjProps) => {
         <Noti noti={noti} setNoti={setNoti} />
         <Timeline cellList={objList} setRemoveModalVisible={() => setRemoveModalVisible(true)} remove={remove} />
         <AddButton onClick={() => setAddModalVisible(true)}/>
-        <AddObjModal visible={addModalVisible} addClick={add} closeClick={() => setAddModalVisible(false)}/>
-        <RemoveObjModal visible={removeModalVisible} removeClick={() => remove(1)} closeClick={() => setRemoveModalVisible(false)}/>
+        {/* <AddObjModal visible={addModalVisible} addClick={add} closeClick={() => setAddModalVisible(false)}/>
+        <RemoveObjModal visible={removeModalVisible} closeClick={() => setRemoveModalVisible(false)}/> */}
     </Container>
 
     return (view);
