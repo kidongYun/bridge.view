@@ -4,12 +4,12 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form';
 
 interface AddObjModalProps {
-    visible: boolean
+    isShow: boolean
     onClose: () => void
     // onExecute: (id: number, title: string, description: string, priority: number, deadline: Date) => void
 }
 
-const AddObjModal = ({visible, onClose}: AddObjModalProps) => {
+const AddObjModal = ({isShow, onClose}: AddObjModalProps) => {
 
     let title: string
     let description: string
@@ -39,7 +39,7 @@ const AddObjModal = ({visible, onClose}: AddObjModalProps) => {
     }
 
     return (
-        <Modal show={visible}>
+        <Modal show={isShow}>
             <Modal.Header closeButton onClick={onClose}>
                 <Modal.Title>New Objective</Modal.Title>
             </Modal.Header>

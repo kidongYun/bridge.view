@@ -6,7 +6,6 @@ import Form from 'react-bootstrap/Form'
 interface LoginModalProps {
     isShow: boolean
     onClose: () => void
-    // onExecute: () => void
 }
 
 const LoginModal = ({ isShow, onClose }: LoginModalProps) => {
