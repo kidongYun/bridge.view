@@ -34,7 +34,7 @@ const Cell = ({ cell, setRemoveModalVisible, remove }: CellProps) => {
     if(cell instanceof DateCellType) {
         view =
         <DateFrame>
-            {cell.date.toDateString()}
+            {/* {cell.date.toDateString()} */}
         </DateFrame>
     }
 

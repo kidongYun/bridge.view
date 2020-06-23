@@ -11,19 +11,19 @@ import DateCellType from '../model/DateCellType';
 export function postPlanList() {
     let planList: Array<CellType> = [];
 
-    planList.push(new DateCellType(20, new Date('2020-01')))
-    planList.push(new PlanCellType(0, 'title0'))
-    planList.push(new DateCellType(20, new Date('2020-02')))
-    planList.push(new DateCellType(20, new Date('2020-03')))
-    planList.push(new DateCellType(20, new Date('2020-04')))
-    planList.push(new DateCellType(20, new Date('2020-05')))
-    planList.push(new DateCellType(20, new Date('2020-06')))
-    planList.push(new DateCellType(20, new Date('2020-07')))
-    planList.push(new DateCellType(20, new Date('2020-08')))
-    planList.push(new DateCellType(20, new Date('2020-09')))
-    planList.push(new DateCellType(20, new Date('2020-10')))
-    planList.push(new DateCellType(20, new Date('2020-11')))
-    planList.push(new DateCellType(20, new Date('2020-12')))
+    // planList.push(new DateCellType(20, new Date('2020-01')))
+    // planList.push(new PlanCellType(0, 'title0'))
+    // planList.push(new DateCellType(20, new Date('2020-02')))
+    // planList.push(new DateCellType(20, new Date('2020-03')))
+    // planList.push(new DateCellType(20, new Date('2020-04')))
+    // planList.push(new DateCellType(20, new Date('2020-05')))
+    // planList.push(new DateCellType(20, new Date('2020-06')))
+    // planList.push(new DateCellType(20, new Date('2020-07')))
+    // planList.push(new DateCellType(20, new Date('2020-08')))
+    // planList.push(new DateCellType(20, new Date('2020-09')))
+    // planList.push(new DateCellType(20, new Date('2020-10')))
+    // planList.push(new DateCellType(20, new Date('2020-11')))
+    // planList.push(new DateCellType(20, new Date('2020-12')))
 
     return planList;
 }

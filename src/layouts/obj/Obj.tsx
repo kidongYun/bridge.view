@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { plainToClass } from 'class-transformer'
 
 /* Service */
 import * as data from '../../service/data'
@@ -24,25 +25,23 @@ const Obj = ({ stage } : ObjProps) => {
     let view = <></>;
 
     const [objList, setObjList] = React.useState<CellType[]>([])
-    const [noti, setNoti] = React.useState<NotiType>(new NotiType("Default", 2000, false));
+    const [noti, setNoti] = React.useState<NotiType>(new NotiType("Default", 2000, false))
 
-    const [addModalVisible, setAddModalVisible] = React.useState(false);
-    const [removeModalVisible, setRemoveModalVisible] = React.useState(false);
+    const [addModalVisible, setAddModalVisible] = React.useState(false)
+    const [removeModalVisible, setRemoveModalVisible] = React.useState(false)
 
-    React.useEffect(() => {
-        data.postObjList().then(response => {
-            console.log(response.data);
+    useEffect(() => {
+        data.postObjList().then((response) => {
 
-            let tempObjList : Array<ObjCellType> = [];
-            for(let i=0; i<response.data.length; i++) {
-                tempObjList.push(new ObjCellType(response.data[i].id, response.data[i].title, response.data[i].description, response.data[i].priority, response.data[i].deadline))
-            }
+            let obj: Array<ObjCellType> = plainToClass(ObjCellType, response.data);
 
-            setObjList(tempObjList)
 
-            console.log(objList);
+            console.log(obj);
+            // console.log(objT);
+
+            setObjList(obj);
+
         })
-        console.log(objList);
     }, [])
 
     const remove = (id: number) => {

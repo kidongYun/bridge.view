@@ -1,5 +1,5 @@
 class CellType {
-    id: number
+    protected id: number
 
     constructor(id: number) {
         this.id = id;
