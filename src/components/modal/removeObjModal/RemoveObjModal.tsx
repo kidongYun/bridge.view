@@ -11,11 +11,12 @@ interface RemoveObjModalProps {
 
 const RemoveObjModal = ({ isShow, cellId, onClose }: RemoveObjModalProps) => {
 
-    console.log(cellId);
-
     const onExecute = () => {
+        console.log(cellId)
         onClose()
     }
+
+
     return(
         <Modal show={isShow}>
             <Modal.Header closeButton onClick={onClose}>

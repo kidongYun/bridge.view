@@ -2,27 +2,26 @@ import React from 'react'
 import AddObjModal from './addObjModal/AddObjModal'
 import LoginModal from './loginModal/LoginModal';
 import RemoveObjModal from './removeObjModal/RemoveObjModal';
+import ModalType from '../../model/ModalType';
 
 interface ModalProps {
-    type: string
-    isShow: boolean
-    parameter: number | undefined
-    onClose: () => void
+    modal: ModalType
+    setModal: (modal: ModalType) => void
 }
 
-const Modal = ({type, isShow, parameter, onClose}: ModalProps) => {
+const Modal = ({modal, setModal}: ModalProps) => {
     let view = <></>
 
-    if(type === "Login") {
-        view = <LoginModal isShow={isShow} onClose={onClose} />
+    if(modal.type === "Login") {
+        view = <LoginModal isShow={modal.isShow} onClose={() => setModal({...modal, isShow:false})} />
     }
 
-    if(type === "Add") {
-        view = <AddObjModal isShow={isShow} onClose={onClose} />
+    if(modal.type === "Add") {
+        view = <AddObjModal isShow={modal.isShow} onClose={() => setModal({...modal, isShow:false})} />
     }
 
-    if(type === "Remove") {
-        view = <RemoveObjModal isShow={isShow} onClose={onClose} cellId={parameter!} />
+    if(modal.type === "Remove") {
+        // view = <RemoveObjModal isShow={modal.isShow} onClose={() => setModal({...modal, isShow:false})} />
     }
 
     return view

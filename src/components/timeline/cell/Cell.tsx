@@ -7,12 +7,10 @@ import DateCellType from '../../../model/DateCellType'
 import PlanCellType from '../../../model/PlanCellType';
 
 interface CellProps {
-    cell: CellType,
-    setRemoveModalVisible: () => void
-    remove: (index: number) => void
+    cell: CellType
 }
 
-const Cell = ({ cell, setRemoveModalVisible, remove }: CellProps) => {
+const Cell = ({ cell }: CellProps) => {
     let view;
 
     if(cell instanceof ObjCellType) {
@@ -22,7 +20,7 @@ const Cell = ({ cell, setRemoveModalVisible, remove }: CellProps) => {
                 {cell.title}
             </TitleFrame>
             <RemoveFrame>
-                <Button variant="outline-danger" onClick={setRemoveModalVisible}>Remove</Button>
+                <Button variant="outline-danger">Remove</Button>
             </RemoveFrame>
         </ObjFrame>
     } 

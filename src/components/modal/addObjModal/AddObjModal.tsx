@@ -6,7 +6,6 @@ import Form from 'react-bootstrap/Form';
 interface AddObjModalProps {
     isShow: boolean
     onClose: () => void
-    // onExecute: (id: number, title: string, description: string, priority: number, deadline: Date) => void
 }
 
 const AddObjModal = ({isShow, onClose}: AddObjModalProps) => {
@@ -16,7 +15,11 @@ const AddObjModal = ({isShow, onClose}: AddObjModalProps) => {
     let priority: number
     let deadline: string
 
-    const saveInfo = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onExecute = () => {
+        console.log(title + ", " + description + ", " + priority + ", " + deadline);
+    }
+
+    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = event.target;
 
         if(id === 'title') {
@@ -34,8 +37,6 @@ const AddObjModal = ({isShow, onClose}: AddObjModalProps) => {
         if(id === 'deadline') {
             deadline = value;
         }
-
-        console.log(title + ", " + description + ", " + priority + ", " + deadline);
     }
 
     return (
@@ -47,16 +48,16 @@ const AddObjModal = ({isShow, onClose}: AddObjModalProps) => {
             <Modal.Body>
                 <Form>
                     <Form.Group>
-                        <Form.Control id="title" placeholder="TITLE" onChange={saveInfo} />
+                        <Form.Control id="title" placeholder="TITLE" onChange={onChange} />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Control id="description" placeholder="DESCRIPTION" as="textarea" rows="10" onChange={saveInfo} />
+                        <Form.Control id="description" placeholder="DESCRIPTION" as="textarea" rows="10" onChange={onChange} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Priority</Form.Label>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Control id="priority" as="select" defaultValue="10" onChange={saveInfo}>
+                        <Form.Control id="priority" as="select" defaultValue="10" onChange={onChange}>
                             <option value="10">HIGH</option>
                             <option value="5">MID</option>
                             <option value="1">LOW</option>
@@ -66,14 +67,14 @@ const AddObjModal = ({isShow, onClose}: AddObjModalProps) => {
                         <Form.Label>Deadline</Form.Label>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Control id="deadline" placeholder="ex)2020.07.30" onChange={saveInfo} />
+                        <Form.Control id="deadline" placeholder="ex)2020.07.30" onChange={onChange} />
                     </Form.Group>
                 </Form>
             </Modal.Body>
 
             <Modal.Footer>
                 <Button variant="secondary" onClick={onClose}>Close</Button>
-                {/* <Button variant="primary" onClick={() => addClick(1, title, description, priority, new Date(deadline))}>Add</Button> */}
+                <Button variant="primary" onClick={onExecute}>Add</Button>
             </Modal.Footer>
         </Modal>
     )

@@ -1,12 +1,12 @@
 class ModalType {
-    type: string | undefined
+    type : string
+    parameter: object | undefined
     isShow: boolean
-    parameter: number | undefined
 
-    constructor(type: string | undefined, isShow: boolean, parameter: number | undefined) {
-        this.type = type
-        this.isShow = isShow
+    constructor(type: string, parameter: object | undefined, isShow: boolean) {
+        this.type = type;
         this.parameter = parameter
+        this.isShow = isShow
     }
 }
 

@@ -4,19 +4,17 @@ import CellType from '../../model/CellType';
 import Cell from './cell/Cell'
 
 interface TimelineProps {
-    cellList: CellType[],
-    setRemoveModalVisible: () => void | undefined,
-    remove: (index: number) => void | undefined
+    cellList: CellType[]
 }
 
-const Timeline = ({ cellList, setRemoveModalVisible, remove }: TimelineProps) => {
+const Timeline = ({ cellList }: TimelineProps) => {
 
     return (
         <Container>
             {
                 cellList.map(
                     (cell) => (
-                        <Cell cell={cell} setRemoveModalVisible={setRemoveModalVisible} remove={remove} />
+                        <Cell cell={cell} />
                     )
                 )
             }

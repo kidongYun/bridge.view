@@ -1,23 +1,23 @@
 import React from 'react';
 import styled from 'styled-components'
-import LoginModal from '../modal/loginModal/LoginModal';
 import Menu from './menu/Menu';
 
 import * as data from '../../service/data'
+import ModalType from '../../model/ModalType';
 
 interface NavigationProps {
+    modal: ModalType
+    setModal: (modal: ModalType) => void
     setStage: (name: string) => void
 }
 
-const Navigation = ({ setStage } : NavigationProps) => {
-    const [loginModalVisible, setLoginModalVisible] = React.useState(false);
-    const menuList = data.postHeaderMenuList(setStage, setLoginModalVisible);
+const Navigation = ({ modal, setModal, setStage } : NavigationProps) => {
+    const menuList = data.postNavList(modal, setModal, setStage);
 
     return (
         <Container>
             <Menu menu={menuList[0]} />
             <Menu menu={menuList[1]} />
-            {/* <LoginModal visible={loginModalVisible} showOff={() => setLoginModalVisible(false)} /> */}
         </Container>
     )
 }

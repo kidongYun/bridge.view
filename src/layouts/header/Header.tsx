@@ -3,15 +3,18 @@ import styled from 'styled-components'
 
 /* Component */
 import Navigation from '../../components/navigation/Navigation';
+import ModalType from '../../model/ModalType';
 
 interface HeaderProps {
+    modal: ModalType
+    setModal: (modal: ModalType) => void
     setStage: (name: string) => void
 }
 
-const Header = ({setStage}: HeaderProps) => {
+const Header = ({modal, setModal, setStage}: HeaderProps) => {
     return (
         <Container>
-            <Navigation setStage={setStage} />
+            <Navigation modal={modal} setModal={setModal} setStage={setStage} />
         </Container>
     )
 }

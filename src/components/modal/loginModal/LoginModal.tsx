@@ -10,6 +10,11 @@ interface LoginModalProps {
 
 const LoginModal = ({ isShow, onClose }: LoginModalProps) => {
 
+    const onExecute = () => {
+        // Do Something.
+        onClose();
+    }
+
     const testChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = event.target;
 
@@ -35,7 +40,7 @@ const LoginModal = ({ isShow, onClose }: LoginModalProps) => {
 
             <Modal.Footer>
                 <Button variant="secondary" onClick={onClose}>Close</Button>
-                <Button variant="primary">Login</Button>
+                <Button variant="primary" onClick={onExecute}>Login</Button>
             </Modal.Footer>
         </Modal>
     )

@@ -25,7 +25,7 @@ const Plan = ({ stage } : PlanProps) => {
 
     view = 
     <Container>
-        <Timeline cellList={planList} setRemoveModalVisible={() => undefined} remove={() => undefined} />
+        {/* <Timeline cellList={planList} setRemoveModalVisible={() => undefined} remove={() => undefined} /> */}
     </Container>
 
     return (view)
