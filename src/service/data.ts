@@ -7,8 +7,8 @@ import ObjCellType from '../model/ObjCellType';
 import PlanCellType from '../model/PlanCellType';
 import DateCellType from '../model/DateCellType';
 import ModalType from '../model/ModalType';
-import Modal from 'react-bootstrap/Modal';
 import { async } from 'q';
+import Header from '../layouts/header/Header';
 
 
 export function postPlanList() {
@@ -31,12 +31,16 @@ export function postPlanList() {
     return planList;
 }
 
+export async function getObj() {
+    return await axios.get("http://localhost:8080/getObj");
+}
+
 export async function postObj() {
     return await axios.post("http://localhost:8080/postObj");
 }
 
-export async function putObj() {
-    
+export async function putObj(obj: ObjCellType) {
+    return await axios.put("http://localhost:8080/putObj", obj);
 }
 
 export function postNavList(modal: ModalType, setModal: (modal: ModalType) => void, setStage : (name: string) => void) {

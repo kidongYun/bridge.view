@@ -2,13 +2,17 @@ import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form';
+import * as data from '../../../service/data'
+import ObjCellType from '../../../model/ObjCellType';
+import ModalType from '../../../model/ModalType';
+import { plainToClass } from 'class-transformer'
 
 interface AddObjModalProps {
-    isShow: boolean
+    modal: ModalType
     onClose: () => void
 }
 
-const AddObjModal = ({isShow, onClose}: AddObjModalProps) => {
+const AddObjModal = ({modal, onClose}: AddObjModalProps) => {
 
     let title: string
     let description: string
@@ -16,7 +20,11 @@ const AddObjModal = ({isShow, onClose}: AddObjModalProps) => {
     let deadline: string
 
     const onExecute = () => {
-        console.log(title + ", " + description + ", " + priority + ", " + deadline);
+        const obj: ObjCellType = new ObjCellType(100, title, description, priority, deadline);
+        data.putObj(obj).then((response) => {
+            modal.setCellList(plainToClass(ObjCellType, response.data))
+            onClose()
+        })
     }
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +48,7 @@ const AddObjModal = ({isShow, onClose}: AddObjModalProps) => {
     }
 
     return (
-        <Modal show={isShow}>
+        <Modal show={modal.isShow}>
             <Modal.Header closeButton onClick={onClose}>
                 <Modal.Title>New Objective</Modal.Title>
             </Modal.Header>

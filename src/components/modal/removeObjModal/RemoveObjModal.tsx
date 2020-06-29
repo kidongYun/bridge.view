@@ -2,23 +2,22 @@ import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import ModalType from '../../../model/ModalType';
 
 interface RemoveObjModalProps {
-    isShow: boolean
-    cellId: number
+    modal: ModalType
     onClose: () => void
 }
 
-const RemoveObjModal = ({ isShow, cellId, onClose }: RemoveObjModalProps) => {
+const RemoveObjModal = ({ modal, onClose }: RemoveObjModalProps) => {
 
     const onExecute = () => {
-        console.log(cellId)
         onClose()
     }
 
 
     return(
-        <Modal show={isShow}>
+        <Modal show={modal.isShow}>
             <Modal.Header closeButton onClick={onClose}>
                 <Modal.Title>Warning</Modal.Title>
             </Modal.Header>

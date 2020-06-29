@@ -13,15 +13,15 @@ const Modal = ({modal, setModal}: ModalProps) => {
     let view = <></>
 
     if(modal.type === "Login") {
-        view = <LoginModal isShow={modal.isShow} onClose={() => setModal({...modal, isShow:false})} />
+        view = <LoginModal modal={modal} onClose={() => setModal({...modal, isShow:false})} />
     }
 
     if(modal.type === "Add") {
-        view = <AddObjModal isShow={modal.isShow} onClose={() => setModal({...modal, isShow:false})} />
+        view = <AddObjModal modal={modal} onClose={() => setModal({...modal, isShow:false})} />
     }
 
     if(modal.type === "Remove") {
-        // view = <RemoveObjModal isShow={modal.isShow} onClose={() => setModal({...modal, isShow:false})} />
+        view = <RemoveObjModal modal={modal} onClose={() => setModal({...modal, isShow:false})} />
     }
 
     return view

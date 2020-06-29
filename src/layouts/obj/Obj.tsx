@@ -27,7 +27,7 @@ const Obj = ({ stage, modal, setModal } : ObjProps) => {
     const [objList, setObjList] = React.useState<CellType[]>([])
 
     React.useEffect(() => {
-        data.postObj().then((response) => {
+        data.getObj().then((response) => {
             setObjList(plainToClass(ObjCellType, response.data))
         })
     }, [])
@@ -59,9 +59,14 @@ const Obj = ({ stage, modal, setModal } : ObjProps) => {
     view = 
     <Container>
         <Timeline cellList={objList} />
-        <AddButton onClick={() => setModal({...modal, type: "Add", isShow: true})}/>
-        {/* <AddObjModal visible={addModalVisible} addClick={add} closeClick={() => setAddModalVisible(false)}/>
-        <RemoveObjModal visible={removeModalVisible} closeClick={() => setRemoveModalVisible(false)}/> */}
+        <AddButton onClick={() => 
+            setModal({ ...modal,
+                type: "Add",
+                isShow: true,
+                cellList: objList,
+                setCellList: setObjList
+            })
+        }/>
     </Container>
 
     return (view);

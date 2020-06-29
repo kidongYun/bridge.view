@@ -14,7 +14,7 @@ const App = () => {
     const [stage, setStage] = React.useState("Plan");
 
     const [noti, setNoti] = React.useState<NotiType>(new NotiType("Default", 2000, false))
-    const [modal, setModal] = React.useState<ModalType>(new ModalType("Default", undefined, true))
+    const [modal, setModal] = React.useState<ModalType>(new ModalType("Default", true, [], () => {}))
 
     const showNoti = (noti: NotiType) => {
         setNoti(noti);

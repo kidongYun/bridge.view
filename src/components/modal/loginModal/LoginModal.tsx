@@ -2,13 +2,14 @@ import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+import ModalType from '../../../model/ModalType';
 
 interface LoginModalProps {
-    isShow: boolean
+    modal: ModalType
     onClose: () => void
 }
 
-const LoginModal = ({ isShow, onClose }: LoginModalProps) => {
+const LoginModal = ({ modal, onClose }: LoginModalProps) => {
 
     const onExecute = () => {
         // Do Something.
@@ -22,7 +23,7 @@ const LoginModal = ({ isShow, onClose }: LoginModalProps) => {
     }
 
     return (
-        <Modal show={isShow}>
+        <Modal show={modal.isShow}>
             <Modal.Header closeButton onClick={onClose}>
                 <Modal.Title>Login</Modal.Title>
             </Modal.Header>
