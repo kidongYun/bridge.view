@@ -43,27 +43,17 @@ const Obj = ({ stage, modal, setModal } : ObjProps) => {
     //     showNoti(new NotiType("It's removed", 2500, true))
     // }
 
-    const add = (id: number, title: string, description: string, priority: number, deadline: Date) => {
-        // setObjList([
-        //     // ...objList, new ObjCellType(id, title, description, priority, deadline)
-        // ])
-
-        // setAddModalVisible(false)
-        // showNoti(new NotiType("It's added", 2500, true));
-    }
-
     if(stage !== "Objective") {
         return (view)
     }
 
     view = 
     <Container>
-        <Timeline cellList={objList} />
+        <Timeline cellList={objList} setCellList={setObjList} modal={modal} setModal={setModal} />
         <AddButton onClick={() => 
             setModal({ ...modal,
                 type: "Add",
                 isShow: true,
-                cellList: objList,
                 setCellList: setObjList
             })
         }/>

@@ -43,6 +43,10 @@ export async function putObj(obj: ObjCellType) {
     return await axios.put("http://localhost:8080/putObj", obj);
 }
 
+export async function deleteObj(id: number) {
+    return await axios.delete("http://localhost:8080/deleteObj", { data: { id: id } });
+}
+
 export function postNavList(modal: ModalType, setModal: (modal: ModalType) => void, setStage : (name: string) => void) {
     let menuList: Array<MenuType> = [];
 

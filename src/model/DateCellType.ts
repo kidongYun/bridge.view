@@ -1,7 +1,7 @@
 import CellType from './CellType'
 
 class DateCellType extends CellType {
-    date: Date | undefined
+    date: Date
 
     constructor(id: number, date: Date) {
         super(id);

@@ -5,22 +5,35 @@ import CellType from '../../../model/CellType'
 import ObjCellType from '../../../model/ObjCellType'
 import DateCellType from '../../../model/DateCellType'
 import PlanCellType from '../../../model/PlanCellType';
+import Modal from 'react-bootstrap/Modal';
+import ModalType from '../../../model/ModalType';
 
 interface CellProps {
     cell: CellType
+    setCellList: (cellList: CellType[]) => void
+    modal: ModalType
+    setModal: (modal: ModalType) => void
 }
 
-const Cell = ({ cell }: CellProps) => {
+const Cell = ({ cell, modal, setModal, setCellList }: CellProps) => {
     let view;
 
     if(cell instanceof ObjCellType) {
+        const cellList: CellType[] = [];
+
         view =
         <ObjFrame>
             <TitleFrame>
                 {cell.title}
             </TitleFrame>
             <RemoveFrame>
-                <Button variant="outline-danger">Remove</Button>
+                <Button variant="outline-danger" onClick={() => setModal({
+                    ...modal,
+                    type: "Remove",
+                    isShow: true,
+                    cell: cell,
+                    setCellList: setCellList, 
+                })}>Remove</Button>
             </RemoveFrame>
         </ObjFrame>
     } 
@@ -30,10 +43,7 @@ const Cell = ({ cell }: CellProps) => {
     }
     
     if(cell instanceof DateCellType) {
-        view =
-        <DateFrame>
-            {/* {cell.date.toDateString()} */}
-        </DateFrame>
+        view =<DateFrame>{cell.date.toDateString()}</DateFrame>
     }
 
     return (

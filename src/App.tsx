@@ -9,12 +9,13 @@ import Modal from './components/modal/Modal';
 
 import NotiType from './model/NotiType'
 import ModalType from './model/ModalType';
+import CellType from './model/CellType';
 
 const App = () => {
     const [stage, setStage] = React.useState("Plan");
 
     const [noti, setNoti] = React.useState<NotiType>(new NotiType("Default", 2000, false))
-    const [modal, setModal] = React.useState<ModalType>(new ModalType("Default", true, [], () => {}))
+    const [modal, setModal] = React.useState<ModalType>(new ModalType("Default", true, undefined, () => {}))
 
     const showNoti = (noti: NotiType) => {
         setNoti(noti);
