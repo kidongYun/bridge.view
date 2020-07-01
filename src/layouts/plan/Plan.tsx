@@ -9,12 +9,15 @@ import * as data from '../../service/Data'
 
 /* Model */
 import CellType from '../../model/CellType'
+import ModalType from '../../model/ModalType';
 
 interface PlanProps {
     stage: string
+    modal: ModalType
+    setModal: (modal: ModalType) => void
 }
 
-const Plan = ({ stage } : PlanProps) => {
+const Plan = ({ stage, modal, setModal } : PlanProps) => {
     let view = <></>
 
     const [planList, setPlanList] = React.useState<CellType[]>(data.postPlanList());
@@ -25,7 +28,7 @@ const Plan = ({ stage } : PlanProps) => {
 
     view = 
     <Container>
-        {/* <Timeline cellList={planList} setRemoveModalVisible={() => undefined} remove={() => undefined} /> */}
+        <Timeline cellList={planList} setCellList={setPlanList} modal={modal} setModal={setModal} />
     </Container>
 
     return (view)

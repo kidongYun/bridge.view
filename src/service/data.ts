@@ -14,37 +14,36 @@ import Header from '../layouts/header/Header';
 export function postPlanList() {
     let planList: Array<CellType> = [];
 
-    // planList.push(new DateCellType(20, new Date('2020-01')))
-    // planList.push(new PlanCellType(0, 'title0'))
-    // planList.push(new DateCellType(20, new Date('2020-02')))
-    // planList.push(new DateCellType(20, new Date('2020-03')))
-    // planList.push(new DateCellType(20, new Date('2020-04')))
-    // planList.push(new DateCellType(20, new Date('2020-05')))
-    // planList.push(new DateCellType(20, new Date('2020-06')))
-    // planList.push(new DateCellType(20, new Date('2020-07')))
-    // planList.push(new DateCellType(20, new Date('2020-08')))
-    // planList.push(new DateCellType(20, new Date('2020-09')))
-    // planList.push(new DateCellType(20, new Date('2020-10')))
-    // planList.push(new DateCellType(20, new Date('2020-11')))
-    // planList.push(new DateCellType(20, new Date('2020-12')))
+    planList.push(new DateCellType(20, "2020-02"))
+    planList.push(new PlanCellType(0, 'title0'))
+    planList.push(new DateCellType(20, "2020-03"))
+    planList.push(new DateCellType(20, "2020-04"))
+    planList.push(new DateCellType(20, "2020-05"))
+    planList.push(new DateCellType(20, "2020-06"))
+    planList.push(new DateCellType(20, "2020-07"))
+    planList.push(new DateCellType(20, "2020-08"))
+    planList.push(new DateCellType(20, "2020-09"))
+    planList.push(new DateCellType(20, "2020-10"))
+    planList.push(new DateCellType(20, "2020-11"))
+    planList.push(new DateCellType(20, "2020-12"))
 
     return planList;
 }
 
 export async function getObj() {
-    return await axios.get("http://localhost:8080/getObj");
+    return await axios.get("http://localhost:8080/obj");
 }
 
 export async function postObj() {
-    return await axios.post("http://localhost:8080/postObj");
+    return await axios.post("http://localhost:8080/obj");
 }
 
 export async function putObj(obj: ObjCellType) {
-    return await axios.put("http://localhost:8080/putObj", obj);
+    return await axios.put("http://localhost:8080/obj", obj);
 }
 
 export async function deleteObj(id: number) {
-    return await axios.delete("http://localhost:8080/deleteObj", { data: { id: id } });
+    return await axios.delete("http://localhost:8080/obj", { data: { id: id } });
 }
 
 export function postNavList(modal: ModalType, setModal: (modal: ModalType) => void, setStage : (name: string) => void) {

@@ -34,7 +34,7 @@ const App = () => {
         <>
             <Header modal={modal} setModal={setModal} setStage={setStage} />
             <Obj stage={stage} modal={modal} setModal={setModal} />
-            <Plan stage={stage}/>
+            <Plan stage={stage} modal={modal} setModal={setModal} />
             <Todo stage={stage} />
 
             <Noti noti={noti} setNoti={setNoti} />
