@@ -3,17 +3,20 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import ModalType from '../../../model/ModalType';
+import NotiType from '../../../model/NotiType';
 
 interface LoginModalProps {
     modal: ModalType
     onClose: () => void
+    showNoti: (noti: NotiType) => void
 }
 
-const LoginModal = ({ modal, onClose }: LoginModalProps) => {
+const LoginModal = ({ modal, onClose, showNoti }: LoginModalProps) => {
 
     const onExecute = () => {
         // Do Something.
         onClose();
+        showNoti(new NotiType("danger", "TEST"))
     }
 
     const testChange = (event: React.ChangeEvent<HTMLInputElement>) => {

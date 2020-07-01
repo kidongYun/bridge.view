@@ -1,12 +1,12 @@
 class NotiType {
+    type: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark" | "light" | undefined
     text: string
-    timer: number
     isShow: boolean
 
-    constructor(text: string, timer: number, isShow: boolean) {
+    constructor(type: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark" | "light" | undefined, text: string) {
+        this.type = type;
         this.text = text
-        this.timer = timer
-        this.isShow = isShow
+        this.isShow = false;
     }
 }
 

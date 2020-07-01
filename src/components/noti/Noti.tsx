@@ -13,11 +13,11 @@ const Noti = ({ noti, setNoti } : NotiProps) => {
     if(noti.isShow) {
         return (
             <Container>
-                <Alert variant="success" onClose={() => { setNoti({ ...noti, isShow: false }) }} dismissible>
+                <Alert variant={noti.type} onClose={() => { setNoti({ ...noti, isShow: false }) }} dismissible>
                     {noti.text}
                 </Alert>
             </Container>
-        )   
+        )
     } else {
         return (
             <></>
@@ -27,10 +27,10 @@ const Noti = ({ noti, setNoti } : NotiProps) => {
 
 const Container = styled.div`
     position: absolute;
-    top: 1%;
+    top: 9%;
     right: 1%;
     ${(props) => css`
-        animation: ${anim} 0.5s 2s  linear infinite;
+        animation: ${anim} 0.3s 2s  linear infinite;
     `}
 `;
 

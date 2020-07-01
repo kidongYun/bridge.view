@@ -14,14 +14,15 @@ import CellType from './model/CellType';
 const App = () => {
     const [stage, setStage] = React.useState("Plan");
 
-    const [noti, setNoti] = React.useState<NotiType>(new NotiType("Default", 2000, false))
-    const [modal, setModal] = React.useState<ModalType>(new ModalType("Default", true, undefined, () => {}))
+    const [noti, setNoti] = React.useState<NotiType>(new NotiType(undefined, "Default"))
+    const [modal, setModal] = React.useState<ModalType>(new ModalType("Default", true, new CellType(0), () => {}))
 
     const showNoti = (noti: NotiType) => {
+        noti.isShow = true;
         setNoti(noti);
-        setTimeout(setNotiTimer, noti.timer);
+        setTimeout(setNotiTimer, 2300);
     }
-
+    
     const setNotiTimer = () => {
         setNoti({
             ...noti,
@@ -37,7 +38,7 @@ const App = () => {
             <Todo stage={stage} />
 
             <Noti noti={noti} setNoti={setNoti} />
-            <Modal modal={modal} setModal={setModal} />
+            <Modal modal={modal} setModal={setModal} showNoti={showNoti} />
         </>
     );
 }

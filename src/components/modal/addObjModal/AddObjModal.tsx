@@ -1,28 +1,38 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-import Form from 'react-bootstrap/Form';
-import * as data from '../../../service/data'
-import ObjCellType from '../../../model/ObjCellType';
-import ModalType from '../../../model/ModalType';
-import { plainToClass } from 'class-transformer'
+import Form from 'react-bootstrap/Form'
+
+import * as data from '../../../service/Data'
+import * as utility from '../../../service/Utility'
+
+import ObjCellType from '../../../model/ObjCellType'
+import ModalType from '../../../model/ModalType'
+import Col from 'react-bootstrap/Col'
+import NotiType from '../../../model/NotiType';
 
 interface AddObjModalProps {
     modal: ModalType
     onClose: () => void
+    showNoti: (noti: NotiType) => void
 }
 
-const AddObjModal = ({modal, onClose}: AddObjModalProps) => {
+const AddObjModal = ({modal, onClose, showNoti}: AddObjModalProps) => {
 
     let title: string
     let description: string
     let priority: number
-    let deadline: string
+    let deadline_year: string
+    let deadline_month: string
+    let deadline_day: string
 
     const onExecute = () => {
-        const obj: ObjCellType = new ObjCellType(100, title, description, priority, deadline);
+        const deadline = deadline_year + "." + deadline_month + "." + deadline_day
+        const obj: ObjCellType = new ObjCellType(100, title, description, priority, deadline)
+
         data.putObj(obj).then((response) => {
-            modal.setCellList(plainToClass(ObjCellType, response.data))
+            modal.setCellList(utility.parse(response.data))
+            showNoti(new NotiType("success", "Objective is added."))
             onClose()
         })
     }
@@ -42,8 +52,16 @@ const AddObjModal = ({modal, onClose}: AddObjModalProps) => {
             priority = Number(value);
         }
 
-        if(id === 'deadline') {
-            deadline = value;
+        if(id === 'deadline_year') {
+            deadline_year = value;
+        }
+
+        if(id === 'deadline_month') {
+            deadline_month = value;
+        }
+
+        if(id === 'deadline_day') {
+            deadline_day = value;
         }
     }
 
@@ -75,7 +93,17 @@ const AddObjModal = ({modal, onClose}: AddObjModalProps) => {
                         <Form.Label>Deadline</Form.Label>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Control id="deadline" placeholder="ex)2020.07.30" onChange={onChange} />
+                        <Form.Row>
+                            <Col>
+                                <Form.Control id="deadline_year" placeholder="2020" onChange={onChange} />
+                            </Col>
+                            <Col>
+                                <Form.Control id="deadline_month" placeholder="07" onChange={onChange} />
+                            </Col>
+                            <Col>
+                                <Form.Control id="deadline_day" placeholder="30" onChange={onChange} />
+                            </Col>
+                        </Form.Row>
                     </Form.Group>
                 </Form>
             </Modal.Body>

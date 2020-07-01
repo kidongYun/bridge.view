@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Timeline from '../../components/timeline/Timeline'
 
 /* Service */
-import * as data from '../../service/data'
+import * as data from '../../service/Data'
 
 /* Model */
 import CellType from '../../model/CellType'

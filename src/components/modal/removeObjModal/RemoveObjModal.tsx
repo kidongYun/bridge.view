@@ -2,26 +2,27 @@ import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import * as data from '../../../service/data'
+
+import * as data from '../../../service/Data'
+import * as utility from '../../../service/Utility'
+
 import ModalType from '../../../model/ModalType';
-import ObjCellType from '../../../model/ObjCellType';
-import { plainToClass } from 'class-transformer'
+import NotiType from '../../../model/NotiType';
 
 interface RemoveObjModalProps {
     modal: ModalType
     onClose: () => void
+    showNoti: (noti: NotiType) => void
 }
 
-const RemoveObjModal = ({ modal, onClose }: RemoveObjModalProps) => {
+const RemoveObjModal = ({ modal, onClose, showNoti }: RemoveObjModalProps) => {
 
     const onExecute = () => {
-        console.log(modal.cell);
-
-        data.deleteObj(modal.cell).then((response) => {
-            modal.setCellList(plainToClass(ObjCellType, response.data));
+        data.deleteObj(modal.cell.id).then((response) => {
+            modal.setCellList(utility.parse(response.data));
+            showNoti(new NotiType("success", "It's removed..."))
+            onClose()
         })
-
-        onClose()
     }
 
 

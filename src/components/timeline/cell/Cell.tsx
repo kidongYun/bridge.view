@@ -5,7 +5,6 @@ import CellType from '../../../model/CellType'
 import ObjCellType from '../../../model/ObjCellType'
 import DateCellType from '../../../model/DateCellType'
 import PlanCellType from '../../../model/PlanCellType';
-import Modal from 'react-bootstrap/Modal';
 import ModalType from '../../../model/ModalType';
 
 interface CellProps {
@@ -43,7 +42,7 @@ const Cell = ({ cell, modal, setModal, setCellList }: CellProps) => {
     }
     
     if(cell instanceof DateCellType) {
-        view =<DateFrame>{cell.date.toDateString()}</DateFrame>
+        view =<DateFrame>{cell.date}</DateFrame>
     }
 
     return (

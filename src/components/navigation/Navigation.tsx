@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import Menu from './menu/Menu';
 
-import * as data from '../../service/data'
+import * as data from '../../service/Data'
 import ModalType from '../../model/ModalType';
 
 interface NavigationProps {

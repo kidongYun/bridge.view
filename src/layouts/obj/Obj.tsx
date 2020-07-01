@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { plainToClass } from 'class-transformer'
 
 /* Service */
-import * as data from '../../service/data'
+import * as data from '../../service/Data'
+import * as utility from '../../service/Utility'
 
 /* Component */
 import Timeline from '../../components/timeline/Timeline'
@@ -11,8 +11,7 @@ import AddButton from './addObjButton/AddObjButton'
 
 /* Model */
 import CellType from '../../model/CellType'
-import ObjCellType from '../../model/ObjCellType'
-import ModalType from '../../model/ModalType';
+import ModalType from '../../model/ModalType'
 
 
 interface ObjProps {
@@ -28,7 +27,7 @@ const Obj = ({ stage, modal, setModal } : ObjProps) => {
 
     React.useEffect(() => {
         data.getObj().then((response) => {
-            setObjList(plainToClass(ObjCellType, response.data))
+            setObjList(utility.parse(response.data))
         })
     }, [])
 
