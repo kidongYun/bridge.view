@@ -31,19 +31,19 @@ export function postPlanList() {
 }
 
 export async function getObj() {
-    return await axios.get("http://localhost:8080/obj");
+    return await axios.get("http://localhost:8080/objective");
 }
 
 export async function postObj() {
-    return await axios.post("http://localhost:8080/obj");
+    return await axios.post("http://localhost:8080/objective");
 }
 
 export async function putObj(obj: ObjCellType) {
-    return await axios.put("http://localhost:8080/obj", obj);
+    return await axios.put("http://localhost:8080/objective", obj);
 }
 
 export async function deleteObj(id: number) {
-    return await axios.delete("http://localhost:8080/obj", { data: { id: id } });
+    return await axios.delete("http://localhost:8080/objective", { data: { id: id } });
 }
 
 export function postNavList(modal: ModalType, setModal: (modal: ModalType) => void, setStage : (name: string) => void) {
