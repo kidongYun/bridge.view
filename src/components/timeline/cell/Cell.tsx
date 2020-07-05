@@ -38,11 +38,12 @@ const Cell = ({ cell, modal, setModal, setCellList }: CellProps) => {
     } 
 
     if(cell instanceof PlanCellType) {
-        view =  <PlanFrame>{cell.plan}</PlanFrame>
+        console.log("PlanCellType!!!");
+        view = <PlanFrame>{cell.content}</PlanFrame>
     }
     
     if(cell instanceof DateCellType) {
-        view =<DateFrame>{cell.date}</DateFrame>
+        view = <DateFrame>{cell.date}</DateFrame>
     }
 
     return (

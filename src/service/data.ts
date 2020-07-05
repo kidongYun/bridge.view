@@ -11,23 +11,27 @@ import { async } from 'q';
 import Header from '../layouts/header/Header';
 
 
-export function postPlanList() {
-    let planList: Array<CellType> = [];
+// export function postPlanList() {
+//     let planList: Array<CellType> = [];
 
-    planList.push(new DateCellType(20, "2020-02"))
-    planList.push(new PlanCellType(0, 'title0'))
-    planList.push(new DateCellType(20, "2020-03"))
-    planList.push(new DateCellType(20, "2020-04"))
-    planList.push(new DateCellType(20, "2020-05"))
-    planList.push(new DateCellType(20, "2020-06"))
-    planList.push(new DateCellType(20, "2020-07"))
-    planList.push(new DateCellType(20, "2020-08"))
-    planList.push(new DateCellType(20, "2020-09"))
-    planList.push(new DateCellType(20, "2020-10"))
-    planList.push(new DateCellType(20, "2020-11"))
-    planList.push(new DateCellType(20, "2020-12"))
+//     planList.push(new DateCellType(20, "2020-02"))
+//     planList.push(new PlanCellType(0, 'title0'))
+//     planList.push(new DateCellType(20, "2020-03"))
+//     planList.push(new DateCellType(20, "2020-04"))
+//     planList.push(new DateCellType(20, "2020-05"))
+//     planList.push(new DateCellType(20, "2020-06"))
+//     planList.push(new DateCellType(20, "2020-07"))
+//     planList.push(new DateCellType(20, "2020-08"))
+//     planList.push(new DateCellType(20, "2020-09"))
+//     planList.push(new DateCellType(20, "2020-10"))
+//     planList.push(new DateCellType(20, "2020-11"))
+//     planList.push(new DateCellType(20, "2020-12"))
 
-    return planList;
+//     return planList;
+// }
+
+export async function getPlan() {
+    return await axios.get("http://localhost:8080/plan");
 }
 
 export async function getObj() {

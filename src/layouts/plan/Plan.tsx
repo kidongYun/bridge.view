@@ -6,6 +6,7 @@ import Timeline from '../../components/timeline/Timeline'
 
 /* Service */
 import * as data from '../../service/Data'
+import * as utility from '../../service/Utility'
 
 /* Model */
 import CellType from '../../model/CellType'
@@ -20,7 +21,13 @@ interface PlanProps {
 const Plan = ({ stage, modal, setModal } : PlanProps) => {
     let view = <></>
 
-    const [planList, setPlanList] = React.useState<CellType[]>(data.postPlanList());
+    const [planList, setPlanList] = React.useState<CellType[]>([]);
+
+    React.useEffect(() => {
+        data.getPlan().then((response) => {
+            setPlanList(utility.parse(response.data))
+        })
+    })
 
     if(stage !== "Plan") {
         return(view)

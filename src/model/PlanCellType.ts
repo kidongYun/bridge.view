@@ -1,11 +1,20 @@
 import CellType from './CellType'
 
 class PlanCellType extends CellType {
-    plan: string
+    objectiveId: number
+    content: string
+    startDate: string
+    endDate: string
+    status: string
+
     
-    constructor(id: number, plan: string) {
+    constructor(id: number, objectiveId: number, content: string, startDate: string, endDate: string, status: string) {
         super(id)
-        this.plan = plan
+        this.objectiveId = objectiveId
+        this.content = content
+        this.startDate = startDate
+        this.endDate = endDate
+        this.status = status
     }
 }
 

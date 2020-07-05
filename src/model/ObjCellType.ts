@@ -5,6 +5,7 @@ class ObjCellType extends CellType {
     description: string
     priority: number
     deadline: string
+    status: string
 
     constructor(id: number, title: string, description: string, priority: number, deadline: string) {
         super(id)
@@ -12,6 +13,7 @@ class ObjCellType extends CellType {
         this.description = description
         this.priority = priority
         this.deadline = deadline
+        this.status = ""
     }
 }
 
