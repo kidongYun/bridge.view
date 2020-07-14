@@ -3,16 +3,9 @@ import styled from 'styled-components'
 import Menu from './menu/Menu';
 
 import * as data from '../../service/Data'
-import ModalType from '../../model/ModalType';
 
-interface NavigationProps {
-    modal: ModalType
-    setModal: (modal: ModalType) => void
-    setStage: (name: string) => void
-}
-
-const Navigation = ({ modal, setModal, setStage } : NavigationProps) => {
-    const menuList = data.postNavList(modal, setModal, setStage);
+const Navigation = () => {
+    const menuList = data.postNavList();
 
     return (
         <Container>

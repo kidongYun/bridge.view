@@ -7,8 +7,8 @@ class ObjCellType extends CellType {
     deadline: string
     status: string
 
-    constructor(id: number, title: string, description: string, priority: number, deadline: string) {
-        super(id)
+    constructor(id: number, type: "objective" | "objective_detail", title: string, description: string, priority: number, deadline: string) {
+        super(id, type)
         this.title = title
         this.description = description
         this.priority = priority

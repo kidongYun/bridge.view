@@ -2,21 +2,17 @@ import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
-import ModalType from '../../../model/ModalType';
-import NotiType from '../../../model/NotiType';
 
-interface LoginModalProps {
-    modal: ModalType
-    onClose: () => void
-    showNoti: (noti: NotiType) => void
-}
+import useModal from '../../../hooks/useModal';
 
-const LoginModal = ({ modal, onClose, showNoti }: LoginModalProps) => {
+const LoginModal = () => {
+
+    const { onUpdateVisible } = useModal();
 
     const onExecute = () => {
         // Do Something.
-        onClose();
-        showNoti(new NotiType("danger", "TEST"))
+        onUpdateVisible(false);
+        // showNoti(new NotiType("danger", "TEST"))
     }
 
     const testChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,8 +22,8 @@ const LoginModal = ({ modal, onClose, showNoti }: LoginModalProps) => {
     }
 
     return (
-        <Modal show={modal.isShow}>
-            <Modal.Header closeButton onClick={onClose}>
+        <Modal show={true}>
+            <Modal.Header closeButton onClick={() => onUpdateVisible(false)}>
                 <Modal.Title>Login</Modal.Title>
             </Modal.Header>
 
@@ -43,7 +39,7 @@ const LoginModal = ({ modal, onClose, showNoti }: LoginModalProps) => {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={onClose}>Close</Button>
+                <Button variant="secondary" onClick={() => onUpdateVisible(false)}>Close</Button>
                 <Button variant="primary" onClick={onExecute}>Login</Button>
             </Modal.Footer>
         </Modal>

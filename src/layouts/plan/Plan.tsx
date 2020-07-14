@@ -10,16 +10,13 @@ import * as utility from '../../service/Utility'
 
 /* Model */
 import CellType from '../../model/CellType'
-import ModalType from '../../model/ModalType';
 
-interface PlanProps {
-    stage: string
-    modal: ModalType
-    setModal: (modal: ModalType) => void
-}
+import useStage from '../../hooks/useStage';
 
-const Plan = ({ stage, modal, setModal } : PlanProps) => {
+const Plan = () => {
     let view = <></>
+
+    const { name } = useStage();
 
     const [planList, setPlanList] = React.useState<CellType[]>([]);
 
@@ -27,15 +24,15 @@ const Plan = ({ stage, modal, setModal } : PlanProps) => {
         data.getPlan().then((response) => {
             setPlanList(utility.parse(response.data))
         })
-    })
+    }, [])
 
-    if(stage !== "Plan") {
+    if(name !== "PLAN") {
         return(view)
     }
 
     view = 
     <Container>
-        <Timeline cellList={planList} setCellList={setPlanList} modal={modal} setModal={setModal} />
+        <Timeline cellList={planList} setCellList={setPlanList} />
     </Container>
 
     return (view)

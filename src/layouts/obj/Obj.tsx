@@ -11,17 +11,13 @@ import AddButton from './addObjButton/AddObjButton'
 
 /* Model */
 import CellType from '../../model/CellType'
-import ModalType from '../../model/ModalType'
 
+import useStage from '../../hooks/useStage'
 
-interface ObjProps {
-    stage: string
-    modal: ModalType
-    setModal: (modal: ModalType) => void
-}
-
-const Obj = ({ stage, modal, setModal } : ObjProps) => {
+const Obj = () => {
     let view = <></>;
+
+    const { name } = useStage();
 
     const [objList, setObjList] = React.useState<CellType[]>([])
 
@@ -31,31 +27,14 @@ const Obj = ({ stage, modal, setModal } : ObjProps) => {
         })
     }, [])
 
-    // const remove = (id: number) => {
-    //     objList.splice(id, 1);
-
-    //     setObjList([
-    //         ...objList
-    //     ])
-
-    //     setRemoveModalVisible(false)
-    //     showNoti(new NotiType("It's removed", 2500, true))
-    // }
-
-    if(stage !== "Objective") {
+    if(name !== "OBJECTIVE") {
         return (view)
     }
 
     view = 
     <Container>
-        <Timeline cellList={objList} setCellList={setObjList} modal={modal} setModal={setModal} />
-        <AddButton onClick={() => 
-            setModal({ ...modal,
-                type: "Add",
-                isShow: true,
-                setCellList: setObjList
-            })
-        }/>
+        <Timeline cellList={objList} setCellList={setObjList} />
+        <AddButton />
     </Container>
 
     return (view);

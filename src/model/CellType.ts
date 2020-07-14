@@ -1,8 +1,10 @@
 class CellType {
     public id: number
+    public type: "date" | "plan" | "objective" | "objective_detail"
 
-    constructor(id: number) {
-        this.id = id;
+    constructor(id: number, type: "date" | "plan" | "objective"| "objective_detail") {
+        this.id = id
+        this.type = type
     }
 }
 

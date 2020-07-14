@@ -7,17 +7,14 @@ import * as data from '../../../service/Data'
 import * as utility from '../../../service/Utility'
 
 import ObjCellType from '../../../model/ObjCellType'
-import ModalType from '../../../model/ModalType'
 import Col from 'react-bootstrap/Col'
 import NotiType from '../../../model/NotiType';
 
-interface AddObjModalProps {
-    modal: ModalType
-    onClose: () => void
-    showNoti: (noti: NotiType) => void
-}
+import useModal from '../../../hooks/useModal';
 
-const AddObjModal = ({modal, onClose, showNoti}: AddObjModalProps) => {
+const AddObjModal = () => {
+
+    const { onUpdateVisible } = useModal();
 
     let title: string
     let description: string
@@ -28,13 +25,15 @@ const AddObjModal = ({modal, onClose, showNoti}: AddObjModalProps) => {
 
     const onExecute = () => {
         const deadline = deadline_year + "." + deadline_month + "." + deadline_day
-        const obj: ObjCellType = new ObjCellType(100, title, description, priority, deadline)
+        const obj: ObjCellType = new ObjCellType(100, "objective", title, description, priority, deadline)
 
-        data.putObj(obj).then((response) => {
-            modal.setCellList(utility.parse(response.data))
-            showNoti(new NotiType("success", "Objective is added."))
-            onClose()
-        })
+        // data.putObj(obj).then((response) => {
+        //     modal.setCellList(utility.parse(response.data))
+        //     showNoti(new NotiType("success", "Objective is added."))
+        //     onClose()
+        // })
+
+        onUpdateVisible(false);
     }
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,8 +65,8 @@ const AddObjModal = ({modal, onClose, showNoti}: AddObjModalProps) => {
     }
 
     return (
-        <Modal show={modal.isShow}>
-            <Modal.Header closeButton onClick={onClose}>
+        <Modal show={true}>
+            <Modal.Header closeButton onClick={() => onUpdateVisible(false)}>
                 <Modal.Title>New Objective</Modal.Title>
             </Modal.Header>
 
@@ -109,7 +108,7 @@ const AddObjModal = ({modal, onClose, showNoti}: AddObjModalProps) => {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={onClose}>Close</Button>
+                <Button variant="secondary" onClick={() => onUpdateVisible(false)}>Close</Button>
                 <Button variant="primary" onClick={onExecute}>Add</Button>
             </Modal.Footer>
         </Modal>

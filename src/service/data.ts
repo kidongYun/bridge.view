@@ -1,34 +1,8 @@
 import axios from 'axios'
 
-import CellType from '../model/CellType';
 import MenuType from '../model/MenuType';
 import TabType from '../model/TabType';
 import ObjCellType from '../model/ObjCellType';
-import PlanCellType from '../model/PlanCellType';
-import DateCellType from '../model/DateCellType';
-import ModalType from '../model/ModalType';
-import { async } from 'q';
-import Header from '../layouts/header/Header';
-
-
-// export function postPlanList() {
-//     let planList: Array<CellType> = [];
-
-//     planList.push(new DateCellType(20, "2020-02"))
-//     planList.push(new PlanCellType(0, 'title0'))
-//     planList.push(new DateCellType(20, "2020-03"))
-//     planList.push(new DateCellType(20, "2020-04"))
-//     planList.push(new DateCellType(20, "2020-05"))
-//     planList.push(new DateCellType(20, "2020-06"))
-//     planList.push(new DateCellType(20, "2020-07"))
-//     planList.push(new DateCellType(20, "2020-08"))
-//     planList.push(new DateCellType(20, "2020-09"))
-//     planList.push(new DateCellType(20, "2020-10"))
-//     planList.push(new DateCellType(20, "2020-11"))
-//     planList.push(new DateCellType(20, "2020-12"))
-
-//     return planList;
-// }
 
 export async function getPlan() {
     return await axios.get("http://localhost:8080/plan");
@@ -50,16 +24,17 @@ export async function deleteObj(id: number) {
     return await axios.delete("http://localhost:8080/objective", { data: { id: id } });
 }
 
-export function postNavList(modal: ModalType, setModal: (modal: ModalType) => void, setStage : (name: string) => void) {
+export function postNavList() {
     let menuList: Array<MenuType> = [];
 
     let leftMenu: MenuType = new MenuType('flex-start', [])
-    leftMenu.tabs.push(new TabType('outline-light', 'Objective', () => { setStage("Objective")}))
-    leftMenu.tabs.push(new TabType('outline-light', 'Plan', () => { setStage("Plan")}))
-    leftMenu.tabs.push(new TabType('outline-light', 'Todo', () => { setStage("Todo")}))
+    leftMenu.tabs.push(new TabType('outline-light', 'Objective', 'OBJECTIVE'))
+    leftMenu.tabs.push(new TabType('outline-light', 'Plan', 'PLAN'))
+    leftMenu.tabs.push(new TabType('outline-light', 'Todo', 'TODO'))
 
     let rightMenu: MenuType = new MenuType('flex-end', []);
-    rightMenu.tabs.push(new TabType('primary', 'Login', () => { setModal({...modal, type:"Login", isShow: true})}))
+
+    rightMenu.tabs.push(new TabType('primary', 'Login', 'LOGIN'))
 
     menuList.push(leftMenu);
     menuList.push(rightMenu);

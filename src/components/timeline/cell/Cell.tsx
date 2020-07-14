@@ -5,57 +5,96 @@ import CellType from '../../../model/CellType'
 import ObjCellType from '../../../model/ObjCellType'
 import DateCellType from '../../../model/DateCellType'
 import PlanCellType from '../../../model/PlanCellType';
-import ModalType from '../../../model/ModalType';
+
+import useModal from '../../../hooks/useModal';
 
 interface CellProps {
     cell: CellType
+    cellList: CellType[]
     setCellList: (cellList: CellType[]) => void
-    modal: ModalType
-    setModal: (modal: ModalType) => void
 }
 
-const Cell = ({ cell, modal, setModal, setCellList }: CellProps) => {
+const Cell = ({ cell, cellList, setCellList }: CellProps) => {
+    let height = "70px"
     let view;
 
-    if(cell instanceof ObjCellType) {
-        const cellList: CellType[] = [];
+    const objChange = (cell: CellType) => {
+        console.log(cell.id);
+        console.log("objChange!!");
+
+        const nextCellList = [ ...cellList ];
+        nextCellList[cell.id] = {
+            ...cellList[cell.id],
+            type: "objective_detail"
+        };
+
+        setCellList(nextCellList)
+    }
+
+    const { onUpdateType, onUpdateVisible } = useModal();
+
+    const onClick = () => {
+        onUpdateType("REMOVE_OBJ");
+        onUpdateVisible(true);
+    }
+
+    if(cell instanceof ObjCellType && cell.type === "objective") {
+        height = "70px"
 
         view =
-        <ObjFrame>
+        <ObjFrame onClick={() => objChange(cell)}>
             <TitleFrame>
                 {cell.title}
             </TitleFrame>
             <RemoveFrame>
-                <Button variant="outline-danger" onClick={() => setModal({
-                    ...modal,
-                    type: "Remove",
-                    isShow: true,
-                    cell: cell,
-                    setCellList: setCellList, 
-                })}>Remove</Button>
+                <Button variant="outline-danger" onClick={onClick}>Remove</Button>
             </RemoveFrame>
         </ObjFrame>
-    } 
+    }
+
+    if(cell instanceof ObjCellType && cell.type === "objective_detail") {
+        height = "200px"
+
+        console.log("objective_detail!!!!!");
+
+        view = 
+        <ObjFrame>
+            {cell.title}
+        </ObjFrame>
+    }
 
     if(cell instanceof PlanCellType) {
-        console.log("PlanCellType!!!");
-        view = <PlanFrame>{cell.content}</PlanFrame>
+        height = "70px"
+
+        view = 
+        <PlanFrame>
+            {cell.content}
+        </PlanFrame>
     }
     
     if(cell instanceof DateCellType) {
-        view = <DateFrame>{cell.date}</DateFrame>
+        height = "70px"
+
+        view = 
+        <DateFrame>
+            {cell.date}
+        </DateFrame>
     }
 
     return (
-        <Container>
+        <Container height={height}>
             {view}
         </Container>
     )
 }
 
-const Container = styled.div`
+interface _Container {
+    height: string
+}
+
+const Container = styled.div<_Container>`
     width: 100%;
-    height: 70px;
+    height: ${props => props.height};
     padding: 5px;
 `;
 

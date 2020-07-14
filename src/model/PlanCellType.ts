@@ -8,8 +8,8 @@ class PlanCellType extends CellType {
     status: string
 
     
-    constructor(id: number, objectiveId: number, content: string, startDate: string, endDate: string, status: string) {
-        super(id)
+    constructor(id: number, type: "plan", objectiveId: number, content: string, startDate: string, endDate: string, status: string) {
+        super(id, type)
         this.objectiveId = objectiveId
         this.content = content
         this.startDate = startDate

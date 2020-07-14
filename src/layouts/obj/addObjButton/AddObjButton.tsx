@@ -2,11 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from 'react-bootstrap/Button';
 
-interface AddButtonProps {
-    onClick: () => void;
-}
+import useModal from '../../../hooks/useModal'
 
-const AddButton = ({onClick}: AddButtonProps) => {
+const AddButton = () => {
+
+    const { onUpdateType, onUpdateVisible } = useModal();
+
+    const onClick = () => {
+        onUpdateType("ADD_OBJ");
+        onUpdateVisible(true);
+    }
+
     return (
         <Container>
             <Button onClick={onClick}>Add</Button>

@@ -1,12 +1,12 @@
 class TabType {
     type: string
     title: string
-    onClick: () => void
+    event: string
 
-    constructor(type: string, title: string, onClick: () => void) {
+    constructor(type: string, title: string, event: string) {
         this.type = type;
         this.title = title;
-        this.onClick = onClick;
+        this.event = event;
     }
 }
 

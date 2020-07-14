@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-interface TodoProps {
-    stage: string
-}
+import useStage from '../../hooks/useStage'
 
-const Todo = ({ stage }: TodoProps) => {
+const Todo = () => {
     let view = <></>
 
-    if(stage !== "Todo") {
+    const { name } = useStage();
+
+    if(name !== "TODO") {
         return (view)
     }
 

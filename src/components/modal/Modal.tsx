@@ -2,28 +2,30 @@ import React from 'react'
 import AddObjModal from './addObjModal/AddObjModal'
 import LoginModal from './loginModal/LoginModal';
 import RemoveObjModal from './removeObjModal/RemoveObjModal';
-import ModalType from '../../model/ModalType';
-import NotiType from '../../model/NotiType';
 
-interface ModalProps {
-    modal: ModalType
-    setModal: (modal: ModalType) => void
-    showNoti: (noti: NotiType) => void
-}
+import useModal from '../../hooks/useModal';
 
-const Modal = ({modal, setModal, showNoti}: ModalProps) => {
+const Modal = () => {
+    const { type, visible } = useModal();
+
+    console.log("type : " + type + ", visible : " + visible);
+
     let view = <></>
 
-    if(modal.type === "Login") {
-        view = <LoginModal modal={modal} onClose={() => setModal({...modal, isShow:false})} showNoti={showNoti} />
+    if(!visible){
+        return view;
     }
 
-    if(modal.type === "Add") {
-        view = <AddObjModal modal={modal} onClose={() => setModal({...modal, isShow:false})} showNoti={showNoti} />
+    if(type === "LOGIN") {
+        view = <LoginModal/>
     }
 
-    if(modal.type === "Remove") {
-        view = <RemoveObjModal modal={modal} onClose={() => setModal({...modal, isShow:false})} showNoti={showNoti}/>
+    if(type === "ADD_OBJ") {
+        view = <AddObjModal/>
+    }
+
+    if(type === "REMOVE_OBJ") {
+        view = <RemoveObjModal/>
     }
 
     return view
