@@ -11,10 +11,12 @@ import Col from 'react-bootstrap/Col'
 import NotiType from '../../../model/NotiType';
 
 import useModal from '../../../hooks/useModal';
+import useNoti from '../../../hooks/useNoti';
 
 const AddObjModal = () => {
 
     const { onUpdateVisible } = useModal();
+    const { onShow, onHide } = useNoti();
 
     let title: string
     let description: string
@@ -27,11 +29,10 @@ const AddObjModal = () => {
         const deadline = deadline_year + "." + deadline_month + "." + deadline_day
         const obj: ObjCellType = new ObjCellType(100, "objective", title, description, priority, deadline)
 
-        // data.putObj(obj).then((response) => {
-        //     modal.setCellList(utility.parse(response.data))
-        //     showNoti(new NotiType("success", "Objective is added."))
-        //     onClose()
-        // })
+        data.putObj(obj).then((response) => {
+            onShow("success", "It's from Add Modal");
+            setTimeout(onHide, 2300);
+        })
 
         onUpdateVisible(false);
     }

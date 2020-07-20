@@ -7,31 +7,31 @@ import DateCellType from '../../../model/DateCellType'
 import PlanCellType from '../../../model/PlanCellType';
 
 import useModal from '../../../hooks/useModal';
+import useObjective from '../../../hooks/useObjective';
 
 interface CellProps {
     cell: CellType
-    cellList: CellType[]
-    setCellList: (cellList: CellType[]) => void
 }
 
-const Cell = ({ cell, cellList, setCellList }: CellProps) => {
+const Cell = ({ cell }: CellProps) => {
     let height = "70px"
     let view;
 
     const objChange = (cell: CellType) => {
-        console.log(cell.id);
-        console.log("objChange!!");
+        // console.log(cell.id);
+        // console.log("objChange!!");
 
-        const nextCellList = [ ...cellList ];
-        nextCellList[cell.id] = {
-            ...cellList[cell.id],
-            type: "objective_detail"
-        };
+        // const nextCellList = [ ...cellList ];
+        // nextCellList[cell.id] = {
+        //     ...cellList[cell.id],
+        //     type: "objective_detail"
+        // };
 
-        setCellList(nextCellList)
+        // setCellList(nextCellList)
     }
 
     const { onUpdateType, onUpdateVisible } = useModal();
+    const { objectiveList } = useObjective();
 
     const onClick = () => {
         onUpdateType("REMOVE_OBJ");

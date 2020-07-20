@@ -2,7 +2,7 @@ const UPDATE_TYPE = 'modal/UPDATE_TYPE' as const;
 const UPDATE_VISIBLE = 'modal/UPDATE_VISIBLE' as const;
 
 export const updateType = (type: string) => ({ type: UPDATE_TYPE, payload: type });
-export const updateVisible = (visible: boolean) => ({ type: UPDATE_VISIBLE, payload: visible });;
+export const updateVisible = (visible: boolean) => ({ type: UPDATE_VISIBLE, payload: visible });
 
 type ModalAction =
     | ReturnType<typeof updateType>

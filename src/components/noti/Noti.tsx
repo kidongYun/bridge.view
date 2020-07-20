@@ -3,26 +3,24 @@ import styled, { keyframes, css } from 'styled-components'
 import Alert from 'react-bootstrap/Alert'
 import NotiType from '../../model/NotiType';
 
-interface NotiProps {
-    noti: NotiType
-    setNoti: (noti: NotiType) => void
-}
+import useNoti from '../../hooks/useNoti';
 
-const Noti = ({ noti, setNoti } : NotiProps) => {
+const Noti = () => {
+    const { type, text, visible, onHide } = useNoti();
+    
+    let view = <></>;
 
-    if(noti.isShow) {
-        return (
-            <Container>
-                <Alert variant={noti.type} onClose={() => { setNoti({ ...noti, isShow: false }) }} dismissible>
-                    {noti.text}
-                </Alert>
-            </Container>
-        )
-    } else {
-        return (
-            <></>
-        )
+    if(!visible) {
+        return view;
     }
+
+    return (
+        <Container>
+            <Alert variant={type} onClose={() => onHide()} dismissible>
+                {text}
+            </Alert>
+        </Container>
+    )
 }
 
 const Container = styled.div`

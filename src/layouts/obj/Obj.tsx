@@ -10,22 +10,21 @@ import Timeline from '../../components/timeline/Timeline'
 import AddButton from './addObjButton/AddObjButton'
 
 /* Model */
-import CellType from '../../model/CellType'
 
 import useStage from '../../hooks/useStage'
+import useObjective from '../../hooks/useObjective'
 
 const Obj = () => {
     let view = <></>;
 
     const { name } = useStage();
-
-    const [objList, setObjList] = React.useState<CellType[]>([])
+    const { objectiveList, onGetObjective } = useObjective();
 
     React.useEffect(() => {
         data.getObj().then((response) => {
-            setObjList(utility.parse(response.data))
+            onGetObjective(utility.parse(response.data));
         })
-    }, [])
+    }, []);
 
     if(name !== "OBJECTIVE") {
         return (view)
@@ -33,8 +32,8 @@ const Obj = () => {
 
     view = 
     <Container>
-        <Timeline cellList={objList} setCellList={setObjList} />
-        <AddButton />
+        <Timeline cellList={objectiveList}/>
+        <AddButton/>
     </Container>
 
     return (view);

@@ -32,7 +32,7 @@ const Plan = () => {
 
     view = 
     <Container>
-        <Timeline cellList={planList} setCellList={setPlanList} />
+        <Timeline cellList={planList} />
     </Container>
 
     return (view)

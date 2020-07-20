@@ -10,10 +10,12 @@ import ModalType from '../../../model/ModalType';
 import NotiType from '../../../model/NotiType';
 
 import useModal from '../../../hooks/useModal';
+import useNoti from '../../../hooks/useNoti';
 
 const RemoveObjModal = () => {
 
     const { onUpdateVisible } = useModal();
+    const { onShow, onHide } = useNoti();
 
     const onExecute = () => {
         // data.deleteObj(modal.cell.id).then((response) => {
@@ -21,6 +23,9 @@ const RemoveObjModal = () => {
         //     showNoti(new NotiType("success", "It's removed..."))
         //     onClose()
         // })
+
+        onShow("success", "It's from Remove Modal");
+        setTimeout(onHide, 2300);
 
         onUpdateVisible(false);
     }

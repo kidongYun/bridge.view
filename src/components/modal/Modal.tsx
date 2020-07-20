@@ -8,8 +8,6 @@ import useModal from '../../hooks/useModal';
 const Modal = () => {
     const { type, visible } = useModal();
 
-    console.log("type : " + type + ", visible : " + visible);
-
     let view = <></>
 
     if(!visible){
