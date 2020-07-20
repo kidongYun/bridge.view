@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from 'react-bootstrap/Button';
 
-import useModal from '../../../hooks/useModal'
+import useModal from '../../hooks/useModal'
 
-const AddButton = () => {
+const ObjectiveAddButton = () => {
 
     const { onUpdateType, onUpdateVisible } = useModal();
 
@@ -26,4 +26,4 @@ const Container = styled.div`
     bottom: 3%;
 `;
 
-export default AddButton;
+export default ObjectiveAddButton;

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 /* Component */
-import Timeline from '../../components/timeline/Timeline'
+import Timeline from '../../components/timeline/Cell'
 
 /* Service */
 import * as data from '../../service/Data'
@@ -12,6 +12,7 @@ import * as utility from '../../service/Utility'
 import CellType from '../../model/CellType'
 
 import useStage from '../../hooks/useStage';
+import PlanTimeline from './PlanTimeline';
 
 const Plan = () => {
     let view = <></>
@@ -32,7 +33,7 @@ const Plan = () => {
 
     view = 
     <Container>
-        <Timeline cellList={planList} />
+        <PlanTimeline/>
     </Container>
 
     return (view)

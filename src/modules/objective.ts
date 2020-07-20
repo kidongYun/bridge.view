@@ -1,14 +1,14 @@
-import CellType from "../model/CellType";
+import ObjectiveType from "../model/ObjectiveType";
 
 const GET = 'objective/GET' as const;
 
-export const getObjective = (objectiveList: CellType[]) => ({ type: GET, payload: objectiveList });
+export const getObjective = (objectiveList: ObjectiveType[]) => ({ type: GET, payload: objectiveList });
 
 type ObjectiveAction =
     | ReturnType<typeof getObjective>;
 
 type ObjectiveState = {
-    objectiveList: CellType[];
+    objectiveList: ObjectiveType[];
 }
 
 const initialState: ObjectiveState = {

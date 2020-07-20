@@ -1,5 +1,5 @@
 import React from 'react'
-import Obj from './layouts/obj/Obj'
+import Objective from './layouts/objective/Objective'
 import Plan from './layouts/plan/Plan'
 import Todo from './layouts/todo/Todo'
 import Header from './layouts/header/Header';
@@ -12,7 +12,7 @@ const App = () => {
     return (
         <>
             <Header/>
-            <Obj/>
+            <Objective/>
             <Plan/> 
             <Todo/>
 

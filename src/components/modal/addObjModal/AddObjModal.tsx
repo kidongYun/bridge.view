@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form'
 import * as data from '../../../service/Data'
 import * as utility from '../../../service/Utility'
 
-import ObjCellType from '../../../model/ObjCellType'
+import ObjCellType from '../../../model/ObjectiveType'
 import Col from 'react-bootstrap/Col'
 import NotiType from '../../../model/NotiType';
 

@@ -1,11 +1,11 @@
 import CellType from './CellType'
 
-class ObjCellType extends CellType {
+class ObjectiveType extends CellType {
     title: string
     description: string
     priority: number
     deadline: string
-    status: string
+    status: number
 
     constructor(id: number, type: "objective" | "objective_detail", title: string, description: string, priority: number, deadline: string) {
         super(id, type)
@@ -13,8 +13,8 @@ class ObjCellType extends CellType {
         this.description = description
         this.priority = priority
         this.deadline = deadline
-        this.status = ""
+        this.status = 0
     }
 }
 
-export default ObjCellType;
+export default ObjectiveType;

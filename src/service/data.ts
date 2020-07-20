@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import MenuType from '../model/MenuType';
 import TabType from '../model/TabType';
-import ObjCellType from '../model/ObjCellType';
+import ObjCellType from '../model/ObjectiveType';
 
 export async function getPlan() {
     return await axios.get("http://localhost:8080/plan");

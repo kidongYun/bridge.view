@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
 import CellType from '../../../model/CellType'
-import ObjCellType from '../../../model/ObjCellType'
+import ObjCellType from '../../../model/ObjectiveType'
 import DateCellType from '../../../model/DateCellType'
-import PlanCellType from '../../../model/PlanCellType';
+import PlanCellType from '../../../model/PlanType';
 
 import useModal from '../../../hooks/useModal';
 import useObjective from '../../../hooks/useObjective';
