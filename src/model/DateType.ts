@@ -1,6 +1,6 @@
 import CellType from './CellType'
 
-class DateCellType extends CellType {
+class DateType extends CellType {
     date: string
 
     constructor(id: number, type: "date", date: string) {
@@ -9,4 +9,4 @@ class DateCellType extends CellType {
     }
 }
 
-export default DateCellType;
+export default DateType;

@@ -3,19 +3,18 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
-import * as data from '../../../service/Data'
-import * as utility from '../../../service/Utility'
+import * as data from '../../service/Data'
+import * as utility from '../../service/Utility'
 
-import ModalType from '../../../model/ModalType';
-import NotiType from '../../../model/NotiType';
+import ModalType from '../../model/ModalType';
+import NotiType from '../../model/NotiType';
 
-import useModal from '../../../hooks/useModal';
-import useNoti from '../../../hooks/useNoti';
+import useModal from '../../hooks/useModal';
+import useNoti from '../../hooks/useNoti';
 
 const RemoveObjModal = () => {
-
-    const { onUpdateVisible } = useModal();
-    const { onShow, onHide } = useNoti();
+    const { onHideModal } = useModal();
+    const { onShowNoti, onHideNoti } = useNoti();
 
     const onExecute = () => {
         // data.deleteObj(modal.cell.id).then((response) => {
@@ -24,16 +23,15 @@ const RemoveObjModal = () => {
         //     onClose()
         // })
 
-        onShow("success", "It's from Remove Modal");
-        setTimeout(onHide, 2300);
-
-        onUpdateVisible(false);
+        onHideModal();
+        onShowNoti("success", "It's from Remove Modal");
+        setTimeout(onHideNoti, 2300);
     }
 
 
     return(
         <Modal show={true}>
-            <Modal.Header closeButton onClick={() => onUpdateVisible(false)}>
+            <Modal.Header closeButton onClick={onHideModal}>
                 <Modal.Title>Warning</Modal.Title>
             </Modal.Header>
 
@@ -42,7 +40,7 @@ const RemoveObjModal = () => {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={() => onUpdateVisible(false)}>Close</Button>
+                <Button variant="secondary" onClick={onHideModal}>Close</Button>
                 <Button variant="primary" onClick={onExecute}>Remove</Button>
             </Modal.Footer>
         </Modal>

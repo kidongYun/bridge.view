@@ -1,6 +1,6 @@
 import CellType from "../model/CellType";
 import ObjCellType from "../model/ObjectiveType";
-import DateCellType from "../model/DateCellType";
+import DateCellType from "../model/DateType";
 import PlanCellType from "../model/PlanType";
 
 export function parse(src: any) {

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 /* Component */
-import Timeline from '../../components/timeline/Cell'
+import Timeline from '../../components/cell/Cell'
 
 /* Service */
 import * as data from '../../service/Data'

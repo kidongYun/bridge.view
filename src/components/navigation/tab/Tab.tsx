@@ -12,15 +12,14 @@ interface TabProps {
 
 const Tab = ({tab}: TabProps) => {
     const { onUpdateStage } = useStage();
-    const { onUpdateType, onUpdateVisible } = useModal();
+    const { onShowModal } = useModal();
 
     const onLeftMenuClick = () => {
         onUpdateStage(tab.event);
     }
 
     const onRightMenuClick = () => {
-        onUpdateType("LOGIN");
-        onUpdateVisible(true);
+        onShowModal("LOGIN");
     }
 
     let view;

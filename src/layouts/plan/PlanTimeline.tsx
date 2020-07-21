@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import * as data from '../../service/Data'
 
 import usePlan from '../../hooks/usePlan';
-import Cell from '../../components/timeline/Cell';
+import Cell from '../../components/cell/Cell';
 
 const PlanTimeline = () => {
     const { planList, onGetPlan } = usePlan();
@@ -24,7 +24,7 @@ const PlanTimeline = () => {
                     borderRadius="0px"
                     color="#00ff00"
                     height="100px"
-                    header={plan.content}
+                    header={{ text: plan.content, verticalAlign: "", horizontalAlign: "" }}
                     content={[]}
                     status={0}
                     onClick={undefined}

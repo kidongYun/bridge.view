@@ -1,12 +1,12 @@
-const SHOW = 'noti/SHOW' as const;
-const HIDE = 'noti/HIDE' as const;
+const SHOW_NOTI = 'noti/SHOW' as const;
+const HIDE_NOTI = 'noti/HIDE' as const;
 
-export const show = (type: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark" | "light" | undefined, text: string) => ({ type: SHOW, payload: {type, text} });
-export const hide = () => ({ type: HIDE });
+export const showNoti = (type: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark" | "light" | undefined, text: string) => ({ type: SHOW_NOTI, payload: {type, text} });
+export const hideNoti = () => ({ type: HIDE_NOTI });
 
 type NotiAction = 
-    | ReturnType<typeof show>
-    | ReturnType<typeof hide>
+    | ReturnType<typeof showNoti>
+    | ReturnType<typeof hideNoti>
 
 type NotiState = {
     type: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark" | "light" | undefined;
@@ -22,9 +22,9 @@ const initialState: NotiState = {
 
 function noti(state: NotiState = initialState, action: NotiAction) {
     switch (action.type) {
-        case SHOW :
+        case SHOW_NOTI :
             return { type: action.payload.type, text: action.payload.text, visible: true };
-        case HIDE :
+        case HIDE_NOTI :
             return { type: state.type, text: state.text, visible: false };
         default :
             return state;

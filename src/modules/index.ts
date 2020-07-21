@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
 import stage from './stage'
-import modal from './modal'
 import noti from './noti'
 import objective from './objective'
 import plan from './plan'
+import modal from './modal'
 
 const rootReducer = combineReducers({
     stage,
-    modal,
     noti,
     objective,
-    plan
+    plan,
+    modal
 })
 
 export default rootReducer;

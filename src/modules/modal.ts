@@ -1,29 +1,29 @@
-const UPDATE_TYPE = 'modal/UPDATE_TYPE' as const;
-const UPDATE_VISIBLE = 'modal/UPDATE_VISIBLE' as const;
+const SHOW_MODAL = 'modal/SHOW' as const
+const HIDE_MODAL = 'modal/HIDE' as const
 
-export const updateType = (type: string) => ({ type: UPDATE_TYPE, payload: type });
-export const updateVisible = (visible: boolean) => ({ type: UPDATE_VISIBLE, payload: visible });
+export const showModal = (type: string) => ({ type: SHOW_MODAL, payload: type })
+export const hideModal = () => ({ type: HIDE_MODAL })
 
-type ModalAction =
-    | ReturnType<typeof updateType>
-    | ReturnType<typeof updateVisible>
+type ModalAction = 
+    | ReturnType<typeof showModal>
+    | ReturnType<typeof hideModal>
 
 type ModalState = {
     type: string
     visible: boolean
-};
+}
 
-const initialState: ModalState = {
+const initialState = {
     type: "",
-    visible: false,
-};
+    visible: false
+}
 
 function modal(state: ModalState = initialState, action: ModalAction) {
-    switch(action.type) {
-        case UPDATE_TYPE :
-            return { type: action.payload, visible: state.visible }
-        case UPDATE_VISIBLE :
-            return { type: state.type, visible: action.payload }
+    switch (action.type) {
+        case SHOW_MODAL :
+            return { type: action.payload, visible: true }
+        case HIDE_MODAL :
+            return { type: state.type, visible: false }
         default :
             return state;
     }

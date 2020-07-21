@@ -4,12 +4,13 @@ import { useCallback } from 'react'
 
 import { getObjective } from '../modules/objective'
 import ObjectiveType from '../model/ObjectiveType';
+import CellType from '../model/CellType';
 
 export default function useObjective() {
     const objectiveList = useSelector((state: RootState) => state.objective.objectiveList);
 
     const dispatch = useDispatch();
-    const onGetObjective = useCallback((objectiveList: ObjectiveType[]) => dispatch(getObjective(objectiveList)), [dispatch]);
+    const onGetObjective = useCallback((objectiveList: CellType[]) => dispatch(getObjective(objectiveList)), [dispatch]);
 
     return {
         objectiveList,

@@ -1,11 +1,12 @@
 import React from 'react'
-import AddObjModal from './addObjModal/AddObjModal'
-import LoginModal from './loginModal/LoginModal';
-import RemoveObjModal from './removeObjModal/RemoveObjModal';
+import AddModal from './AddModal'
+import LoginModal from './LoginModal';
+import RemoveModal from './RemoveModal';
 
 import useModal from '../../hooks/useModal';
 
 const Modal = () => {
+
     const { type, visible } = useModal();
 
     let view = <></>
@@ -18,12 +19,12 @@ const Modal = () => {
         view = <LoginModal/>
     }
 
-    if(type === "ADD_OBJ") {
-        view = <AddObjModal/>
+    if(type === "ADD") {
+        view = <AddModal/>
     }
 
-    if(type === "REMOVE_OBJ") {
-        view = <RemoveObjModal/>
+    if(type === "REMOVE") {
+        view = <RemoveModal/>
     }
 
     return view

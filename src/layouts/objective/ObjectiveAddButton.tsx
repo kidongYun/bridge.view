@@ -2,15 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from 'react-bootstrap/Button';
 
-import useModal from '../../hooks/useModal'
+import useModal from '../../hooks/useModal';
 
 const ObjectiveAddButton = () => {
-
-    const { onUpdateType, onUpdateVisible } = useModal();
+    const { onShowModal } = useModal();
 
     const onClick = () => {
-        onUpdateType("ADD_OBJ");
-        onUpdateVisible(true);
+        onShowModal("ADD");
     }
 
     return (

@@ -3,19 +3,17 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 
-import useModal from '../../../hooks/useModal';
-import useNoti from '../../../hooks/useNoti';
+import useNoti from '../../hooks/useNoti';
+import useModal from '../../hooks/useModal';
 
 const LoginModal = () => {
-
-    const { onUpdateVisible } = useModal();
-    const { onShow, onHide } = useNoti();
+    const { onShowNoti, onHideNoti } = useNoti();
+    const { onHideModal } = useModal();
 
     const onExecute = () => {
-        onUpdateVisible(false);
-
-        onShow("success", "It's from Login Modal");
-        setTimeout(onHide, 2300);
+        onShowNoti("success", "It's from Login Modal");
+        setTimeout(onHideNoti, 2300);
+        onHideModal();
     };
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +24,7 @@ const LoginModal = () => {
 
     return (
         <Modal show={true}>
-            <Modal.Header closeButton onClick={() => onUpdateVisible(false)}>
+            <Modal.Header closeButton onClick={onHideModal}>
                 <Modal.Title>Login</Modal.Title>
             </Modal.Header>
 
@@ -42,7 +40,7 @@ const LoginModal = () => {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={() => onUpdateVisible(false)}>Close</Button>
+                <Button variant="secondary" onClick={onHideModal}>Close</Button>
                 <Button variant="primary" onClick={onExecute}>Login</Button>
             </Modal.Footer>
         </Modal>

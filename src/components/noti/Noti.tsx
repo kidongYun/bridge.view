@@ -1,12 +1,11 @@
 import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import Alert from 'react-bootstrap/Alert'
-import NotiType from '../../model/NotiType';
 
 import useNoti from '../../hooks/useNoti';
 
 const Noti = () => {
-    const { type, text, visible, onHide } = useNoti();
+    const { type, text, visible, onHideNoti } = useNoti();
     
     let view = <></>;
 
@@ -16,7 +15,7 @@ const Noti = () => {
 
     return (
         <Container>
-            <Alert variant={type} onClose={() => onHide()} dismissible>
+            <Alert variant={type} onClose={onHideNoti} dismissible>
                 {text}
             </Alert>
         </Container>

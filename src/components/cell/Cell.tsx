@@ -4,19 +4,30 @@ import Button from 'react-bootstrap/Button'
 
 interface CellProps {
     borderRadius: string
-    color: string
+    color?: string
     height: string
-    header: string
-    content: string[]
+    header: TextProps
+    content: TextProps[]
     status: number
     onClick?: () => void
+}
+
+interface TextProps {
+    text : string
+    verticalAlign : string
+    horizontalAlign : string 
 }
 
 const Cell = ({ borderRadius, color, height, header, content, status, onClick }: CellProps) => {
 
     let headerFrame = <></>
     if(header !== undefined) {
-        headerFrame = <HeaderFrame>{header}</HeaderFrame>
+        headerFrame = 
+        <HeaderFrame 
+            verticalAlign={header.verticalAlign} 
+            horizontalAlign={header.horizontalAlign}>
+                {header.text}
+        </HeaderFrame>
     }
 
     let buttonFrame = <></>
@@ -26,7 +37,7 @@ const Cell = ({ borderRadius, color, height, header, content, status, onClick }:
 
     let view =
     <Container height={height}>
-        <Frame color={color} borderRadius={borderRadius}>
+        <Frame color={color!} borderRadius={borderRadius}>
             {headerFrame}
             {buttonFrame}
         </Frame>
@@ -53,13 +64,13 @@ const Frame = styled.div<{ color: string, borderRadius: string }>`
     align-items: center;
 `;
 
-const HeaderFrame = styled.div`
+const HeaderFrame = styled.div<{ verticalAlign: string, horizontalAlign: string }>`
     width: 400%;
     height: 100%;
 
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: ${props => props.horizontalAlign};
+    align-items: ${props => props.verticalAlign};
 `;
 
 const Content = styled.div``;

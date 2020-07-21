@@ -3,20 +3,19 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 
-import * as data from '../../../service/Data'
-import * as utility from '../../../service/Utility'
+import * as data from '../../service/Data'
+import * as utility from '../../service/Utility'
 
-import ObjCellType from '../../../model/ObjectiveType'
+import ObjCellType from '../../model/ObjectiveType'
 import Col from 'react-bootstrap/Col'
-import NotiType from '../../../model/NotiType';
+import NotiType from '../../model/NotiType';
 
-import useModal from '../../../hooks/useModal';
-import useNoti from '../../../hooks/useNoti';
+import useModal from '../../hooks/useModal';
+import useNoti from '../../hooks/useNoti';
 
 const AddObjModal = () => {
-
-    const { onUpdateVisible } = useModal();
-    const { onShow, onHide } = useNoti();
+    const { onHideModal } = useModal();
+    const { onShowNoti, onHideNoti } = useNoti();
 
     let title: string
     let description: string
@@ -30,11 +29,10 @@ const AddObjModal = () => {
         const obj: ObjCellType = new ObjCellType(100, "objective", title, description, priority, deadline)
 
         data.putObj(obj).then((response) => {
-            onShow("success", "It's from Add Modal");
-            setTimeout(onHide, 2300);
+            onHideModal();
+            onShowNoti("success", "It's from Add Modal");
+            setTimeout(onHideNoti, 2300);
         })
-
-        onUpdateVisible(false);
     }
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +65,7 @@ const AddObjModal = () => {
 
     return (
         <Modal show={true}>
-            <Modal.Header closeButton onClick={() => onUpdateVisible(false)}>
+            <Modal.Header closeButton onClick={onHideModal}>
                 <Modal.Title>New Objective</Modal.Title>
             </Modal.Header>
 
@@ -109,7 +107,7 @@ const AddObjModal = () => {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={() => onUpdateVisible(false)}>Close</Button>
+                <Button variant="secondary" onClick={onHideModal}>Close</Button>
                 <Button variant="primary" onClick={onExecute}>Add</Button>
             </Modal.Footer>
         </Modal>

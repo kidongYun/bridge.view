@@ -5,7 +5,7 @@ import Todo from './layouts/todo/Todo'
 import Header from './layouts/header/Header';
 
 import Noti from './components/noti/Noti'
-import Modal from './components/modal/Modal';
+import Modal from './components/modal/Modal'
 
 const App = () => {
 
