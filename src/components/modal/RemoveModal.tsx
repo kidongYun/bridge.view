@@ -6,26 +6,25 @@ import Form from 'react-bootstrap/Form'
 import * as data from '../../service/Data'
 import * as utility from '../../service/Utility'
 
-import ModalType from '../../model/ModalType';
-import NotiType from '../../model/NotiType';
-
 import useModal from '../../hooks/useModal';
 import useNoti from '../../hooks/useNoti';
+import useData from '../../hooks/useData';
+import useCell from '../../hooks/useCell';
 
-const RemoveObjModal = () => {
+const RemoveModal = () => {
     const { onHideModal } = useModal();
     const { onShowNoti, onHideNoti } = useNoti();
+    const { deletedCell } = useCell();
+    const { onSetObjectiveList } = useData();
 
     const onExecute = () => {
-        // data.deleteObj(modal.cell.id).then((response) => {
-        //     modal.setCellList(utility.parse(response.data));
-        //     showNoti(new NotiType("success", "It's removed..."))
-        //     onClose()
-        // })
+        data.deleteObj(deletedCell.id).then((response) => {
+            onSetObjectiveList(utility.parse(response.data));
 
-        onHideModal();
-        onShowNoti("success", "It's from Remove Modal");
-        setTimeout(onHideNoti, 2300);
+            onHideModal();
+            onShowNoti("success", "It's from Remove Modal");
+            setTimeout(onHideNoti, 2300);
+        })
     }
 
 
@@ -47,4 +46,4 @@ const RemoveObjModal = () => {
     )
 }
 
-export default RemoveObjModal;
+export default RemoveModal;

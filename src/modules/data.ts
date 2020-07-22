@@ -4,14 +4,14 @@ const SET_OBJECTIVE = 'data/SET_OBJECTIVE' as const
 const SET_PLAN = 'data/SET_PLAN' as const
 const SET_TODO = 'data/SET_TODO' as const
 
-export const setObjective = (objectiveList: CellType[]) => ({ type: SET_OBJECTIVE, payload: objectiveList })
-export const setPlan = (planList: CellType[]) => ({ type: SET_PLAN, payload: planList })
-export const setTodo = (todoList: CellType[]) => ({ type: SET_TODO, payload: todoList })
+export const setObjectiveList = (objectiveList: CellType[]) => ({ type: SET_OBJECTIVE, payload: objectiveList })
+export const setPlanList = (planList: CellType[]) => ({ type: SET_PLAN, payload: planList })
+export const setTodoList = (todoList: CellType[]) => ({ type: SET_TODO, payload: todoList })
 
 type DataAction =
-    | ReturnType<typeof setObjective>
-    | ReturnType<typeof setPlan>
-    | ReturnType<typeof setTodo>
+    | ReturnType<typeof setObjectiveList>
+    | ReturnType<typeof setPlanList>
+    | ReturnType<typeof setTodoList>
 
 type DataState = {
     objectiveList: CellType[]

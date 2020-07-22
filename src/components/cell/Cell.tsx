@@ -10,6 +10,7 @@ interface CellProps {
     content: TextProps[]
     status: number
     onClick?: () => void
+    onClickBtn1?: () => void
 }
 
 interface TextProps {
@@ -18,7 +19,7 @@ interface TextProps {
     horizontalAlign : string 
 }
 
-const Cell = ({ borderRadius, color, height, header, content, status, onClick }: CellProps) => {
+const Cell = ({ borderRadius, color, height, header, content, status, onClick, onClickBtn1 }: CellProps) => {
 
     let headerFrame = <></>
     if(header !== undefined) {
@@ -31,12 +32,12 @@ const Cell = ({ borderRadius, color, height, header, content, status, onClick }:
     }
 
     let buttonFrame = <></>
-    if(onClick !== undefined) {
-        buttonFrame = <ButtonFrame><Button variant="outline-danger" onClick={onClick}>Remove</Button></ButtonFrame>
+    if(onClickBtn1 !== undefined) {
+        buttonFrame = <ButtonFrame><Button variant="outline-danger" onClick={onClickBtn1}>Remove</Button></ButtonFrame>
     }
 
     let view =
-    <Container height={height}>
+    <Container height={height} onClick={onClick}>
         <Frame color={color!} borderRadius={borderRadius}>
             {headerFrame}
             {buttonFrame}

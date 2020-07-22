@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import MenuType from '../model/MenuType';
 import TabType from '../model/TabType';
-import ObjCellType from '../model/ObjectiveType';
+import ObjectiveType from '../model/ObjectiveType';
 
 export async function getPlan() {
     return await axios.get("http://localhost:8080/plan");
@@ -12,16 +12,16 @@ export async function getObj() {
     return await axios.get("http://localhost:8080/objective");
 }
 
-export async function postObj() {
-    return await axios.post("http://localhost:8080/objective");
+export async function postObj(obj: ObjectiveType) {
+    return await axios.post("http://localhost:8080/objective", obj);
 }
 
-export async function putObj(obj: ObjCellType) {
+export async function putObj(obj: ObjectiveType) {
     return await axios.put("http://localhost:8080/objective", obj);
 }
 
 export async function deleteObj(id: number) {
-    return await axios.delete("http://localhost:8080/objective", { data: { id: id } });
+    return await axios.delete("http://localhost:8080/objective/" + id);
 }
 
 export function postNavList() {

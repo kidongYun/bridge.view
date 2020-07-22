@@ -12,10 +12,12 @@ import NotiType from '../../model/NotiType';
 
 import useModal from '../../hooks/useModal';
 import useNoti from '../../hooks/useNoti';
+import useData from '../../hooks/useData';
 
 const AddObjModal = () => {
     const { onHideModal } = useModal();
     const { onShowNoti, onHideNoti } = useNoti();
+    const { onSetObjectiveList } = useData();
 
     let title: string
     let description: string
@@ -28,7 +30,9 @@ const AddObjModal = () => {
         const deadline = deadline_year + "." + deadline_month + "." + deadline_day
         const obj: ObjCellType = new ObjCellType(100, "objective", title, description, priority, deadline)
 
-        data.putObj(obj).then((response) => {
+        data.postObj(obj).then((response) => {
+            onSetObjectiveList(utility.parse(response.data));
+            
             onHideModal();
             onShowNoti("success", "It's from Add Modal");
             setTimeout(onHideNoti, 2300);

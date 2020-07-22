@@ -1,5 +1,5 @@
 import React from 'react'
-import AddModal from './AddModal'
+import AddModal from './AddObjModal'
 import LoginModal from './LoginModal';
 import RemoveModal from './RemoveModal';
 

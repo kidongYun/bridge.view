@@ -4,20 +4,23 @@ import styled from 'styled-components'
 import Cell from '../../components/cell/Cell';
 import ObjectiveType from '../../model/ObjectiveType';
 import DateType from '../../model/DateType';
+import CellType from '../../model/CellType';
 
 import * as data from '../../service/Data'
 import * as utility from '../../service/Utility'
 
 import useModal from '../../hooks/useModal';
-import useObjective from '../../hooks/useObjective';
+import useData from '../../hooks/useData';
+import useCell from '../../hooks/useCell';
 
 const ObjectiveTimeline = () => {
     const { onShowModal } = useModal();
-    const { objectiveList, onGetObjective } = useObjective();
+    const { objectiveList, onSetObjectiveList } = useData();
+    const { onDeleteCell } = useCell();
 
     React.useEffect(() => {
         data.getObj().then((response) => {
-            onGetObjective(utility.parse(response.data));
+            onSetObjectiveList(utility.parse(response.data));
         })
     }, []);
 
@@ -33,7 +36,17 @@ const ObjectiveTimeline = () => {
                         header={{ text: obj.title, verticalAlign: "center", horizontalAlign: "center" }}
                         content={[]}
                         status={obj.status}
-                        onClick={() => { onShowModal("REMOVE")}}
+                        onClick={() => {
+                            obj.type = "asdasd";
+                            data.putObj(obj).then((response) => {
+                                onSetObjectiveList(utility.parse(response.data));
+                                console.log(objectiveList);
+                            })
+                        }}
+                        onClickBtn1={() => { 
+                            onDeleteCell(new CellType(obj.id, obj.type));
+                            onShowModal("REMOVE"); 
+                        }}
                     />
                 }
 
