@@ -29,7 +29,7 @@ const PlanTimeline = () => {
                         color="#00ff00"
                         height="100px"
                         header={{ text: plan.content, verticalAlign: "", horizontalAlign: "" }}
-                        content={[]}
+                        contents={[]}
                         status={0}
                     />
                 }
