@@ -77,7 +77,7 @@ const Cell = ({ borderRadius, color, height, header, contents, status, buttons, 
             {
                 buttons.map((button) => {
                     return <ButtonFrame>
-                        <Button variant={button.type} onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {e.preventDefault(); button.onClick();}}>
+                        <Button variant={button.type} onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {e.stopPropagation(); button.onClick();}}>
                             {button.text}
                         </Button>
                     </ButtonFrame>

@@ -9,7 +9,7 @@ export function parse(src: any) {
     for(let i=0; i<src.length; i++) {
         if(src[i].type === "objective" || src[i].type === "objective_detail") {
             cellList.push(new ObjectiveType(
-                src[i].id, src[i].type, src[i].title, src[i].description, src[i].priority, src[i].deadline
+                src[i].cellId, src[i].type, src[i].objectiveId, src[i].title, src[i].description, src[i].priority, src[i].deadline
             ))
         }
 

@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import Cell from '../../components/cell/Cell';
 import ObjectiveType from '../../model/ObjectiveType';
 import DateType from '../../model/DateType';
-import CellType from '../../model/CellType';
 
 import * as data from '../../service/Data'
 import * as utility from '../../service/Utility'
@@ -38,7 +37,9 @@ const ObjectiveTimeline = () => {
                         status={obj.status}
                         onClick={() => {
                             obj.type = "objective_detail";
+                            console.log(obj);
                             data.putObj(obj).then((response) => {
+                                console.log(response.data);
                                 onSetObjectiveList(utility.parse(response.data));
                             })
                         }}
@@ -52,12 +53,11 @@ const ObjectiveTimeline = () => {
                         height="300px"
                         header={{ text: obj.title, verticalAlign: "center", horizontalAlign: "center" }}
                         contents={[
-                            { text: obj.description, verticalAlign: "center", horizontalAlign: "center" },
-                            { text: obj.deadline, verticalAlign: "center", horizontalAlign: "center" }
+                            { text: obj.description, verticalAlign: "center", horizontalAlign: "center" }
                         ]}
                         status={obj.status}
                         buttons={[
-                            { type: "outline-danger", text: "Remove", onClick: () => { console.log("Click!!!"); } },
+                            { type: "outline-danger", text: "Remove", onClick: () => { onDeleteCell(obj); onShowModal("REMOVE") } },
                             { type: "outline-success", text: "Modify", onClick: () => { } }
                         ]}
                         onClick={() => {

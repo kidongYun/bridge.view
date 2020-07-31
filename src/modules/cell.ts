@@ -16,8 +16,8 @@ type ApiState = {
 }
 
 const initialState = {
-    deletedCell: { id: -1, type: "" },
-    openedCell: { id: -1, type: "" }
+    deletedCell: { cellId: -1, type: "" },
+    openedCell: { cellId: -1, type: "" }
 }
 
 function api(state: ApiState = initialState, action: ApiAction) {

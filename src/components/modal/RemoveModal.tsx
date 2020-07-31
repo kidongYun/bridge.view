@@ -18,7 +18,7 @@ const RemoveModal = () => {
     const { onSetObjectiveList } = useData();
 
     const onExecute = () => {
-        data.deleteObj(deletedCell.id).then((response) => {
+        data.deleteObj(deletedCell.cellId).then((response) => {
             onSetObjectiveList(utility.parse(response.data));
 
             onHideModal();
