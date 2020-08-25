@@ -19,14 +19,15 @@ const PlanTimeline = () => {
         })
     }, [])
 
+    console.log(planList);
+
     let view = 
     <Container>
         {planList.map(
             (plan) => {
                 if(plan instanceof PlanType) {
                     return <Cell 
-                        borderRadius="0px"
-                        color="#00ff00"
+                        backgroundColor="#00ff00"
                         height="100px"
                         header={{ text: plan.content, verticalAlign: "", horizontalAlign: "" }}
                         contents={[]}

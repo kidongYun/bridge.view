@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Cell from '../../components/cell/Cell';
-import CellTemplate from '../../components/cell/CellTemplate'
+import ObjectiveTemplate from '../../components/cell/template/ObjectiveTemplate'
 import ObjectiveType from '../../model/ObjectiveType';
 import DateType from '../../model/DateType';
 
@@ -26,16 +26,20 @@ const ObjectiveTimeline = () => {
 
     let view = 
     <Container>
+        <Cell
+            borderRadius="10px"
+            backgroundColor="#007bff"
+            height="80px"
+            header={{ text: "+", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
+        />
+
         {objectiveList.map(
             (obj) => {
                 if(obj instanceof ObjectiveType && obj.type === "OBJECTIVE") {
                     if(obj.display === "NORMAL") {
-                        return 
-                        return <Cell
-                            borderRadius="10px"
-                            color="#eeeeee" 
-                            height="80px"
-                            header={{ text: obj.title, verticalAlign: "center", horizontalAlign: "center" }}
+                        return <ObjectiveTemplate
+                            height={"80px"}
+                            header={obj.title}
                             contents={[]}
                             status={obj.status}
                             onClick={() => {
@@ -48,13 +52,11 @@ const ObjectiveTimeline = () => {
                     }
 
                     if(obj.display === "DETAIL") {
-                        return <Cell
-                            borderRadius="10px"
-                            color="#eeeeee"
-                            height="300px"
-                            header={{ text: obj.title, verticalAlign: "center", horizontalAlign: "center" }}
+                        return <ObjectiveTemplate
+                            height={"150px"}
+                            header={obj.title}
                             contents={[
-                                { text: obj.description, verticalAlign: "center", horizontalAlign: "center" }
+                                obj.description
                             ]}
                             status={obj.status}
                             buttons={[

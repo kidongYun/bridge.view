@@ -3,23 +3,27 @@ import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
 
 interface CellProps {
-    borderRadius: string
-    color?: string
-    height: string
-    header: TextProps
-    contents: TextProps[]
-    status: number
+    borderRadius?: string
+    backgroundColor?: string
+    height?: string
+    header?: TextProps
+    contents?: TextProps[]
+    status?: number
     buttons?: ButtonProps[]
     onClick?: () => void
 }
 
-interface TextProps {
+export interface TextProps {
     text: string
+    size?: string
+    color?: string
+    borderRadius?: string
+    backgroundColor?: string
     verticalAlign: string
     horizontalAlign: string 
 }
 
-interface ButtonProps {
+export interface ButtonProps {
     type:     
     | 'primary'
     | 'secondary'
@@ -42,13 +46,13 @@ interface ButtonProps {
     onClick: () => void
 }
 
-const Cell = ({ borderRadius, color, height, header, contents, status, buttons, onClick }: CellProps) => {
+const Cell = ({ borderRadius = "0px", backgroundColor = "#ffffff", height = "100px", header, contents, status, buttons, onClick }: CellProps) => {
 
     let headerFrame = <></>;
     if(header !== undefined) {
         headerFrame = 
             <HeaderFrame>
-                <TextFrame verticalAlign={header.verticalAlign} horizontalAlign={header.horizontalAlign}>
+                <TextFrame color={header.color!} verticalAlign={header.verticalAlign} horizontalAlign={header.horizontalAlign}>
                     {header.text}
                 </TextFrame>
             </HeaderFrame>
@@ -88,7 +92,7 @@ const Cell = ({ borderRadius, color, height, header, contents, status, buttons, 
 
     let view =
     <Container height={height} onClick={onClick}>
-        <Frame color={color!} borderRadius={borderRadius}>
+        <Frame color={backgroundColor!} borderRadius={borderRadius}>
             {headerFrame}
             {contentsFrame}
             {buttonsFrame}
@@ -154,9 +158,11 @@ const ButtonFrame = styled.div`
     align-items: center;
 `;
 
-const TextFrame = styled.div<{ verticalAlign: string, horizontalAlign: string }>`
+const TextFrame = styled.div<{ color: string, verticalAlign: string, horizontalAlign: string }>`
     width: 100%;
     height: 100%;
+
+    color: ${props => props.color};
 
     display: flex;
     justify-content: ${props => props.horizontalAlign};
