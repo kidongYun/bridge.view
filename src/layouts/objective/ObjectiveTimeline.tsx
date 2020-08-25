@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Cell from '../../components/cell/Cell';
+import CellTemplate from '../../components/cell/CellTemplate'
 import ObjectiveType from '../../model/ObjectiveType';
 import DateType from '../../model/DateType';
 
@@ -27,49 +28,50 @@ const ObjectiveTimeline = () => {
     <Container>
         {objectiveList.map(
             (obj) => {
-                if(obj instanceof ObjectiveType && obj.type === "objective") {
-                    return <Cell
-                        borderRadius="10px"
-                        color="#eeeeee" 
-                        height="80px"
-                        header={{ text: obj.title, verticalAlign: "center", horizontalAlign: "center" }}
-                        contents={[]}
-                        status={obj.status}
-                        onClick={() => {
-                            obj.type = "objective_detail";
-                            console.log(obj);
-                            data.putObj(obj).then((response) => {
-                                console.log(response.data);
-                                onSetObjectiveList(utility.parse(response.data));
-                            })
-                        }}
-                    />
+                if(obj instanceof ObjectiveType && obj.type === "OBJECTIVE") {
+                    if(obj.display === "NORMAL") {
+                        return 
+                        return <Cell
+                            borderRadius="10px"
+                            color="#eeeeee" 
+                            height="80px"
+                            header={{ text: obj.title, verticalAlign: "center", horizontalAlign: "center" }}
+                            contents={[]}
+                            status={obj.status}
+                            onClick={() => {
+                                obj.display = "DETAIL";
+                                onSetObjectiveList([
+                                    ...objectiveList
+                                ])
+                            }}
+                        />
+                    }
+
+                    if(obj.display === "DETAIL") {
+                        return <Cell
+                            borderRadius="10px"
+                            color="#eeeeee"
+                            height="300px"
+                            header={{ text: obj.title, verticalAlign: "center", horizontalAlign: "center" }}
+                            contents={[
+                                { text: obj.description, verticalAlign: "center", horizontalAlign: "center" }
+                            ]}
+                            status={obj.status}
+                            buttons={[
+                                { type: "outline-danger", text: "Remove", onClick: () => { onDeleteCell(obj); onShowModal("REMOVE") } },
+                                { type: "outline-success", text: "Modify", onClick: () => { } }
+                            ]}
+                            onClick={() => {
+                                obj.display = "NORMAL";
+                                onSetObjectiveList([
+                                    ...objectiveList
+                                ])
+                            }}
+                        />
+                    }
                 }
 
-                if(obj instanceof ObjectiveType && obj.type === "objective_detail") {
-                    return <Cell
-                        borderRadius="10px"
-                        color="#eeeeee"
-                        height="300px"
-                        header={{ text: obj.title, verticalAlign: "center", horizontalAlign: "center" }}
-                        contents={[
-                            { text: obj.description, verticalAlign: "center", horizontalAlign: "center" }
-                        ]}
-                        status={obj.status}
-                        buttons={[
-                            { type: "outline-danger", text: "Remove", onClick: () => { onDeleteCell(obj); onShowModal("REMOVE") } },
-                            { type: "outline-success", text: "Modify", onClick: () => { } }
-                        ]}
-                        onClick={() => {
-                            obj.type = "objective";
-                            data.putObj(obj).then((response) => {
-                                onSetObjectiveList(utility.parse(response.data));
-                            })
-                        }}
-                    />
-                }
-
-                if(obj instanceof DateType && obj.type === "date") {
+                if(obj instanceof DateType && obj.type === "DATE") {
                     return <Cell
                         borderRadius="0px"
                         height="100px"

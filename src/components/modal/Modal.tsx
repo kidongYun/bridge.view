@@ -1,5 +1,5 @@
 import React from 'react'
-import AddModal from './AddObjModal'
+import AddObjModal from './AddObjModal'
 import LoginModal from './LoginModal';
 import RemoveModal from './RemoveModal';
 
@@ -19,8 +19,8 @@ const Modal = () => {
         view = <LoginModal/>
     }
 
-    if(type === "ADD") {
-        view = <AddModal/>
+    if(type === "ADD_OBJ") {
+        view = <AddObjModal/>
     }
 
     if(type === "REMOVE") {

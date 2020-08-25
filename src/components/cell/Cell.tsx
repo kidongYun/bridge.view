@@ -128,6 +128,7 @@ const ContentsFrame = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    
 `;
 
 const ContentFrame = styled.div`

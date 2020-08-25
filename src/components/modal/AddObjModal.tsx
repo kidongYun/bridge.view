@@ -27,8 +27,10 @@ const AddObjModal = () => {
     let deadline_day: string
 
     const onExecute = () => {
-        const deadline = deadline_year + "." + deadline_month + "." + deadline_day
-        const obj: ObjCellType = new ObjCellType(100, "objective", 100, title, description, priority, deadline)
+        const deadline = deadline_year + "-" + deadline_month + "-" + deadline_day
+        const obj: ObjCellType = new ObjCellType(100, title, description, priority, deadline, "NORMAL")
+
+        console.log(obj);
 
         data.postObj(obj).then((response) => {
             onSetObjectiveList(utility.parse(response.data));

@@ -1,16 +1,14 @@
 import CellType from './CellType'
 
-class PlanCellType extends CellType {
-    objectiveId: number
+class PlanType extends CellType {
     content: string
     startDate: string
     endDate: string
     status: string
 
     
-    constructor(id: number, type: "plan", objectiveId: number, content: string, startDate: string, endDate: string, status: string) {
-        super(id, type)
-        this.objectiveId = objectiveId
+    constructor(id: number, content: string, startDate: string, endDate: string, status: string) {
+        super(id, "PLAN")
         this.content = content
         this.startDate = startDate
         this.endDate = endDate
@@ -18,4 +16,4 @@ class PlanCellType extends CellType {
     }
 }
 
-export default PlanCellType
+export default PlanType

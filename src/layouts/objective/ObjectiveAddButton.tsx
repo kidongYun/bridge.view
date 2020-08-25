@@ -8,7 +8,7 @@ const ObjectiveAddButton = () => {
     const { onShowModal } = useModal();
 
     const onClick = () => {
-        onShowModal("ADD");
+        onShowModal("ADD_OBJ");
     }
 
     return (

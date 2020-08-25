@@ -1,9 +1,9 @@
 class CellType {
-    public cellId: number
-    public type: string
+    public id: number
+    public type: String
 
-    constructor(cellId: number, type: string) {
-        this.cellId = cellId
+    constructor(id: number, type: "OBJECTIVE" | "PLAN" | "DATE" | "CELL") {
+        this.id = id
         this.type = type
     }
 }
