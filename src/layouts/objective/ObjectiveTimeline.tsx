@@ -29,7 +29,7 @@ const ObjectiveTimeline = () => {
             borderRadius="10px"
             backgroundColor="#007bff"
             backgroundHover="#0069d9"
-            height="100px"
+            height="80px"
             header={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
             onClick={() => { onShowModal("ADD_OBJ"); }}
         />

@@ -103,7 +103,7 @@ const Cell = ({
 
     let view =
     <Container height={height} onClick={onClick}>
-        <Frame backgroundColor={backgroundColor!} backgroundHover={backgroundHover!} borderRadius={borderRadius}>
+        <Frame height={height}backgroundColor={backgroundColor!} backgroundHover={backgroundHover!} borderRadius={borderRadius}>
             {headerFrame}
             {contentsFrame}
             {buttonsFrame}
@@ -119,7 +119,7 @@ const Container = styled.div<{ height: string }>`
     padding: 5px;
 `;
 
-const Frame = styled.div<{ backgroundColor: string, backgroundHover: string, borderRadius: string }>`
+const Frame = styled.div<{ height: string, backgroundColor: string, backgroundHover: string, borderRadius: string }>`
     width: 100%;
     height: 100%;
     background-color: ${props => props.backgroundColor };
@@ -134,6 +134,10 @@ const Frame = styled.div<{ backgroundColor: string, backgroundHover: string, bor
 
     &:hover {
         background-color: ${props => props.backgroundHover };
+    }
+
+    &:active {
+        height: ${props => props.height };
     }
 `;
 
