@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 interface CellProps {
     borderRadius?: string
     backgroundColor?: string
+    backgroundHover?: string
     height?: string
     header?: TextProps
     contents?: TextProps[]
@@ -15,7 +16,7 @@ interface CellProps {
 
 export interface TextProps {
     text: string
-    size?: string
+    fontSize?: string
     color?: string
     borderRadius?: string
     backgroundColor?: string
@@ -46,13 +47,23 @@ export interface ButtonProps {
     onClick: () => void
 }
 
-const Cell = ({ borderRadius = "0px", backgroundColor = "#ffffff", height = "100px", header, contents, status, buttons, onClick }: CellProps) => {
+const Cell = ({ 
+    borderRadius = "0px", 
+    backgroundColor = "#ffffff", 
+    backgroundHover = "#ffffff", 
+    height = "auto", 
+    header, 
+    contents, 
+    status, 
+    buttons, 
+    onClick 
+}: CellProps) => {
 
     let headerFrame = <></>;
     if(header !== undefined) {
         headerFrame = 
             <HeaderFrame>
-                <TextFrame color={header.color!} verticalAlign={header.verticalAlign} horizontalAlign={header.horizontalAlign}>
+                <TextFrame fontSize={header.fontSize!} color={header.color!} verticalAlign={header.verticalAlign} horizontalAlign={header.horizontalAlign}>
                     {header.text}
                 </TextFrame>
             </HeaderFrame>
@@ -66,7 +77,7 @@ const Cell = ({ borderRadius = "0px", backgroundColor = "#ffffff", height = "100
         <ContentsFrame>
             {
                 contents.map((content) => {
-                    return <ContentFrame>
+                    return <ContentFrame borderRadius={content.borderRadius!} backgroundColor={content.backgroundColor!}>
                         {content.text}
                     </ContentFrame>
                 })
@@ -92,7 +103,7 @@ const Cell = ({ borderRadius = "0px", backgroundColor = "#ffffff", height = "100
 
     let view =
     <Container height={height} onClick={onClick}>
-        <Frame color={backgroundColor!} borderRadius={borderRadius}>
+        <Frame backgroundColor={backgroundColor!} backgroundHover={backgroundHover!} borderRadius={borderRadius}>
             {headerFrame}
             {contentsFrame}
             {buttonsFrame}
@@ -108,16 +119,22 @@ const Container = styled.div<{ height: string }>`
     padding: 5px;
 `;
 
-const Frame = styled.div<{ color: string, borderRadius: string }>`
+const Frame = styled.div<{ backgroundColor: string, backgroundHover: string, borderRadius: string }>`
     width: 100%;
     height: 100%;
-    background-color: ${props => props.color };
+    background-color: ${props => props.backgroundColor };
     border-radius: ${props => props.borderRadius };
     padding: 10px;
 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+
+    transition: all ease 0.2s 0s;
+
+    &:hover {
+        background-color: ${props => props.backgroundHover };
+    }
 `;
 
 const HeaderFrame = styled.div`
@@ -129,15 +146,23 @@ const ContentsFrame = styled.div`
     width: 100%;
     height: 60%;
 
+    margin-top: 10px;
+    margin-bottom: 10px;
+
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     
 `;
 
-const ContentFrame = styled.div`
+const ContentFrame = styled.div<{ borderRadius: string, backgroundColor: string }>`
     width: 100%;
     height: auto;
+    padding: 10px;
+
+    background-color: ${props => props.backgroundColor};
+    border-radius: ${props => props.borderRadius};
+
 `;
 
 const ButtonsFrame = styled.div`
@@ -158,10 +183,11 @@ const ButtonFrame = styled.div`
     align-items: center;
 `;
 
-const TextFrame = styled.div<{ color: string, verticalAlign: string, horizontalAlign: string }>`
+const TextFrame = styled.div<{ fontSize: string, color: string, verticalAlign: string, horizontalAlign: string }>`
     width: 100%;
     height: 100%;
 
+    font-size: ${props => props.fontSize};
     color: ${props => props.color};
 
     display: flex;

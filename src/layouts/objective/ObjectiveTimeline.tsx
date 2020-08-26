@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Cell from '../../components/cell/Cell';
-import ObjectiveTemplate from '../../components/cell/template/ObjectiveTemplate'
 import ObjectiveType from '../../model/ObjectiveType';
 import DateType from '../../model/DateType';
 
@@ -29,18 +28,22 @@ const ObjectiveTimeline = () => {
         <Cell
             borderRadius="10px"
             backgroundColor="#007bff"
-            height="80px"
-            header={{ text: "+", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
+            backgroundHover="#0069d9"
+            height="100px"
+            header={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
+            onClick={() => { onShowModal("ADD_OBJ"); }}
         />
 
         {objectiveList.map(
             (obj) => {
                 if(obj instanceof ObjectiveType && obj.type === "OBJECTIVE") {
                     if(obj.display === "NORMAL") {
-                        return <ObjectiveTemplate
-                            height={"80px"}
-                            header={obj.title}
-                            contents={[]}
+                        return <Cell
+                            borderRadius="10px"
+                            backgroundColor="#eeeeee"
+                            backgroundHover="#e4e4e4"
+                            height="80px"
+                            header={{ text: obj.title, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
                             status={obj.status}
                             onClick={() => {
                                 obj.display = "DETAIL";
@@ -52,11 +55,13 @@ const ObjectiveTimeline = () => {
                     }
 
                     if(obj.display === "DETAIL") {
-                        return <ObjectiveTemplate
-                            height={"150px"}
-                            header={obj.title}
+                        return <Cell
+                            borderRadius="10px"
+                            backgroundColor="#eeeeee"
+                            backgroundHover="#e4e4e4"
+                            header={{ text: obj.title, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
                             contents={[
-                                obj.description
+                                { text: obj.description, borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "center" },
                             ]}
                             status={obj.status}
                             buttons={[
@@ -76,7 +81,6 @@ const ObjectiveTimeline = () => {
                 if(obj instanceof DateType && obj.type === "DATE") {
                     return <Cell
                         borderRadius="0px"
-                        height="100px"
                         header={{ text: obj.date, verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
                         contents={[]}
                         status={0}

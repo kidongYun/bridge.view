@@ -1,11 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-/* Component */
-import AddButton from './ObjectiveAddButton'
-
-/* Model */
-
 import useStage from '../../hooks/useStage'
 import ObjectiveTimeline from './ObjectiveTimeline';
 
@@ -21,7 +16,6 @@ const Objective = () => {
     view = 
     <Container>
         <ObjectiveTimeline/>
-        <AddButton/>
     </Container>
 
     return (view);
