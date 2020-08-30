@@ -18,8 +18,9 @@ const ObjectiveTimeline = () => {
     const { onDeleteCell } = useCell();
 
     React.useEffect(() => {
-        data.getObj().then((response) => {
+        data.getObj(true).then((response) => {
             onSetObjectiveList(utility.parse(response.data));
+            console.log(response.data);
         })
     }, []);
 
@@ -81,8 +82,8 @@ const ObjectiveTimeline = () => {
                 if(obj instanceof DateType && obj.type === "DATE") {
                     return <Cell
                         borderRadius="0px"
-                        header={{ text: obj.date, verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
-                        contents={[]}
+                        backgroundColor="#123123"
+                        header={{ text: obj.date, backgroundColor: "513674", verticalAlign: "flex-start", horizontalAlign: "flex-start" }}
                         status={0}
                     />
                 }

@@ -8,8 +8,13 @@ export async function getPlan() {
     return await axios.get("http://localhost:8080/plan");
 }
 
-export async function getObj() {
-    return await axios.get("http://localhost:8080/objective");
+export async function getObj(dateFlag: boolean) {
+
+    return await axios.get("http://localhost:8080/objective", {
+        params: {
+            dateFlag: dateFlag
+        }
+      });
 }
 
 export async function postObj(obj: ObjectiveType) {
