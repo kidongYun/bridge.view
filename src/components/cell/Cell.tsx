@@ -144,6 +144,7 @@ const Frame = styled.div<{ height: string, backgroundColor: string, backgroundHo
 const HeaderFrame = styled.div`
     width: 100%;
     height: auto;
+    font-weight: bold;
 `;
 
 const ContentsFrame = styled.div`
@@ -162,7 +163,10 @@ const ContentsFrame = styled.div`
 const ContentFrame = styled.div<{ borderRadius: string, backgroundColor: string }>`
     width: 100%;
     height: auto;
+
     padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
     background-color: ${props => props.backgroundColor};
     border-radius: ${props => props.borderRadius};
