@@ -8,11 +8,11 @@ export async function getPlan() {
     return await axios.get("http://localhost:8080/plan");
 }
 
-export async function getObj(dateFlag: boolean) {
+export async function getObj(isDate: boolean) {
 
     return await axios.get("http://localhost:8080/objective", {
         params: {
-            dateFlag: dateFlag
+            isDate: isDate
         }
       });
 }
