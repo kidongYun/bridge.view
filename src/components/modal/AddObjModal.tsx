@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form'
 import * as data from '../../service/Data'
 import * as utility from '../../service/Utility'
 
-import ObjCellType from '../../model/ObjectiveType'
+import ObjectiveType from '../../model/ObjectiveType'
 import Col from 'react-bootstrap/Col'
 import NotiType from '../../model/NotiType';
 
@@ -28,11 +28,18 @@ const AddObjModal = () => {
 
     const onExecute = () => {
         const deadline = deadline_year + "-" + deadline_month + "-" + deadline_day
-        const obj: ObjCellType = new ObjCellType(100, title, description, priority, deadline, "NORMAL")
+        const objPost = {
+            title: title,
+            description: description,
+            deadline: deadline,
+            priority: priority,
+            status: 0,
+            date: true
+        }
 
-        console.log(obj);
+        console.log(objPost);
 
-        data.postObj(obj).then((response) => {
+        data.postObj(objPost).then((response) => {
             onSetObjectiveList(utility.parse(response.data));
             
             onHideModal();

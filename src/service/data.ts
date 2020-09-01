@@ -8,25 +8,27 @@ export async function getPlan() {
     return await axios.get("http://localhost:8080/plan");
 }
 
-export async function getObj(isDate: boolean) {
-
-    return await axios.get("http://localhost:8080/objective", {
-        params: {
-            isDate: isDate
-        }
-      });
+export async function getObj(date: boolean) {
+    return await axios.get("http://localhost:8080/objective", { params: { date: date }});
 }
 
-export async function postObj(obj: ObjectiveType) {
-    return await axios.post("http://localhost:8080/objective", obj);
+export async function postObj(objPost: { 
+    title: string, 
+    description: string, 
+    deadline: string, 
+    priority: number, 
+    status: number, 
+    date: boolean 
+}) {
+    return await axios.post("http://localhost:8080/objective", objPost);
 }
 
 export async function putObj(obj: ObjectiveType) {
     return await axios.put("http://localhost:8080/objective", obj);
 }
 
-export async function deleteObj(id: number) {
-    return await axios.delete("http://localhost:8080/objective/" + id);
+export async function deleteObj(id: number, date: boolean) {
+    return await axios.delete("http://localhost:8080/objective/" + id, { data: { date: date }});
 }
 
 export function postNavList() {
