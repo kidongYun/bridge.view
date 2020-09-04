@@ -11,11 +11,12 @@ import * as utility from '../../service/Utility'
 import useModal from '../../hooks/useModal';
 import useData from '../../hooks/useData';
 import useCell from '../../hooks/useCell';
+import CellType from '../../model/CellType';
 
 const ObjectiveTimeline = () => {
     const { onShowModal } = useModal();
     const { objectiveList, onSetObjectiveList } = useData();
-    const { onDeleteCell } = useCell();
+    const { onDeleteCell, onUpdateCell } = useCell();
 
     React.useEffect(() => {
         data.getObj(true).then((response) => {
@@ -32,7 +33,7 @@ const ObjectiveTimeline = () => {
             backgroundHover="#0069d9"
             height="80px"
             header={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
-            onClick={() => { onShowModal("ADD_OBJ"); }}
+            onClick={() => { onUpdateCell(new CellType(-1, "CELL")); onShowModal("OBJECTIVE"); }}
         />
 
         {objectiveList.map(
@@ -67,8 +68,8 @@ const ObjectiveTimeline = () => {
                             ]}
                             status={obj.status}
                             buttons={[
-                                { type: "outline-danger", text: "Remove", onClick: () => { onDeleteCell(obj); onShowModal("REMOVE") } },
-                                { type: "outline-success", text: "Modify", onClick: () => { } }
+                                { type: "outline-danger", text: "Remove", onClick: () => { onDeleteCell(obj); onShowModal("REMOVE"); } },
+                                { type: "outline-success", text: "Modify", onClick: () => { onUpdateCell(obj); onShowModal("OBJECTIVE"); } }
                             ]}
                             onClick={() => {
                                 obj.display = "NORMAL";

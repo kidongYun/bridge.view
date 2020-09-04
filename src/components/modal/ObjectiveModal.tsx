@@ -6,36 +6,32 @@ import Form from 'react-bootstrap/Form'
 import * as data from '../../service/Data'
 import * as utility from '../../service/Utility'
 
-import ObjectiveType from '../../model/ObjectiveType'
 import Col from 'react-bootstrap/Col'
-import NotiType from '../../model/NotiType';
 
 import useModal from '../../hooks/useModal';
 import useNoti from '../../hooks/useNoti';
 import useData from '../../hooks/useData';
+import useCell from '../../hooks/useCell';
+import ObjectiveType from '../../model/ObjectiveType';
 
-const AddObjModal = () => {
+const ObjectiveModal = (before: { obj: ObjectiveType }) => {
     const { onHideModal } = useModal();
     const { onShowNoti, onHideNoti } = useNoti();
     const { onSetObjectiveList } = useData();
 
-    let title: string
-    let description: string
-    let priority: number
-    let deadline_year: string
-    let deadline_month: string
-    let deadline_day: string
+    let objPost: {
+        title: string
+        description: string
+        deadline: string
+        priority: number
+        status: number
+        date: boolean
+    }
 
     const onExecute = () => {
-        const deadline = deadline_year + "-" + deadline_month + "-" + deadline_day
-        const objPost = {
-            title: title,
-            description: description,
-            deadline: deadline,
-            priority: priority,
-            status: 0,
-            date: true
-        }
+
+        objPost.status = 0;
+        objPost.date = true;
 
         console.log(objPost);
 
@@ -52,27 +48,19 @@ const AddObjModal = () => {
         const { id, value } = event.target;
 
         if(id === 'title') {
-            title = value;
+            objPost.title = value;
         }
 
         if(id === 'description') {
-            description = value;
+            objPost.description = value;
         }
 
         if(id === 'priority') {
-            priority = Number(value);
+            objPost.priority = Number(value);
         }
 
-        if(id === 'deadline_year') {
-            deadline_year = value;
-        }
-
-        if(id === 'deadline_month') {
-            deadline_month = value;
-        }
-
-        if(id === 'deadline_day') {
-            deadline_day = value;
+        if(id === 'deadline') {
+            objPost.deadline = value;
         }
     }
 
@@ -85,10 +73,22 @@ const AddObjModal = () => {
             <Modal.Body>
                 <Form>
                     <Form.Group>
-                        <Form.Control id="title" placeholder="TITLE" onChange={onChange} />
+                        <Form.Control 
+                            id="title" 
+                            placeholder="TITLE" 
+                            value={before.obj.title} 
+                            onChange={onChange} 
+                        />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Control id="description" placeholder="DESCRIPTION" as="textarea" rows="10" onChange={onChange} />
+                        <Form.Control 
+                            id="description" 
+                            placeholder="DESCRIPTION" 
+                            as="textarea" 
+                            rows="10" 
+                            value={before.obj.description} 
+                            onChange={onChange} 
+                        />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Priority</Form.Label>
@@ -105,15 +105,12 @@ const AddObjModal = () => {
                     </Form.Group>
                     <Form.Group>
                         <Form.Row>
-                            <Col>
-                                <Form.Control id="deadline_year" placeholder="2020" onChange={onChange} />
-                            </Col>
-                            <Col>
-                                <Form.Control id="deadline_month" placeholder="07" onChange={onChange} />
-                            </Col>
-                            <Col>
-                                <Form.Control id="deadline_day" placeholder="30" onChange={onChange} />
-                            </Col>
+                            <Form.Control 
+                                id="deadline" 
+                                placeholder="20200530" 
+                                value={before.obj.deadline} 
+                                onChange={onChange} 
+                            />
                         </Form.Row>
                     </Form.Group>
                 </Form>
@@ -127,4 +124,4 @@ const AddObjModal = () => {
     )
 }
 
-export default AddObjModal;
+export default ObjectiveModal;
