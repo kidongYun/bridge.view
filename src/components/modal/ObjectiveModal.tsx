@@ -3,49 +3,51 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 
-import * as data from '../../service/Data'
-import * as utility from '../../service/Utility'
-
-import Col from 'react-bootstrap/Col'
-
 import useModal from '../../hooks/useModal';
 import useNoti from '../../hooks/useNoti';
 import useData from '../../hooks/useData';
 import useCell from '../../hooks/useCell';
 import ObjectiveType from '../../model/ObjectiveType';
 
-const ObjectiveModal = (before: { obj: ObjectiveType }) => {
+interface ObjectiveModalProps {
+    obj: ObjectiveType,
+    onExecute: (objPost: { 
+        title: string, 
+        description: string, 
+        deadline: string, 
+        priority: number, 
+        status: number, 
+        date: boolean 
+    }) => void 
+}
+
+const ObjectiveModal = ({ obj, onExecute } : ObjectiveModalProps) => {
     const { onHideModal } = useModal();
-    const { onShowNoti, onHideNoti } = useNoti();
-    const { onSetObjectiveList } = useData();
 
-    let objPost: {
-        title: string
-        description: string
-        deadline: string
-        priority: number
-        status: number
-        date: boolean
+
+    let objPost = {
+        title: "title",
+        description: "description",
+        deadline: "deadline",
+        priority: 0,
+        status: 0,
+        date: true
     }
 
-    const onExecute = () => {
-
-        objPost.status = 0;
-        objPost.date = true;
-
-        console.log(objPost);
-
-        data.postObj(objPost).then((response) => {
-            onSetObjectiveList(utility.parse(response.data));
+    // const onExecute = () => {
+    //     data.postObj(objPost).then((response) => {
+    //         onSetObjectiveList(utility.parse(response.data));
             
-            onHideModal();
-            onShowNoti("success", "It's from Add Modal");
-            setTimeout(onHideNoti, 2300);
-        })
-    }
+    //         onHideModal();
+    //         onShowNoti("success", "It's from Add Modal");
+    //         setTimeout(onHideNoti, 2300);
+    //     })
+    // }
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = event.target;
+
+        console.log(value);
 
         if(id === 'title') {
             objPost.title = value;
@@ -55,12 +57,12 @@ const ObjectiveModal = (before: { obj: ObjectiveType }) => {
             objPost.description = value;
         }
 
-        if(id === 'priority') {
-            objPost.priority = Number(value);
-        }
-
         if(id === 'deadline') {
             objPost.deadline = value;
+        }
+
+        if(id === 'priority') {
+            objPost.priority = Number(value);
         }
     }
 
@@ -76,7 +78,7 @@ const ObjectiveModal = (before: { obj: ObjectiveType }) => {
                         <Form.Control 
                             id="title" 
                             placeholder="TITLE" 
-                            value={before.obj.title} 
+                            defaultValue={obj.title} 
                             onChange={onChange} 
                         />
                     </Form.Group>
@@ -86,7 +88,7 @@ const ObjectiveModal = (before: { obj: ObjectiveType }) => {
                             placeholder="DESCRIPTION" 
                             as="textarea" 
                             rows="10" 
-                            value={before.obj.description} 
+                            defaultValue={obj.description} 
                             onChange={onChange} 
                         />
                     </Form.Group>
@@ -108,7 +110,7 @@ const ObjectiveModal = (before: { obj: ObjectiveType }) => {
                             <Form.Control 
                                 id="deadline" 
                                 placeholder="20200530" 
-                                value={before.obj.deadline} 
+                                defaultValue={obj.deadline} 
                                 onChange={onChange} 
                             />
                         </Form.Row>
@@ -118,7 +120,7 @@ const ObjectiveModal = (before: { obj: ObjectiveType }) => {
 
             <Modal.Footer>
                 <Button variant="secondary" onClick={onHideModal}>Close</Button>
-                <Button variant="primary" onClick={onExecute}>Add</Button>
+                <Button variant="primary" onClick={() => { onExecute(objPost); }}>Add</Button>
             </Modal.Footer>
         </Modal>
     )
