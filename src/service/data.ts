@@ -23,12 +23,23 @@ export async function postObj(objPost: {
     return await axios.post("http://localhost:8080/objective", objPost);
 }
 
-export async function putObj(obj: ObjectiveType) {
-    return await axios.put("http://localhost:8080/objective", obj);
+export async function putObj(objPut: {
+    id: number,
+    title: string,
+    description: string,
+    deadline: string,
+    priority: number,
+    status: number,
+    date: boolean
+}) {
+    return await axios.put("http://localhost:8080/objective/" + objPut.id, objPut);
 }
 
-export async function deleteObj(id: number, date: boolean) {
-    return await axios.delete("http://localhost:8080/objective/" + id, { data: { date: date }});
+export async function deleteObj(objDelete: {
+    id: number, 
+    date: boolean
+}) {
+    return await axios.delete("http://localhost:8080/objective/" + objDelete.id, { data: objDelete });
 }
 
 export function postNavList() {

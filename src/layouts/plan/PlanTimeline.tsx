@@ -8,6 +8,7 @@ import * as utility from '../../service/Utility';
 
 import useData from '../../hooks/useData';
 import PlanType from '../../model/PlanType';
+import DateType from '../../model/DateType';
 
 const PlanTimeline = () => {
     const { planList, onSetPlanList } = useData();
@@ -27,10 +28,19 @@ const PlanTimeline = () => {
             (plan) => {
                 if(plan instanceof PlanType) {
                     return <Cell 
-                        backgroundColor="#00ff00"
+                        borderRadius="10px"
+                        backgroundColor="#dc3545"
                         height="100px"
-                        header={{ text: plan.content, verticalAlign: "", horizontalAlign: "" }}
+                        header={{ text: plan.content, color: "#ffffff", verticalAlign: "", horizontalAlign: "" }}
                         contents={[]}
+                        status={0}
+                    />
+                }
+
+                if(plan instanceof DateType && plan.type === "DATE") {
+                    return <Cell
+                        borderRadius="0px"
+                        header={{ text: plan.date, backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
                         status={0}
                     />
                 }

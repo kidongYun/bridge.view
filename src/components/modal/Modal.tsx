@@ -33,7 +33,11 @@ const Modal = () => {
         console.log(updatedCell);
         view = <ObjectiveModal 
             obj={ updatedCell as ObjectiveType } 
-            onExecute={(objPost) => {
+            buttonName="Add"
+            onExecute={(objReq) => {
+
+                const objPost = objReq;
+                
                 data.postObj(objPost).then((response) => {
                     onSetObjectiveList(utility.parse(response.data));
                     
@@ -46,7 +50,30 @@ const Modal = () => {
     }
 
     if(type === "OBJECTIVE_PUT") {
-        
+        view = <ObjectiveModal 
+        obj={ updatedCell as ObjectiveType }
+        buttonName="Update"
+        onExecute={(objReq) => {
+
+            const objPut = {
+                id: objReq.id!,
+                title: objReq.title,
+                description: objReq.description,
+                deadline: objReq.deadline,
+                priority: objReq.priority,
+                status: objReq.status,
+                date: true
+            }
+
+            data.putObj(objPut).then((response) => {
+                onSetObjectiveList(utility.parse(response.data));
+                
+                onHideModal();
+                onShowNoti("success", "It's from Add Modal");
+                setTimeout(onHideNoti, 2300);
+            })
+        }} 
+    />
     }
 
     if(type === "REMOVE") {

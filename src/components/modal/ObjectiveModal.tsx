@@ -11,38 +11,30 @@ import ObjectiveType from '../../model/ObjectiveType';
 
 interface ObjectiveModalProps {
     obj: ObjectiveType,
-    onExecute: (objPost: { 
+    buttonName: String,
+    onExecute: (objReq: { 
+        id?: number,
         title: string, 
         description: string, 
         deadline: string, 
         priority: number, 
         status: number, 
-        date: boolean 
+        date: boolean
     }) => void 
 }
 
-const ObjectiveModal = ({ obj, onExecute } : ObjectiveModalProps) => {
+const ObjectiveModal = ({ obj, buttonName, onExecute } : ObjectiveModalProps) => {
     const { onHideModal } = useModal();
 
-
-    let objPost = {
-        title: "title",
-        description: "description",
-        deadline: "deadline",
+    let objReq = {
+        id: obj.id!,
+        title: obj.title,
+        description: obj.description,
+        deadline: obj.deadline,
         priority: 0,
         status: 0,
         date: true
     }
-
-    // const onExecute = () => {
-    //     data.postObj(objPost).then((response) => {
-    //         onSetObjectiveList(utility.parse(response.data));
-            
-    //         onHideModal();
-    //         onShowNoti("success", "It's from Add Modal");
-    //         setTimeout(onHideNoti, 2300);
-    //     })
-    // }
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = event.target;
@@ -50,19 +42,19 @@ const ObjectiveModal = ({ obj, onExecute } : ObjectiveModalProps) => {
         console.log(value);
 
         if(id === 'title') {
-            objPost.title = value;
+            objReq.title = value;
         }
 
         if(id === 'description') {
-            objPost.description = value;
+            objReq.description = value;
         }
 
         if(id === 'deadline') {
-            objPost.deadline = value;
+            objReq.deadline = value;
         }
 
         if(id === 'priority') {
-            objPost.priority = Number(value);
+            objReq.priority = Number(value);
         }
     }
 
@@ -120,7 +112,7 @@ const ObjectiveModal = ({ obj, onExecute } : ObjectiveModalProps) => {
 
             <Modal.Footer>
                 <Button variant="secondary" onClick={onHideModal}>Close</Button>
-                <Button variant="primary" onClick={() => { onExecute(objPost); }}>Add</Button>
+                <Button variant="primary" onClick={() => { onExecute(objReq); }}>{buttonName}</Button>
             </Modal.Footer>
         </Modal>
     )

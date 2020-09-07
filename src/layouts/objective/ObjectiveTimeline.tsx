@@ -21,9 +21,10 @@ const ObjectiveTimeline = () => {
     React.useEffect(() => {
         data.getObj(true).then((response) => {
             onSetObjectiveList(utility.parse(response.data));
-            console.log(response.data);
         })
     }, []);
+
+    console.log(objectiveList);
 
     let view = 
     <Container>
@@ -33,7 +34,7 @@ const ObjectiveTimeline = () => {
             backgroundHover="#0069d9"
             height="80px"
             header={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
-            onClick={() => { onUpdateCell(new CellType(-1, "CELL")); onShowModal("OBJECTIVE"); }}
+            onClick={() => { onUpdateCell(new CellType(-1, "CELL")); onShowModal("OBJECTIVE_POST"); }}
         />
 
         {objectiveList.map(
@@ -69,7 +70,7 @@ const ObjectiveTimeline = () => {
                             status={obj.status}
                             buttons={[
                                 { type: "outline-danger", text: "Remove", onClick: () => { onDeleteCell(obj); onShowModal("REMOVE"); } },
-                                { type: "outline-success", text: "Modify", onClick: () => { onUpdateCell(obj); onShowModal("OBJECTIVE"); } }
+                                { type: "outline-success", text: "Modify", onClick: () => { onUpdateCell(obj); onShowModal("OBJECTIVE_PUT"); } }
                             ]}
                             onClick={() => {
                                 obj.display = "NORMAL";
