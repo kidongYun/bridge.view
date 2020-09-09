@@ -18,27 +18,27 @@ export class PlanBuilder {
     }
 
     id(id: number): PlanBuilder {
-        this._plan.id = id;
+        this._plan.setId(id);
         return this;
     }
 
     status(status: number): PlanBuilder {
-        this._plan.status = status;
+        this._plan.setStatus(status);
         return this;
     }
 
     display(display: "NORMAL" | "DETAIL"): PlanBuilder {
-        this._plan.display = display;
+        this._plan.setDisplay(display);
         return this;
     }
 
     objectiveId(objectiveId: number): PlanBuilder {
-        this._plan.objectiveId = objectiveId;
+        this._plan.setObjectiveId(objectiveId);
         return this;
     }
 
     content(content: string): PlanBuilder {
-        this._plan.content = content;
+        this._plan.setContent(content);
         return this;
     }
 

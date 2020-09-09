@@ -24,9 +24,9 @@ const ObjectiveModal = ({ obj, buttonName, onExecute } : ObjectiveModalProps) =>
     const { onHideModal } = useModal();
 
     let objReq = {
-        id: obj.id,
+        id: obj.getId(),
         title: obj.getTitle(),
-        description: obj.description,
+        description: obj.getDescription(),
         dateTime: obj.getDateTime(),
         priority: 0,
         status: 0,
@@ -77,7 +77,7 @@ const ObjectiveModal = ({ obj, buttonName, onExecute } : ObjectiveModalProps) =>
                             placeholder="DESCRIPTION" 
                             as="textarea" 
                             rows="10" 
-                            defaultValue={obj.description} 
+                            defaultValue={obj.getDescription()} 
                             onChange={onChange} 
                         />
                     </Form.Group>

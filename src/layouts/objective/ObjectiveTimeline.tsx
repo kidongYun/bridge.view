@@ -40,16 +40,16 @@ const ObjectiveTimeline = () => {
         {objectiveList.map(
             (obj) => {
                 if(obj instanceof ObjectiveType && obj.getType() === "OBJECTIVE") {
-                    if(obj.display === "NORMAL") {
+                    if(obj.getDisplay() === "NORMAL") {
                         return <Cell
                             borderRadius="10px"
                             backgroundColor="#eeeeee"
                             backgroundHover="#e4e4e4"
                             height="80px"
                             header={{ text: obj.getTitle(), fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
-                            status={obj.status}
+                            status={obj.getStatus()}
                             onClick={() => {
-                                obj.display = "DETAIL";
+                                obj.setDisplay("DETAIL");
                                 onSetObjectiveList([
                                     ...objectiveList
                                 ])
@@ -57,23 +57,23 @@ const ObjectiveTimeline = () => {
                         />
                     }
 
-                    if(obj.display === "DETAIL") {
+                    if(obj.getDisplay() === "DETAIL") {
                         return <Cell
                             borderRadius="10px"
                             backgroundColor="#eeeeee"
                             backgroundHover="#e4e4e4"
                             header={{ text: obj.getTitle(), fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
                             contents={[
-                                { text: obj.description, borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "center" },
+                                { text: obj.getDescription(), borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "center" },
                                 { text: obj.getDate(), borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "flex-start" },
                             ]}
-                            status={obj.status}
+                            status={obj.getStatus()}
                             buttons={[
                                 { type: "outline-danger", text: "Remove", onClick: () => { onDeleteSubject(obj); onShowModal("REMOVE"); } },
                                 { type: "outline-success", text: "Modify", onClick: () => { onUpdateSubject(obj); onShowModal("OBJECTIVE_PUT"); } }
                             ]}
                             onClick={() => {
-                                obj.display = "NORMAL";
+                                obj.setDisplay("NORMAL");
                                 onSetObjectiveList([
                                     ...objectiveList
                                 ])

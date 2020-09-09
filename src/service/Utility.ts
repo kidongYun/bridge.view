@@ -24,6 +24,7 @@ export function parse(src: any) {
                 new PlanBuilder()
                 .dateTime(src[i].dateTime)
                 .id(src[i].id)
+                .objectiveId(src[i].objectiveId)
                 .content(src[i].content)
                 .build()
             )

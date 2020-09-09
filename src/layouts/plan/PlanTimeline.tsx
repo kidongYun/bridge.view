@@ -9,9 +9,11 @@ import * as utility from '../../service/Utility';
 import useData from '../../hooks/useData';
 import PlanType from '../../model/PlanType';
 import DateType from '../../model/DateType';
+import ObjectiveType from '../../model/ObjectiveType';
+import { ObjectiveBuilder } from '../../model/ObjectiveBuilder';
 
 const PlanTimeline = () => {
-    const { planList, onSetPlanList } = useData();
+    const { objectiveList, onSetObjectiveList, planList, onSetPlanList } = useData();
 
 
     React.useEffect(() => {
@@ -20,18 +22,33 @@ const PlanTimeline = () => {
         })
     }, [])
 
+    React.useEffect(() => {
+        data.getObj(false).then((response) => {
+            onSetObjectiveList(utility.parse(response.data));
+        })
+    }, [])
+
     console.log(planList);
+    console.log(objectiveList);
 
     let view = 
     <Container>
         {planList.map(
             (plan) => {
                 if(plan instanceof PlanType) {
+                    let target: ObjectiveType = new ObjectiveBuilder().build();
+                    objectiveList.map((temp) => {
+                        const obj = temp as ObjectiveType;
+                        if(obj.getId() === plan.getObjectiveId()) {
+                            target = obj;
+                        }
+                    })
+
                     return <Cell 
                         borderRadius="10px"
                         backgroundColor="#dc3545"
                         height="100px"
-                        header={{ text: plan.content, color: "#ffffff", verticalAlign: "", horizontalAlign: "" }}
+                        header={{ text: target.getTitle(), color: "#ffffff", verticalAlign: "", horizontalAlign: "" }}
                         contents={[]}
                         status={0}
                     />
@@ -40,7 +57,7 @@ const PlanTimeline = () => {
                 if(plan instanceof DateType && plan.getType() === "DATE") {
                     return <Cell
                         borderRadius="0px"
-                        header={{ text: plan.getDateTime(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
+                        header={{ text: plan.getDate(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
                         status={0}
                     />
                 }

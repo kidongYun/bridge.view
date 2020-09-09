@@ -2,16 +2,14 @@ import SubjectType from './SubjectType';
 
 export default class ObjectiveType extends SubjectType {
     private title: string
-    description: string
-    priority: number
+    private description: string
+    private priority: number
 
     constructor() {
         super("OBJECTIVE");
         this.title = "";
         this.description = "";
         this.priority = 0;
-        this.status = 0;
-        this.display = "NORMAL";
     }
 
     getTitle(): string {
@@ -20,5 +18,21 @@ export default class ObjectiveType extends SubjectType {
 
     setTitle(title: string) {
         this.title = title;
+    }
+
+    getDescription(): string {
+        return this.description;
+    }
+
+    setDescription(description: string) {
+        this.description = description;
+    }
+
+    getPriority(): number {
+        return this.priority;
+    }
+
+    setPriority(priority: number) {
+        this.priority = priority;
     }
 }

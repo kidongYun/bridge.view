@@ -18,17 +18,17 @@ export class SubjectBuilder {
     }
 
     id(id: number): SubjectBuilder {
-        this._subject.id = id;
+        this._subject.setId(id);
         return this;
     }
 
     status(status: number): SubjectBuilder {
-        this._subject.status = status;
+        this._subject.setStatus(status);
         return this;
     }
 
     display(display: "NORMAL" | "DETAIL"): SubjectBuilder {
-        this._subject.display = display;
+        this._subject.setDisplay(display);
         return this;
     }
 

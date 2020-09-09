@@ -15,7 +15,7 @@ const Tab = ({tab}: TabProps) => {
     const { onShowModal } = useModal();
 
     const onLeftMenuClick = () => {
-        onUpdateStage(tab.event);
+        onUpdateStage(tab.getEvent());
     }
 
     const onRightMenuClick = () => {
@@ -24,10 +24,10 @@ const Tab = ({tab}: TabProps) => {
 
     let view;
 
-    if(tab.type === "outline-light") {
-        view = <Button variant="outline-light" onClick={onLeftMenuClick}>{tab.title}</Button>
-    } else if(tab.type === "primary") {
-        view = <Button variant="primary" onClick={onRightMenuClick}>{tab.title}</Button>
+    if(tab.getType() === "outline-light") {
+        view = <Button variant="outline-light" onClick={onLeftMenuClick}>{tab.getTitle()}</Button>
+    } else if(tab.getType() === "primary") {
+        view = <Button variant="primary" onClick={onRightMenuClick}>{tab.getTitle()}</Button>
     }
 
 

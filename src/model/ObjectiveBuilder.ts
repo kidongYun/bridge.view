@@ -18,17 +18,17 @@ export class ObjectiveBuilder {
     }
 
     id(id: number): ObjectiveBuilder {
-        this._objective.id = id;
+        this._objective.setId(id);
         return this;
     }
 
     status(status: number): ObjectiveBuilder {
-        this._objective.status = status;
+        this._objective.setStatus(status);
         return this;
     }
 
     display(display: "NORMAL" | "DETAIL"): ObjectiveBuilder {
-        this._objective.display = display;
+        this._objective.setDisplay(display);
         return this;
     }
 
@@ -38,12 +38,12 @@ export class ObjectiveBuilder {
     }
 
     description(description: string): ObjectiveBuilder {
-        this._objective.description = description;
+        this._objective.setDescription(description);
         return this;
     }
 
     priority(priority: number): ObjectiveBuilder {
-        this._objective.priority = priority;
+        this._objective.setPriority(priority);
         return this;
     }
 

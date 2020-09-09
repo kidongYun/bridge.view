@@ -20,7 +20,7 @@ const RemoveModal = () => {
     const onExecute = () => {
 
         const objDelete = {
-            id: deletedSubject.id,
+            id: deletedSubject.getId(),
             date: true
         }
         

@@ -3,6 +3,8 @@ import axios from 'axios'
 import MenuType from '../model/MenuType';
 import TabType from '../model/TabType';
 
+import { TabBuilder } from '../model/TabBuilder';
+
 export async function getPlan() {
     return await axios.get("http://localhost:8080/plan");
 }
@@ -45,13 +47,13 @@ export function postNavList() {
     let menuList: Array<MenuType> = [];
 
     let leftMenu: MenuType = new MenuType('flex-start', [])
-    leftMenu.tabs.push(new TabType('outline-light', 'Objective', 'OBJECTIVE'))
-    leftMenu.tabs.push(new TabType('outline-light', 'Plan', 'PLAN'))
-    leftMenu.tabs.push(new TabType('outline-light', 'Todo', 'TODO'))
+    leftMenu.tabs.push(new TabBuilder().type('outline-light').title('Objective').event('OBJECTIVE').build());
+    leftMenu.tabs.push(new TabBuilder().type('outline-light').title('Plan').event('PLAN').build());
+    leftMenu.tabs.push(new TabBuilder().type('outline-light').title('Todo').event('TODO').build());
 
     let rightMenu: MenuType = new MenuType('flex-end', []);
 
-    rightMenu.tabs.push(new TabType('primary', 'Login', 'LOGIN'))
+    rightMenu.tabs.push(new TabBuilder().type('primary').title('Login').event('LOGIN').build());
 
     menuList.push(leftMenu);
     menuList.push(rightMenu);
