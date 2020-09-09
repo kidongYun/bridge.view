@@ -8,12 +8,12 @@ export class ObjectiveBuilder {
     }
 
     type(type: string): ObjectiveBuilder {
-        this._objective.type = type;
+        this._objective.setType(type);
         return this;
     }
 
     dateTime(dateTime: string): ObjectiveBuilder {
-        this._objective.dateTime = dateTime;
+        this._objective.setDateTime(dateTime);
         return this;
     }
 
@@ -33,7 +33,7 @@ export class ObjectiveBuilder {
     }
 
     title(title: string): ObjectiveBuilder {
-        this._objective.title = title;
+        this._objective.setTitle(title);
         return this;
     }
 

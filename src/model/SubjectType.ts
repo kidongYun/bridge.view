@@ -5,8 +5,8 @@ export default class SubjectType extends CellType {
     status: number;
     display: "NORMAL" | "DETAIL";
 
-    constructor() {
-        super()
+    constructor(type: string) {
+        super(type)
         this.id = -1;
         this.status = 0;
         this.display = "NORMAL";

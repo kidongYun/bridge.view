@@ -37,10 +37,10 @@ const PlanTimeline = () => {
                     />
                 }
 
-                if(plan instanceof DateType && plan.type === "DATE") {
+                if(plan instanceof DateType && plan.getType() === "DATE") {
                     return <Cell
                         borderRadius="0px"
-                        header={{ text: plan.dateTime, backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
+                        header={{ text: plan.getDateTime(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
                         status={0}
                     />
                 }

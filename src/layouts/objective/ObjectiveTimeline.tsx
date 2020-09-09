@@ -21,7 +21,7 @@ const ObjectiveTimeline = () => {
     React.useEffect(() => {
         data.getObj(true).then((response) => {
             onSetObjectiveList(utility.parse(response.data));
-        })
+        });
     }, []);
 
     console.log(objectiveList);
@@ -39,14 +39,14 @@ const ObjectiveTimeline = () => {
 
         {objectiveList.map(
             (obj) => {
-                if(obj instanceof ObjectiveType && obj.type === "OBJECTIVE") {
+                if(obj instanceof ObjectiveType && obj.getType() === "OBJECTIVE") {
                     if(obj.display === "NORMAL") {
                         return <Cell
                             borderRadius="10px"
                             backgroundColor="#eeeeee"
                             backgroundHover="#e4e4e4"
                             height="80px"
-                            header={{ text: obj.title, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
+                            header={{ text: obj.getTitle(), fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
                             status={obj.status}
                             onClick={() => {
                                 obj.display = "DETAIL";
@@ -62,10 +62,10 @@ const ObjectiveTimeline = () => {
                             borderRadius="10px"
                             backgroundColor="#eeeeee"
                             backgroundHover="#e4e4e4"
-                            header={{ text: obj.title, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
+                            header={{ text: obj.getTitle(), fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
                             contents={[
                                 { text: obj.description, borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "center" },
-                                { text: obj.dateTime, borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "flex-start" },
+                                { text: obj.getDate(), borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "flex-start" },
                             ]}
                             status={obj.status}
                             buttons={[
@@ -82,10 +82,10 @@ const ObjectiveTimeline = () => {
                     }
                 }
 
-                if(obj instanceof DateType && obj.type === "DATE") {
+                if(obj instanceof DateType && obj.getType() === "DATE") {
                     return <Cell
                         borderRadius="0px"
-                        header={{ text: obj.dateTime, backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
+                        header={{ text: obj.getDate(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
                         status={0}
                     />
                 }

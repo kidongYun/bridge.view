@@ -4,16 +4,16 @@ export default class CellBuilder {
     private readonly _cell: CellType;
 
     constructor() {
-        this._cell = new CellType();
+        this._cell = new CellType("CELL");
     }
 
     type(type: string): CellBuilder {
-        this._cell.type = type;
+        this._cell.setType(type);
         return this;
     }
 
     dateTime(dateTime: string): CellBuilder {
-        this._cell.dateTime = dateTime;
+        this._cell.setDateTime(dateTime);
         return this;
     }
 

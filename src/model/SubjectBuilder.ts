@@ -4,16 +4,16 @@ export class SubjectBuilder {
     private readonly _subject: SubjectType;
     
     constructor() {
-        this._subject = new SubjectType();
+        this._subject = new SubjectType("SUBJECT");
     }
 
     type(type: string): SubjectBuilder {
-        this._subject.type = type;
+        this._subject.setType(type);
         return this;
     }
 
     dateTime(dateTime: string): SubjectBuilder {
-        this._subject.dateTime = dateTime;
+        this._subject.setDateTime(dateTime);
         return this;
     }
 

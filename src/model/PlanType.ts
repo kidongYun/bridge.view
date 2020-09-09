@@ -5,7 +5,7 @@ export default class PlanType extends SubjectType {
     content: string
 
     constructor() {
-        super();
+        super("PLAN");
         this.objectiveId = 0;
         this.content = "";
     }

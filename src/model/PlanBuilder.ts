@@ -8,12 +8,12 @@ export class PlanBuilder {
     }
 
     type(type: string): PlanBuilder {
-        this._plan.type = type;
+        this._plan.setType(type);
         return this;
     }
 
     dateTime(dateTime: string): PlanBuilder {
-        this._plan.dateTime = dateTime;
+        this._plan.setDateTime(dateTime);
         return this;
     }
 

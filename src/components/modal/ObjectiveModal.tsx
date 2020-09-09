@@ -25,9 +25,9 @@ const ObjectiveModal = ({ obj, buttonName, onExecute } : ObjectiveModalProps) =>
 
     let objReq = {
         id: obj.id,
-        title: obj.title,
+        title: obj.getTitle(),
         description: obj.description,
-        dateTime: obj.dateTime,
+        dateTime: obj.getDateTime(),
         priority: 0,
         status: 0,
         date: true
@@ -67,7 +67,7 @@ const ObjectiveModal = ({ obj, buttonName, onExecute } : ObjectiveModalProps) =>
                         <Form.Control 
                             id="title" 
                             placeholder="TITLE" 
-                            defaultValue={obj.title} 
+                            defaultValue={obj.getTitle()} 
                             onChange={onChange} 
                         />
                     </Form.Group>
@@ -99,7 +99,7 @@ const ObjectiveModal = ({ obj, buttonName, onExecute } : ObjectiveModalProps) =>
                             <Form.Control 
                                 id="deadline" 
                                 placeholder="20200530" 
-                                defaultValue={obj.dateTime} 
+                                defaultValue={obj.getDateTime()} 
                                 onChange={onChange} 
                             />
                         </Form.Row>

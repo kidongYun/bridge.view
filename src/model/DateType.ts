@@ -2,6 +2,6 @@ import CellType from './CellType'
 
 export default class DateType extends CellType {
     constructor() {
-        super()
+        super("DATE")
     }
 }

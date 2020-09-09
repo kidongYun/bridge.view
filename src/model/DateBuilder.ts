@@ -8,12 +8,12 @@ export class DateBuilder {
     }
 
     type(type: string): DateBuilder {
-        this._date.type = type;
+        this._date.setType(type);
         return this;
     }
 
     dateTime(dateTime: string): DateBuilder {
-        this._date.dateTime = dateTime;
+        this._date.setDateTime(dateTime);
         return this;
     }
 
