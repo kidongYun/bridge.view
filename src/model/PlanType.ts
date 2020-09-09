@@ -1,19 +1,12 @@
-import CellType from './CellType'
+import SubjectType from './SubjectType';
 
-class PlanType extends CellType {
+export default class PlanType extends SubjectType {
+    objectiveId: number
     content: string
-    startDate: string
-    endDate: string
-    status: string
 
-    
-    constructor(id: number, content: string, startDate: string, endDate: string, status: string) {
-        super(id, "PLAN")
-        this.content = content
-        this.startDate = startDate
-        this.endDate = endDate
-        this.status = status
+    constructor() {
+        super();
+        this.objectiveId = 0;
+        this.content = "";
     }
 }
-
-export default PlanType

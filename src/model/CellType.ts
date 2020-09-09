@@ -1,11 +1,9 @@
-class CellType {
-    public id: number
-    public type: String
+export default class CellType {
+    type: string
+    dateTime: string
 
-    constructor(id: number, type: "OBJECTIVE" | "PLAN" | "DATE" | "CELL") {
-        this.id = id
-        this.type = type
+    constructor() {
+        this.type = "CELL";
+        this.dateTime = "0000-00-00";
     }
 }
-
-export default CellType;

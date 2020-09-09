@@ -9,18 +9,18 @@ import * as utility from '../../service/Utility'
 import useModal from '../../hooks/useModal';
 import useNoti from '../../hooks/useNoti';
 import useData from '../../hooks/useData';
-import useCell from '../../hooks/useCell';
+import useSubject from '../../hooks/useSubject';
 
 const RemoveModal = () => {
     const { onHideModal } = useModal();
     const { onShowNoti, onHideNoti } = useNoti();
-    const { deletedCell } = useCell();
+    const { deletedSubject } = useSubject();
     const { onSetObjectiveList } = useData();
 
     const onExecute = () => {
 
         const objDelete = {
-            id: deletedCell.id,
+            id: deletedSubject.id,
             date: true
         }
         

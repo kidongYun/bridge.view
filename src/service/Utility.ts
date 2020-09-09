@@ -1,28 +1,40 @@
 import CellType from "../model/CellType";
-import ObjectiveType from "../model/ObjectiveType";
-import DateType from "../model/DateType";
-import PlanType from "../model/PlanType";
+import { ObjectiveBuilder } from "../model/ObjectiveBuilder";
+import { PlanBuilder } from "../model/PlanBuilder";
+import { DateBuilder } from "../model/DateBuilder";
 
 export function parse(src: any) {
     let cellList: CellType[] = [];
 
     for(let i=0; i<src.length; i++) {
         if(src[i].type === "OBJECTIVE") {
-            cellList.push(new ObjectiveType(
-                src[i].id, src[i].title, src[i].description, src[i].priority, src[i].deadline, "NORMAL"
-            ));
+            cellList.push(
+                new ObjectiveBuilder()
+                .dateTime(src[i].dateTime)
+                .id(src[i].id)
+                .title(src[i].title)
+                .description(src[i].description)
+                .priority(src[i].priority)
+                .build()
+            )
         }
 
         if(src[i].type === "PLAN") {
-            cellList.push(new PlanType(
-                src[i].id, src[i].content, src[i].startDate, src[i].endDate, src[i].status
-            ));
+            cellList.push(
+                new PlanBuilder()
+                .dateTime(src[i].dateTime)
+                .id(src[i].id)
+                .content(src[i].content)
+                .build()
+            )
         }
 
         if(src[i].type === "DATE") {
-            cellList.push(new DateType(
-                src[i].id, src[i].date
-            ));
+            cellList.push(
+                new DateBuilder()
+                .dateTime(src[i].dateTime)
+                .build()
+            )
         }
     }
 

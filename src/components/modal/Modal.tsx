@@ -7,7 +7,7 @@ import * as data from '../../service/Data'
 import * as utility from '../../service/Utility'
 
 import useModal from '../../hooks/useModal';
-import useCell from '../../hooks/useCell';
+import useSubject from '../../hooks/useSubject';
 import useNoti from '../../hooks/useNoti';
 import useData from '../../hooks/useData';
 
@@ -15,7 +15,7 @@ import ObjectiveType from '../../model/ObjectiveType';
 
 const Modal = () => {
     const { type, visible, onHideModal } = useModal();
-    const { updatedCell } = useCell();
+    const { updatedSubject } = useSubject();
     const { onShowNoti, onHideNoti } = useNoti();
     const { onSetObjectiveList } = useData();
 
@@ -30,9 +30,9 @@ const Modal = () => {
     }
 
     if(type === "OBJECTIVE_POST") {
-        console.log(updatedCell);
+        console.log(updatedSubject);
         view = <ObjectiveModal 
-            obj={ updatedCell as ObjectiveType } 
+            obj={ updatedSubject as ObjectiveType } 
             buttonName="Add"
             onExecute={(objReq) => {
 
@@ -51,7 +51,7 @@ const Modal = () => {
 
     if(type === "OBJECTIVE_PUT") {
         view = <ObjectiveModal 
-        obj={ updatedCell as ObjectiveType }
+        obj={ updatedSubject as ObjectiveType }
         buttonName="Update"
         onExecute={(objReq) => {
 
@@ -59,7 +59,7 @@ const Modal = () => {
                 id: objReq.id!,
                 title: objReq.title,
                 description: objReq.description,
-                deadline: objReq.deadline,
+                dateTime: objReq.dateTime,
                 priority: objReq.priority,
                 status: objReq.status,
                 date: true

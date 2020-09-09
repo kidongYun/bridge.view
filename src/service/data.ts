@@ -2,7 +2,6 @@ import axios from 'axios'
 
 import MenuType from '../model/MenuType';
 import TabType from '../model/TabType';
-import ObjectiveType from '../model/ObjectiveType';
 
 export async function getPlan() {
     return await axios.get("http://localhost:8080/plan");
@@ -15,7 +14,7 @@ export async function getObj(date: boolean) {
 export async function postObj(objPost: { 
     title: string, 
     description: string, 
-    deadline: string, 
+    dateTime: string, 
     priority: number, 
     status: number, 
     date: boolean 
@@ -27,7 +26,7 @@ export async function putObj(objPut: {
     id: number,
     title: string,
     description: string,
-    deadline: string,
+    dateTime: string,
     priority: number,
     status: number,
     date: boolean

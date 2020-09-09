@@ -10,13 +10,13 @@ import * as utility from '../../service/Utility'
 
 import useModal from '../../hooks/useModal';
 import useData from '../../hooks/useData';
-import useCell from '../../hooks/useCell';
-import CellType from '../../model/CellType';
+import useSubject from '../../hooks/useSubject';
+import { SubjectBuilder } from '../../model/SubjectBuilder';
 
 const ObjectiveTimeline = () => {
     const { onShowModal } = useModal();
     const { objectiveList, onSetObjectiveList } = useData();
-    const { onDeleteCell, onUpdateCell } = useCell();
+    const { onDeleteSubject, onUpdateSubject } = useSubject();
 
     React.useEffect(() => {
         data.getObj(true).then((response) => {
@@ -34,7 +34,7 @@ const ObjectiveTimeline = () => {
             backgroundHover="#0069d9"
             height="80px"
             header={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
-            onClick={() => { onUpdateCell(new CellType(-1, "CELL")); onShowModal("OBJECTIVE_POST"); }}
+            onClick={() => { onUpdateSubject(new SubjectBuilder().build()); onShowModal("OBJECTIVE_POST"); }}
         />
 
         {objectiveList.map(
@@ -65,12 +65,12 @@ const ObjectiveTimeline = () => {
                             header={{ text: obj.title, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
                             contents={[
                                 { text: obj.description, borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "center" },
-                                { text: obj.deadline, borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "flex-start" },
+                                { text: obj.dateTime, borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "flex-start" },
                             ]}
                             status={obj.status}
                             buttons={[
-                                { type: "outline-danger", text: "Remove", onClick: () => { onDeleteCell(obj); onShowModal("REMOVE"); } },
-                                { type: "outline-success", text: "Modify", onClick: () => { onUpdateCell(obj); onShowModal("OBJECTIVE_PUT"); } }
+                                { type: "outline-danger", text: "Remove", onClick: () => { onDeleteSubject(obj); onShowModal("REMOVE"); } },
+                                { type: "outline-success", text: "Modify", onClick: () => { onUpdateSubject(obj); onShowModal("OBJECTIVE_PUT"); } }
                             ]}
                             onClick={() => {
                                 obj.display = "NORMAL";
@@ -85,7 +85,7 @@ const ObjectiveTimeline = () => {
                 if(obj instanceof DateType && obj.type === "DATE") {
                     return <Cell
                         borderRadius="0px"
-                        header={{ text: obj.date, backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
+                        header={{ text: obj.dateTime, backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
                         status={0}
                     />
                 }

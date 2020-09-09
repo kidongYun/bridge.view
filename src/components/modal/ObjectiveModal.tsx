@@ -4,9 +4,6 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 
 import useModal from '../../hooks/useModal';
-import useNoti from '../../hooks/useNoti';
-import useData from '../../hooks/useData';
-import useCell from '../../hooks/useCell';
 import ObjectiveType from '../../model/ObjectiveType';
 
 interface ObjectiveModalProps {
@@ -16,7 +13,7 @@ interface ObjectiveModalProps {
         id?: number,
         title: string, 
         description: string, 
-        deadline: string, 
+        dateTime: string, 
         priority: number, 
         status: number, 
         date: boolean
@@ -27,10 +24,10 @@ const ObjectiveModal = ({ obj, buttonName, onExecute } : ObjectiveModalProps) =>
     const { onHideModal } = useModal();
 
     let objReq = {
-        id: obj.id!,
+        id: obj.id,
         title: obj.title,
         description: obj.description,
-        deadline: obj.deadline,
+        dateTime: obj.dateTime,
         priority: 0,
         status: 0,
         date: true
@@ -50,7 +47,7 @@ const ObjectiveModal = ({ obj, buttonName, onExecute } : ObjectiveModalProps) =>
         }
 
         if(id === 'deadline') {
-            objReq.deadline = value;
+            objReq.dateTime = value;
         }
 
         if(id === 'priority') {
@@ -102,7 +99,7 @@ const ObjectiveModal = ({ obj, buttonName, onExecute } : ObjectiveModalProps) =>
                             <Form.Control 
                                 id="deadline" 
                                 placeholder="20200530" 
-                                defaultValue={obj.deadline} 
+                                defaultValue={obj.dateTime} 
                                 onChange={onChange} 
                             />
                         </Form.Row>

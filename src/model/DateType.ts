@@ -1,12 +1,7 @@
 import CellType from './CellType'
 
-class DateType extends CellType {
-    date: string
-
-    constructor(id: number = 0, date: string) {
-        super(id, "DATE");
-        this.date = date;
+export default class DateType extends CellType {
+    constructor() {
+        super()
     }
 }
-
-export default DateType;

@@ -40,7 +40,7 @@ const PlanTimeline = () => {
                 if(plan instanceof DateType && plan.type === "DATE") {
                     return <Cell
                         borderRadius="0px"
-                        header={{ text: plan.date, backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
+                        header={{ text: plan.dateTime, backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
                         status={0}
                     />
                 }
