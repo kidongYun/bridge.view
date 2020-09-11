@@ -8,27 +8,27 @@ export class SubjectBuilder {
     }
 
     type(type: string): SubjectBuilder {
-        this._subject.setType(type);
+        this._subject.type = type;
         return this;
     }
 
     dateTime(dateTime: string): SubjectBuilder {
-        this._subject.setDateTime(dateTime);
+        this._subject.dateTime = dateTime;
         return this;
     }
 
     id(id: number): SubjectBuilder {
-        this._subject.setId(id);
+        this._subject.id = id;
         return this;
     }
 
     status(status: number): SubjectBuilder {
-        this._subject.setStatus(status);
+        this._subject.status = status;
         return this;
     }
 
     display(display: "NORMAL" | "DETAIL"): SubjectBuilder {
-        this._subject.setDisplay(display);
+        this._subject.display = display;
         return this;
     }
 

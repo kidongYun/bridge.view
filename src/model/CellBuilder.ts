@@ -8,12 +8,12 @@ export default class CellBuilder {
     }
 
     type(type: string): CellBuilder {
-        this._cell.setType(type);
+        this._cell.type = type;
         return this;
     }
 
     dateTime(dateTime: string): CellBuilder {
-        this._cell.setDateTime(dateTime);
+        this._cell.dateTime = dateTime;
         return this;
     }
 

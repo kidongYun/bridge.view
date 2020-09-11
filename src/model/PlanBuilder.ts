@@ -8,37 +8,37 @@ export class PlanBuilder {
     }
 
     type(type: string): PlanBuilder {
-        this._plan.setType(type);
+        this._plan.type = type;
         return this;
     }
 
     dateTime(dateTime: string): PlanBuilder {
-        this._plan.setDateTime(dateTime);
+        this._plan.dateTime = dateTime;
         return this;
     }
 
     id(id: number): PlanBuilder {
-        this._plan.setId(id);
+        this._plan.id = id;
         return this;
     }
 
     status(status: number): PlanBuilder {
-        this._plan.setStatus(status);
+        this._plan.status = status;
         return this;
     }
 
     display(display: "NORMAL" | "DETAIL"): PlanBuilder {
-        this._plan.setDisplay(display);
+        this._plan.display = display;
         return this;
     }
 
     objectiveId(objectiveId: number): PlanBuilder {
-        this._plan.setObjectiveId(objectiveId);
+        this._plan.objectiveId = objectiveId;
         return this;
     }
 
     content(content: string): PlanBuilder {
-        this._plan.setContent(content);
+        this._plan.content = content;
         return this;
     }
 

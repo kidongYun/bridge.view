@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 import MenuType from '../model/MenuType';
-import TabType from '../model/TabType';
 
 import { TabBuilder } from '../model/TabBuilder';
 

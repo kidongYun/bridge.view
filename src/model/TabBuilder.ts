@@ -8,17 +8,17 @@ export class TabBuilder {
     }
 
     type(type: string): TabBuilder {
-        this._tab.setType(type);
+        this._tab.type = type;
         return this;
     }
 
     title(title: string): TabBuilder {
-        this._tab.setTitle(title);
+        this._tab.title = title;
         return this;
     }
 
     event(event: string): TabBuilder {
-        this._tab.setEvent(event);
+        this._tab.event = event;
         return this;
     }
 

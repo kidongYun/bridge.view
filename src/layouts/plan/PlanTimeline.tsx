@@ -39,7 +39,7 @@ const PlanTimeline = () => {
                     let target: ObjectiveType = new ObjectiveBuilder().build();
                     objectiveList.map((temp) => {
                         const obj = temp as ObjectiveType;
-                        if(obj.getId() === plan.getObjectiveId()) {
+                        if(obj.id === plan.objectiveId) {
                             target = obj;
                         }
                     })
@@ -48,13 +48,13 @@ const PlanTimeline = () => {
                         borderRadius="10px"
                         backgroundColor="#dc3545"
                         height="100px"
-                        header={{ text: target.getTitle(), color: "#ffffff", verticalAlign: "", horizontalAlign: "" }}
+                        header={{ text: target.title, color: "#ffffff", verticalAlign: "", horizontalAlign: "" }}
                         contents={[]}
                         status={0}
                     />
                 }
 
-                if(plan instanceof DateType && plan.getType() === "DATE") {
+                if(plan instanceof DateType && plan.type === "DATE") {
                     return <Cell
                         borderRadius="0px"
                         header={{ text: plan.getDate(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}

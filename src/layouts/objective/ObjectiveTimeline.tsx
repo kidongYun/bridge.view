@@ -39,17 +39,17 @@ const ObjectiveTimeline = () => {
 
         {objectiveList.map(
             (obj) => {
-                if(obj instanceof ObjectiveType && obj.getType() === "OBJECTIVE") {
-                    if(obj.getDisplay() === "NORMAL") {
+                if(obj instanceof ObjectiveType && obj.type === "OBJECTIVE") {
+                    if(obj.display === "NORMAL") {
                         return <Cell
                             borderRadius="10px"
                             backgroundColor="#eeeeee"
                             backgroundHover="#e4e4e4"
                             height="80px"
-                            header={{ text: obj.getTitle(), fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
-                            status={obj.getStatus()}
+                            header={{ text: obj.title, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
+                            status={obj.status}
                             onClick={() => {
-                                obj.setDisplay("DETAIL");
+                                obj.display = "DETAIL";
                                 onSetObjectiveList([
                                     ...objectiveList
                                 ])
@@ -57,23 +57,23 @@ const ObjectiveTimeline = () => {
                         />
                     }
 
-                    if(obj.getDisplay() === "DETAIL") {
+                    if(obj.display === "DETAIL") {
                         return <Cell
                             borderRadius="10px"
                             backgroundColor="#eeeeee"
                             backgroundHover="#e4e4e4"
-                            header={{ text: obj.getTitle(), fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
+                            header={{ text: obj.title, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
                             contents={[
-                                { text: obj.getDescription(), borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "center" },
+                                { text: obj.description, borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "center" },
                                 { text: obj.getDate(), borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "flex-start" },
                             ]}
-                            status={obj.getStatus()}
+                            status={obj.status}
                             buttons={[
                                 { type: "outline-danger", text: "Remove", onClick: () => { onDeleteSubject(obj); onShowModal("REMOVE"); } },
                                 { type: "outline-success", text: "Modify", onClick: () => { onUpdateSubject(obj); onShowModal("OBJECTIVE_PUT"); } }
                             ]}
                             onClick={() => {
-                                obj.setDisplay("NORMAL");
+                                obj.display = "NORMAL";
                                 onSetObjectiveList([
                                     ...objectiveList
                                 ])
@@ -82,7 +82,7 @@ const ObjectiveTimeline = () => {
                     }
                 }
 
-                if(obj instanceof DateType && obj.getType() === "DATE") {
+                if(obj instanceof DateType && obj.type === "DATE") {
                     return <Cell
                         borderRadius="0px"
                         header={{ text: obj.getDate(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}

@@ -24,10 +24,10 @@ const ObjectiveModal = ({ obj, buttonName, onExecute } : ObjectiveModalProps) =>
     const { onHideModal } = useModal();
 
     let objReq = {
-        id: obj.getId(),
-        title: obj.getTitle(),
-        description: obj.getDescription(),
-        dateTime: obj.getDateTime(),
+        id: obj.id,
+        title: "",
+        description: "",
+        dateTime: obj.dateTime,
         priority: 0,
         status: 0,
         date: true
@@ -67,7 +67,7 @@ const ObjectiveModal = ({ obj, buttonName, onExecute } : ObjectiveModalProps) =>
                         <Form.Control 
                             id="title" 
                             placeholder="TITLE" 
-                            defaultValue={obj.getTitle()} 
+                            defaultValue={obj.title} 
                             onChange={onChange} 
                         />
                     </Form.Group>
@@ -77,7 +77,7 @@ const ObjectiveModal = ({ obj, buttonName, onExecute } : ObjectiveModalProps) =>
                             placeholder="DESCRIPTION" 
                             as="textarea" 
                             rows="10" 
-                            defaultValue={obj.getDescription()} 
+                            defaultValue={obj.description} 
                             onChange={onChange} 
                         />
                     </Form.Group>
@@ -99,7 +99,7 @@ const ObjectiveModal = ({ obj, buttonName, onExecute } : ObjectiveModalProps) =>
                             <Form.Control 
                                 id="deadline" 
                                 placeholder="20200530" 
-                                defaultValue={obj.getDateTime()} 
+                                defaultValue={obj.dateTime} 
                                 onChange={onChange} 
                             />
                         </Form.Row>

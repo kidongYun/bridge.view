@@ -8,42 +8,42 @@ export class ObjectiveBuilder {
     }
 
     type(type: string): ObjectiveBuilder {
-        this._objective.setType(type);
+        this._objective.type = type;
         return this;
     }
 
     dateTime(dateTime: string): ObjectiveBuilder {
-        this._objective.setDateTime(dateTime);
+        this._objective.dateTime = dateTime;
         return this;
     }
 
     id(id: number): ObjectiveBuilder {
-        this._objective.setId(id);
+        this._objective.id = id;
         return this;
     }
 
     status(status: number): ObjectiveBuilder {
-        this._objective.setStatus(status);
+        this._objective.status = status;
         return this;
     }
 
     display(display: "NORMAL" | "DETAIL"): ObjectiveBuilder {
-        this._objective.setDisplay(display);
+        this._objective.display = display;
         return this;
     }
 
     title(title: string): ObjectiveBuilder {
-        this._objective.setTitle(title);
+        this._objective.title = title;
         return this;
     }
 
     description(description: string): ObjectiveBuilder {
-        this._objective.setDescription(description);
+        this._objective.description = description;
         return this;
     }
 
     priority(priority: number): ObjectiveBuilder {
-        this._objective.setPriority(priority);
+        this._objective.priority = priority;
         return this;
     }
 
