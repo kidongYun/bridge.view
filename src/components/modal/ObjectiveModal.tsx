@@ -6,21 +6,24 @@ import Form from 'react-bootstrap/Form'
 import useModal from '../../hooks/useModal';
 import ObjectiveType from '../../model/ObjectiveType';
 
+import { ButtonProps } from '../props';
+
 interface ObjectiveModalProps {
     obj: ObjectiveType,
-    buttonName: String,
-    onExecute: (objReq: { 
-        id?: number,
-        title: string, 
-        description: string, 
-        dateTime: string, 
-        priority: number, 
-        status: number, 
-        date: boolean
-    }) => void 
+    buttons: ButtonProps[]
+    // buttonName: String,
+    // onExecute: (objReq: { 
+    //     id?: number,
+    //     title: string, 
+    //     description: string, 
+    //     dateTime: string, 
+    //     priority: number, 
+    //     status: number, 
+    //     date: boolean
+    // }) => void 
 }
 
-const ObjectiveModal = ({ obj, buttonName, onExecute } : ObjectiveModalProps) => {
+const ObjectiveModal = ({ obj, buttons } : ObjectiveModalProps) => {
     const { onHideModal } = useModal();
 
     let objReq = {
@@ -108,8 +111,9 @@ const ObjectiveModal = ({ obj, buttonName, onExecute } : ObjectiveModalProps) =>
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={onHideModal}>Close</Button>
-                <Button variant="primary" onClick={() => { onExecute(objReq); }}>{buttonName}</Button>
+                {buttons.map((button) => {
+                    return <Button variant={button.type} onClick={() => { button.onClick(objReq); }}>{button.text}</Button>
+                })}
             </Modal.Footer>
         </Modal>
     )

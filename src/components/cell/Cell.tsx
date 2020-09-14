@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
 
+import { TextProps } from '../props'
+import { ButtonProps } from '../props'
+
 interface CellProps {
     borderRadius?: string
     backgroundColor?: string
@@ -12,39 +15,6 @@ interface CellProps {
     status?: number
     buttons?: ButtonProps[]
     onClick?: () => void
-}
-
-export interface TextProps {
-    text: string
-    fontSize?: string
-    color?: string
-    borderRadius?: string
-    backgroundColor?: string
-    verticalAlign: string
-    horizontalAlign: string 
-}
-
-export interface ButtonProps {
-    type:     
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'danger'
-    | 'warning'
-    | 'info'
-    | 'dark'
-    | 'light'
-    | 'link'
-    | 'outline-primary'
-    | 'outline-secondary'
-    | 'outline-success'
-    | 'outline-danger'
-    | 'outline-warning'
-    | 'outline-info'
-    | 'outline-dark'
-    | 'outline-light';
-    text: string
-    onClick: () => void
 }
 
 const Cell = ({ 
@@ -92,7 +62,7 @@ const Cell = ({
             {
                 buttons.map((button) => {
                     return <ButtonFrame>
-                        <Button variant={button.type} onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {e.stopPropagation(); button.onClick();}}>
+                        <Button variant={button.type} onClick={button.onClick}>
                             {button.text}
                         </Button>
                     </ButtonFrame>

@@ -69,8 +69,24 @@ const ObjectiveTimeline = () => {
                             ]}
                             status={obj.status}
                             buttons={[
-                                { type: "outline-danger", text: "Remove", onClick: () => { onDeleteSubject(obj); onShowModal("REMOVE"); } },
-                                { type: "outline-success", text: "Modify", onClick: () => { onUpdateSubject(obj); onShowModal("OBJECTIVE_PUT"); } }
+                                { 
+                                    type: "outline-danger", 
+                                    text: "Remove", 
+                                    onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => { 
+                                        e.stopPropagation(); 
+                                        onDeleteSubject(obj); 
+                                        onShowModal("REMOVE"); 
+                                    } 
+                                },
+                                { 
+                                    type: "outline-success", 
+                                    text: "Modify", 
+                                    onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => { 
+                                        e.stopPropagation(); 
+                                        onUpdateSubject(obj); 
+                                        onShowModal("OBJECTIVE_PUT"); 
+                                    } 
+                                }
                             ]}
                             onClick={() => {
                                 obj.display = "NORMAL";

@@ -3,23 +3,19 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 
-import useNoti from '../../hooks/useNoti';
 import useModal from '../../hooks/useModal';
 
-const LoginModal = () => {
-    const { onShowNoti, onHideNoti } = useNoti();
-    const { onHideModal } = useModal();
+import { ButtonProps } from '../props';
 
-    const onExecute = () => {
-        onShowNoti("success", "It's from Login Modal");
-        setTimeout(onHideNoti, 2300);
-        onHideModal();
-    };
+interface SignModalProps {
+    buttons: ButtonProps[]
+}
+
+const SignModal = ({ buttons }: SignModalProps) => {
+    const { onHideModal } = useModal();
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = event.target;
-
-        console.log(id + ", " + value);
     }
 
     return (
@@ -40,11 +36,12 @@ const LoginModal = () => {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={onHideModal}>Close</Button>
-                <Button variant="primary" onClick={onExecute}>Login</Button>
+                {buttons.map((button) => {
+                    return <Button variant={button.type} onClick={button.onClick}>{button.text}</Button>
+                })}
             </Modal.Footer>
         </Modal>
     )
 }
 
-export default LoginModal;
+export default SignModal;

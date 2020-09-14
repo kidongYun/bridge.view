@@ -1,6 +1,6 @@
 import React from 'react'
 import ObjectiveModal from './ObjectiveModal'
-import LoginModal from './LoginModal';
+import SignModal from './SignModal';
 import RemoveModal from './RemoveModal';
 
 import * as data from '../../service/Data'
@@ -15,7 +15,7 @@ import ObjectiveType from '../../model/ObjectiveType';
 
 const Modal = () => {
     const { type, visible, onHideModal } = useModal();
-    const { updatedSubject } = useSubject();
+    const { updatedSubject, deletedSubject } = useSubject();
     const { onShowNoti, onHideNoti } = useNoti();
     const { onSetObjectiveList } = useData();
 
@@ -26,66 +26,144 @@ const Modal = () => {
     }
 
     if(type === "LOGIN") {
-        view = <LoginModal/>
+        view = <SignModal buttons={[
+            {
+                text:"Close", 
+                type:"secondary", 
+                onClick:() => {
+                    onHideModal();
+                }
+            },
+            { 
+                text:"Sign In", 
+                type:"primary", 
+                onClick:() => {
+                    onShowNoti("success", "It's from Login Modal");
+                    setTimeout(onHideNoti, 2300);
+                    onHideModal(); 
+                }
+            },
+            { 
+                text:"Sign Up", 
+                type:"primary", 
+                onClick:() => {
+                    onShowNoti("success", "It's from Login Modal");
+                    setTimeout(onHideNoti, 2300);
+                    onHideModal(); 
+                } 
+            }
+        ]}/>
     }
 
     if(type === "OBJECTIVE_POST") {
         console.log(updatedSubject);
         view = <ObjectiveModal 
             obj={ updatedSubject as ObjectiveType } 
-            buttonName="Add"
-            onExecute={(objReq) => {
-
-                const objPost = objReq;
+            buttons={[
+                {
+                    text: "Close",
+                    type: "secondary",
+                    onClick:() => {
+                        onHideModal();
+                    }
+                },
+                { 
+                    text: "Add", 
+                    type:"primary", 
+                    onClick:(params) => {
+                        const objPost = params
                 
-                data.postObj(objPost).then((response) => {
-                    if(response.data.error === "SUCCESS") {
-                        data.getObj(true).then((response) => {
-                            onSetObjectiveList(utility.parse(response.data.cells));
-                    
-                            onHideModal();
-                            onShowNoti("success", "It's from Add Modal");
-                            setTimeout(onHideNoti, 2300);
+                        data.postObj(objPost).then((response) => {
+                            if(response.data.error === "SUCCESS") {
+                                data.getObj(true).then((response) => {
+                                    onSetObjectiveList(utility.parse(response.data.cells));
+                            
+                                    onHideModal();
+                                    onShowNoti("success", "It's from Add Modal");
+                                    setTimeout(onHideNoti, 2300);
+                                })
+                            }
                         })
                     }
-                })
-            }} 
+                }
+            ]}
         />
     }
 
     if(type === "OBJECTIVE_PUT") {
         view = <ObjectiveModal 
         obj={ updatedSubject as ObjectiveType }
-        buttonName="Update"
-        onExecute={(objReq) => {
-
-            const objPut = {
-                id: objReq.id!,
-                title: objReq.title,
-                description: objReq.description,
-                dateTime: objReq.dateTime,
-                priority: objReq.priority,
-                status: objReq.status,
-                date: true
-            }
-
-            data.putObj(objPut).then((response) => {
-                if(response.data.error === "SUCCESS") {
-                    data.getObj(true).then((response) => {
-                        onSetObjectiveList(utility.parse(response.data.cells));
-                
-                        onHideModal();
-                        onShowNoti("success", "It's from Add Modal");
-                        setTimeout(onHideNoti, 2300);
+        buttons={[
+            {
+                text: "Close",
+                type: "secondary",
+                onClick: () => {
+                    onHideModal();
+                }
+            },
+            { 
+                text: "Update",
+                type: "primary",
+                onClick: (params) => {
+                    const objPut = {
+                        id: params.id!,
+                        title: params.title,
+                        description: params.description,
+                        dateTime: params.dateTime,
+                        priority: params.priority,
+                        status: params.status,
+                        date: true
+                    }
+        
+                    data.putObj(objPut).then((response) => {
+                        if(response.data.error === "SUCCESS") {
+                            data.getObj(true).then((response) => {
+                                onSetObjectiveList(utility.parse(response.data.cells));
+                        
+                                onHideModal();
+                                onShowNoti("success", "It's from Add Modal");
+                                setTimeout(onHideNoti, 2300);
+                            })
+                        }
                     })
                 }
-            })
-        }} 
+            }
+        ]}
     />
     }
 
     if(type === "REMOVE") {
-        view = <RemoveModal/>
+        view = <RemoveModal buttons={[
+            { 
+                text:"Close", 
+                type:"secondary", 
+                onClick:() => { 
+                    onHideModal();
+                } 
+            },
+            { 
+                text:"Remove", 
+                type:"primary", 
+                onClick:() => {
+                    const objDelete = {
+                        id: deletedSubject.id,
+                        date: true
+                    }
+                
+                    data.deleteObj(objDelete).then((response) => {
+                        if(response.data.error === "SUCCESS") {
+                            data.getObj(true).then((response) => {
+                                onSetObjectiveList(utility.parse(response.data.cells));
+                    
+                                onHideModal();
+                                onShowNoti("success", "It's from Add Modal");
+                                setTimeout(onHideNoti, 2300);
+                            })
+                        }
+                    })
+                } 
+            }
+        ]}/>
     }
 
     return view

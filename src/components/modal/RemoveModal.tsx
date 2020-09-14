@@ -3,40 +3,16 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
-import * as data from '../../service/Data'
-import * as utility from '../../service/Utility'
-
 import useModal from '../../hooks/useModal';
-import useNoti from '../../hooks/useNoti';
-import useData from '../../hooks/useData';
-import useSubject from '../../hooks/useSubject';
 
-const RemoveModal = () => {
+import { ButtonProps } from '../props';
+
+interface RemoveModalProps {
+    buttons: ButtonProps[]
+}
+
+const RemoveModal = ({ buttons }: RemoveModalProps) => {
     const { onHideModal } = useModal();
-    const { onShowNoti, onHideNoti } = useNoti();
-    const { deletedSubject } = useSubject();
-    const { onSetObjectiveList } = useData();
-
-    const onExecute = () => {
-
-        const objDelete = {
-            id: deletedSubject.id,
-            date: true
-        }
-        
-        data.deleteObj(objDelete).then((response) => {
-            if(response.data.error === "SUCCESS") {
-                data.getObj(true).then((response) => {
-                    onSetObjectiveList(utility.parse(response.data.cells));
-            
-                    onHideModal();
-                    onShowNoti("success", "It's from Add Modal");
-                    setTimeout(onHideNoti, 2300);
-                })
-            }
-        })
-    }
-
 
     return(
         <Modal show={true}>
@@ -49,8 +25,9 @@ const RemoveModal = () => {
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={onHideModal}>Close</Button>
-                <Button variant="primary" onClick={onExecute}>Remove</Button>
+                {buttons.map((button) => {
+                    return <Button variant={button.type} onClick={button.onClick}>{button.text}</Button>
+                })}
             </Modal.Footer>
         </Modal>
     )
