@@ -11,16 +11,6 @@ import { ButtonProps } from '../props';
 interface ObjectiveModalProps {
     obj: ObjectiveType,
     buttons: ButtonProps[]
-    // buttonName: String,
-    // onExecute: (objReq: { 
-    //     id?: number,
-    //     title: string, 
-    //     description: string, 
-    //     dateTime: string, 
-    //     priority: number, 
-    //     status: number, 
-    //     date: boolean
-    // }) => void 
 }
 
 const ObjectiveModal = ({ obj, buttons } : ObjectiveModalProps) => {
@@ -28,8 +18,8 @@ const ObjectiveModal = ({ obj, buttons } : ObjectiveModalProps) => {
 
     let objReq = {
         id: obj.id,
-        title: "",
-        description: "",
+        title: obj.title,
+        description: obj.description,
         dateTime: obj.dateTime,
         priority: 0,
         status: 0,

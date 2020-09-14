@@ -56,7 +56,6 @@ const Modal = () => {
     }
 
     if(type === "OBJECTIVE_POST") {
-        console.log(updatedSubject);
         view = <ObjectiveModal 
             obj={ updatedSubject as ObjectiveType } 
             buttons={[
