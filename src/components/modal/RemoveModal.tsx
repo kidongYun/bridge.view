@@ -25,11 +25,15 @@ const RemoveModal = () => {
         }
         
         data.deleteObj(objDelete).then((response) => {
-            onSetObjectiveList(utility.parse(response.data));
-
-            onHideModal();
-            onShowNoti("success", "It's from Remove Modal");
-            setTimeout(onHideNoti, 2300);
+            if(response.data.error === "SUCCESS") {
+                data.getObj(true).then((response) => {
+                    onSetObjectiveList(utility.parse(response.data.cells));
+            
+                    onHideModal();
+                    onShowNoti("success", "It's from Add Modal");
+                    setTimeout(onHideNoti, 2300);
+                })
+            }
         })
     }
 

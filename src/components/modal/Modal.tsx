@@ -39,11 +39,9 @@ const Modal = () => {
                 const objPost = objReq;
                 
                 data.postObj(objPost).then((response) => {
-                    
                     if(response.data.error === "SUCCESS") {
                         data.getObj(true).then((response) => {
-                            
-                            onSetObjectiveList(utility.parse(response.data));
+                            onSetObjectiveList(utility.parse(response.data.cells));
                     
                             onHideModal();
                             onShowNoti("success", "It's from Add Modal");
@@ -72,11 +70,15 @@ const Modal = () => {
             }
 
             data.putObj(objPut).then((response) => {
-                onSetObjectiveList(utility.parse(response.data));
+                if(response.data.error === "SUCCESS") {
+                    data.getObj(true).then((response) => {
+                        onSetObjectiveList(utility.parse(response.data.cells));
                 
-                onHideModal();
-                onShowNoti("success", "It's from Add Modal");
-                setTimeout(onHideNoti, 2300);
+                        onHideModal();
+                        onShowNoti("success", "It's from Add Modal");
+                        setTimeout(onHideNoti, 2300);
+                    })
+                }
             })
         }} 
     />

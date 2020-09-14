@@ -20,7 +20,7 @@ const ObjectiveTimeline = () => {
 
     React.useEffect(() => {
         data.getObj(true).then((response) => {
-            onSetObjectiveList(utility.parse(response.data));
+            onSetObjectiveList(utility.parse(response.data.cells));
         });
     }, []);
 

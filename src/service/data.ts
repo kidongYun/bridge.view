@@ -4,8 +4,8 @@ import MenuType from '../model/MenuType';
 
 import { TabBuilder } from '../model/TabBuilder';
 
-export async function getPlan() {
-    return await axios.get("http://localhost:8080/plan");
+export async function getPlan(date: boolean) {
+    return await axios.get("http://localhost:8080/plan", { params: { date: date }});
 }
 
 export async function getObj(date: boolean) {

@@ -17,14 +17,14 @@ const PlanTimeline = () => {
 
 
     React.useEffect(() => {
-        data.getPlan().then((response) => {
-            onSetPlanList(utility.parse(response.data));
+        data.getPlan(true).then((response) => {
+            onSetPlanList(utility.parse(response.data.cells));
         })
     }, [])
 
     React.useEffect(() => {
         data.getObj(false).then((response) => {
-            onSetObjectiveList(utility.parse(response.data));
+            onSetObjectiveList(utility.parse(response.data.cells));
         })
     }, [])
 
