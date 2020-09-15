@@ -42,6 +42,28 @@ export async function deleteObj(objDelete: {
     return await axios.delete("http://localhost:8080/objective/" + objDelete.id, { data: objDelete });
 }
 
+export async function signIn(signIn: {
+    email: string,
+    password: string
+}) {
+    return await axios.post("http://localhost:8080/signIn", signIn);
+}
+
+export async function signUp(signUp: {
+    email: string,
+    password: string
+}) {
+    return await axios.post("http://localhost:8080/signUp", signUp);
+}
+
+export async function sign() {
+    return await axios.get("http://localhost:8080/sign");
+}
+
+export async function signOut() {
+    return await axios.get("http://localhost:8080/signOut");
+}
+
 export function postNavList() {
     let menuList: Array<MenuType> = [];
 

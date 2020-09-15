@@ -14,8 +14,21 @@ interface SignModalProps {
 const SignModal = ({ buttons }: SignModalProps) => {
     const { onHideModal } = useModal();
 
+    let signReq = {
+        email: "",
+        password: ""
+    }
+
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = event.target;
+
+        if(id === 'email') {
+            signReq.email = value;
+        }
+
+        if(id === 'password') {
+            signReq.password = value;
+        }
     }
 
     return (
@@ -27,7 +40,7 @@ const SignModal = ({ buttons }: SignModalProps) => {
             <Modal.Body>
                 <Form>
                     <Form.Group>
-                        <Form.Control id="identity" placeholder="ID" onChange={onChange} />
+                        <Form.Control id="email" placeholder="EMAIL" onChange={onChange} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Control id="password" placeholder="PASSWORD" onChange={onChange} />
@@ -37,7 +50,7 @@ const SignModal = ({ buttons }: SignModalProps) => {
 
             <Modal.Footer>
                 {buttons.map((button) => {
-                    return <Button variant={button.type} onClick={button.onClick}>{button.text}</Button>
+                    return <Button variant={button.type} onClick={() => { button.onClick(signReq); }}>{button.text}</Button>
                 })}
             </Modal.Footer>
         </Modal>

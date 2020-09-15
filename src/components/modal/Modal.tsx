@@ -37,19 +37,31 @@ const Modal = () => {
             { 
                 text:"Sign In", 
                 type:"primary", 
-                onClick:() => {
-                    onShowNoti("success", "It's from Login Modal");
-                    setTimeout(onHideNoti, 2300);
-                    onHideModal(); 
+                onClick:(params) => {
+                    data.signIn(params).then((response) => {
+                        console.log(response.data.error);
+
+                        if(response.data.error === "SUCCESS") {
+                            onShowNoti("success", "로그인되었습니다.");
+                            setTimeout(onHideNoti, 2300);
+                            onHideModal(); 
+                        }
+                    })
                 }
             },
             { 
                 text:"Sign Up", 
                 type:"primary", 
-                onClick:() => {
-                    onShowNoti("success", "It's from Login Modal");
-                    setTimeout(onHideNoti, 2300);
-                    onHideModal(); 
+                onClick:(params) => {
+                    data.signUp(params).then((response) => {
+                        console.log(response.data.error);
+
+                        if(response.data.error === "SUCCESS") {
+                            onShowNoti("success", "가입이 완료되었습니다.");
+                            setTimeout(onHideNoti, 2300);
+                            onHideModal(); 
+                        }
+                    })
                 } 
             }
         ]}/>
