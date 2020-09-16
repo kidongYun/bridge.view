@@ -4,13 +4,15 @@ import noti from './noti'
 import modal from './modal'
 import data from './data'
 import subject from './subject'
+import sign from './sign'
 
 const rootReducer = combineReducers({
     stage,
     noti,
     modal,
     data,
-    subject
+    subject,
+    sign
 })
 
 export default rootReducer;

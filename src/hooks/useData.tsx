@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../modules';
+import { RootState } from '../store';
 import { useCallback } from 'react'
 
-import { setObjectiveList, setPlanList, setTodoList } from '../modules/data'
+import { setObjectiveList, setPlanList, setTodoList } from '../store/data'
 import CellType from '../model/CellType';
 
 export default function useData() {

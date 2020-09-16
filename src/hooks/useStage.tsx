@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../modules';
+import { RootState } from '../store';
 import { useCallback } from 'react'
 
-import { updateStage } from '../modules/stage';
+import { updateStage } from '../store/stage';
 
 export default function useStage() {
     const name = useSelector((state: RootState) => state.stage.name);

@@ -8,10 +8,11 @@ import useModal from '../../hooks/useModal';
 import { ButtonProps } from '../props';
 
 interface SignModalProps {
-    buttons: ButtonProps[]
+    buttons: ButtonProps[],
+    result: string
 }
 
-const SignModal = ({ buttons }: SignModalProps) => {
+const SignModal = ({ buttons, result }: SignModalProps) => {
     const { onHideModal } = useModal();
 
     let signReq = {
@@ -44,6 +45,9 @@ const SignModal = ({ buttons }: SignModalProps) => {
                     </Form.Group>
                     <Form.Group>
                         <Form.Control id="password" placeholder="PASSWORD" onChange={onChange} />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control plaintext readOnly value={result} />
                     </Form.Group>
                 </Form>
             </Modal.Body>

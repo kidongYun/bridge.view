@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../modules';
+import { RootState } from '../store';
 import { useCallback } from 'react'
 
-import { showModal, hideModal } from '../modules/modal'
+import { showModal, hideModal } from '../store/modal'
 
 export default function useModal() {
     const type = useSelector((state: RootState) => state.modal.type);

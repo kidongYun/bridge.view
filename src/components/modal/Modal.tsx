@@ -10,6 +10,7 @@ import useModal from '../../hooks/useModal';
 import useSubject from '../../hooks/useSubject';
 import useNoti from '../../hooks/useNoti';
 import useData from '../../hooks/useData';
+import useSign from '../../hooks/useSign';
 
 import ObjectiveType from '../../model/ObjectiveType';
 
@@ -18,6 +19,7 @@ const Modal = () => {
     const { updatedSubject, deletedSubject } = useSubject();
     const { onShowNoti, onHideNoti } = useNoti();
     const { onSetObjectiveList } = useData();
+    const { status, description, onUpdateSign } = useSign();
 
     let view = <></>
 
@@ -39,13 +41,17 @@ const Modal = () => {
                 type:"primary", 
                 onClick:(params) => {
                     data.signIn(params).then((response) => {
-                        console.log(response.data.error);
+                        console.log(response.data);
 
-                        if(response.data.error === "SUCCESS") {
-                            onShowNoti("success", "로그인되었습니다.");
-                            setTimeout(onHideNoti, 2300);
-                            onHideModal(); 
+                        /* 로그인 실패한 경우 */
+                        if(response.data.error !== "SUCCESS") {
+                            onUpdateSign(false, response.data.errorDesc);
+                            return;
                         }
+
+                        onShowNoti("success", "로그인되었습니다.");
+                        setTimeout(onHideNoti, 2300);
+                        onHideModal(); 
                     })
                 }
             },
@@ -63,8 +69,8 @@ const Modal = () => {
                         }
                     })
                 } 
-            }
-        ]}/>
+            },
+        ]} result={description} />
     }
 
     if(type === "OBJECTIVE_POST") {

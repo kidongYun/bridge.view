@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../modules';
+import { RootState } from '../store';
 import { useCallback } from 'react'
 
-import { showNoti, hideNoti } from '../modules/noti'
+import { showNoti, hideNoti } from '../store/noti'
 
 export default function useNoti() {
     const type = useSelector((state: RootState) => state.noti.type);

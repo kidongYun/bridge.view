@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../modules';
+import { RootState } from '../store';
 import { useCallback } from 'react'
 
-import { deleteSubject, openSubject, updateSubject } from '../modules/subject'
+import { deleteSubject, openSubject, updateSubject } from '../store/subject'
 import SubjectType from '../model/SubjectType';
 
 export default function useApi() {
