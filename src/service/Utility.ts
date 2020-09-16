@@ -1,7 +1,7 @@
 import CellType from "../model/CellType";
-import { ObjectiveBuilder } from "../model/ObjectiveBuilder";
-import { PlanBuilder } from "../model/PlanBuilder";
-import { DateBuilder } from "../model/DateBuilder";
+import { ObjectiveBuilder } from "../model/ObjectiveType";
+import { PlanBuilder } from "../model/PlanType";
+import { DateBuilder } from "../model/DateType";
 
 export function parse(src: any) {
     let cellList: CellType[] = [];

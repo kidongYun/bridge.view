@@ -1,13 +1,34 @@
 import TabType from "./TabType";
 
-class MenuType {
+export default class MenuType {
     align: string
     tabs: TabType[]
 
-    constructor(align: string, tabs: TabType[]) {
-        this.align = align;
-        this.tabs = tabs;
+    constructor() {
+        this.align = 'flex-start';
+        this.tabs = [];
     }
 }
 
-export default MenuType;
+export class MenuBuilder {
+    private readonly _menu: MenuType;
+
+    constructor() {
+        this._menu = new MenuType();
+    }
+
+    align(align: string): MenuBuilder {
+        this._menu.align = align;
+        return this;
+    }
+
+    tabs(tabs: TabType[]): MenuBuilder {
+        this._menu.tabs = tabs;
+        return this;
+    }
+
+    build(): MenuType {
+        return this._menu;
+    }
+}
+

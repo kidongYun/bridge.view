@@ -11,7 +11,7 @@ import * as utility from '../../service/Utility'
 import useModal from '../../hooks/useModal';
 import useData from '../../hooks/useData';
 import useSubject from '../../hooks/useSubject';
-import { SubjectBuilder } from '../../model/SubjectBuilder';
+import { SubjectBuilder } from '../../model/SubjectType';
 
 const ObjectiveTimeline = () => {
     const { onShowModal } = useModal();

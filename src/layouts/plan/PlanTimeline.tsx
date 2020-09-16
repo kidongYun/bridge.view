@@ -10,7 +10,7 @@ import useData from '../../hooks/useData';
 import PlanType from '../../model/PlanType';
 import DateType from '../../model/DateType';
 import ObjectiveType from '../../model/ObjectiveType';
-import { ObjectiveBuilder } from '../../model/ObjectiveBuilder';
+import { ObjectiveBuilder } from '../../model/ObjectiveType';
 
 const PlanTimeline = () => {
     const { objectiveList, onSetObjectiveList, planList, onSetPlanList } = useData();

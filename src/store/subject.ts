@@ -1,5 +1,5 @@
 import SubjectType from '../model/SubjectType';
-import { SubjectBuilder } from '../model/SubjectBuilder';
+import { SubjectBuilder } from '../model/SubjectType';
 
 const DELETE_SUBJECT = 'subject/DELETE' as const
 const OPEN_SUBJECT = 'subject/OPEN' as const
