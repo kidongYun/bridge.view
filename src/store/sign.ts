@@ -1,24 +1,28 @@
-const UPDATE_SIGN = 'sign/UPDATE_SIGN' as const;
+import SignType, { SignBuilder } from "../model/SignType";
 
-export const updateSign = (status: boolean, description: string) => ({ type: UPDATE_SIGN, payload: { status, description }});
+const UPDATE_STATUS = 'sign/UPDATE_STATUS' as const;
+const UPDATE_DESC = 'sign/UPDATE_DESC' as const;
+const UPDATE_EMAIL = 'sign/UPDATE_EMAIL' as const;
+
+export const updateStatus = (status: boolean) => ({ type: UPDATE_STATUS, payload: status });
+export const updateDesc = (desc: string) => ({ type: UPDATE_DESC, payload: desc });
+export const updateEmail = (email: string) => ({ type: UPDATE_EMAIL, payload: email });
 
 type SignAction = 
-    | ReturnType<typeof updateSign>;
+    | ReturnType<typeof updateStatus>
+    | ReturnType<typeof updateDesc>
+    | ReturnType<typeof updateEmail>;
 
-type SignState = {
-    status: boolean,
-    description: string
-}
+const initialState: SignType = new SignBuilder().build();
 
-const initialState: SignState = {
-    status: false,
-    description: ""
-}
-
-function sign(state: SignState = initialState, action: SignAction) {
+function sign(state: SignType = initialState, action: SignAction) {
     switch(action.type) {
-        case UPDATE_SIGN :
-            return { status: action.payload.status, description: action.payload.description };
+        case UPDATE_STATUS :
+            return { status: action.payload, desc: state.desc, email: state.email };
+        case UPDATE_DESC :
+            return { status: state.status, desc: action.payload, email: state.email };
+        case UPDATE_EMAIL :
+            return { status: state.status, desc: state.desc, email: action.payload };
         default :
             return state;
     }

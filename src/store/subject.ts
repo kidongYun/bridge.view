@@ -9,12 +9,12 @@ export const deleteSubject = (subject: SubjectType) => ({ type: DELETE_SUBJECT, 
 export const openSubject = (subject: SubjectType) => ({ type: OPEN_SUBJECT, payload: subject })
 export const updateSubject = (subject: SubjectType) => ({ type: UPDATE_SUBJECT, payload: subject })
 
-type ApiAction =
+type SubjectAction =
     | ReturnType<typeof deleteSubject>
     | ReturnType<typeof openSubject>
     | ReturnType<typeof updateSubject>
 
-type ApiState = {
+type SubjectState = {
     deletedSubject: SubjectType
     openedSubject: SubjectType
     updatedSubject: SubjectType
@@ -26,7 +26,7 @@ const initialState = {
     updatedSubject: new SubjectBuilder().build()
 }
 
-function api(state: ApiState = initialState, action: ApiAction) {
+function api(state: SubjectState = initialState, action: SubjectAction) {
     switch (action.type) {
         case DELETE_SUBJECT :
             return { deletedSubject: action.payload, openedSubject: state.openedSubject, updatedSubject: state.updatedSubject }

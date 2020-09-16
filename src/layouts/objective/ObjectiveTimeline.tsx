@@ -33,7 +33,7 @@ const ObjectiveTimeline = () => {
             backgroundColor="#007bff"
             backgroundHover="#0069d9"
             height="80px"
-            header={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
+            title={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
             onClick={() => { onUpdateSubject(new SubjectBuilder().build()); onShowModal("OBJECTIVE_POST"); }}
         />
 
@@ -46,7 +46,7 @@ const ObjectiveTimeline = () => {
                             backgroundColor="#eeeeee"
                             backgroundHover="#e4e4e4"
                             height="80px"
-                            header={{ text: obj.title, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
+                            title={{ text: obj.title, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
                             status={obj.status}
                             onClick={() => {
                                 obj.display = "DETAIL";
@@ -62,7 +62,7 @@ const ObjectiveTimeline = () => {
                             borderRadius="10px"
                             backgroundColor="#eeeeee"
                             backgroundHover="#e4e4e4"
-                            header={{ text: obj.title, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
+                            title={{ text: obj.title, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
                             contents={[
                                 { text: obj.description, borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "center" },
                                 { text: obj.getDate(), borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "flex-start" },
@@ -101,7 +101,7 @@ const ObjectiveTimeline = () => {
                 if(obj instanceof DateType && obj.type === "DATE") {
                     return <Cell
                         borderRadius="0px"
-                        header={{ text: obj.getDate(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
+                        title={{ text: obj.getDate(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
                         status={0}
                     />
                 }

@@ -10,7 +10,7 @@ interface CellProps {
     backgroundColor?: string
     backgroundHover?: string
     height?: string
-    header?: TextProps
+    title?: TextProps
     contents?: TextProps[]
     status?: number
     buttons?: ButtonProps[]
@@ -22,21 +22,21 @@ const Cell = ({
     backgroundColor = "#ffffff", 
     backgroundHover = "#ffffff", 
     height = "auto", 
-    header, 
+    title, 
     contents, 
     status, 
     buttons, 
     onClick 
 }: CellProps) => {
 
-    let headerFrame = <></>;
-    if(header !== undefined) {
-        headerFrame = 
-            <HeaderFrame>
-                <TextFrame fontSize={header.fontSize!} color={header.color!} verticalAlign={header.verticalAlign} horizontalAlign={header.horizontalAlign}>
-                    {header.text}
+    let titleFrame = <></>;
+    if(title !== undefined) {
+        titleFrame = 
+            <TitleFrame>
+                <TextFrame fontSize={title.fontSize!} color={title.color!} verticalAlign={title.verticalAlign} horizontalAlign={title.horizontalAlign}>
+                    {title.text}
                 </TextFrame>
-            </HeaderFrame>
+            </TitleFrame>
     }
 
 
@@ -74,7 +74,7 @@ const Cell = ({
     let view =
     <Container height={height} onClick={onClick}>
         <Frame height={height}backgroundColor={backgroundColor!} backgroundHover={backgroundHover!} borderRadius={borderRadius}>
-            {headerFrame}
+            {titleFrame}
             {contentsFrame}
             {buttonsFrame}
         </Frame>
@@ -111,7 +111,7 @@ const Frame = styled.div<{ height: string, backgroundColor: string, backgroundHo
     }
 `;
 
-const HeaderFrame = styled.div`
+const TitleFrame = styled.div`
     width: 100%;
     height: auto;
     font-weight: bold;

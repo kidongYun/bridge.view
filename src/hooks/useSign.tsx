@@ -2,18 +2,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store';
 import { useCallback } from 'react'
 
-import { updateSign } from '../store/sign'
+import { updateStatus, updateDesc, updateEmail } from '../store/sign'
 
 export default function useSign() {
     const status = useSelector((state: RootState) => state.sign.status);
-    const description = useSelector((state: RootState) => state.sign.description);
+    const desc = useSelector((state: RootState) => state.sign.desc);
+    const email = useSelector((state: RootState) => state.sign.email);
 
     const dispatch = useDispatch();
-    const onUpdateSign = useCallback((status: boolean, description: string) => dispatch(updateSign(status, description)), [dispatch]);
+    const onUpdateStatus = useCallback((status: boolean) => dispatch(updateStatus(status)), [dispatch]);
+    const onUpdateDesc = useCallback((desc: string) => dispatch(updateDesc(desc)), [dispatch]);
+    const onUpdateEmail = useCallback((email: string) => dispatch(updateEmail(email)), [dispatch]);
 
     return {
         status,
-        description,
-        onUpdateSign
+        desc,
+        email,
+        onUpdateStatus,
+        onUpdateDesc,
+        onUpdateEmail
     }
 }

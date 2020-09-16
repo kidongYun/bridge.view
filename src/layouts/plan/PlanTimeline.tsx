@@ -48,7 +48,7 @@ const PlanTimeline = () => {
                         borderRadius="10px"
                         backgroundColor="#dc3545"
                         height="100px"
-                        header={{ text: target.title, color: "#ffffff", verticalAlign: "", horizontalAlign: "" }}
+                        title={{ text: target.title, color: "#ffffff", verticalAlign: "", horizontalAlign: "" }}
                         contents={[]}
                         status={0}
                     />
@@ -57,7 +57,7 @@ const PlanTimeline = () => {
                 if(plan instanceof DateType && plan.type === "DATE") {
                     return <Cell
                         borderRadius="0px"
-                        header={{ text: plan.getDate(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
+                        title={{ text: plan.getDate(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
                         status={0}
                     />
                 }
