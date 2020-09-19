@@ -66,7 +66,7 @@ const ObjectiveModal = ({ obj, buttons } : ObjectiveModalProps) => {
                     </Form.Group>
                     <Form.Group>
                         <Form.Control 
-                            id="description" 
+                            id="description"
                             placeholder="DESCRIPTION" 
                             as="textarea" 
                             rows="10" 

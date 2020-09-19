@@ -2,6 +2,7 @@ import React from 'react'
 import ObjectiveModal from '../components/modal/ObjectiveModal'
 import SignModal from '../components/modal/SignModal';
 import RemoveModal from '../components/modal/RemoveModal';
+import Modal from '../components/modal/ModalComponent';
 
 import * as data from '../service/Data'
 import * as utility from '../service/Utility'
@@ -14,7 +15,7 @@ import useSign from '../hooks/useSign';
 
 import ObjectiveType from '../model/ObjectiveType';
 
-const Modal = () => {
+const ModalController = () => {
     const { type, visible, onHideModal } = useModal();
     const { updatedSubject, deletedSubject } = useSubject();
     const { onShowNoti, onHideNoti } = useNoti();
@@ -25,6 +26,10 @@ const Modal = () => {
 
     if(!visible){
         return view;
+    }
+
+    if(type === "TEST") {
+        view = <Modal />
     }
 
     if(type === "LOGIN") {
@@ -189,4 +194,4 @@ const Modal = () => {
     return view
 }
 
-export default Modal;
+export default ModalController;

@@ -19,7 +19,7 @@ const Tab = ({tab}: TabProps) => {
     }
 
     const onRightMenuClick = () => {
-        onShowModal("LOGIN");
+        onShowModal("TEST");
     }
 
     let view;
