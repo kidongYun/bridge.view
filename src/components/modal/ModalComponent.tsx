@@ -7,17 +7,26 @@ import Form from 'react-bootstrap/Form'
 import { TextProps } from '../props'
 import { ButtonProps } from '../props'
 
-import InputComponent from '../modal/InputComponent'
+import TextComponent from './TextComponent'
+import LabelComponent from './LabelComponent';
+import TextareaComponent from './TextareaComponent';
+import SelectComponent from './SelectComponent';
 
-interface ModalProps {
+interface ModalComponentProps {
     title?: TextProps
 }
 
 const ModalComponent = ({
     title
-}: ModalProps) => {
+}: ModalComponentProps) => {
 
-    let input = <InputComponent/>
+    let label = <LabelComponent label="It's label Component" />
+    let text = <TextComponent/>
+    let textarea = <TextareaComponent rows="20" />
+    let select = <SelectComponent options={[
+        { title: "SELECT OPTION TITLE1", value: "1" },
+        { title: "SELECT OPTION TITLE2", value: "2" }
+    ]}/>
 
     let view = 
     <Modal show={true}>
@@ -27,7 +36,10 @@ const ModalComponent = ({
 
         <Modal.Body>
             <Form>
-                {input}
+                {label}
+                {text}
+                {textarea}
+                {select}
             </Form>
         </Modal.Body>
 
