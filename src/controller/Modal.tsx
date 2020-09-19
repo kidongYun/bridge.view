@@ -2,7 +2,7 @@ import React from 'react'
 import ObjectiveModal from '../components/modal/ObjectiveModal'
 import SignModal from '../components/modal/SignModal';
 import RemoveModal from '../components/modal/RemoveModal';
-import Modal from '../components/modal/ModalComponent';
+import ModalComponent from '../components/modal/ModalComponent';
 
 import * as data from '../service/Data'
 import * as utility from '../service/Utility'
@@ -23,13 +23,21 @@ const ModalController = () => {
     const { desc, onUpdateStatus, onUpdateDesc, onUpdateEmail } = useSign();
 
     let view = <></>
-
+    
     if(!visible){
         return view;
     }
 
     if(type === "TEST") {
-        view = <Modal />
+        view = <ModalComponent 
+            title={ { text: "title", verticalAlign: "center", horizontalAlign: "center"}} 
+            contents={{forms:[
+                { type: "LABEL", value: "It's label Component" },
+                { type: "TEXT" },
+                { type: "TEXTAREA", rows:"20" },
+                { type: "SELECT", options: [{ title: "SELECT OPTION TITLE1", value: "1" }, { title: "SELECT OPTION TITLE2", value: "2" }] }
+            ]}}  
+        />
     }
 
     if(type === "LOGIN") {

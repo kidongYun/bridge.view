@@ -7,27 +7,17 @@ import Form from 'react-bootstrap/Form'
 import { TextProps } from '../props'
 import { ButtonProps } from '../props'
 
-import FormComponent from './FormComponent';
-
-export interface ContentProps {
-    type: string
-}
+import FormComponent, { FormComponentProps } from './FormComponent';
 
 interface ModalComponentProps {
     title?: TextProps
-    contents?: ContentProps[]
+    contents?: FormComponentProps
+    buttons?: ButtonProps[]
 }
 
 const ModalComponent = ({
-    title,
+    title, contents, buttons
 }: ModalComponentProps) => {
-
-    let contents = <FormComponent forms={[
-        { type: "LABEL", value: "It's label Component" },
-        { type: "TEXT" },
-        { type: "TEXTAREA", rows:"20" },
-        { type: "SELECT", options: [{ title: "SELECT OPTION TITLE1", value: "1" }, { title: "SELECT OPTION TITLE2", value: "2" }] }
-    ]}/>
 
     let view = 
     <Modal show={true}>

@@ -17,7 +17,7 @@ interface FormGroupComponentProps {
     onChange?: () => void
 }
 
-interface FormComponentProps {
+export interface FormComponentProps {
     forms: FormGroupComponentProps[]
 }
 
