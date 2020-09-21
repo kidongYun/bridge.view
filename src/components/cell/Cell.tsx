@@ -33,7 +33,7 @@ const Cell = ({
     if(title !== undefined) {
         titleFrame = 
             <TitleFrame>
-                <TextFrame fontSize={title.fontSize!} color={title.color!} verticalAlign={title.verticalAlign} horizontalAlign={title.horizontalAlign}>
+                <TextFrame fontSize={title.fontSize!} color={title.color!} verticalAlign={title.verticalAlign!} horizontalAlign={title.horizontalAlign!}>
                     {title.text}
                 </TextFrame>
             </TitleFrame>

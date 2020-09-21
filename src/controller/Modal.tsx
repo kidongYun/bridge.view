@@ -30,13 +30,13 @@ const ModalController = () => {
 
     if(type === "TEST") {
         view = <ModalComponent 
-            title={ { text: "title", verticalAlign: "center", horizontalAlign: "center"}} 
-            contents={{forms:[
+            title={{ text: "testtitle" }} 
+            forms={[
                 { type: "LABEL", value: "It's label Component" },
                 { type: "TEXT" },
                 { type: "TEXTAREA", rows:"20" },
                 { type: "SELECT", options: [{ title: "SELECT OPTION TITLE1", value: "1" }, { title: "SELECT OPTION TITLE2", value: "2" }] }
-            ]}}  
+            ]}
         />
     }
 

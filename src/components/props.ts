@@ -4,8 +4,8 @@ export interface TextProps {
     color?: string
     borderRadius?: string
     backgroundColor?: string
-    verticalAlign: string
-    horizontalAlign: string 
+    verticalAlign?: string
+    horizontalAlign?: string 
 }
 
 export interface ButtonProps {

@@ -7,28 +7,55 @@ import Form from 'react-bootstrap/Form'
 import { TextProps } from '../props'
 import { ButtonProps } from '../props'
 
-import FormComponent, { FormComponentProps } from './FormComponent';
+import LabelComponent from './LabelComponent';
+import TextComponent from './TextComponent';
+import TextareaComponent from './TextareaComponent'
+import SelectComponent, { OptionProps } from './SelectComponent';
+import { placeholder } from '@babel/types';
+
+interface FormProps {
+    type: string
+    id?: string
+    placeholder?: string
+    value?: string
+    rows?: string
+    options: OptionProps[]
+}
 
 interface ModalComponentProps {
-    title?: TextProps
-    contents?: FormComponentProps
+    title: TextProps
+    forms?: FormProps[]
     buttons?: ButtonProps[]
 }
 
 const ModalComponent = ({
-    title, contents, buttons
+    title, forms, buttons
 }: ModalComponentProps) => {
 
     let view = 
     <Modal show={true}>
         <Modal.Header>
-            <Modal.Title>New Objective</Modal.Title>
+            <Modal.Title>{title.text}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-            <Form>
-                {contents}
-            </Form>
+            {forms!.map((form) => {
+                if(form.type === "LABEL") {
+                    return <LabelComponent label="" />
+                }
+                
+                if(form.type === "TEXT") {
+                    return <TextComponent />
+                }
+
+                if(form.type === "TEXTAREA") {
+                    return <TextareaComponent />
+                }
+
+                if(form.type === "SELECT") {
+                    return <SelectComponent />
+                }
+            })}
         </Modal.Body>
 
         <Modal.Footer>
