@@ -31,11 +31,11 @@ const ModalController = () => {
     if(type === "TEST") {
         view = <ModalComponent 
             title={{ text: "testtitle" }} 
-            forms={[
-                { type: "LABEL", value: "It's label Component" },
+            forms={[ 
+                { type: "LABEL", value: "TESTLABEL"},
                 { type: "TEXT" },
-                { type: "TEXTAREA", rows:"20" },
-                { type: "SELECT", options: [{ title: "SELECT OPTION TITLE1", value: "1" }, { title: "SELECT OPTION TITLE2", value: "2" }] }
+                { type: "TEXTAREA", rows: "10" },
+                { type: "SELECT", selected: "value2", options: [ { title: "title1", value: "value1" }, { title: "title2", value: "value2" }]}
             ]}
         />
     }

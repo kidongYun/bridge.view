@@ -19,7 +19,9 @@ interface FormProps {
     placeholder?: string
     value?: string
     rows?: string
-    options: OptionProps[]
+    selected?: string
+    options?: OptionProps[]
+    onChange?: () => void
 }
 
 interface ModalComponentProps {
@@ -39,23 +41,42 @@ const ModalComponent = ({
         </Modal.Header>
 
         <Modal.Body>
+            <Form>
             {forms!.map((form) => {
                 if(form.type === "LABEL") {
-                    return <LabelComponent label="" />
+                    return <LabelComponent 
+                        id={form.id} 
+                        label={form.value!} 
+                    />
                 }
                 
                 if(form.type === "TEXT") {
-                    return <TextComponent />
+                    return <TextComponent 
+                        id={form.id} 
+                        placeholder={form.placeholder} 
+                        onChange={form.onChange} 
+                    />
                 }
 
                 if(form.type === "TEXTAREA") {
-                    return <TextareaComponent />
+                    return <TextareaComponent 
+                        id={form.id} 
+                        placeholder={form.placeholder} 
+                        rows={form.rows}
+                        onChange={form.onChange}
+                    />
                 }
 
                 if(form.type === "SELECT") {
-                    return <SelectComponent />
+                    return <SelectComponent 
+                        id={form.id}
+                        selected={form.selected}
+                        options={form.options}
+                        onChange={form.onChange}
+                    />
                 }
             })}
+            </Form>
         </Modal.Body>
 
         <Modal.Footer>
