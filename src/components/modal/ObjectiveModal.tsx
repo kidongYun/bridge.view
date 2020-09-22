@@ -78,7 +78,7 @@ const ObjectiveModal = ({ obj, buttons } : ObjectiveModalProps) => {
                         <Form.Label>Priority</Form.Label>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Control id="priority" as="select" defaultValue="10" onChange={onChange}>
+                        <Form.Control as="select" defaultValue="10" onChange={onChange}>
                             <option value="10">HIGH</option>
                             <option value="5">MID</option>
                             <option value="1">LOW</option>

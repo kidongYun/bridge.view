@@ -5,6 +5,7 @@ import modal from './modal'
 import data from './data'
 import subject from './subject'
 import sign from './sign'
+import objective from './objective'
 
 const rootReducer = combineReducers({
     stage,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     modal,
     data,
     subject,
-    sign
+    sign,
+    objective
 })
 
 export default rootReducer;
