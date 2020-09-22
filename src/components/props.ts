@@ -28,5 +28,5 @@ export interface ButtonProps {
     | 'outline-dark'
     | 'outline-light';
     text: string
-    onClick: (params: any) => void
+    onClick: (params?: any) => void
 }

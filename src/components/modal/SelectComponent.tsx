@@ -7,17 +7,24 @@ export interface OptionProps {
 }
 
 interface SelectComponentProps {
-    id?: string
     selected?: string
     options?: OptionProps[]
-    onChange?: () => void
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const SelectComponent = ({ id, selected, options, onChange }: SelectComponentProps) => {
+const SelectComponent = ({ selected, options, onChange }: SelectComponentProps) => {
+    let optionView = <></>;
+    if(options !== undefined) {
+        optionView = 
+        <>
+            {options.map((option) => { return <option value={option.value}>{option.title}</option>})}
+        </>;
+    }
+
     let view =
     <Form.Group>
-        <Form.Control id={id} as="select" defaultValue={selected} onChange={onChange}>
-            {options!.map((option) => { return <option value={option.value}>{option.title}</option>})}
+        <Form.Control as="select" defaultValue={selected} onChange={onChange}>
+            {optionView}
         </Form.Control>
     </Form.Group>
 

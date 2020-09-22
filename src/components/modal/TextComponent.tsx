@@ -2,16 +2,14 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 
 interface TextComponentProps {
-    id?: string
     placeholder?: string
-    onChange?: () => void
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const TextComponent = ({ id, placeholder, onChange }: TextComponentProps) => {
+const TextComponent = ({ placeholder, onChange }: TextComponentProps) => {
     let view =
     <Form.Group>
         <Form.Control
-            id={id}
             placeholder={placeholder}
             onChange={onChange}
         />

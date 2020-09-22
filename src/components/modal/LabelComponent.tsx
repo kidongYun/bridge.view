@@ -2,14 +2,13 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 
 interface LabelComponentProps {
-    id?: string
     label: string
 }
 
-const LabelComponent = ({ id, label }: LabelComponentProps) => {
+const LabelComponent = ({ label }: LabelComponentProps) => {
     let view =
     <Form.Group>
-        <Form.Label id={id}>{label}</Form.Label>
+        <Form.Label>{label}</Form.Label>
     </Form.Group>
 
     return view;

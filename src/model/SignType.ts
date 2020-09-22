@@ -2,11 +2,13 @@ export default class SignType {
     status: boolean
     desc: string
     email: string
+    password: string
 
     constructor() {
         this.status = false;
         this.desc = '';
         this.email = '';
+        this.password = '';
     }
 }
 
@@ -29,6 +31,11 @@ export class SignBuilder {
 
     email(email: string): SignBuilder {
         this._sign.email = email;
+        return this;
+    }
+
+    password(password: string): SignBuilder {
+        this._sign.password = password;
         return this;
     }
 

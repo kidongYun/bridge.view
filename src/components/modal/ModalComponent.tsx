@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
@@ -11,17 +10,15 @@ import LabelComponent from './LabelComponent';
 import TextComponent from './TextComponent';
 import TextareaComponent from './TextareaComponent'
 import SelectComponent, { OptionProps } from './SelectComponent';
-import { placeholder } from '@babel/types';
 
 interface FormProps {
     type: string
-    id?: string
     placeholder?: string
     value?: string
     rows?: string
     selected?: string
     options?: OptionProps[]
-    onChange?: () => void
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 interface ModalComponentProps {
@@ -34,6 +31,53 @@ const ModalComponent = ({
     title, forms, buttons
 }: ModalComponentProps) => {
 
+    let formView = <Form></Form>
+    if(forms !== undefined) {
+        formView =
+        <Form>
+        {forms!.map((form) => {
+            if(form.type === "LABEL") {
+                return <LabelComponent 
+                    label={form.value!} 
+                />
+            }
+        
+            if(form.type === "TEXT") {
+                return <TextComponent 
+                    placeholder={form.placeholder} 
+                    onChange={form.onChange} 
+                />
+            }
+
+            if(form.type === "TEXTAREA") {
+                return <TextareaComponent 
+                    placeholder={form.placeholder} 
+                    rows={form.rows}
+                    onChange={form.onChange}
+                />
+            }
+
+            if(form.type === "SELECT") {
+                return <SelectComponent 
+                    selected={form.selected}
+                    options={form.options}
+                    onChange={form.onChange}
+                />
+            }
+        })}
+        </Form>
+    }
+
+    let buttonView = <></>;
+    if(buttons !== undefined) {
+        buttonView = 
+        <>
+        {buttons.map((button) => {
+            return <Button variant={button.type} onClick={() => { button.onClick(); }}>{button.text}</Button>
+        })};
+        </>
+    }
+
     let view = 
     <Modal show={true}>
         <Modal.Header>
@@ -41,47 +85,13 @@ const ModalComponent = ({
         </Modal.Header>
 
         <Modal.Body>
-            <Form>
-            {forms!.map((form) => {
-                if(form.type === "LABEL") {
-                    return <LabelComponent 
-                        id={form.id} 
-                        label={form.value!} 
-                    />
-                }
-                
-                if(form.type === "TEXT") {
-                    return <TextComponent 
-                        id={form.id} 
-                        placeholder={form.placeholder} 
-                        onChange={form.onChange} 
-                    />
-                }
-
-                if(form.type === "TEXTAREA") {
-                    return <TextareaComponent 
-                        id={form.id} 
-                        placeholder={form.placeholder} 
-                        rows={form.rows}
-                        onChange={form.onChange}
-                    />
-                }
-
-                if(form.type === "SELECT") {
-                    return <SelectComponent 
-                        id={form.id}
-                        selected={form.selected}
-                        options={form.options}
-                        onChange={form.onChange}
-                    />
-                }
-            })}
-            </Form>
+            {formView}
         </Modal.Body>
 
         <Modal.Footer>
+            {buttonView}
         </Modal.Footer>
-    </Modal>;
+    </Modal>
 
     return view;
 }

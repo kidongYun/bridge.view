@@ -2,17 +2,15 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 
 interface TextareaComponentProps {
-    id?: string
     placeholder?: string
     rows?: string
-    onChange?: () => void
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const TextareaComponent = ({ id, placeholder, rows, onChange }: TextareaComponentProps) => {
+const TextareaComponent = ({ placeholder, rows, onChange }: TextareaComponentProps) => {
     let view =
     <Form.Group>
         <Form.Control
-            id={id}
             placeholder={placeholder}
             as="textarea"
             rows={rows}
