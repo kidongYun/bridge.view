@@ -269,14 +269,15 @@ const ModalController = () => {
                 { 
                     text: "Update",
                     type: "primary",
-                    onClick: (params) => {
+                    onClick: () => {
+                        
                         const objPut = {
                             id: subject_updated.id,
-                            title: params.title,
-                            description: params.description,
-                            dateTime: params.dateTime,
-                            priority: params.priority,
-                            status: params.status,
+                            title: obj_title,
+                            description: obj_desc,
+                            dateTime: obj_deadline,
+                            priority: obj_priority,
+                            status: subject_updated.status,
                             date: true
                         }
             
