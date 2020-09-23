@@ -39,6 +39,8 @@ const CellComponent = ({
             </TitleFrame>
     }
 
+    let statusFrame = 
+    <StatusFrame></StatusFrame>;
 
 
     let contentsFrame = <></>;
@@ -74,7 +76,10 @@ const CellComponent = ({
     let view =
     <Container height={height} onClick={onClick}>
         <Frame height={height}backgroundColor={backgroundColor!} backgroundHover={backgroundHover!} borderRadius={borderRadius}>
-            {titleFrame}
+            <FlexFrame>
+                {titleFrame}
+                {statusFrame}
+            </FlexFrame>
             {contentsFrame}
             {buttonsFrame}
         </Frame>
@@ -112,9 +117,17 @@ const Frame = styled.div<{ height: string, backgroundColor: string, backgroundHo
 `;
 
 const TitleFrame = styled.div`
-    width: 100%;
+    width: 600%;
     height: auto;
     font-weight: bold;
+    display: flex;
+`;
+
+const StatusFrame = styled.div`
+    width: 100%;
+    height: auto;
+    background-color: #884342;
+    display: flex;
 `;
 
 const ContentsFrame = styled.div`
@@ -171,6 +184,12 @@ const TextFrame = styled.div<{ fontSize: string, color: string, verticalAlign: s
     display: flex;
     justify-content: ${props => props.horizontalAlign};
     align-items: ${props => props.verticalAlign};
+`;
+
+const FlexFrame = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
 `;
 
 export default CellComponent;
