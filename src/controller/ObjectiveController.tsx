@@ -32,7 +32,7 @@ const ObjectiveController = () => {
             borderRadius="10px"
             backgroundColor="#007bff"
             backgroundHover="#0069d9"
-            height="80px"
+            height="100px"
             title={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
             onClick={() => { subject_onUpdate(new SubjectBuilder().build()); modal_onShow("OBJECTIVE_POST"); }}
         />
@@ -45,7 +45,7 @@ const ObjectiveController = () => {
                             borderRadius="10px"
                             backgroundColor="#eeeeee"
                             backgroundHover="#e4e4e4"
-                            height="80px"
+                            height="100px"
                             title={{ text: obj.title, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
                             status={obj.status}
                             onClick={() => {
@@ -62,6 +62,7 @@ const ObjectiveController = () => {
                             borderRadius="10px"
                             backgroundColor="#eeeeee"
                             backgroundHover="#e4e4e4"
+                            height="300px"
                             title={{ text: obj.title, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
                             contents={[
                                 { text: obj.description, borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "center" },
