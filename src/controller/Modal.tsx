@@ -1,5 +1,4 @@
 import React from 'react'
-import ObjectiveModal from '../components/modal/ObjectiveModal'
 import ModalComponent from '../components/modal/ModalComponent';
 
 import * as data from '../service/Data'
@@ -11,16 +10,15 @@ import useNoti from '../hooks/useNoti';
 import useData from '../hooks/useData';
 import useSign from '../hooks/useSign';
 import useObjective from '../hooks/useObjective';
-
 import ObjectiveType from '../model/ObjectiveType';
 
 const ModalController = () => {
     const { type, visible, onHideModal } = useModal();
-    const { updatedSubject, deletedSubject } = useSubject();
+    const { subject_updated, subject_deleted } = useSubject();
     const { onShowNoti, onHideNoti } = useNoti();
-    const { onSetObjectiveList } = useData();
-    const { desc, email, password, onUpdateStatus, onUpdateDesc, onUpdateEmail, onUpdatePassword } = useSign();
-    const { onSetTitle, onSetDesc, onSetPriority, onSetDeadline } = useObjective();
+    const { data_onSetObjectiveList } = useData();
+    const { sign_desc, sign_email, sign_password, sign_onUpdateStatus, sign_onUpdateDesc, sign_onUpdateEmail, sign_onUpdatePassword } = useSign();
+    const { obj_title, obj_desc, obj_priority, obj_deadline, obj_onSetTitle, obj_onSetDesc, obj_onSetPriority, obj_onSetDeadline } = useObjective();
 
     let view = <></>;
     
@@ -38,7 +36,7 @@ const ModalController = () => {
                     placeholder:"EMAIL", 
                     onChange:(event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-                        onUpdateEmail(value);
+                        sign_onUpdateEmail(value);
                     }
                 },
                 { 
@@ -46,12 +44,12 @@ const ModalController = () => {
                     placeholder:"PASSWORD", 
                     onChange:(event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-                        onUpdatePassword(value);
+                        sign_onUpdatePassword(value);
                     } 
                 },
                 { 
                     type:"LABEL", 
-                    value: desc
+                    value: sign_desc
                 }
             ]}
             buttons={[
@@ -67,21 +65,21 @@ const ModalController = () => {
                     type:"primary", 
                     onClick:() => {
                         const params = {
-                            email: email,
-                            password: password
+                            email: sign_email,
+                            password: sign_password
                         }
 
                         data.signIn(params).then((response) => {
     
                             /* 로그인 실패한 경우 */
                             if(response.data.error !== "SUCCESS") {
-                                onUpdateStatus(false);
-                                onUpdateDesc(response.data.errorDesc);
+                                sign_onUpdateStatus(false);
+                                sign_onUpdateDesc(response.data.errorDesc);
                                 return;
                             }
     
-                            onUpdateStatus(true);
-                            onUpdateEmail(params.email);
+                            sign_onUpdateStatus(true);
+                            sign_onUpdateEmail(params.email);
     
                             onShowNoti("success", "로그인되었습니다.");
                             setTimeout(onHideNoti, 2300);
@@ -94,8 +92,8 @@ const ModalController = () => {
                     type:"primary", 
                     onClick:() => {
                         const params = {
-                            email: email,
-                            password: password
+                            email: sign_email,
+                            password: sign_password
                         }
 
                         data.signUp(params).then((response) => {
@@ -123,9 +121,7 @@ const ModalController = () => {
                     placeholder: "TITLE",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-
-                        console.log("title : " + value);
-                        onSetTitle(value);
+                        obj_onSetTitle(value);
                     }
                 },
                 { 
@@ -134,9 +130,7 @@ const ModalController = () => {
                     rows: "10",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-
-                        console.log("description : " + value);
-                        onSetDesc(value);
+                        obj_onSetDesc(value);
                     }
                 },
                 { 
@@ -151,9 +145,7 @@ const ModalController = () => {
                     ],
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-
-                        console.log("priority : " + value);
-                        onSetPriority(Number.parseInt(value));
+                        obj_onSetPriority(Number.parseInt(value));
                     }
                 },
                 { 
@@ -165,9 +157,7 @@ const ModalController = () => {
                     placeholder: "2020-07-21",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-
-                        console.log("deadline : " + value);
-                        onSetDeadline(value);
+                        obj_onSetDeadline(value);
                     }
                 }
             ]}
@@ -182,13 +172,21 @@ const ModalController = () => {
                 { 
                     text: "Add", 
                     type:"primary", 
-                    onClick:(params) => {
-                        const objPost = params
+                    onClick:() => {
+
+                        const objPost = {
+                            title: obj_title,
+                            description: obj_desc,
+                            dateTime: obj_deadline,
+                            priority: obj_priority,
+                            status: 0,
+                            date: true
+                        }
                 
                         data.postObj(objPost).then((response) => {
                             if(response.data.error === "SUCCESS") {
                                 data.getObj(true).then((response) => {
-                                    onSetObjectiveList(utility.parse(response.data.cells));
+                                    data_onSetObjectiveList(utility.parse(response.data.cells));
                             
                                     onHideModal();
                                     onShowNoti("success", "It's from Add Modal");
@@ -202,80 +200,101 @@ const ModalController = () => {
         />
     }
 
-    // if(type === "OBJECTIVE_POST") {
-    //     view = <ObjectiveModal 
-    //         obj={ updatedSubject as ObjectiveType } 
-    //         buttons={[
-    //             {
-    //                 text: "Close",
-    //                 type: "secondary",
-    //                 onClick:() => {
-    //                     onHideModal();
-    //                 }
-    //             },
-    //             { 
-    //                 text: "Add", 
-    //                 type:"primary", 
-    //                 onClick:(params) => {
-    //                     const objPost = params
-                
-    //                     data.postObj(objPost).then((response) => {
-    //                         if(response.data.error === "SUCCESS") {
-    //                             data.getObj(true).then((response) => {
-    //                                 onSetObjectiveList(utility.parse(response.data.cells));
-                            
-    //                                 onHideModal();
-    //                                 onShowNoti("success", "It's from Add Modal");
-    //                                 setTimeout(onHideNoti, 2300);
-    //                             })
-    //                         }
-    //                     })
-    //                 }
-    //             }
-    //         ]}
-    //     />
-    // }
-
     if(type === "OBJECTIVE_PUT") {
-        view = <ObjectiveModal 
-        obj={ updatedSubject as ObjectiveType }
-        buttons={[
-            {
-                text: "Close",
-                type: "secondary",
-                onClick: () => {
-                    onHideModal();
-                }
-            },
-            { 
-                text: "Update",
-                type: "primary",
-                onClick: (params) => {
-                    const objPut = {
-                        id: params.id!,
-                        title: params.title,
-                        description: params.description,
-                        dateTime: params.dateTime,
-                        priority: params.priority,
-                        status: params.status,
-                        date: true
+        let obj = subject_updated as ObjectiveType;
+
+        view =
+        <ModalComponent
+            title={{ text: "UPDATE OBJECTIVE" }}
+            forms={[
+                { 
+                    type: "TEXT", 
+                    value: obj.title,
+                    placeholder: "TITLE",
+                    onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+                        const { value } = event.target;
+                        obj_onSetTitle(value);
                     }
+                },
+                { 
+                    type: "TEXTAREA", 
+                    value: obj.description,
+                    placeholder: "DESCRIPTION", 
+                    rows: "10",
+                    onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+                        const { value } = event.target;
+                        obj_onSetDesc(value);
+                    }
+                },
+                { 
+                    type: "LABEL",
+                    value: "Priority" 
+                },
+                { 
+                    type: "SELECT",
+                    value: "value2",
+                    options: [
+                        { title: "title1", value: "value1" },
+                        { title: "title2", value: "value2" }
+                    ],
+                    onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+                        const { value } = event.target;
+                        obj_onSetPriority(Number.parseInt(value));
+                    }
+                },
+                { 
+                    type: "LABEL",
+                    value: "Deadline"
+                },
+                { 
+                    type: "TEXT",
+                    value: obj.dateTime,
+                    placeholder: "2020-07-21",
+                    onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+                        const { value } = event.target;
         
-                    data.putObj(objPut).then((response) => {
-                        if(response.data.error === "SUCCESS") {
-                            data.getObj(true).then((response) => {
-                                onSetObjectiveList(utility.parse(response.data.cells));
-                        
-                                onHideModal();
-                                onShowNoti("success", "It's from Add Modal");
-                                setTimeout(onHideNoti, 2300);
-                            })
-                        }
-                    })
+                        console.log("deadline : " + value);
+                        obj_onSetDeadline(value);
+                    }
                 }
-            }
-        ]}
-    />
+            ]}
+            buttons={[
+                {
+                    text: "Close",
+                    type: "secondary",
+                    onClick: () => {
+                        onHideModal();
+                    }
+                },
+                { 
+                    text: "Update",
+                    type: "primary",
+                    onClick: (params) => {
+                        const objPut = {
+                            id: subject_updated.id,
+                            title: params.title,
+                            description: params.description,
+                            dateTime: params.dateTime,
+                            priority: params.priority,
+                            status: params.status,
+                            date: true
+                        }
+            
+                        data.putObj(objPut).then((response) => {
+                            if(response.data.error === "SUCCESS") {
+                                data.getObj(true).then((response) => {
+                                    data_onSetObjectiveList(utility.parse(response.data.cells));
+                            
+                                    onHideModal();
+                                    onShowNoti("success", "It's from Add Modal");
+                                    setTimeout(onHideNoti, 2300);
+                                })
+                            }
+                        })
+                    }
+                }
+            ]}
+        />
     }
 
     if(type === "REMOVE") {
@@ -296,14 +315,14 @@ const ModalController = () => {
                     type:"primary", 
                     onClick:() => {
                         const objDelete = {
-                            id: deletedSubject.id,
+                            id: subject_deleted.id,
                             date: true
                         }
                     
                         data.deleteObj(objDelete).then((response) => {
                             if(response.data.error === "SUCCESS") {
                                 data.getObj(true).then((response) => {
-                                    onSetObjectiveList(utility.parse(response.data.cells));
+                                    data_onSetObjectiveList(utility.parse(response.data.cells));
                         
                                     onHideModal();
                                     onShowNoti("success", "It's from Add Modal");

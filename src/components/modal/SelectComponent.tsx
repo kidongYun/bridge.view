@@ -7,12 +7,12 @@ export interface OptionProps {
 }
 
 interface SelectComponentProps {
-    selected?: string
+    value?: string
     options?: OptionProps[]
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const SelectComponent = ({ selected, options, onChange }: SelectComponentProps) => {
+const SelectComponent = ({ value, options, onChange }: SelectComponentProps) => {
     let optionView = <></>;
     if(options !== undefined) {
         optionView = 
@@ -23,7 +23,7 @@ const SelectComponent = ({ selected, options, onChange }: SelectComponentProps) 
 
     let view =
     <Form.Group>
-        <Form.Control as="select" defaultValue={selected} onChange={onChange}>
+        <Form.Control as="select" defaultValue={value} onChange={onChange}>
             {optionView}
         </Form.Control>
     </Form.Group>

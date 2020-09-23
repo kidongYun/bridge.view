@@ -13,31 +13,31 @@ import ObjectiveType from '../../model/ObjectiveType';
 import { ObjectiveBuilder } from '../../model/ObjectiveType';
 
 const PlanTimeline = () => {
-    const { objectiveList, onSetObjectiveList, planList, onSetPlanList } = useData();
+    const { data_objectiveList, data_onSetObjectiveList, data_planList, data_onSetPlanList } = useData();
 
 
     React.useEffect(() => {
         data.getPlan(true).then((response) => {
-            onSetPlanList(utility.parse(response.data.cells));
+            data_onSetPlanList(utility.parse(response.data.cells));
         })
     }, [])
 
     React.useEffect(() => {
         data.getObj(false).then((response) => {
-            onSetObjectiveList(utility.parse(response.data.cells));
+            data_onSetObjectiveList(utility.parse(response.data.cells));
         })
     }, [])
 
-    console.log(planList);
-    console.log(objectiveList);
+    console.log(data_planList);
+    console.log(data_objectiveList);
 
     let view = 
     <Container>
-        {planList.map(
+        {data_planList.map(
             (plan) => {
                 if(plan instanceof PlanType) {
                     let target: ObjectiveType = new ObjectiveBuilder().build();
-                    objectiveList.map((temp) => {
+                    data_objectiveList.map((temp) => {
                         const obj = temp as ObjectiveType;
                         if(obj.id === plan.objectiveId) {
                             target = obj;

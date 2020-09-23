@@ -15,16 +15,16 @@ import { SubjectBuilder } from '../../model/SubjectType';
 
 const ObjectiveTimeline = () => {
     const { onShowModal } = useModal();
-    const { objectiveList, onSetObjectiveList } = useData();
-    const { onDeleteSubject, onUpdateSubject } = useSubject();
+    const { data_objectiveList, data_onSetObjectiveList } = useData();
+    const { subject_onDelete, subject_onUpdate } = useSubject();
 
     React.useEffect(() => {
         data.getObj(true).then((response) => {
-            onSetObjectiveList(utility.parse(response.data.cells));
+            data_onSetObjectiveList(utility.parse(response.data.cells));
         });
     }, []);
 
-    console.log(objectiveList);
+    console.log(data_objectiveList);
 
     let view = 
     <Container>
@@ -34,10 +34,10 @@ const ObjectiveTimeline = () => {
             backgroundHover="#0069d9"
             height="80px"
             title={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
-            onClick={() => { onUpdateSubject(new SubjectBuilder().build()); onShowModal("OBJECTIVE_POST"); }}
+            onClick={() => { subject_onUpdate(new SubjectBuilder().build()); onShowModal("OBJECTIVE_POST"); }}
         />
 
-        {objectiveList.map(
+        {data_objectiveList.map(
             (obj) => {
                 if(obj instanceof ObjectiveType && obj.type === "OBJECTIVE") {
                     if(obj.display === "NORMAL") {
@@ -50,8 +50,8 @@ const ObjectiveTimeline = () => {
                             status={obj.status}
                             onClick={() => {
                                 obj.display = "DETAIL";
-                                onSetObjectiveList([
-                                    ...objectiveList
+                                data_onSetObjectiveList([
+                                    ...data_objectiveList
                                 ])
                             }}
                         />
@@ -74,7 +74,7 @@ const ObjectiveTimeline = () => {
                                     text: "Remove", 
                                     onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => { 
                                         e.stopPropagation(); 
-                                        onDeleteSubject(obj); 
+                                        subject_onDelete(obj); 
                                         onShowModal("REMOVE"); 
                                     } 
                                 },
@@ -83,15 +83,15 @@ const ObjectiveTimeline = () => {
                                     text: "Modify", 
                                     onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => { 
                                         e.stopPropagation(); 
-                                        onUpdateSubject(obj); 
+                                        subject_onUpdate(obj); 
                                         onShowModal("OBJECTIVE_PUT"); 
                                     } 
                                 }
                             ]}
                             onClick={() => {
                                 obj.display = "NORMAL";
-                                onSetObjectiveList([
-                                    ...objectiveList
+                                data_onSetObjectiveList([
+                                    ...data_objectiveList
                                 ])
                             }}
                         />

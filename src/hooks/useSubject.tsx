@@ -6,21 +6,21 @@ import { deleteSubject, openSubject, updateSubject } from '../store/subject'
 import SubjectType from '../model/SubjectType';
 
 export default function useApi() {
-    const deletedSubject = useSelector((state: RootState) => state.subject.deletedSubject );
-    const openedSubject = useSelector((state: RootState) => state.subject.openedSubject );
-    const updatedSubject = useSelector((state: RootState) => state.subject.updatedSubject );
+    const subject_deleted = useSelector((state: RootState) => state.subject.deletedSubject );
+    const subject_opened = useSelector((state: RootState) => state.subject.openedSubject );
+    const subject_updated = useSelector((state: RootState) => state.subject.updatedSubject );
 
     const dispatch = useDispatch();
-    const onDeleteSubject = useCallback((subject: SubjectType) => dispatch(deleteSubject(subject)), [dispatch]);
-    const onOpenSubject = useCallback((subject: SubjectType) => dispatch(openSubject(subject)), [dispatch]);
-    const onUpdateSubject = useCallback((subject: SubjectType) => dispatch(updateSubject(subject)), [dispatch]);
+    const subject_onDelete = useCallback((subject: SubjectType) => dispatch(deleteSubject(subject)), [dispatch]);
+    const subject_onOpen = useCallback((subject: SubjectType) => dispatch(openSubject(subject)), [dispatch]);
+    const subject_onUpdate = useCallback((subject: SubjectType) => dispatch(updateSubject(subject)), [dispatch]);
 
     return {
-        deletedSubject,
-        openedSubject,
-        updatedSubject,
-        onDeleteSubject,
-        onOpenSubject,
-        onUpdateSubject
+        subject_deleted,
+        subject_opened,
+        subject_updated,
+        subject_onDelete,
+        subject_onOpen,
+        subject_onUpdate
     }
 }

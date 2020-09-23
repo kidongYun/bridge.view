@@ -8,10 +8,10 @@ import * as data from '../../service/Data'
 
 const Navigation = () => {
     const menuList = data.postNavList();
-    const { email } = useSign();
+    const { sign_email } = useSign();
 
-    if(email !== '') {
-        menuList[1].tabs[0].title = email;
+    if(sign_email !== '') {
+        menuList[1].tabs[0].title = sign_email;
     }
 
     return (

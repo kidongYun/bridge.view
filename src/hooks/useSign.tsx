@@ -5,25 +5,25 @@ import { useCallback } from 'react'
 import { updateStatus, updateDesc, updateEmail, updatePassword } from '../store/sign'
 
 export default function useSign() {
-    const status = useSelector((state: RootState) => state.sign.status);
-    const desc = useSelector((state: RootState) => state.sign.desc);
-    const email = useSelector((state: RootState) => state.sign.email);
-    const password = useSelector((state: RootState) => state.sign.password);
+    const sign_status = useSelector((state: RootState) => state.sign.status);
+    const sign_desc = useSelector((state: RootState) => state.sign.desc);
+    const sign_email = useSelector((state: RootState) => state.sign.email);
+    const sign_password = useSelector((state: RootState) => state.sign.password);
 
     const dispatch = useDispatch();
-    const onUpdateStatus = useCallback((status: boolean) => dispatch(updateStatus(status)), [dispatch]);
-    const onUpdateDesc = useCallback((desc: string) => dispatch(updateDesc(desc)), [dispatch]);
-    const onUpdateEmail = useCallback((email: string) => dispatch(updateEmail(email)), [dispatch]);
-    const onUpdatePassword = useCallback((password: string) => dispatch(updatePassword(password)), [dispatch]);
+    const sign_onUpdateStatus = useCallback((status: boolean) => dispatch(updateStatus(status)), [dispatch]);
+    const sign_onUpdateDesc = useCallback((desc: string) => dispatch(updateDesc(desc)), [dispatch]);
+    const sign_onUpdateEmail = useCallback((email: string) => dispatch(updateEmail(email)), [dispatch]);
+    const sign_onUpdatePassword = useCallback((password: string) => dispatch(updatePassword(password)), [dispatch]);
 
     return {
-        status,
-        desc,
-        email,
-        password,
-        onUpdateStatus,
-        onUpdateDesc,
-        onUpdateEmail,
-        onUpdatePassword
+        sign_status,
+        sign_desc,
+        sign_email,
+        sign_password,
+        sign_onUpdateStatus,
+        sign_onUpdateDesc,
+        sign_onUpdateEmail,
+        sign_onUpdatePassword
     }
 }

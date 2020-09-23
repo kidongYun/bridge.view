@@ -16,7 +16,6 @@ interface FormProps {
     placeholder?: string
     value?: string
     rows?: string
-    selected?: string
     options?: OptionProps[]
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
@@ -43,14 +42,16 @@ const ModalComponent = ({
             }
         
             if(form.type === "TEXT") {
-                return <TextComponent 
+                return <TextComponent
+                    value={form.value}
                     placeholder={form.placeholder} 
                     onChange={form.onChange} 
                 />
             }
 
             if(form.type === "TEXTAREA") {
-                return <TextareaComponent 
+                return <TextareaComponent
+                    value={form.value}
                     placeholder={form.placeholder} 
                     rows={form.rows}
                     onChange={form.onChange}
@@ -59,7 +60,7 @@ const ModalComponent = ({
 
             if(form.type === "SELECT") {
                 return <SelectComponent 
-                    selected={form.selected}
+                    value={form.value}
                     options={form.options}
                     onChange={form.onChange}
                 />
