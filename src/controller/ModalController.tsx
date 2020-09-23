@@ -13,7 +13,7 @@ import useObjective from '../hooks/useObjective';
 import ObjectiveType from '../model/ObjectiveType';
 
 const ModalController = () => {
-    const { type, visible, onHideModal } = useModal();
+    const { modal_type, modal_visible, modal_onHide } = useModal();
     const { subject_updated, subject_deleted } = useSubject();
     const { onShowNoti, onHideNoti } = useNoti();
     const { data_onSetObjectiveList } = useData();
@@ -22,11 +22,11 @@ const ModalController = () => {
 
     let view = <></>;
     
-    if(!visible){
+    if(!modal_visible){
         return view;
     }
 
-    if(type === "SIGN") {
+    if(modal_type === "SIGN") {
         view = 
         <ModalComponent 
             title={{ text: "SIGN" }}
@@ -57,7 +57,7 @@ const ModalController = () => {
                     text:"Close", 
                     type:"secondary", 
                     onClick:() => {
-                        onHideModal();
+                        modal_onHide();
                     }
                 },
                 { 
@@ -83,7 +83,7 @@ const ModalController = () => {
     
                             onShowNoti("success", "로그인되었습니다.");
                             setTimeout(onHideNoti, 2300);
-                            onHideModal();
+                            modal_onHide();
                         })
                     }
                 },
@@ -102,7 +102,7 @@ const ModalController = () => {
                             if(response.data.error === "SUCCESS") {
                                 onShowNoti("success", "가입이 완료되었습니다.");
                                 setTimeout(onHideNoti, 2300);
-                                onHideModal(); 
+                                modal_onHide(); 
                             }
                         })
                     } 
@@ -111,7 +111,7 @@ const ModalController = () => {
         />
     }
 
-    if(type === "OBJECTIVE_POST") {
+    if(modal_type === "OBJECTIVE_POST") {
         view = 
         <ModalComponent
             title={{ text:"CREATE OBJECTIVE" }}
@@ -166,7 +166,7 @@ const ModalController = () => {
                     text: "Close",
                     type: "secondary",
                     onClick:() => {
-                        onHideModal();
+                        modal_onHide();
                     }
                 },
                 { 
@@ -188,7 +188,7 @@ const ModalController = () => {
                                 data.getObj(true).then((response) => {
                                     data_onSetObjectiveList(utility.parse(response.data.cells));
                             
-                                    onHideModal();
+                                    modal_onHide();
                                     onShowNoti("success", "It's from Add Modal");
                                     setTimeout(onHideNoti, 2300);
                                 })
@@ -200,7 +200,7 @@ const ModalController = () => {
         />
     }
 
-    if(type === "OBJECTIVE_PUT") {
+    if(modal_type === "OBJECTIVE_PUT") {
         let obj = subject_updated as ObjectiveType;
 
         view =
@@ -263,7 +263,7 @@ const ModalController = () => {
                     text: "Close",
                     type: "secondary",
                     onClick: () => {
-                        onHideModal();
+                        modal_onHide();
                     }
                 },
                 { 
@@ -286,7 +286,7 @@ const ModalController = () => {
                                 data.getObj(true).then((response) => {
                                     data_onSetObjectiveList(utility.parse(response.data.cells));
                             
-                                    onHideModal();
+                                    modal_onHide();
                                     onShowNoti("success", "It's from Add Modal");
                                     setTimeout(onHideNoti, 2300);
                                 })
@@ -298,7 +298,7 @@ const ModalController = () => {
         />
     }
 
-    if(type === "REMOVE") {
+    if(modal_type === "REMOVE") {
         view = 
         <ModalComponent
             title={{ text: "Remove" }}
@@ -308,7 +308,7 @@ const ModalController = () => {
                     text:"Close", 
                     type:"secondary", 
                     onClick:() => { 
-                        onHideModal();
+                        modal_onHide();
                     } 
                 },
                 { 
@@ -325,7 +325,7 @@ const ModalController = () => {
                                 data.getObj(true).then((response) => {
                                     data_onSetObjectiveList(utility.parse(response.data.cells));
                         
-                                    onHideModal();
+                                    modal_onHide();
                                     onShowNoti("success", "It's from Add Modal");
                                     setTimeout(onHideNoti, 2300);
                                 })

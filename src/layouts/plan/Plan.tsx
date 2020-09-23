@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import useStage from '../../hooks/useStage';
-import PlanTimeline from './PlanTimeline';
+import PlanController from '../../controller/PlanController';
 
 const Plan = () => {
     let view = <></>
@@ -15,7 +15,7 @@ const Plan = () => {
 
     view = 
     <Container>
-        <PlanTimeline/>
+        <PlanController/>
     </Container>
 
     return (view)

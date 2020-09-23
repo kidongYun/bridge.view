@@ -1,18 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Cell from '../../components/cell/Cell';
+import Cell from '../components/cell/CellComponent';
 
-import * as data from '../../service/Data'
-import * as utility from '../../service/Utility';
+import * as data from '../service/Data'
+import * as utility from '../service/Utility';
 
-import useData from '../../hooks/useData';
-import PlanType from '../../model/PlanType';
-import DateType from '../../model/DateType';
-import ObjectiveType from '../../model/ObjectiveType';
-import { ObjectiveBuilder } from '../../model/ObjectiveType';
+import useData from '../hooks/useData';
+import PlanType from '../model/PlanType';
+import DateType from '../model/DateType';
+import ObjectiveType from '../model/ObjectiveType';
+import { ObjectiveBuilder } from '../model/ObjectiveType';
 
-const PlanTimeline = () => {
+const PlanController = () => {
     const { data_objectiveList, data_onSetObjectiveList, data_planList, data_onSetPlanList } = useData();
 
 
@@ -76,4 +76,4 @@ const Container = styled.div`
     overflow-y: auto;
 `;
 
-export default PlanTimeline;
+export default PlanController;

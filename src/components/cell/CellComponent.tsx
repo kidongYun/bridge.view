@@ -17,7 +17,7 @@ interface CellProps {
     onClick?: () => void
 }
 
-const Cell = ({ 
+const CellComponent = ({ 
     borderRadius = "0px", 
     backgroundColor = "#ffffff", 
     backgroundHover = "#ffffff", 
@@ -173,4 +173,4 @@ const TextFrame = styled.div<{ fontSize: string, color: string, verticalAlign: s
     align-items: ${props => props.verticalAlign};
 `;
 
-export default Cell;
+export default CellComponent;

@@ -1,5 +1,3 @@
-import ObjectiveType from "../model/ObjectiveType";
-
 const SET_TITLE = 'objective/TITLE' as const
 const SET_DESC = 'objective/DESC' as const
 const SET_PRIORITY = 'objective/PRIORITY' as const

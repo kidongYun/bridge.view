@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import useStage from '../../hooks/useStage'
-import ObjectiveTimeline from './ObjectiveTimeline';
+import ObjectiveTimeline from '../../controller/ObjectiveController';
 
 const Objective = () => {
     let view = <></>;

@@ -14,7 +14,7 @@ interface ObjectiveModalProps {
 }
 
 const ObjectiveModal = ({ obj, buttons } : ObjectiveModalProps) => {
-    const { onHideModal } = useModal();
+    const { modal_onHide } = useModal();
 
     let objReq = {
         id: obj.id,
@@ -50,7 +50,7 @@ const ObjectiveModal = ({ obj, buttons } : ObjectiveModalProps) => {
 
     return (
         <Modal show={true}>
-            <Modal.Header closeButton onClick={onHideModal}>
+            <Modal.Header closeButton onClick={modal_onHide}>
                 <Modal.Title>New Objective</Modal.Title>
             </Modal.Header>
 

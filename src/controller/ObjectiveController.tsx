@@ -1,20 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Cell from '../../components/cell/Cell';
-import ObjectiveType from '../../model/ObjectiveType';
-import DateType from '../../model/DateType';
+import Cell from '../components/cell/CellComponent';
+import ObjectiveType from '../model/ObjectiveType';
+import DateType from '../model/DateType';
 
-import * as data from '../../service/Data'
-import * as utility from '../../service/Utility'
+import * as data from '../service/Data'
+import * as utility from '../service/Utility'
 
-import useModal from '../../hooks/useModal';
-import useData from '../../hooks/useData';
-import useSubject from '../../hooks/useSubject';
-import { SubjectBuilder } from '../../model/SubjectType';
+import useModal from '../hooks/useModal';
+import useData from '../hooks/useData';
+import useSubject from '../hooks/useSubject';
+import { SubjectBuilder } from '../model/SubjectType';
 
-const ObjectiveTimeline = () => {
-    const { onShowModal } = useModal();
+const ObjectiveController = () => {
+    const { modal_onShow } = useModal();
     const { data_objectiveList, data_onSetObjectiveList } = useData();
     const { subject_onDelete, subject_onUpdate } = useSubject();
 
@@ -34,7 +34,7 @@ const ObjectiveTimeline = () => {
             backgroundHover="#0069d9"
             height="80px"
             title={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
-            onClick={() => { subject_onUpdate(new SubjectBuilder().build()); onShowModal("OBJECTIVE_POST"); }}
+            onClick={() => { subject_onUpdate(new SubjectBuilder().build()); modal_onShow("OBJECTIVE_POST"); }}
         />
 
         {data_objectiveList.map(
@@ -75,7 +75,7 @@ const ObjectiveTimeline = () => {
                                     onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => { 
                                         e.stopPropagation(); 
                                         subject_onDelete(obj); 
-                                        onShowModal("REMOVE"); 
+                                        modal_onShow("REMOVE"); 
                                     } 
                                 },
                                 { 
@@ -84,7 +84,7 @@ const ObjectiveTimeline = () => {
                                     onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => { 
                                         e.stopPropagation(); 
                                         subject_onUpdate(obj); 
-                                        onShowModal("OBJECTIVE_PUT"); 
+                                        modal_onShow("OBJECTIVE_PUT"); 
                                     } 
                                 }
                             ]}
@@ -121,4 +121,4 @@ const Container = styled.div`
     overflow-y: auto;
 `
 
-export default ObjectiveTimeline;
+export default ObjectiveController;
