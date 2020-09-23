@@ -15,7 +15,6 @@ import { ObjectiveBuilder } from '../model/ObjectiveType';
 const PlanController = () => {
     const { data_objectiveList, data_onSetObjectiveList, data_planList, data_onSetPlanList } = useData();
 
-
     React.useEffect(() => {
         data.getPlan(true).then((response) => {
             data_onSetPlanList(utility.parse(response.data.cells));
@@ -27,9 +26,6 @@ const PlanController = () => {
             data_onSetObjectiveList(utility.parse(response.data.cells));
         })
     }, [])
-
-    console.log(data_planList);
-    console.log(data_objectiveList);
 
     let view = 
     <Container>

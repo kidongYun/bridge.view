@@ -75,7 +75,7 @@ const ModalComponent = ({
         <>
         {buttons.map((button) => {
             return <Button variant={button.type} onClick={() => { button.onClick(); }}>{button.text}</Button>
-        })};
+        })}
         </>
     }
 
