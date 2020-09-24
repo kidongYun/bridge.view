@@ -8,6 +8,7 @@ const UPDATE_SUBJECT = 'subject/UPDATE' as const
 const UPDATE_SUBJECT_ID = 'subject/UPDATE/ID' as const
 const UPDATE_SUBJECT_STATUS = 'subject/UPDATE/STATUS' as const
 
+
 export const deleteSubject = (subject: SubjectType) => ({ type: DELETE_SUBJECT, payload: subject })
 export const openSubject = (subject: SubjectType) => ({ type: OPEN_SUBJECT, payload: subject })
 export const updateSubject = (subject: SubjectType) => ({ type: UPDATE_SUBJECT, payload: subject })
@@ -46,7 +47,7 @@ function api(state: SubjectState = initialState, action: SubjectAction) {
                 deletedSubject: state.deletedSubject, 
                 openedSubject: state.openedSubject, 
                 updateSubject: {
-                    
+
                 }}
         default :
             return state
