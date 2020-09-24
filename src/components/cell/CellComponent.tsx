@@ -39,8 +39,11 @@ const CellComponent = ({
             </TitleFrame>
     }
 
-    let statusFrame = 
-    <StatusFrame></StatusFrame>;
+    let statusFrame = <></>;
+    if(status !== undefined) {
+        statusFrame = 
+        <StatusFrame></StatusFrame>;
+    }
 
 
     let contentsFrame = <></>;

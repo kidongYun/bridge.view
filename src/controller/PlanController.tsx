@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Cell from '../components/cell/CellComponent';
+import CellComponent from '../components/cell/CellComponent';
 
 import * as data from '../service/Data'
 import * as utility from '../service/Utility';
@@ -29,6 +29,7 @@ const PlanController = () => {
 
     let view = 
     <Container>
+
         {data_planList.map(
             (plan) => {
                 if(plan instanceof PlanType) {
@@ -40,21 +41,19 @@ const PlanController = () => {
                         }
                     })
 
-                    return <Cell 
+                    return <CellComponent 
                         borderRadius="10px"
                         backgroundColor="#dc3545"
                         height="100px"
                         title={{ text: target.title, color: "#ffffff", verticalAlign: "", horizontalAlign: "" }}
                         contents={[]}
-                        status={0}
                     />
                 }
 
                 if(plan instanceof DateType && plan.type === "DATE") {
-                    return <Cell
+                    return <CellComponent
                         borderRadius="0px"
                         title={{ text: plan.getDate(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
-                        status={0}
                     />
                 }
             }

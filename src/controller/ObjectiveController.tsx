@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Cell from '../components/cell/CellComponent';
+import CellComponent from '../components/cell/CellComponent';
 import ObjectiveType from '../model/ObjectiveType';
 import DateType from '../model/DateType';
 
@@ -28,7 +28,7 @@ const ObjectiveController = () => {
 
     let view = 
     <Container>
-        <Cell
+        <CellComponent
             borderRadius="10px"
             backgroundColor="#007bff"
             backgroundHover="#0069d9"
@@ -41,13 +41,12 @@ const ObjectiveController = () => {
             (obj) => {
                 if(obj instanceof ObjectiveType && obj.type === "OBJECTIVE") {
                     if(obj.display === "NORMAL") {
-                        return <Cell
+                        return <CellComponent
                             borderRadius="10px"
                             backgroundColor="#eeeeee"
                             backgroundHover="#e4e4e4"
                             height="100px"
                             title={{ text: obj.title, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
-                            status={obj.status}
                             onClick={() => {
                                 obj.display = "DETAIL";
                                 data_onSetObjectiveList([
@@ -58,7 +57,7 @@ const ObjectiveController = () => {
                     }
 
                     if(obj.display === "DETAIL") {
-                        return <Cell
+                        return <CellComponent
                             borderRadius="10px"
                             backgroundColor="#eeeeee"
                             backgroundHover="#e4e4e4"
@@ -68,7 +67,6 @@ const ObjectiveController = () => {
                                 { text: obj.description, borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "center" },
                                 { text: obj.getDate(), borderRadius: "10px", backgroundColor: "#ffffff", verticalAlign: "center", horizontalAlign: "flex-start" },
                             ]}
-                            status={obj.status}
                             buttons={[
                                 { 
                                     type: "outline-danger", 
@@ -100,10 +98,9 @@ const ObjectiveController = () => {
                 }
 
                 if(obj instanceof DateType && obj.type === "DATE") {
-                    return <Cell
+                    return <CellComponent
                         borderRadius="0px"
                         title={{ text: obj.getDate(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
-                        status={0}
                     />
                 }
             }
