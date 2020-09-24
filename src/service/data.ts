@@ -8,6 +8,18 @@ export async function getPlan(date: boolean) {
     return await axios.get("http://localhost:8080/plan", { params: { date: date }});
 }
 
+export async function putPlan(planPut: {
+    id: number,
+    objectiveId: number,
+    content: string,
+    year: number,
+    month: number,
+    week: number,
+    status: number
+}) {
+    return await axios.put("http://localhost:8080/plan/" + planPut.id, planPut);
+}
+
 export async function getObj(date: boolean) {
     return await axios.get("http://localhost:8080/objective", { params: { date: date }});
 }

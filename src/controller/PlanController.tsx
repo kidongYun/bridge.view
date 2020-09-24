@@ -6,14 +6,19 @@ import CellComponent from '../components/cell/CellComponent';
 import * as data from '../service/Data'
 import * as utility from '../service/Utility';
 
+import useModal from '../hooks/useModal';
 import useData from '../hooks/useData';
+import useSubject from '../hooks/useSubject';
+
 import PlanType from '../model/PlanType';
 import DateType from '../model/DateType';
 import ObjectiveType from '../model/ObjectiveType';
 import { ObjectiveBuilder } from '../model/ObjectiveType';
 
 const PlanController = () => {
+    const { modal_onShow } = useModal();
     const { data_objectiveList, data_onSetObjectiveList, data_planList, data_onSetPlanList } = useData();
+    const { subject_onUpdate } = useSubject();
 
     React.useEffect(() => {
         data.getPlan(true).then((response) => {
@@ -46,7 +51,13 @@ const PlanController = () => {
                         backgroundColor="#dc3545"
                         height="100px"
                         title={{ text: target.title, color: "#ffffff", verticalAlign: "", horizontalAlign: "" }}
-                        contents={[]}
+                        contents={[
+                            { text: plan.content }
+                        ]}
+                        onClick={() => {
+                            subject_onUpdate(plan);
+                            modal_onShow("PLAN");
+                        }}
                     />
                 }
 
