@@ -5,7 +5,6 @@ import * as data from '../service/Data'
 import * as utility from '../service/Utility'
 
 import useModal from '../hooks/useModal';
-import useSubject from '../hooks/useSubject';
 import useNoti from '../hooks/useNoti';
 import useData from '../hooks/useData';
 import useSign from '../hooks/useSign';
@@ -15,7 +14,7 @@ import PlanType from '../model/PlanType';
 
 const ModalController = () => {
     const { modal_type, modal_visible, modal_onHide } = useModal();
-    const { subject_updated, subject_deleted } = useSubject();
+    // const { subject_updated, subject_deleted } = useSubject();
     const { onShowNoti, onHideNoti } = useNoti();
     const { data_objectiveList, data_onSetObjectiveList } = useData();
     const { sign_desc, sign_email, sign_password, sign_onUpdateStatus, sign_onUpdateDesc, sign_onUpdateEmail, sign_onUpdatePassword } = useSign();
@@ -202,7 +201,7 @@ const ModalController = () => {
     }
 
     if(modal_type === "OBJECTIVE_PUT") {
-        let obj = subject_updated as ObjectiveType;
+        // let obj = subject_updated as ObjectiveType;
 
         view =
         <ModalComponent
@@ -210,7 +209,7 @@ const ModalController = () => {
             forms={[
                 { 
                     type: "TEXT", 
-                    value: obj.title,
+                    // value: obj.title,
                     placeholder: "TITLE",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
@@ -219,7 +218,7 @@ const ModalController = () => {
                 },
                 { 
                     type: "TEXTAREA", 
-                    value: obj.description,
+                    // value: obj.description,
                     placeholder: "DESCRIPTION", 
                     rows: "10",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -249,7 +248,7 @@ const ModalController = () => {
                 },
                 { 
                     type: "TEXT",
-                    value: obj.dateTime,
+                    // value: obj.dateTime,
                     placeholder: "2020-07-21",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
@@ -273,29 +272,29 @@ const ModalController = () => {
                     onClick: () => {
                         
                         const objPut = {
-                            id: subject_updated.id,
+                            // id: subject_updated.id,
                             title: obj_title,
                             description: obj_desc,
                             dateTime: obj_deadline,
                             priority: obj_priority,
-                            status: subject_updated.status,
+                            // status: subject_updated.status,
                             date: true
                         }
             
-                        data.putObj(objPut).then((response) => {
-                            /** 실패한 경우 */
-                            if(response.data.error !== "SUCCESS") {
+                        // data.putObj(objPut).then((response) => {
+                        //     /** 실패한 경우 */
+                        //     if(response.data.error !== "SUCCESS") {
 
-                            }
+                        //     }
 
-                            data.getObj(true).then((response) => {
-                                data_onSetObjectiveList(utility.parse(response.data.cells));
+                        //     data.getObj(true).then((response) => {
+                        //         data_onSetObjectiveList(utility.parse(response.data.cells));
                         
-                                modal_onHide();
-                                onShowNoti("success", "It's from Add Modal");
-                                setTimeout(onHideNoti, 2300);
-                            })
-                        })
+                        //         modal_onHide();
+                        //         onShowNoti("success", "It's from Add Modal");
+                        //         setTimeout(onHideNoti, 2300);
+                        //     })
+                        // })
                     }
                 }
             ]}
@@ -320,24 +319,24 @@ const ModalController = () => {
                     type: "primary", 
                     onClick:() => {
                         const objDelete = {
-                            id: subject_deleted.id,
+                            // id: subject_deleted.id,
                             date: true
                         }
                     
-                        data.deleteObj(objDelete).then((response) => {
-                            /** 실패한 경우 */
-                            if(response.data.error !== "SUCCESS") {
+                        // data.deleteObj(objDelete).then((response) => {
+                        //     /** 실패한 경우 */
+                        //     if(response.data.error !== "SUCCESS") {
 
-                            }
+                        //     }
 
-                            data.getObj(true).then((response) => {
-                                data_onSetObjectiveList(utility.parse(response.data.cells));
+                        //     data.getObj(true).then((response) => {
+                        //         data_onSetObjectiveList(utility.parse(response.data.cells));
                     
-                                modal_onHide();
-                                onShowNoti("success", "제거되었습니다.");
-                                setTimeout(onHideNoti, 2300);
-                            });
-                        })
+                        //         modal_onHide();
+                        //         onShowNoti("success", "제거되었습니다.");
+                        //         setTimeout(onHideNoti, 2300);
+                        //     });
+                        // })
                     } 
                 }
             ]}
@@ -345,14 +344,14 @@ const ModalController = () => {
     }
 
     if(modal_type === "PLAN") {
-        const plan = subject_updated as PlanType;
+        // const plan = subject_updated as PlanType;
         const objectiveList = data_objectiveList as ObjectiveType[];
         let selected: number = 0;
 
         objectiveList.map((obj) => {
-            if(plan.objectiveId === obj.id) {
-                selected = obj.id;
-            }
+            // if(plan.objectiveId === obj.id) {
+            //     selected = obj.id;
+            // }
         });
 
         view =
@@ -373,7 +372,7 @@ const ModalController = () => {
                 {
                     type: "SELECT",
                     options: [
-                        { title:plan.dateTime, value:plan.dateTime }
+                        // { title:plan.dateTime, value:plan.dateTime }
                     ]
                 }
             ]}
@@ -391,7 +390,7 @@ const ModalController = () => {
                     onClick:() => {
 
                         const planPut = {
-                            id: subject_updated.id,
+                            // id: subject_updated.id,
                             objectiveId: selected,
                             content: "",
                             year: 0,
@@ -400,20 +399,20 @@ const ModalController = () => {
                             status: 0
                         }
             
-                        data.putPlan(planPut).then((response) => {
-                            /** 실패한 경우 */
-                            if(response.data.error !== "SUCCESS") {
+                        // data.putPlan(planPut).then((response) => {
+                        //     /** 실패한 경우 */
+                        //     if(response.data.error !== "SUCCESS") {
 
-                            }
+                        //     }
 
-                            data.getPlan(true).then((response) => {
-                                data_onSetObjectiveList(utility.parse(response.data.cells));
+                        //     data.getPlan(true).then((response) => {
+                        //         data_onSetObjectiveList(utility.parse(response.data.cells));
                         
-                                modal_onHide();
-                                onShowNoti("success", "계획이 수정되었습니다.");
-                                setTimeout(onHideNoti, 2300);
-                            })
-                        })
+                        //         modal_onHide();
+                        //         onShowNoti("success", "계획이 수정되었습니다.");
+                        //         setTimeout(onHideNoti, 2300);
+                        //     })
+                        // })
                     }
                 }
             ]}

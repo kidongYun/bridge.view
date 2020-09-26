@@ -10,13 +10,11 @@ import * as utility from '../service/Utility'
 
 import useModal from '../hooks/useModal';
 import useData from '../hooks/useData';
-import useSubject from '../hooks/useSubject';
-import { SubjectBuilder } from '../model/SubjectType';
 
 const ObjectiveController = () => {
     const { modal_onShow } = useModal();
     const { data_objectiveList, data_onSetObjectiveList } = useData();
-    const { subject_onDelete, subject_onUpdate } = useSubject();
+    // const { subject_onDelete, subject_onUpdate } = useSubject();
 
     React.useEffect(() => {
         data.getObj(true).then((response) => {
@@ -34,7 +32,7 @@ const ObjectiveController = () => {
             backgroundHover="#0069d9"
             height="100px"
             title={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
-            onClick={() => { subject_onUpdate(new SubjectBuilder().build()); modal_onShow("OBJECTIVE_POST"); }}
+            // onClick={() => { subject_onUpdate(new SubjectBuilder().build()); modal_onShow("OBJECTIVE_POST"); }}
         />
 
         {data_objectiveList.map(
@@ -73,7 +71,7 @@ const ObjectiveController = () => {
                                     text: "Remove", 
                                     onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => { 
                                         e.stopPropagation(); 
-                                        subject_onDelete(obj); 
+                                        // subject_onDelete(obj); 
                                         modal_onShow("REMOVE"); 
                                     } 
                                 },
@@ -82,7 +80,7 @@ const ObjectiveController = () => {
                                     text: "Modify", 
                                     onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => { 
                                         e.stopPropagation(); 
-                                        subject_onUpdate(obj); 
+                                        // subject_onUpdate(obj); 
                                         modal_onShow("OBJECTIVE_PUT"); 
                                     } 
                                 }
