@@ -14,7 +14,7 @@ import {
  } from '../store/cell'
 
 export default function useCell() {
-    const cellType = useSelector((state: RootState) => state.cell);
+    const cellType = useSelector((state: RootState) => state.cell.cellType);
     const cellDateTime = useSelector((state: RootState) => state.cell.cellDateTime);
     const subjectId = useSelector((state: RootState) => state.cell.subjectId);
     const subjectStatus = useSelector((state: RootState) => state.cell.subjectStatus);
