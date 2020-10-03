@@ -12,9 +12,7 @@ export async function putPlan(planPut: {
     id: number,
     objectiveId: number,
     content: string,
-    year: number,
-    month: number,
-    week: number,
+    dateTime: string,
     status: number
 }) {
     return await axios.put("http://localhost:8080/plan/" + planPut.id, planPut);

@@ -8,6 +8,7 @@ import * as utility from '../service/Utility';
 
 import useModal from '../hooks/useModal';
 import useData from '../hooks/useData';
+import useCell from '../hooks/useCell';
 
 import PlanType from '../model/PlanType';
 import DateType from '../model/DateType';
@@ -16,18 +17,29 @@ import { ObjectiveBuilder } from '../model/ObjectiveType';
 
 const PlanController = () => {
     const { modal_onShow } = useModal();
-    const { data_objectiveList, data_onSetObjectiveList, data_planList, data_onSetPlanList } = useData();
-    // const { subject_onUpdate } = useSubject();
+
+    const { 
+        data_objectiveList, 
+        data_onSetObjectiveList, 
+        data_planList, 
+        data_onSetPlanList 
+    } = useData();
+
+    const {
+        onSetCellDateTime,
+        onSetSubjectId,
+        onSetPlanContent
+    } = useCell();
 
     React.useEffect(() => {
         data.getPlan(true).then((response) => {
-            data_onSetPlanList(utility.parse(response.data.cells));
+            data_onSetPlanList(utility.parse(response.data.data));
         })
     }, [])
 
     React.useEffect(() => {
         data.getObj(false).then((response) => {
-            data_onSetObjectiveList(utility.parse(response.data.cells));
+            data_onSetObjectiveList(utility.parse(response.data.data));
         })
     }, [])
 
@@ -37,6 +49,7 @@ const PlanController = () => {
         {data_planList.map(
             (plan) => {
                 if(plan instanceof PlanType) {
+                    /* 연결된 Objective 찾아서 target에 저장 */
                     let target: ObjectiveType = new ObjectiveBuilder().build();
                     data_objectiveList.map((temp) => {
                         const obj = temp as ObjectiveType;
@@ -54,7 +67,9 @@ const PlanController = () => {
                             { text: plan.content }
                         ]}
                         onClick={() => {
-                            // subject_onUpdate(plan);
+                            onSetCellDateTime(plan.dateTime);
+                            onSetSubjectId(plan.id);
+                            onSetPlanContent(plan.content);
                             modal_onShow("PLAN");
                         }}
                     />

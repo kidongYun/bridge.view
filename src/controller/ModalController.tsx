@@ -10,17 +10,52 @@ import useData from '../hooks/useData';
 import useSign from '../hooks/useSign';
 import useCell from '../hooks/useCell';
 
-import useObjective from '../hooks/useObjective';
 import ObjectiveType from '../model/ObjectiveType';
-import PlanType from '../model/PlanType';
 
 const ModalController = () => {
-    const { modal_type, modal_visible, modal_onHide } = useModal();
-    const { cellDateTime, subjectId, subjectStatus, objectiveTitle, objectiveDescription, objectivePriority } = useCell();
-    const { onShowNoti, onHideNoti } = useNoti();
-    const { data_objectiveList, data_onSetObjectiveList } = useData();
-    const { sign_desc, sign_email, sign_password, sign_onUpdateStatus, sign_onUpdateDesc, sign_onUpdateEmail, sign_onUpdatePassword } = useSign();
-    const { obj_title, obj_desc, obj_priority, obj_deadline, obj_onSetTitle, obj_onSetDesc, obj_onSetPriority, obj_onSetDeadline } = useObjective();
+    const { 
+        modal_type, 
+        modal_visible, 
+        modal_onHide 
+    } = useModal();
+
+    const { 
+        data_objectiveList,
+        data_planList,
+        data_onSetObjectiveList,
+        data_onSetPlanList
+    } = useData();
+
+    const { 
+        onShowNoti, 
+        onHideNoti 
+    } = useNoti();
+
+    const { 
+        cellDateTime, 
+        subjectId, 
+        subjectStatus, 
+        objectiveTitle, 
+        objectiveDescription, 
+        objectivePriority,
+        planObjectiveId,
+        planContent,
+        onSetCellDateTime,
+        onSetObjectiveTitle,
+        onSetObjectiveDescription,
+        onSetObjectivePriority,
+        onSetPlanContent
+    } = useCell();
+
+    const { 
+        sign_desc, 
+        sign_email, 
+        sign_password, 
+        sign_onUpdateStatus, 
+        sign_onUpdateDesc, 
+        sign_onUpdateEmail, 
+        sign_onUpdatePassword 
+    } = useSign();
 
     let view = <></>;
     
@@ -121,7 +156,7 @@ const ModalController = () => {
                     placeholder: "TITLE",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-                        obj_onSetTitle(value);
+                        onSetObjectiveTitle(value);
                     }
                 },
                 { 
@@ -130,7 +165,7 @@ const ModalController = () => {
                     rows: "10",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-                        obj_onSetDesc(value);
+                        onSetObjectiveDescription(value);
                     }
                 },
                 { 
@@ -140,12 +175,12 @@ const ModalController = () => {
                 { 
                     type: "SELECT",
                     options: [
-                        { title: "title1", value: "value1" },
-                        { title: "title2", value: "value2" }
+                        { title: "title1", value: "1" },
+                        { title: "title2", value: "5" }
                     ],
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-                        obj_onSetPriority(Number.parseInt(value));
+                        onSetObjectivePriority(Number.parseInt(value));
                     }
                 },
                 { 
@@ -157,7 +192,7 @@ const ModalController = () => {
                     placeholder: "2020-07-21",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-                        obj_onSetDeadline(value);
+                        onSetCellDateTime(value);
                     }
                 }
             ]}
@@ -173,7 +208,6 @@ const ModalController = () => {
                     text: "Add", 
                     type: "primary", 
                     onClick:() => {
-
                         const objPost = {
                             title: objectiveTitle,
                             description: objectiveDescription,
@@ -185,14 +219,16 @@ const ModalController = () => {
                 
                         data.postObj(objPost).then((response) => {
                             if(response.data.errorCode !== 200) {
-
+                                onShowNoti("warning", "Failure to add new objective.");
+                                setTimeout(onHideNoti, 2300);
+                                return;
                             }
 
-                            data.getObj(true).then(() => {
+                            data.getObj(true).then((response) => {
                                 if(response.data.errorCode !== 200) {
-                                    modal_onHide();
                                     onShowNoti("warning", "It's warning");
                                     setTimeout(onHideNoti, 2300);
+                                    return;
                                 }
 
                                 data_onSetObjectiveList(utility.parse(response.data.data));
@@ -220,7 +256,7 @@ const ModalController = () => {
                     placeholder: "TITLE",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-                        obj_onSetTitle(value);
+                        onSetObjectiveTitle(value);
                     }
                 },
                 { 
@@ -230,7 +266,7 @@ const ModalController = () => {
                     rows: "10",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-                        obj_onSetDesc(value);
+                        onSetObjectiveDescription(value);
                     }
                 },
                 { 
@@ -239,14 +275,14 @@ const ModalController = () => {
                 },
                 { 
                     type: "SELECT",
-                    value: "value2",
+                    value: objectivePriority + "",
                     options: [
-                        { title: "title1", value: "value1" },
-                        { title: "title2", value: "value2" }
+                        { title: "title1", value: "1" },
+                        { title: "title2", value: "2" }
                     ],
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-                        obj_onSetPriority(Number.parseInt(value));
+                        onSetObjectivePriority(Number.parseInt(value));
                     }
                 },
                 { 
@@ -259,7 +295,7 @@ const ModalController = () => {
                     placeholder: "2020-07-21",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-                        obj_onSetDeadline(value);
+                        onSetCellDateTime(value);
                     }
                 }
             ]}
@@ -275,7 +311,6 @@ const ModalController = () => {
                     text: "Update",
                     type: "primary",
                     onClick: () => {
-                        
                         const objPut = {
                             id: subjectId,
                             title: objectiveTitle,
@@ -285,6 +320,8 @@ const ModalController = () => {
                             status: subjectStatus,
                             date: true
                         }
+
+                        console.log(objPut);
             
                         data.putObj(objPut).then((response) => {
                             /** 실패한 경우 */
@@ -361,14 +398,13 @@ const ModalController = () => {
     }
 
     if(modal_type === "PLAN") {
-        // const plan = subject_updated as PlanType;
         const objectiveList = data_objectiveList as ObjectiveType[];
+        
         let selected: number = 0;
-
         objectiveList.map((obj) => {
-            // if(plan.objectiveId === obj.id) {
-            //     selected = obj.id;
-            // }
+            if(planObjectiveId === obj.id) {
+                selected = obj.id;
+            }
         });
 
         view =
@@ -377,7 +413,12 @@ const ModalController = () => {
             forms={[
                 {
                     type: "TEXTAREA",
-                    rows: "10"
+                    value: planContent,
+                    rows: "10",
+                    onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+                        const { value } = event.target;
+                        onSetPlanContent(value);
+                    }
                 },
                 {
                     type: "SELECT",
@@ -389,7 +430,7 @@ const ModalController = () => {
                 {
                     type: "SELECT",
                     options: [
-                        // { title:plan.dateTime, value:plan.dateTime }
+                        { title: cellDateTime, value: cellDateTime }
                     ]
                 }
             ]}
@@ -407,29 +448,36 @@ const ModalController = () => {
                     onClick:() => {
 
                         const planPut = {
-                            // id: subject_updated.id,
+                            id: subjectId,
                             objectiveId: selected,
-                            content: "",
-                            year: 0,
-                            month: 0,
-                            week: 0,
+                            content: planContent,
+                            dateTime: cellDateTime,
                             status: 0
                         }
             
-                        // data.putPlan(planPut).then((response) => {
-                        //     /** 실패한 경우 */
-                        //     if(response.data.error !== "SUCCESS") {
+                        data.putPlan(planPut).then((response) => {
+                            /* PLAN 업데이트 실패한 경우 */
+                            if(response.data.errorCode !== 200) {
+                                onShowNoti("warning", "It's fail to update the data");
+                                setTimeout(onHideNoti, 2300);
+                                return;
+                            }
 
-                        //     }
+                            data.getPlan(true).then((response) => {
+                                /* PLAN 업데이트 후 데이터 가져오기 실패한 경우 */
+                                if(response.data.errorCode !== 200) {
+                                    onShowNoti("warning", "It's fail to get the data");
+                                    setTimeout(onHideNoti, 2300);
+                                    return;
+                                }
 
-                        //     data.getPlan(true).then((response) => {
-                        //         data_onSetObjectiveList(utility.parse(response.data.cells));
+                                data_onSetPlanList(utility.parse(response.data.data));
                         
-                        //         modal_onHide();
-                        //         onShowNoti("success", "계획이 수정되었습니다.");
-                        //         setTimeout(onHideNoti, 2300);
-                        //     })
-                        // })
+                                modal_onHide();
+                                onShowNoti("success", "계획이 수정되었습니다.");
+                                setTimeout(onHideNoti, 2300);
+                            })
+                        })
                     }
                 }
             ]}
