@@ -6,6 +6,10 @@ import { DateBuilder } from "../model/DateType";
 export function parse(src: any) {
     let cellList: CellType[] = [];
 
+    if(src === undefined || src === null) {
+        return cellList;
+    }
+
     for(let i=0; i<src.length; i++) {
         if(src[i].type === "OBJECTIVE") {
             cellList.push(

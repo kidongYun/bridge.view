@@ -8,13 +8,15 @@ import useModal from '../hooks/useModal';
 import useNoti from '../hooks/useNoti';
 import useData from '../hooks/useData';
 import useSign from '../hooks/useSign';
+import useCell from '../hooks/useCell';
+
 import useObjective from '../hooks/useObjective';
 import ObjectiveType from '../model/ObjectiveType';
 import PlanType from '../model/PlanType';
 
 const ModalController = () => {
     const { modal_type, modal_visible, modal_onHide } = useModal();
-    // const { subject_updated, subject_deleted } = useSubject();
+    const { cellDateTime, subjectId, subjectStatus, objectiveTitle, objectiveDescription, objectivePriority } = useCell();
     const { onShowNoti, onHideNoti } = useNoti();
     const { data_objectiveList, data_onSetObjectiveList } = useData();
     const { sign_desc, sign_email, sign_password, sign_onUpdateStatus, sign_onUpdateDesc, sign_onUpdateEmail, sign_onUpdatePassword } = useSign();
@@ -72,7 +74,7 @@ const ModalController = () => {
                         data.signIn(params).then((response) => {
     
                             /* 로그인 실패한 경우 */
-                            if(response.data.error !== "SUCCESS") {
+                            if(response.data.errorCode !== 200) {
                                 sign_onUpdateStatus(false);
                                 sign_onUpdateDesc(response.data.errorDesc);
                                 return;
@@ -97,9 +99,7 @@ const ModalController = () => {
                         }
 
                         data.signUp(params).then((response) => {
-                            console.log(response.data.error);
-    
-                            if(response.data.error === "SUCCESS") {
+                            if(response.data.errorCode === 200) {
                                 onShowNoti("success", "가입이 완료되었습니다.");
                                 setTimeout(onHideNoti, 2300);
                                 modal_onHide(); 
@@ -175,24 +175,32 @@ const ModalController = () => {
                     onClick:() => {
 
                         const objPost = {
-                            title: obj_title,
-                            description: obj_desc,
-                            dateTime: obj_deadline,
-                            priority: obj_priority,
+                            title: objectiveTitle,
+                            description: objectiveDescription,
+                            dateTime: cellDateTime,
+                            priority: objectivePriority,
                             status: 0,
                             date: true
                         }
                 
                         data.postObj(objPost).then((response) => {
-                            if(response.data.error === "SUCCESS") {
-                                data.getObj(true).then((response) => {
-                                    data_onSetObjectiveList(utility.parse(response.data.cells));
-                            
-                                    modal_onHide();
-                                    onShowNoti("success", "It's from Add Modal");
-                                    setTimeout(onHideNoti, 2300);
-                                })
+                            if(response.data.errorCode !== 200) {
+
                             }
+
+                            data.getObj(true).then(() => {
+                                if(response.data.errorCode !== 200) {
+                                    modal_onHide();
+                                    onShowNoti("warning", "It's warning");
+                                    setTimeout(onHideNoti, 2300);
+                                }
+
+                                data_onSetObjectiveList(utility.parse(response.data.data));
+                            
+                                modal_onHide();
+                                onShowNoti("success", "It's from Add Modal");
+                                setTimeout(onHideNoti, 2300);
+                            })
                         })
                     }
                 }
@@ -201,15 +209,14 @@ const ModalController = () => {
     }
 
     if(modal_type === "OBJECTIVE_PUT") {
-        // let obj = subject_updated as ObjectiveType;
 
         view =
         <ModalComponent
             title={{ text: "UPDATE OBJECTIVE" }}
             forms={[
                 { 
-                    type: "TEXT", 
-                    // value: obj.title,
+                    type: "TEXT",
+                    value: objectiveTitle,
                     placeholder: "TITLE",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
@@ -218,7 +225,7 @@ const ModalController = () => {
                 },
                 { 
                     type: "TEXTAREA", 
-                    // value: obj.description,
+                    value: objectiveDescription,
                     placeholder: "DESCRIPTION", 
                     rows: "10",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -248,12 +255,10 @@ const ModalController = () => {
                 },
                 { 
                     type: "TEXT",
-                    // value: obj.dateTime,
+                    value: cellDateTime,
                     placeholder: "2020-07-21",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-        
-                        console.log("deadline : " + value);
                         obj_onSetDeadline(value);
                     }
                 }
@@ -272,29 +277,36 @@ const ModalController = () => {
                     onClick: () => {
                         
                         const objPut = {
-                            // id: subject_updated.id,
-                            title: obj_title,
-                            description: obj_desc,
-                            dateTime: obj_deadline,
-                            priority: obj_priority,
-                            // status: subject_updated.status,
+                            id: subjectId,
+                            title: objectiveTitle,
+                            description: objectiveDescription,
+                            dateTime: cellDateTime,
+                            priority: objectivePriority,
+                            status: subjectStatus,
                             date: true
                         }
             
-                        // data.putObj(objPut).then((response) => {
-                        //     /** 실패한 경우 */
-                        //     if(response.data.error !== "SUCCESS") {
+                        data.putObj(objPut).then((response) => {
+                            /** 실패한 경우 */
+                            if(response.data.errorCode !== 200) {
 
-                        //     }
+                            }
 
-                        //     data.getObj(true).then((response) => {
-                        //         data_onSetObjectiveList(utility.parse(response.data.cells));
+                            data.getObj(true).then((response) => {
+                                /** 실패한 경우 */
+                                if(response.data.errorCode !== 200) {
+                                    modal_onHide();
+                                    onShowNoti("success", "It's from Add Modal");
+                                    setTimeout(onHideNoti, 2300);
+                                }
+
+                                data_onSetObjectiveList(utility.parse(response.data.data));
                         
-                        //         modal_onHide();
-                        //         onShowNoti("success", "It's from Add Modal");
-                        //         setTimeout(onHideNoti, 2300);
-                        //     })
-                        // })
+                                modal_onHide();
+                                onShowNoti("success", "It's from Add Modal");
+                                setTimeout(onHideNoti, 2300);
+                            })
+                        })
                     }
                 }
             ]}
@@ -319,24 +331,29 @@ const ModalController = () => {
                     type: "primary", 
                     onClick:() => {
                         const objDelete = {
-                            // id: subject_deleted.id,
+                            id: subjectId,
                             date: true
                         }
                     
-                        // data.deleteObj(objDelete).then((response) => {
-                        //     /** 실패한 경우 */
-                        //     if(response.data.error !== "SUCCESS") {
+                        data.deleteObj(objDelete).then((response) => {
+                            if(response.data.errorCode !== 200) {
+                                return;
+                            }
 
-                        //     }
+                            data.getObj(true).then((response) => {
+                                if(response.data.errorCode !== 200) {
+                                    modal_onHide();
+                                    onShowNoti("warning", "제거 후 데이터를 가져오지 못했습니다.");
+                                    setTimeout(onHideNoti, 2300);
+                                }
 
-                        //     data.getObj(true).then((response) => {
-                        //         data_onSetObjectiveList(utility.parse(response.data.cells));
+                                data_onSetObjectiveList(utility.parse(response.data.data));
                     
-                        //         modal_onHide();
-                        //         onShowNoti("success", "제거되었습니다.");
-                        //         setTimeout(onHideNoti, 2300);
-                        //     });
-                        // })
+                                modal_onHide();
+                                onShowNoti("success", "제거되었습니다.");
+                                setTimeout(onHideNoti, 2300);
+                            });
+                        })
                     } 
                 }
             ]}
