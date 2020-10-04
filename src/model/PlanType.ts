@@ -38,11 +38,6 @@ export class PlanBuilder {
         return this;
     }
 
-    display(display: "NORMAL" | "DETAIL"): PlanBuilder {
-        this._plan.display = display;
-        return this;
-    }
-
     objectiveId(objectiveId: number): PlanBuilder {
         this._plan.objectiveId = objectiveId;
         return this;

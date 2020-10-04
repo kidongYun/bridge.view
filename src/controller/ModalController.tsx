@@ -343,6 +343,36 @@ const ModalController = () => {
                             })
                         })
                     }
+                },
+                {
+                    text: "Remove",
+                    type: "danger",
+                    onClick: () => {
+                        const objDelete = {
+                            id: subjectId,
+                            date: true
+                        }
+                    
+                        data.deleteObj(objDelete).then((response) => {
+                            if(response.data.errorCode !== 200) {
+                                return;
+                            }
+
+                            data.getObj(true).then((response) => {
+                                if(response.data.errorCode !== 200) {
+                                    modal_onHide();
+                                    onShowNoti("warning", "제거 후 데이터를 가져오지 못했습니다.");
+                                    setTimeout(onHideNoti, 2300);
+                                }
+
+                                data_onSetObjectiveList(utility.parse(response.data.data));
+                    
+                                modal_onHide();
+                                onShowNoti("success", "제거되었습니다.");
+                                setTimeout(onHideNoti, 2300);
+                            });
+                        })
+                    }
                 }
             ]}
         />

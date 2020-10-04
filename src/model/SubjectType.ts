@@ -3,13 +3,11 @@ import CellType from './CellType';
 export default class SubjectType extends CellType {
     id: number;
     status: number;
-    display: "NORMAL" | "DETAIL";
 
     constructor(type: string) {
         super(type)
         this.id = -1;
         this.status = 0;
-        this.display = "NORMAL";
     }
 }
 
@@ -37,11 +35,6 @@ export class SubjectBuilder {
 
     status(status: number): SubjectBuilder {
         this._subject.status = status;
-        return this;
-    }
-
-    display(display: "NORMAL" | "DETAIL"): SubjectBuilder {
-        this._subject.display = display;
         return this;
     }
 

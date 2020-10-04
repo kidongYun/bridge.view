@@ -69,9 +69,10 @@ const PlanController = () => {
 
                     return <CellComponent 
                         borderRadius="10px"
-                        backgroundColor="#dc3545"
-                        height="100px"
-                        title={{ text: target.title, color: "#ffffff", verticalAlign: "", horizontalAlign: "" }}
+                        backgroundColor="#eeeeee"
+                        backgroundHover="#e4e4e4"
+                        height="150px"
+                        title={{ text: target.title, verticalAlign: "", horizontalAlign: "" }}
                         contents={[
                             { text: plan.content }
                         ]}

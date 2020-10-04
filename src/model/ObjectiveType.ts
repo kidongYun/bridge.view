@@ -40,11 +40,6 @@ export class ObjectiveBuilder {
         return this;
     }
 
-    display(display: "NORMAL" | "DETAIL"): ObjectiveBuilder {
-        this._objective.display = display;
-        return this;
-    }
-
     title(title: string): ObjectiveBuilder {
         this._objective.title = title;
         return this;
