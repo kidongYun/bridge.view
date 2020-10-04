@@ -321,8 +321,6 @@ const ModalController = () => {
                             date: true
                         }
 
-                        console.log(objPut);
-            
                         data.putObj(objPut).then((response) => {
                             /** 실패한 경우 */
                             if(response.data.errorCode !== 200) {

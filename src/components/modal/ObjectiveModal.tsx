@@ -29,8 +29,6 @@ const ObjectiveModal = ({ obj, buttons } : ObjectiveModalProps) => {
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = event.target;
 
-        console.log(value);
-
         if(id === 'title') {
             objReq.title = value;
         }

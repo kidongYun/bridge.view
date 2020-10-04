@@ -31,8 +31,6 @@ const ObjectiveController = () => {
         });
     }, []);
 
-    console.log(data_objectiveList);
-
     let view = 
     <Container>
         <CellComponent

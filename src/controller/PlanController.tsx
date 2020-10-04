@@ -28,6 +28,7 @@ const PlanController = () => {
     const {
         onSetCellDateTime,
         onSetSubjectId,
+        onSetPlanObjectiveId,
         onSetPlanContent
     } = useCell();
 
@@ -49,14 +50,22 @@ const PlanController = () => {
         {data_planList.map(
             (plan) => {
                 if(plan instanceof PlanType) {
+
+                    console.log(plan);
+
                     /* 연결된 Objective 찾아서 target에 저장 */
                     let target: ObjectiveType = new ObjectiveBuilder().build();
+
+                    console.log("objective size : " + data_objectiveList.length);
+
                     data_objectiveList.map((temp) => {
                         const obj = temp as ObjectiveType;
                         if(obj.id === plan.objectiveId) {
                             target = obj;
                         }
-                    })
+                    });
+
+                    console.log(target);
 
                     return <CellComponent 
                         borderRadius="10px"
@@ -69,6 +78,7 @@ const PlanController = () => {
                         onClick={() => {
                             onSetCellDateTime(plan.dateTime);
                             onSetSubjectId(plan.id);
+                            onSetPlanObjectiveId(plan.objectiveId);
                             onSetPlanContent(plan.content);
                             modal_onShow("PLAN");
                         }}
