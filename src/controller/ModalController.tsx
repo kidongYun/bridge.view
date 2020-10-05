@@ -244,7 +244,7 @@ const ModalController = () => {
         />
     }
 
-    if(modal_type === "OBJECTIVE_PUT") {
+    if(modal_type === "OBJECTIVE") {
 
         view =
         <ModalComponent
