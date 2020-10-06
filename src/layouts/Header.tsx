@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 /* Component */
-import Navigation from '../../components/navigation/Navigation';
+import Navigation from '../components/navigation/Navigation';
 
 const Header = () => {
     return (

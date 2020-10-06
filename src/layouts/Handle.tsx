@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const HandleComponent = () => {
+const Handle = () => {
     let view = 
     <Container></Container>
 
@@ -9,8 +9,10 @@ const HandleComponent = () => {
 }
 
 const Container = styled.div`
-    width: 100%;
+    width: 50%;
     height: 100%;
+
+    background-color: #857321;
 `;
 
-export default HandleComponent;
+export default Handle;

@@ -1,8 +1,7 @@
 import React from 'react'
-import Objective from './layouts/objective/Objective'
-import Plan from './layouts/plan/Plan'
-import Todo from './layouts/todo/Todo'
-import Header from './layouts/header/Header';
+
+import Header from './layouts/Header'
+import Content from './layouts/Content'
 
 import Noti from './components/noti/Noti'
 import Modal from './controller/ModalController'
@@ -12,9 +11,7 @@ const App = () => {
     return (
         <>
             <Header/>
-            <Objective/>
-            <Plan/> 
-            <Todo/>
+            <Content/>
 
             <Noti/>
             <Modal/>
