@@ -22,8 +22,6 @@ const Container = styled.div`
     width: 100%;
     top: 70px; bottom: 0;
     margin: auto;
-
-    background-color: #123123;
 `;
 
 const Frame = styled.div`

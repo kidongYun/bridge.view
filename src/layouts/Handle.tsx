@@ -11,8 +11,6 @@ const Handle = () => {
 const Container = styled.div`
     width: 50%;
     height: 100%;
-
-    background-color: #857321;
 `;
 
 export default Handle;
