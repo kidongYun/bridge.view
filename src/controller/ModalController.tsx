@@ -244,8 +244,7 @@ const ModalController = () => {
         />
     }
 
-    if(modal_type === "OBJECTIVE") {
-
+    if(modal_type === "OBJECTIVE_PUT") {
         view =
         <ModalComponent
             title={{ text: "UPDATE OBJECTIVE" }}
@@ -291,7 +290,7 @@ const ModalController = () => {
                 },
                 { 
                     type: "TEXT",
-                    value: cellDateTime,
+                    value: cellDateTime.substring(0, 10),
                     placeholder: "2020-07-21",
                     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;

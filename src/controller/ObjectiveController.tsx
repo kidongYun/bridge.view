@@ -61,7 +61,7 @@ const ObjectiveController = () => {
                         onSetSubjectId(obj.id);
                         onSetObjectiveTitle(obj.title);
                         onSetObjectiveDescription(obj.description);
-                        modal_onShow("OBJECTIVE"); 
+                        modal_onShow("OBJECTIVE_PUT"); 
                     }}
                 />
                 }

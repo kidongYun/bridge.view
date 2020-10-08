@@ -6,10 +6,10 @@ import Form from 'react-bootstrap/Form'
 import { TextProps } from '../props'
 import { ButtonProps } from '../props'
 
-import LabelComponent from './LabelComponent';
-import TextComponent from './TextComponent';
-import TextareaComponent from './TextareaComponent'
-import SelectComponent, { OptionProps } from './SelectComponent';
+import LabelComponent from '../form/LabelComponent';
+import TextComponent from '../form/TextComponent';
+import TextareaComponent from '../form/TextareaComponent'
+import SelectComponent, { OptionProps } from '../form/SelectComponent';
 
 interface FormProps {
     type: string
@@ -20,7 +20,7 @@ interface FormProps {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-interface ModalComponentProps {
+export interface ModalComponentProps {
     title: TextProps
     forms?: FormProps[]
     buttons?: ButtonProps[]
