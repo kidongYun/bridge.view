@@ -78,7 +78,7 @@ const CellComponent = ({
 
     let view =
     <Container height={height} onClick={onClick}>
-        <Frame height={height}backgroundColor={backgroundColor!} backgroundHover={backgroundHover!} borderRadius={borderRadius}>
+        <Frame height={height} backgroundColor={backgroundColor!} backgroundHover={backgroundHover!} borderRadius={borderRadius}>
             <FlexFrame>
                 {titleFrame}
                 {statusFrame}

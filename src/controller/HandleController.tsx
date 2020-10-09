@@ -5,6 +5,7 @@ import PopinHandleComponent from '../components/handle/PopinHandleComponent';
 import * as data from '../service/Data'
 import * as utility from '../service/Utility'
 
+
 import useModal from '../hooks/useModal';
 import useNoti from '../hooks/useNoti';
 import useData from '../hooks/useData';
@@ -15,7 +16,11 @@ import ObjectiveType from '../model/ObjectiveType';
 
 import { TextProps, ButtonProps, FormProps } from '../components/props'
 
-const HandleController = () => {
+interface HandleControllerProps {
+    setStatus: (status: "OPEN" | "CLOSE") => void
+}
+
+const HandleController = ({ setStatus } : HandleControllerProps) => {
     const { 
         modal_type, 
         modal_visible, 
@@ -209,6 +214,7 @@ const HandleController = () => {
                 text: "Close",
                 type: "secondary",
                 onClick:() => {
+                    setStatus("CLOSE");
                     modal_onHide();
                 }
             },
@@ -250,17 +256,23 @@ const HandleController = () => {
             }
         ]
 
-        view = (window.innerWidth > 900) ?
-        <PopinHandleComponent
-            title={title}
-            forms={forms}
-            buttons={buttons}
-        /> :
-        <PopupHandleComponent
-            title={title}
-            forms={forms}
-            buttons={buttons}
-        />
+        if(window.innerWidth > 900) {
+            setStatus("OPEN");
+            view = 
+            <PopinHandleComponent
+                title={title}
+                forms={forms}
+                buttons={buttons}
+            />
+
+        } else {
+            view = 
+            <PopupHandleComponent
+                title={title}
+                forms={forms}
+                buttons={buttons}
+            />
+        }
     }
 
     if(modal_type === "OBJECTIVE_PUT") {
