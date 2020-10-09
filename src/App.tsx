@@ -4,7 +4,6 @@ import Header from './layouts/Header'
 import Content from './layouts/Content'
 
 import Noti from './components/noti/Noti'
-import Modal from './controller/ModalController'
 
 const App = () => {
 
@@ -12,9 +11,7 @@ const App = () => {
         <>
             <Header/>
             <Content/>
-
             <Noti/>
-            <Modal/>
         </>
     );
 }

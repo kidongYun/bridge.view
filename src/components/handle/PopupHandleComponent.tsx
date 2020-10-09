@@ -3,32 +3,16 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 
-import { TextProps } from '../props'
-import { ButtonProps } from '../props'
+import { HandleComponentProps } from '../props'
 
-import LabelComponent from '../form/LabelComponent';
-import TextComponent from '../form/TextComponent';
-import TextareaComponent from '../form/TextareaComponent'
-import SelectComponent, { OptionProps } from '../form/SelectComponent';
+import LabelComponent from './LabelComponent';
+import TextComponent from './TextComponent';
+import TextareaComponent from './TextareaComponent'
+import SelectComponent from './SelectComponent';
 
-interface FormProps {
-    type: string
-    placeholder?: string
-    value?: string
-    rows?: string
-    options?: OptionProps[]
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
-}
-
-export interface ModalComponentProps {
-    title: TextProps
-    forms?: FormProps[]
-    buttons?: ButtonProps[]
-}
-
-const ModalComponent = ({
+const PopupHandleComponent = ({
     title, forms, buttons
-}: ModalComponentProps) => {
+}: HandleComponentProps) => {
 
     let formView = <Form></Form>
     if(forms !== undefined) {
@@ -97,4 +81,4 @@ const ModalComponent = ({
     return view;
 }
 
-export default ModalComponent;
+export default PopupHandleComponent;

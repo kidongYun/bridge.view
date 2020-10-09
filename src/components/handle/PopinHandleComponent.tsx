@@ -3,16 +3,16 @@ import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
-import LabelComponent from '../form/LabelComponent';
-import TextComponent from '../form/TextComponent';
-import TextareaComponent from '../form/TextareaComponent'
-import SelectComponent, { OptionProps } from '../form/SelectComponent';
+import LabelComponent from './LabelComponent';
+import TextComponent from './TextComponent';
+import TextareaComponent from './TextareaComponent'
+import SelectComponent, { OptionProps } from './SelectComponent';
 
-import { ModalComponentProps } from '../modal/ModalComponent';
+import { HandleComponentProps } from '../props';
 
-const HandleComponent = ({
+const PopinHandleComponent = ({
     title, forms, buttons
-}: ModalComponentProps) => {
+}: HandleComponentProps) => {
 
     let formView = <Form></Form>
     if(forms !== undefined) {
@@ -136,4 +136,4 @@ const ButtonFrame = styled.div`
     margin-right: 1%;
 `;
 
-export default HandleComponent;
+export default PopinHandleComponent;
