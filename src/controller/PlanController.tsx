@@ -14,6 +14,7 @@ import PlanType from '../model/PlanType';
 import DateType from '../model/DateType';
 import ObjectiveType from '../model/ObjectiveType';
 import { ObjectiveBuilder } from '../model/ObjectiveType';
+import { TextProps } from '../components/props';
 
 const PlanController = () => {
     const { handle_onShow } = useHandle();
@@ -65,6 +66,8 @@ const PlanController = () => {
                         }
                     });
 
+                    let content: TextProps = (plan.content === null) ? { text: "내용을 입력하세요." } : { text : plan.content } 
+
                     console.log(target);
 
                     return <CellComponent 
@@ -74,7 +77,7 @@ const PlanController = () => {
                         height="150px"
                         title={{ text: target.title, verticalAlign: "", horizontalAlign: "" }}
                         contents={[
-                            { text: plan.content }
+                            content
                         ]}
                         onClick={() => {
                             onSetCellDateTime(plan.dateTime);

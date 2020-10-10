@@ -185,8 +185,8 @@ const HandleController = () => {
             { 
                 type: "SELECT",
                 options: [
-                    { title: "title1", value: "1" },
-                    { title: "title2", value: "5" }
+                    { title: "Major", value: "1" },
+                    { title: "Minor", value: "2" }
                 ],
                 onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                     const { value } = event.target;
@@ -300,8 +300,8 @@ const HandleController = () => {
                 type: "SELECT",
                 value: objectivePriority + "",
                 options: [
-                    { title: "title1", value: "1" },
-                    { title: "title2", value: "2" }
+                    { title: "Major", value: "1" },
+                    { title: "Minor", value: "2" }
                 ],
                 onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                     const { value } = event.target;
