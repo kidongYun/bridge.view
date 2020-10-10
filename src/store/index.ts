@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import stage from './stage'
 import noti from './noti'
-import modal from './modal'
+import handle from './handle'
 import data from './data'
 import subject from './subject'
 import sign from './sign'
@@ -11,7 +11,7 @@ import cell from './cell'
 const rootReducer = combineReducers({
     stage,
     noti,
-    modal,
+    handle,
     data,
     subject,
     sign,

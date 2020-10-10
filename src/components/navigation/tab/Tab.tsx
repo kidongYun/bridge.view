@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import TabType from '../../../model/TabType';
 
 import useStage from '../../../hooks/useStage';
-import useModal from '../../../hooks/useModal';
+import useHandle from '../../../hooks/useHandle';
 
 interface TabProps {
     tab: TabType
@@ -12,14 +12,14 @@ interface TabProps {
 
 const Tab = ({tab}: TabProps) => {
     const { onUpdateStage } = useStage();
-    const { modal_onShow } = useModal();
+    const { handle_onShow } = useHandle();
 
     const onLeftMenuClick = () => {
         onUpdateStage(tab.event);
     }
 
     const onRightMenuClick = () => {
-        modal_onShow("SIGN");
+        handle_onShow("SIGN");
     }
 
     let view;

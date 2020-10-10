@@ -8,13 +8,13 @@ import DateType from '../model/DateType';
 import * as data from '../service/Data'
 import * as utility from '../service/Utility'
 
-import useModal from '../hooks/useModal';
+import useHandle from '../hooks/useHandle';
 import useData from '../hooks/useData';
 import useCell from '../hooks/useCell';
 
 
 const ObjectiveController = () => {
-    const { modal_onShow } = useModal();
+    const { handle_onShow } = useHandle();
     const { data_objectiveList, data_onSetObjectiveList } = useData();
     const { 
         onSetCellType,
@@ -39,7 +39,7 @@ const ObjectiveController = () => {
             backgroundHover="#0069d9"
             height="100px"
             title={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
-            onClick={() => { modal_onShow("OBJECTIVE_POST"); }}
+            onClick={() => { handle_onShow("OBJECTIVE_POST"); }}
         />
 
         {data_objectiveList.map(
@@ -61,7 +61,7 @@ const ObjectiveController = () => {
                         onSetSubjectId(obj.id);
                         onSetObjectiveTitle(obj.title);
                         onSetObjectiveDescription(obj.description);
-                        modal_onShow("OBJECTIVE_PUT"); 
+                        handle_onShow("OBJECTIVE_PUT"); 
                     }}
                 />
                 }

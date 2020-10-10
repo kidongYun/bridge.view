@@ -6,7 +6,7 @@ import * as data from '../service/Data'
 import * as utility from '../service/Utility'
 
 
-import useModal from '../hooks/useModal';
+import useHandle from '../hooks/useHandle';
 import useNoti from '../hooks/useNoti';
 import useData from '../hooks/useData';
 import useSign from '../hooks/useSign';
@@ -16,16 +16,13 @@ import ObjectiveType from '../model/ObjectiveType';
 
 import { TextProps, ButtonProps, FormProps } from '../components/props'
 
-interface HandleControllerProps {
-    setStatus: (status: "OPEN" | "CLOSE") => void
-}
-
-const HandleController = ({ setStatus } : HandleControllerProps) => {
+const HandleController = () => {
     const { 
-        modal_type, 
-        modal_visible, 
-        modal_onHide
-    } = useModal();
+        handle_name, 
+        handle_visible, 
+        handle_onHide,
+        handle_onType
+    } = useHandle();
 
     const { 
         data_objectiveList,
@@ -65,16 +62,15 @@ const HandleController = ({ setStatus } : HandleControllerProps) => {
         sign_onUpdatePassword 
     } = useSign();
 
-    let view = <></>;
     let title: TextProps;
     let forms: FormProps[];
     let buttons: ButtonProps[];
     
-    if(!modal_visible){
-        return view;
+    if(!handle_visible){
+        return <></>;
     }
 
-    if(modal_type === "SIGN") {
+    if(handle_name === "SIGN") {
         title = { text: "SIGN" }
         forms = [
             { 
@@ -103,7 +99,7 @@ const HandleController = ({ setStatus } : HandleControllerProps) => {
                 text: "Close", 
                 type: "secondary", 
                 onClick:() => {
-                    modal_onHide();
+                    handle_onHide();
                 }
             },
             { 
@@ -129,7 +125,7 @@ const HandleController = ({ setStatus } : HandleControllerProps) => {
 
                         onShowNoti("success", "로그인되었습니다.");
                         setTimeout(onHideNoti, 2300);
-                        modal_onHide();
+                        handle_onHide();
                     })
                 }
             },
@@ -146,22 +142,23 @@ const HandleController = ({ setStatus } : HandleControllerProps) => {
                         if(response.data.errorCode === 200) {
                             onShowNoti("success", "가입이 완료되었습니다.");
                             setTimeout(onHideNoti, 2300);
-                            modal_onHide(); 
+                            handle_onHide(); 
                         }
                     })
                 } 
             }
         ]
 
-        view =
-        <PopupHandleComponent 
+        handle_onType("POPUP");
+
+        return <PopupHandleComponent 
             title={title}
             forms={forms}
             buttons={buttons}
         /> 
     }
 
-    if(modal_type === "OBJECTIVE_POST") {
+    if(handle_name === "OBJECTIVE_POST") {
         title = { text:"CREATE OBJECTIVE" }
         forms = [
             { 
@@ -214,8 +211,7 @@ const HandleController = ({ setStatus } : HandleControllerProps) => {
                 text: "Close",
                 type: "secondary",
                 onClick:() => {
-                    setStatus("CLOSE");
-                    modal_onHide();
+                    handle_onHide();
                 }
             },
             { 
@@ -247,7 +243,7 @@ const HandleController = ({ setStatus } : HandleControllerProps) => {
 
                             data_onSetObjectiveList(utility.parse(response.data.data));
                         
-                            modal_onHide();
+                            handle_onHide();
                             onShowNoti("success", "It's from Add Modal");
                             setTimeout(onHideNoti, 2300);
                         })
@@ -257,17 +253,16 @@ const HandleController = ({ setStatus } : HandleControllerProps) => {
         ]
 
         if(window.innerWidth > 900) {
-            setStatus("OPEN");
-            view = 
-            <PopinHandleComponent
+            handle_onType("POPIN");
+            return <PopinHandleComponent
                 title={title}
                 forms={forms}
                 buttons={buttons}
             />
 
         } else {
-            view = 
-            <PopupHandleComponent
+            handle_onType("POPUP");
+            return <PopupHandleComponent
                 title={title}
                 forms={forms}
                 buttons={buttons}
@@ -275,7 +270,7 @@ const HandleController = ({ setStatus } : HandleControllerProps) => {
         }
     }
 
-    if(modal_type === "OBJECTIVE_PUT") {
+    if(handle_name === "OBJECTIVE_PUT") {
         title = { text: "UPDATE OBJECTIVE" }
         forms = [
             { 
@@ -332,7 +327,7 @@ const HandleController = ({ setStatus } : HandleControllerProps) => {
                 text: "Close",
                 type: "secondary",
                 onClick: () => {
-                    modal_onHide();
+                    handle_onHide();
                 }
             },
             { 
@@ -358,14 +353,14 @@ const HandleController = ({ setStatus } : HandleControllerProps) => {
                         data.getObj(true).then((response) => {
                             /** 실패한 경우 */
                             if(response.data.errorCode !== 200) {
-                                modal_onHide();
+                                handle_onHide();
                                 onShowNoti("success", "It's from Add Modal");
                                 setTimeout(onHideNoti, 2300);
                             }
 
                             data_onSetObjectiveList(utility.parse(response.data.data));
                     
-                            modal_onHide();
+                            handle_onHide();
                             onShowNoti("success", "It's from Add Modal");
                             setTimeout(onHideNoti, 2300);
                         })
@@ -388,14 +383,14 @@ const HandleController = ({ setStatus } : HandleControllerProps) => {
 
                         data.getObj(true).then((response) => {
                             if(response.data.errorCode !== 200) {
-                                modal_onHide();
+                                handle_onHide();
                                 onShowNoti("warning", "제거 후 데이터를 가져오지 못했습니다.");
                                 setTimeout(onHideNoti, 2300);
                             }
 
                             data_onSetObjectiveList(utility.parse(response.data.data));
                 
-                            modal_onHide();
+                            handle_onHide();
                             onShowNoti("success", "제거되었습니다.");
                             setTimeout(onHideNoti, 2300);
                         });
@@ -403,76 +398,26 @@ const HandleController = ({ setStatus } : HandleControllerProps) => {
                 }
             }
         ]
-        view = (window.innerWidth > 900) ?
-        <PopinHandleComponent
-            title={title}
-            forms={forms}
-            buttons={buttons}
-        /> :
-        <PopupHandleComponent
-            title={title}
-            forms={forms}
-            buttons={buttons}
-        />
+
+        if(window.innerWidth > 900) {
+            handle_onType("POPIN");
+            return <PopinHandleComponent
+                title={title}
+                forms={forms}
+                buttons={buttons}
+            />
+
+        } else {
+            handle_onType("POPUP");
+            return <PopupHandleComponent
+                title={title}
+                forms={forms}
+                buttons={buttons}
+            />
+        }
     }
 
-    if(modal_type === "REMOVE") {
-        title = { text: "Remove" }
-        forms = [ { type: "LABEL", value: "Do you want to remove this surely?"} ]
-        buttons = [
-            { 
-                text: "Close", 
-                type: "secondary", 
-                onClick:() => { 
-                    modal_onHide();
-                } 
-            },
-            { 
-                text: "Remove", 
-                type: "primary", 
-                onClick:() => {
-                    const objDelete = {
-                        id: subjectId,
-                        date: true
-                    }
-                
-                    data.deleteObj(objDelete).then((response) => {
-                        if(response.data.errorCode !== 200) {
-                            return;
-                        }
-
-                        data.getObj(true).then((response) => {
-                            if(response.data.errorCode !== 200) {
-                                modal_onHide();
-                                onShowNoti("warning", "제거 후 데이터를 가져오지 못했습니다.");
-                                setTimeout(onHideNoti, 2300);
-                            }
-
-                            data_onSetObjectiveList(utility.parse(response.data.data));
-                
-                            modal_onHide();
-                            onShowNoti("success", "제거되었습니다.");
-                            setTimeout(onHideNoti, 2300);
-                        });
-                    })
-                } 
-            }
-        ]
-
-        view = (window.innerWidth > 900) ?
-        <PopinHandleComponent
-            title={title}
-            forms={forms}
-            buttons={buttons}
-        /> :
-        <PopupHandleComponent
-            title={title}
-            forms={forms}
-            buttons={buttons}
-        />
-    }
-
-    if(modal_type === "PLAN") {
+    if(handle_name === "PLAN") {
         const objectiveList = data_objectiveList as ObjectiveType[];
         
         let selected: number = 0;
@@ -512,7 +457,7 @@ const HandleController = ({ setStatus } : HandleControllerProps) => {
                 text: "Close", 
                 type: "secondary", 
                 onClick:() => { 
-                    modal_onHide();
+                    handle_onHide();
                 } 
             },
             {
@@ -546,7 +491,7 @@ const HandleController = ({ setStatus } : HandleControllerProps) => {
 
                             data_onSetPlanList(utility.parse(response.data.data));
                     
-                            modal_onHide();
+                            handle_onHide();
                             onShowNoti("success", "계획이 수정되었습니다.");
                             setTimeout(onHideNoti, 2300);
                         })
@@ -555,20 +500,24 @@ const HandleController = ({ setStatus } : HandleControllerProps) => {
             }
         ]
 
-        view = (window.innerWidth > 900) ?
-        <PopinHandleComponent
-            title={title}
-            forms={forms}
-            buttons={buttons}
-        /> :
-        <PopupHandleComponent
-            title={title}
-            forms={forms}
-            buttons={buttons}
-        />
+        if(window.innerWidth > 900) {
+            handle_onType("POPIN");
+            return <PopinHandleComponent
+                title={title}
+                forms={forms}
+                buttons={buttons}
+            />
+        } else {
+            handle_onType("POPUP");
+            return <PopupHandleComponent
+                title={title}
+                forms={forms}
+                buttons={buttons}
+            />
+        }
     }
 
-    return view;
+    return <></>;
 }
 
 export default HandleController;

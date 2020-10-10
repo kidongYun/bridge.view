@@ -1,33 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { keyframes, css } from 'styled-components'
+
+import useHandle from '../hooks/useHandle'
 
 import HandleController from '../controller/HandleController'
 
 const Handle = () => {
-    const [status, setStatus] = useState("CLOSE");
+    const { handle_type, handle_visible } = useHandle();
 
     let view = 
-    <Container status={status}>
-        <HandleController setStatus={(status) => setStatus(status)}/>
+    <Container type={handle_type} visible={handle_visible}>
+        <HandleController/>
     </Container>
 
     return view;
 }
 
-const Container = styled.div<{ status: string }>`
+const Container = styled.div<{ type: string, visible: boolean }>`
     display: flex;
     width: 0%;
     height: 100%;
 
     ${(props) => { 
-        if(props.status === "OPEN") {
+        if(props.type !== "POPIN") {
+            return;
+        }
+
+        if(props.visible) {
             return css`
                 animation: ${openAnim} 0.3s linear; 
                 width: 50%;
             `
-        }
-
-        if(props.status === "CLOSE") {
+        } else {
             return css`
                 animation: ${closeAnim} 0.3s linear;
                 width: 0%;

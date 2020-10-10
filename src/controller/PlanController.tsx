@@ -6,7 +6,7 @@ import CellComponent from '../components/cell/CellComponent';
 import * as data from '../service/Data'
 import * as utility from '../service/Utility';
 
-import useModal from '../hooks/useModal';
+import useHandle from '../hooks/useHandle';
 import useData from '../hooks/useData';
 import useCell from '../hooks/useCell';
 
@@ -16,7 +16,7 @@ import ObjectiveType from '../model/ObjectiveType';
 import { ObjectiveBuilder } from '../model/ObjectiveType';
 
 const PlanController = () => {
-    const { modal_onShow } = useModal();
+    const { handle_onShow } = useHandle();
 
     const { 
         data_objectiveList, 
@@ -81,7 +81,7 @@ const PlanController = () => {
                             onSetSubjectId(plan.id);
                             onSetPlanObjectiveId(plan.objectiveId);
                             onSetPlanContent(plan.content);
-                            modal_onShow("PLAN");
+                            handle_onShow("PLAN");
                         }}
                     />
                 }
