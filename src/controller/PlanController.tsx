@@ -92,7 +92,7 @@ const PlanController = () => {
                 if(plan instanceof DateType && plan.type === "DATE") {
                     return <CellComponent
                         borderRadius="0px"
-                        title={{ text: plan.getDate(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
+                        title={{ text: plan.getDate().substring(0, 7), verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
                     />
                 }
             }
