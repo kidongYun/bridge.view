@@ -4,7 +4,8 @@ import { useCallback } from 'react';
 
 import {
     setCellType, 
-    setCellDateTime, 
+    setCellStartDateTime,
+    setCellEndDateTime, 
     setSubjectId,
     setSubjectStatus,
     setSubjectDisplay,
@@ -17,7 +18,8 @@ import {
 
 export default function useCell() {
     const cellType = useSelector((state: RootState) => state.cell.cellType);
-    const cellDateTime = useSelector((state: RootState) => state.cell.cellDateTime);
+    const cellStartDateTime = useSelector((state: RootState) => state.cell.cellStartDateTime);
+    const cellEndDateTime = useSelector((state: RootState) => state.cell.cellEndDateTime);
     const subjectId = useSelector((state: RootState) => state.cell.subjectId);
     const subjectStatus = useSelector((state: RootState) => state.cell.subjectStatus);
     const subjectDisplay = useSelector((state: RootState) => state.cell.subjectDisplay);
@@ -29,7 +31,8 @@ export default function useCell() {
 
     const dispatch = useDispatch();
     const onSetCellType = useCallback((type: string) => dispatch(setCellType(type)), [dispatch]);
-    const onSetCellDateTime = useCallback((dateTime: string) => dispatch(setCellDateTime(dateTime)), [dispatch]);
+    const onSetCellStartDateTime = useCallback((startDateTime: string) => dispatch(setCellStartDateTime(startDateTime)), [dispatch]);
+    const onSetCellEndDateTime = useCallback((endDateTime: string) => dispatch(setCellStartDateTime(endDateTime)), [dispatch]);
     const onSetSubjectId = useCallback((id: number) => dispatch(setSubjectId(id)), [dispatch]);
     const onSetSubjectStatus = useCallback((status: number) => dispatch(setSubjectStatus(status)), [dispatch]);
     const onSetSubjectDisplay = useCallback((display: string) => dispatch(setSubjectDisplay(display)), [dispatch]);
@@ -41,7 +44,8 @@ export default function useCell() {
 
     return {
         cellType,
-        cellDateTime,
+        cellStartDateTime,
+        cellEndDateTime,
         subjectId,
         subjectStatus,
         subjectDisplay,
@@ -51,7 +55,8 @@ export default function useCell() {
         planObjectiveId,
         planContent,
         onSetCellType,
-        onSetCellDateTime,
+        onSetCellStartDateTime,
+        onSetCellEndDateTime,
         onSetSubjectId,
         onSetSubjectStatus,
         onSetSubjectDisplay,

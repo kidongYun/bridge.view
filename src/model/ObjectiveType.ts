@@ -25,8 +25,13 @@ export class ObjectiveBuilder {
         return this;
     }
 
-    dateTime(dateTime: string): ObjectiveBuilder {
-        this._objective.dateTime = dateTime;
+    startDateTime(startDateTime: string): ObjectiveBuilder {
+        this._objective.startDateTime = startDateTime;
+        return this;
+    }
+
+    endDateTime(endDateTime: string): ObjectiveBuilder {
+        this._objective.endDateTime = endDateTime;
         return this;
     }
 

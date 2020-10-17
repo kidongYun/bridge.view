@@ -1,14 +1,16 @@
 export default class CellType {
     type: string
-    dateTime: string
+    startDateTime: string
+    endDateTime: string
 
     constructor(type: string) {
         this.type = type;
-        this.dateTime = "0000-00-00";
+        this.startDateTime = "0000-00-00";
+        this.endDateTime = "0000-00-00";
     }
 
     getDate(): string {
-        return this.dateTime.substring(0, 10);
+        return this.startDateTime.substring(0, 10);
     }
 }
 
@@ -24,8 +26,13 @@ export class CellBuilder {
         return this;
     }
 
-    dateTime(dateTime: string): CellBuilder {
-        this._cell.dateTime = dateTime;
+    startDateTime(startDateTime: string): CellBuilder {
+        this._cell.startDateTime = startDateTime;
+        return this;
+    }
+
+    endDateTime(endDateTime: string): CellBuilder {
+        this._cell.endDateTime = endDateTime;
         return this;
     }
 

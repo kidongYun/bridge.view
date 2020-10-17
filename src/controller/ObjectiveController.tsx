@@ -18,7 +18,7 @@ const ObjectiveController = () => {
     const { data_objectiveList, data_onSetObjectiveList } = useData();
     const { 
         onSetCellType,
-        onSetCellDateTime,
+        onSetCellEndDateTime,
         onSetSubjectId,
         onSetObjectiveTitle,
         onSetObjectiveDescription
@@ -57,7 +57,7 @@ const ObjectiveController = () => {
                     ]}
                     onClick={() => {
                         onSetCellType(obj.type);
-                        onSetCellDateTime(obj.dateTime);
+                        onSetCellEndDateTime(obj.endDateTime);
                         onSetSubjectId(obj.id);
                         onSetObjectiveTitle(obj.title);
                         onSetObjectiveDescription(obj.description);

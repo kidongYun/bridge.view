@@ -12,7 +12,7 @@ export async function putPlan(planPut: {
     id: number,
     objectiveId: number,
     content: string,
-    dateTime: string,
+    startDateTime: string,
     status: number
 }) {
     return await axios.put("http://localhost:8080/plan/" + planPut.id, planPut);
@@ -25,7 +25,7 @@ export async function getObj(date: boolean) {
 export async function postObj(objPost: { 
     title: string, 
     description: string, 
-    dateTime: string, 
+    endDateTime: string, 
     priority: number, 
     status: number, 
     date: boolean 
@@ -37,7 +37,7 @@ export async function putObj(objPut: {
     id: number,
     title: string,
     description: string,
-    dateTime: string,
+    endDateTime: string,
     priority: number,
     status: number,
     date: boolean

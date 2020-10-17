@@ -18,8 +18,13 @@ export class DateBuilder {
         return this;
     }
 
-    dateTime(dateTime: string): DateBuilder {
-        this._date.dateTime = dateTime;
+    startDateTime(startDateTime: string): DateBuilder {
+        this._date.startDateTime = startDateTime;
+        return this;
+    }
+
+    endDateTime(endDateTime: string): DateBuilder {
+        this._date.endDateTime = endDateTime;
         return this;
     }
 

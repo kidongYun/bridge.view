@@ -1,5 +1,6 @@
 const CELL_TYPE = 'cell/Type' as const
-const CELL_DATETIME = 'cell/DateTime' as const
+const CELL_STARTDATETIME = 'cell/DateTime' as const
+const CELL_ENDDATETIME = 'cell/DateTime' as const
 const SUBJECT_ID = 'subject/Id' as const
 const SUBJECT_STATUS = 'subject/Status' as const
 const SUBJECT_DISPLAY = 'subject/Display' as const
@@ -10,7 +11,8 @@ const PLAN_OBJECTIVEID = 'plan/objectiveId' as const
 const PLAN_CONTENT = 'plan/content' as const
 
 export const setCellType = (type: string) => ({ type: CELL_TYPE, payload: type })
-export const setCellDateTime = (dateTime: string) => ({ type: CELL_DATETIME, payload: dateTime })
+export const setCellStartDateTime = (startDateTime: string) => ({ type: CELL_STARTDATETIME, payload: startDateTime })
+export const setCellEndDateTime = (endDateTime: string) => ({ type: CELL_ENDDATETIME, payload: endDateTime })
 export const setSubjectId = (id: number) => ({ type: SUBJECT_ID, payload: id })
 export const setSubjectStatus = (status: number) => ({ type: SUBJECT_STATUS, payload: status })
 export const setSubjectDisplay = (display: string) => ({ type: SUBJECT_DISPLAY, payload: display })
@@ -22,7 +24,8 @@ export const setPlanContent = (content: string) => ({ type: PLAN_CONTENT, payloa
 
 type CellAction =
     | ReturnType<typeof setCellType>
-    | ReturnType<typeof setCellDateTime>
+    | ReturnType<typeof setCellStartDateTime>
+    | ReturnType<typeof setCellEndDateTime>
     | ReturnType<typeof setSubjectId>
     | ReturnType<typeof setSubjectStatus>
     | ReturnType<typeof setSubjectDisplay>
@@ -34,7 +37,8 @@ type CellAction =
 
 type CellState = {
     cellType: string,
-    cellDateTime: string,
+    cellStartDateTime: string,
+    cellEndDateTime: string,
     subjectId: number,
     subjectStatus: number,
     subjectDisplay: string,
@@ -47,7 +51,8 @@ type CellState = {
 
 const initialState = {
     cellType: "",
-    cellDateTime: "",
+    cellStartDateTime: "",
+    cellEndDateTime: "",
     subjectId: 0,
     subjectStatus: 0,
     subjectDisplay: "",
@@ -63,7 +68,8 @@ function cell(state: CellState = initialState, action: CellAction) {
         case CELL_TYPE :
             return { 
                 cellType: action.payload, 
-                cellDateTime: state.cellDateTime, 
+                cellStartDateTime: state.cellStartDateTime,
+                cellEndDateTime: state.cellEndDateTime,
                 subjectId: state.subjectId,
                 subjectStatus: state.subjectStatus,
                 subjectDisplay: state.subjectDisplay,
@@ -73,10 +79,25 @@ function cell(state: CellState = initialState, action: CellAction) {
                 planObjectiveId: state.planObjectiveId,
                 planContent: state.planContent
              };
-        case CELL_DATETIME :
+        case CELL_STARTDATETIME :
             return { 
                 cellType: state.cellType, 
-                cellDateTime: action.payload, 
+                cellStartDateTime: action.payload,
+                cellEndDateTime: state.cellEndDateTime,
+                subjectId: state.subjectId,
+                subjectStatus: state.subjectStatus,
+                subjectDisplay: state.subjectDisplay,
+                objectiveTitle: state.objectiveTitle,
+                objectiveDescription: state.objectiveDescription,
+                objectivePriority: state.objectivePriority,
+                planObjectiveId: state.planObjectiveId,
+                planContent: state.planContent
+            };
+        case CELL_ENDDATETIME :
+            return {
+                cellType: state.cellType, 
+                cellStartDateTime: state.cellStartDateTime,
+                cellEndDateTime: action.payload,
                 subjectId: state.subjectId,
                 subjectStatus: state.subjectStatus,
                 subjectDisplay: state.subjectDisplay,
@@ -89,7 +110,8 @@ function cell(state: CellState = initialState, action: CellAction) {
         case SUBJECT_ID :
             return { 
                 cellType: state.cellType, 
-                cellDateTime: state.cellDateTime, 
+                cellStartDateTime: state.cellStartDateTime,
+                cellEndDateTime: state.cellEndDateTime,
                 subjectId: action.payload,
                 subjectStatus: state.subjectStatus,
                 subjectDisplay: state.subjectDisplay,
@@ -102,7 +124,8 @@ function cell(state: CellState = initialState, action: CellAction) {
         case SUBJECT_STATUS :
             return { 
                 cellType: state.cellType, 
-                cellDateTime: state.cellDateTime, 
+                cellStartDateTime: state.cellStartDateTime,
+                cellEndDateTime: state.cellEndDateTime,
                 subjectId: state.subjectId, 
                 subjectStatus: action.payload,
                 subjectDisplay: state.subjectDisplay,
@@ -115,7 +138,8 @@ function cell(state: CellState = initialState, action: CellAction) {
         case SUBJECT_DISPLAY :
             return {
                 cellType: state.cellType, 
-                cellDateTime: state.cellDateTime, 
+                cellStartDateTime: state.cellStartDateTime,
+                cellEndDateTime: state.cellEndDateTime,
                 subjectId: state.subjectId, 
                 subjectStatus: state.subjectStatus,
                 subjectDisplay: action.payload,
@@ -128,7 +152,8 @@ function cell(state: CellState = initialState, action: CellAction) {
         case OBJECTIVE_TITLE :
             return {
                 cellType: state.cellType, 
-                cellDateTime: state.cellDateTime, 
+                cellStartDateTime: state.cellStartDateTime,
+                cellEndDateTime: state.cellEndDateTime,
                 subjectId: state.subjectId, 
                 subjectStatus: state.subjectStatus,
                 subjectDisplay: state.subjectDisplay,
@@ -141,7 +166,8 @@ function cell(state: CellState = initialState, action: CellAction) {
         case OBJECTIVE_DESCRIPTION :
             return {
                 cellType: state.cellType, 
-                cellDateTime: state.cellDateTime, 
+                cellStartDateTime: state.cellStartDateTime,
+                cellEndDateTime: state.cellEndDateTime,
                 subjectId: state.subjectId, 
                 subjectStatus: state.subjectStatus,
                 subjectDisplay: state.subjectDisplay,
@@ -154,7 +180,8 @@ function cell(state: CellState = initialState, action: CellAction) {
         case OBJECTIVE_PRIORITY :
             return {
                 cellType: state.cellType, 
-                cellDateTime: state.cellDateTime, 
+                cellStartDateTime: state.cellStartDateTime,
+                cellEndDateTime: state.cellEndDateTime,
                 subjectId: state.subjectId, 
                 subjectStatus: state.subjectStatus,
                 subjectDisplay: state.subjectDisplay,
@@ -167,7 +194,8 @@ function cell(state: CellState = initialState, action: CellAction) {
         case PLAN_OBJECTIVEID :
             return {
                 cellType: state.cellType, 
-                cellDateTime: state.cellDateTime, 
+                cellStartDateTime: state.cellStartDateTime,
+                cellEndDateTime: state.cellEndDateTime,
                 subjectId: state.subjectId, 
                 subjectStatus: state.subjectStatus,
                 subjectDisplay: state.subjectDisplay,
@@ -180,7 +208,8 @@ function cell(state: CellState = initialState, action: CellAction) {
         case PLAN_CONTENT :
             return {
                 cellType: state.cellType, 
-                cellDateTime: state.cellDateTime, 
+                cellStartDateTime: state.cellStartDateTime,
+                cellEndDateTime: state.cellEndDateTime,
                 subjectId: state.subjectId, 
                 subjectStatus: state.subjectStatus,
                 subjectDisplay: state.subjectDisplay,

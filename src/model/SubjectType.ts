@@ -23,8 +23,13 @@ export class SubjectBuilder {
         return this;
     }
 
-    dateTime(dateTime: string): SubjectBuilder {
-        this._subject.dateTime = dateTime;
+    startDateTime(startDateTime: string): SubjectBuilder {
+        this._subject.startDateTime = startDateTime;
+        return this;
+    }
+
+    endDateTime(endDateTime: string): SubjectBuilder {
+        this._subject.endDateTime = endDateTime;
         return this;
     }
 

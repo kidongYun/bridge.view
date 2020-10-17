@@ -37,7 +37,8 @@ const HandleController = () => {
     } = useNoti();
 
     const { 
-        cellDateTime, 
+        cellStartDateTime,
+        cellEndDateTime,
         subjectId, 
         subjectStatus, 
         objectiveTitle, 
@@ -45,7 +46,8 @@ const HandleController = () => {
         objectivePriority,
         planObjectiveId,
         planContent,
-        onSetCellDateTime,
+        onSetCellStartDateTime,
+        onSetCellEndDateTime,
         onSetObjectiveTitle,
         onSetObjectiveDescription,
         onSetObjectivePriority,
@@ -202,7 +204,7 @@ const HandleController = () => {
                 placeholder: "2020-07-21",
                 onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                     const { value } = event.target;
-                    onSetCellDateTime(value);
+                    onSetCellEndDateTime(value);
                 }
             }
         ]
@@ -221,7 +223,7 @@ const HandleController = () => {
                     const objPost = {
                         title: objectiveTitle,
                         description: objectiveDescription,
-                        dateTime: cellDateTime,
+                        endDateTime: cellEndDateTime,
                         priority: objectivePriority,
                         status: 0,
                         date: true
@@ -314,11 +316,11 @@ const HandleController = () => {
             },
             { 
                 type: "TEXT",
-                value: cellDateTime.substring(0, 10),
+                value: cellEndDateTime.substring(0, 10),
                 placeholder: "2020-07-21",
                 onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                     const { value } = event.target;
-                    onSetCellDateTime(value);
+                    onSetCellEndDateTime(value);
                 }
             }
         ]
@@ -338,7 +340,7 @@ const HandleController = () => {
                         id: subjectId,
                         title: objectiveTitle,
                         description: objectiveDescription,
-                        dateTime: cellDateTime,
+                        endDateTime: cellEndDateTime,
                         priority: objectivePriority,
                         status: subjectStatus,
                         date: true
@@ -448,7 +450,7 @@ const HandleController = () => {
             {
                 type: "SELECT",
                 options: [
-                    { title: cellDateTime, value: cellDateTime }
+                    { title: cellStartDateTime, value: cellStartDateTime }
                 ]
             }
         ]
@@ -469,7 +471,7 @@ const HandleController = () => {
                         id: subjectId,
                         objectiveId: selected,
                         content: planContent,
-                        dateTime: cellDateTime,
+                        startDateTime: cellStartDateTime,
                         status: 0
                     }
         

@@ -14,7 +14,8 @@ export function parse(src: any) {
         if(src[i].type === "OBJECTIVE") {
             cellList.push(
                 new ObjectiveBuilder()
-                .dateTime(src[i].dateTime)
+                .startDateTime(src[i].startDateTime)
+                .endDateTime(src[i].endDateTime)
                 .id(src[i].id)
                 .title(src[i].title)
                 .description(src[i].description)
@@ -26,7 +27,8 @@ export function parse(src: any) {
         if(src[i].type === "PLAN") {
             cellList.push(
                 new PlanBuilder()
-                .dateTime(src[i].dateTime)
+                .startDateTime(src[i].startDateTime)
+                .endDateTime(src[i].endDateTime)
                 .id(src[i].id)
                 .objectiveId(src[i].objectiveId)
                 .content(src[i].content)
@@ -37,7 +39,8 @@ export function parse(src: any) {
         if(src[i].type === "DATE") {
             cellList.push(
                 new DateBuilder()
-                .dateTime(src[i].dateTime)
+                .startDateTime(src[i].startDateTime)
+                .endDateTime(src[i].endDateTime)
                 .build()
             )
         }

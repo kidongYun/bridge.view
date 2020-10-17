@@ -27,7 +27,7 @@ const PlanController = () => {
     } = useData();
 
     const {
-        onSetCellDateTime,
+        onSetCellStartDateTime,
         onSetSubjectId,
         onSetPlanObjectiveId,
         onSetPlanContent
@@ -80,7 +80,7 @@ const PlanController = () => {
                             content
                         ]}
                         onClick={() => {
-                            onSetCellDateTime(plan.dateTime);
+                            onSetCellStartDateTime(plan.startDateTime);
                             onSetSubjectId(plan.id);
                             onSetPlanObjectiveId(plan.objectiveId);
                             onSetPlanContent(plan.content);
