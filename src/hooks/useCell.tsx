@@ -32,7 +32,7 @@ export default function useCell() {
     const dispatch = useDispatch();
     const onSetCellType = useCallback((type: string) => dispatch(setCellType(type)), [dispatch]);
     const onSetCellStartDateTime = useCallback((startDateTime: string) => dispatch(setCellStartDateTime(startDateTime)), [dispatch]);
-    const onSetCellEndDateTime = useCallback((endDateTime: string) => dispatch(setCellStartDateTime(endDateTime)), [dispatch]);
+    const onSetCellEndDateTime = useCallback((endDateTime: string) => dispatch(setCellEndDateTime(endDateTime)), [dispatch]);
     const onSetSubjectId = useCallback((id: number) => dispatch(setSubjectId(id)), [dispatch]);
     const onSetSubjectStatus = useCallback((status: number) => dispatch(setSubjectStatus(status)), [dispatch]);
     const onSetSubjectDisplay = useCallback((display: string) => dispatch(setSubjectDisplay(display)), [dispatch]);

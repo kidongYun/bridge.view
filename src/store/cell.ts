@@ -1,6 +1,6 @@
 const CELL_TYPE = 'cell/Type' as const
-const CELL_STARTDATETIME = 'cell/DateTime' as const
-const CELL_ENDDATETIME = 'cell/DateTime' as const
+const CELL_STARTDATETIME = 'cell/StartDateTime' as const
+const CELL_ENDDATETIME = 'cell/EndDateTime' as const
 const SUBJECT_ID = 'subject/Id' as const
 const SUBJECT_STATUS = 'subject/Status' as const
 const SUBJECT_DISPLAY = 'subject/Display' as const

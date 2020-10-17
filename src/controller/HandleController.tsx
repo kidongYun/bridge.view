@@ -204,6 +204,7 @@ const HandleController = () => {
                 placeholder: "2020-07-21",
                 onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
                     const { value } = event.target;
+                    console.log("KIDONG : " + value);
                     onSetCellEndDateTime(value);
                 }
             }
@@ -228,6 +229,8 @@ const HandleController = () => {
                         status: 0,
                         date: true
                     }
+
+                    console.log(cellEndDateTime);
             
                     data.postObj(objPost).then((response) => {
                         if(response.data.errorCode !== 200) {
