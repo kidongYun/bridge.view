@@ -40,7 +40,8 @@ const PlanController = () => {
     }, [])
 
     React.useEffect(() => {
-        data.getObj(false).then((response) => {
+        data.getObj(true).then((response) => {
+            console.log(utility.parse(response.data));
             data_onSetObjectiveList(utility.parse(response.data.data));
         })
     }, [])
