@@ -5,6 +5,7 @@ import useStage from '../hooks/useStage'
 
 import ObjectiveController from './ObjectiveController';
 import PlanController from './PlanController';
+import TodoController from './TodoController';
 
 const WorkspaceController = () => {
     const { name } = useStage();
@@ -17,6 +18,10 @@ const WorkspaceController = () => {
 
     if(name === "PLAN") {
         view = <Container><PlanController/></Container>;
+    }
+
+    if(name == "TODO") {
+        view = <Container><TodoController/></Container>;
     }
 
     return view;

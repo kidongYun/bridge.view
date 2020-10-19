@@ -15,7 +15,12 @@ import useCell from '../hooks/useCell';
 
 const ObjectiveController = () => {
     const { handle_onShow } = useHandle();
-    const { data_objectiveList, data_onSetObjectiveList } = useData();
+    
+    const { 
+        data_objectiveList, 
+        data_onSetObjectiveList 
+    } = useData();
+
     const { 
         onSetCellType,
         onSetCellEndDateTime,

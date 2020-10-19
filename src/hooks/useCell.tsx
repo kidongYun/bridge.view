@@ -13,7 +13,9 @@ import {
     setObjectiveDescription,
     setObjectivePriority,
     setPlanObjectiveId,
-    setPlanContent
+    setPlanContent,
+    setTodoPlanId,
+    setTodoTask
  } from '../store/cell'
 
 export default function useCell() {
@@ -28,6 +30,8 @@ export default function useCell() {
     const objectivePriority = useSelector((state: RootState) => state.cell.objectivePriority);
     const planObjectiveId = useSelector((state: RootState) => state.cell.planObjectiveId);
     const planContent = useSelector((state: RootState) => state.cell.planContent);
+    const todoPlanId = useSelector((state: RootState) => state.cell.todoPlanId);
+    const todoTask = useSelector((state: RootState) => state.cell.todoTask);
 
     const dispatch = useDispatch();
     const onSetCellType = useCallback((type: string) => dispatch(setCellType(type)), [dispatch]);
@@ -41,6 +45,8 @@ export default function useCell() {
     const onSetObjectivePriority = useCallback((priority: number) => dispatch(setObjectivePriority(priority)), [dispatch]);
     const onSetPlanObjectiveId = useCallback((objectiveId: number) => dispatch(setPlanObjectiveId(objectiveId)), [dispatch]);
     const onSetPlanContent = useCallback((content: string) => dispatch(setPlanContent(content)), [dispatch]);
+    const onSetTodoPlanId = useCallback((planId: number) => dispatch(setTodoPlanId(planId)), [dispatch]);
+    const onSetTodoTask = useCallback((task: string) => dispatch(setTodoTask(task)), [dispatch]);
 
     return {
         cellType,
@@ -54,6 +60,8 @@ export default function useCell() {
         objectivePriority,
         planObjectiveId,
         planContent,
+        todoPlanId,
+        todoTask,
         onSetCellType,
         onSetCellStartDateTime,
         onSetCellEndDateTime,
@@ -64,6 +72,8 @@ export default function useCell() {
         onSetObjectiveDescription,
         onSetObjectivePriority,
         onSetPlanObjectiveId,
-        onSetPlanContent
+        onSetPlanContent,
+        onSetTodoPlanId,
+        onSetTodoTask
     }
 }

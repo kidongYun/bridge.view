@@ -9,6 +9,8 @@ const OBJECTIVE_DESCRIPTION = 'objective/Description' as const
 const OBJECTIVE_PRIORITY = 'objective/Priority' as const
 const PLAN_OBJECTIVEID = 'plan/objectiveId' as const
 const PLAN_CONTENT = 'plan/content' as const
+const TODO_PLANID = 'todo/planId' as const
+const TODO_TASK = 'todo/task' as const
 
 export const setCellType = (type: string) => ({ type: CELL_TYPE, payload: type })
 export const setCellStartDateTime = (startDateTime: string) => ({ type: CELL_STARTDATETIME, payload: startDateTime })
@@ -21,6 +23,8 @@ export const setObjectiveDescription = (description: string) => ({ type: OBJECTI
 export const setObjectivePriority = (priority: number) => ({ type: OBJECTIVE_PRIORITY, payload: priority })
 export const setPlanObjectiveId = (objectiveId: number) => ({ type: PLAN_OBJECTIVEID, payload: objectiveId })
 export const setPlanContent = (content: string) => ({ type: PLAN_CONTENT, payload: content })
+export const setTodoPlanId = (planId: number) => ({ type: TODO_PLANID, payload: planId })
+export const setTodoTask = (task: string) => ({ type: TODO_TASK, payload: task })
 
 type CellAction =
     | ReturnType<typeof setCellType>
@@ -34,6 +38,8 @@ type CellAction =
     | ReturnType<typeof setObjectivePriority>
     | ReturnType<typeof setPlanObjectiveId>
     | ReturnType<typeof setPlanContent>
+    | ReturnType<typeof setTodoPlanId>
+    | ReturnType<typeof setTodoTask>
 
 type CellState = {
     cellType: string,
@@ -46,7 +52,9 @@ type CellState = {
     objectiveDescription: string,
     objectivePriority: number,
     planObjectiveId: number,
-    planContent: string
+    planContent: string,
+    todoPlanId: number,
+    todoTask: string
 }
 
 const initialState = {
@@ -60,7 +68,9 @@ const initialState = {
     objectiveDescription: "",
     objectivePriority: 0,
     planObjectiveId: 0,
-    planContent: ""
+    planContent: "",
+    todoPlanId: 0,
+    todoTask: ""
 }
 
 function cell(state: CellState = initialState, action: CellAction) {
@@ -77,7 +87,9 @@ function cell(state: CellState = initialState, action: CellAction) {
                 objectiveDescription: state.objectiveDescription,
                 objectivePriority: state.objectivePriority,
                 planObjectiveId: state.planObjectiveId,
-                planContent: state.planContent
+                planContent: state.planContent,
+                todoPlanId: state.todoPlanId,
+                todoTask: state.todoTask
              };
         case CELL_STARTDATETIME :
             return { 
@@ -91,7 +103,9 @@ function cell(state: CellState = initialState, action: CellAction) {
                 objectiveDescription: state.objectiveDescription,
                 objectivePriority: state.objectivePriority,
                 planObjectiveId: state.planObjectiveId,
-                planContent: state.planContent
+                planContent: state.planContent,
+                todoPlanId: state.todoPlanId,
+                todoTask: state.todoTask
             };
         case CELL_ENDDATETIME :
             return {
@@ -105,7 +119,9 @@ function cell(state: CellState = initialState, action: CellAction) {
                 objectiveDescription: state.objectiveDescription,
                 objectivePriority: state.objectivePriority,
                 planObjectiveId: state.planObjectiveId,
-                planContent: state.planContent
+                planContent: state.planContent,
+                todoPlanId: state.todoPlanId,
+                todoTask: state.todoTask
             };
         case SUBJECT_ID :
             return { 
@@ -119,7 +135,9 @@ function cell(state: CellState = initialState, action: CellAction) {
                 objectiveDescription: state.objectiveDescription,
                 objectivePriority: state.objectivePriority,
                 planObjectiveId: state.planObjectiveId,
-                planContent: state.planContent
+                planContent: state.planContent,
+                todoPlanId: state.todoPlanId,
+                todoTask: state.todoTask
             };
         case SUBJECT_STATUS :
             return { 
@@ -133,7 +151,9 @@ function cell(state: CellState = initialState, action: CellAction) {
                 objectiveDescription: state.objectiveDescription,
                 objectivePriority: state.objectivePriority,
                 planObjectiveId: state.planObjectiveId,
-                planContent: state.planContent
+                planContent: state.planContent,
+                todoPlanId: state.todoPlanId,
+                todoTask: state.todoTask
             };
         case SUBJECT_DISPLAY :
             return {
@@ -147,7 +167,9 @@ function cell(state: CellState = initialState, action: CellAction) {
                 objectiveDescription: state.objectiveDescription,
                 objectivePriority: state.objectivePriority,
                 planObjectiveId: state.planObjectiveId,
-                planContent: state.planContent
+                planContent: state.planContent,
+                todoPlanId: state.todoPlanId,
+                todoTask: state.todoTask
             };
         case OBJECTIVE_TITLE :
             return {
@@ -161,7 +183,9 @@ function cell(state: CellState = initialState, action: CellAction) {
                 objectiveDescription: state.objectiveDescription,
                 objectivePriority: state.objectivePriority,
                 planObjectiveId: state.planObjectiveId,
-                planContent: state.planContent
+                planContent: state.planContent,
+                todoPlanId: state.todoPlanId,
+                todoTask: state.todoTask
             };
         case OBJECTIVE_DESCRIPTION :
             return {
@@ -175,7 +199,9 @@ function cell(state: CellState = initialState, action: CellAction) {
                 objectiveDescription: action.payload,
                 objectivePriority: state.objectivePriority,
                 planObjectiveId: state.planObjectiveId,
-                planContent: state.planContent
+                planContent: state.planContent,
+                todoPlanId: state.todoPlanId,
+                todoTask: state.todoTask
             }
         case OBJECTIVE_PRIORITY :
             return {
@@ -189,7 +215,9 @@ function cell(state: CellState = initialState, action: CellAction) {
                 objectiveDescription: state.objectiveDescription,
                 objectivePriority: action.payload,
                 planObjectiveId: state.planObjectiveId,
-                planContent: state.planContent
+                planContent: state.planContent,
+                todoPlanId: state.todoPlanId,
+                todoTask: state.todoTask
             }
         case PLAN_OBJECTIVEID :
             return {
@@ -203,7 +231,9 @@ function cell(state: CellState = initialState, action: CellAction) {
                 objectiveDescription: state.objectiveDescription,
                 objectivePriority: state.objectivePriority,
                 planObjectiveId: action.payload,
-                planContent: state.planContent
+                planContent: state.planContent,
+                todoPlanId: state.todoPlanId,
+                todoTask: state.todoTask
             }
         case PLAN_CONTENT :
             return {
@@ -217,7 +247,41 @@ function cell(state: CellState = initialState, action: CellAction) {
                 objectiveDescription: state.objectiveDescription,
                 objectivePriority: state.objectivePriority,
                 planObjectiveId: state.planObjectiveId,
-                planContent: action.payload
+                planContent: action.payload,
+                todoPlanId: state.todoPlanId,
+                todoTask: state.todoTask
+            }
+        case TODO_PLANID :
+            return {
+                cellType: state.cellType, 
+                cellStartDateTime: state.cellStartDateTime,
+                cellEndDateTime: state.cellEndDateTime,
+                subjectId: state.subjectId, 
+                subjectStatus: state.subjectStatus,
+                subjectDisplay: state.subjectDisplay,
+                objectiveTitle: state.objectiveTitle,
+                objectiveDescription: state.objectiveDescription,
+                objectivePriority: state.objectivePriority,
+                planObjectiveId: state.planObjectiveId,
+                planContent: state.planContent,
+                todoPlanId: action.payload,
+                todoTask: state.todoTask
+            }
+        case TODO_TASK :
+            return {
+                cellType: state.cellType, 
+                cellStartDateTime: state.cellStartDateTime,
+                cellEndDateTime: state.cellEndDateTime,
+                subjectId: state.subjectId, 
+                subjectStatus: state.subjectStatus,
+                subjectDisplay: state.subjectDisplay,
+                objectiveTitle: state.objectiveTitle,
+                objectiveDescription: state.objectiveDescription,
+                objectivePriority: state.objectivePriority,
+                planObjectiveId: state.planObjectiveId,
+                planContent: state.planContent,
+                todoPlanId: state.todoPlanId,
+                todoTask: action.payload
             }
         default :
             return state;
