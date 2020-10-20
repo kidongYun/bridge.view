@@ -2,6 +2,7 @@ import CellType from "../model/CellType";
 import { ObjectiveBuilder } from "../model/ObjectiveType";
 import { PlanBuilder } from "../model/PlanType";
 import { DateBuilder } from "../model/DateType";
+import { TodoBuilder } from "../model/TodoType";
 
 export function parse(src: any) {
     let cellList: CellType[] = [];
@@ -32,6 +33,18 @@ export function parse(src: any) {
                 .id(src[i].id)
                 .objectiveId(src[i].objectiveId)
                 .content(src[i].content)
+                .build()
+            )
+        }
+
+        if(src[i].type === "TODO") {
+            cellList.push(
+                new TodoBuilder()
+                .startDateTime(src[i].startDateTime)
+                .endDateTime(src[i].endDateTime)
+                .id(src[i].id)
+                .planId(src[i].planId)
+                .task(src[i].task)
                 .build()
             )
         }

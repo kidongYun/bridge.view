@@ -18,6 +18,31 @@ export class TodoBuilder {
         this._todo = new TodoType();
     }
 
+    type(type: string): TodoBuilder {
+        this._todo.type = type;
+        return this;
+    }
+
+    startDateTime(startDateTime: string): TodoBuilder {
+        this._todo.startDateTime = startDateTime;
+        return this;
+    }
+
+    endDateTime(endDateTime: string): TodoBuilder {
+        this._todo.endDateTime = endDateTime;
+        return this;
+    }
+
+    id(id: number): TodoBuilder {
+        this._todo.id = id;
+        return this;
+    }
+
+    status(status: number): TodoBuilder {
+        this._todo.status = status;
+        return this;
+    }
+
     planId(planId: number): TodoBuilder {
         this._todo.planId = planId;
         return this;
