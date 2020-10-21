@@ -3,13 +3,15 @@ import styled from 'styled-components'
 
 import CellComponent from '../components/cell/CellComponent';
 
+import TodoType from '../model/TodoType';
+import DateType from '../model/DateType';
+
 import * as data from '../service/Data'
 import * as utility from '../service/Utility'
 
 import useHandle from '../hooks/useHandle';
 import useData from '../hooks/useData';
 import useCell from '../hooks/useCell';
-import TodoType from '../model/TodoType';
 
 const TodoController = () => {
     const { handle_onShow } = useHandle();
@@ -18,20 +20,13 @@ const TodoController = () => {
 
     React.useEffect(() => {
         data.getTodo().then((response) => {
+            console.log(response.data.data);
             data_onSetTodoList(utility.parse(response.data.data));
         });
     }, []);
 
     let view = 
     <Container>
-        <CellComponent
-            borderRadius="10px"
-            backgroundColor="#007bff"
-            backgroundHover="#0069d9"
-            height="100px"
-            title={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
-            onClick={() => {}}
-        />
 
         {data_todoList.map((todo) => {
             if(todo instanceof TodoType && todo.type === "TODO") {
@@ -42,6 +37,23 @@ const TodoController = () => {
                 height="250px"
                 title={{ text: todo.task, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
                 onClick={() => {}}/>
+            }
+
+            if(todo instanceof DateType && todo.type === "DATE") {
+                return <>
+                    <CellComponent
+                        borderRadius="0px"
+                        title={{ text: todo.getDate(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
+                    />
+                    <CellComponent
+                        borderRadius="10px"
+                        backgroundColor="#007bff"
+                        backgroundHover="#0069d9"
+                        height="100px"
+                        title={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
+                        onClick={() => {}}
+                    />
+                </>
             }
         })}
     </Container>;
