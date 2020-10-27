@@ -58,6 +58,7 @@ const PlanController = () => {
                     /* 연결된 Objective 찾아서 target에 저장 */
                     let target: ObjectiveType = new ObjectiveBuilder().build();
 
+                    
                     console.log("objective size : " + data_objectiveList.length);
 
                     data_objectiveList.map((temp) => {
