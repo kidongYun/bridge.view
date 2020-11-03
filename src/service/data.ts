@@ -4,8 +4,8 @@ import MenuType, { MenuBuilder } from '../model/MenuType';
 
 import { TabBuilder } from '../model/TabType';
 
-export async function getTodo() {
-    return await axios.get("http://localhost:8080/todo");
+export async function getTodo(date: boolean, startDateTime: string, endDateTime: string) {
+    return await axios.get("http://localhost:8080/todo", { params: { date: date, startDateTime: startDateTime, endDateTime: endDateTime }});
 }
 
 export async function getPlan(date: boolean) {

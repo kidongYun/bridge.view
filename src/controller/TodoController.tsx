@@ -19,7 +19,12 @@ const TodoController = () => {
     const { data_todoList, data_onSetTodoList } = useData();
 
     React.useEffect(() => {
-        data.getTodo().then((response) => {
+
+        let from: Date = new Date();
+
+        console.log(from);
+        
+        data.getTodo(true, "2021-01-01 12:13:23", "2021-12-25 12:13:23").then((response) => {
             console.log(response.data.data);
             data_onSetTodoList(utility.parse(response.data.data));
         });
@@ -34,7 +39,7 @@ const TodoController = () => {
                 borderRadius="10px"
                 backgroundColor="#eeeeee"
                 backgroundHover="#e4e4e4"
-                height="250px"
+                height="80px"
                 title={{ text: todo.task, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
                 onClick={() => {}}/>
             }
@@ -49,7 +54,7 @@ const TodoController = () => {
                         borderRadius="10px"
                         backgroundColor="#007bff"
                         backgroundHover="#0069d9"
-                        height="100px"
+                        height="80px"
                         title={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
                         onClick={() => {}}
                     />
