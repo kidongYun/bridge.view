@@ -22,9 +22,13 @@ const TodoController = () => {
 
         let from: Date = new Date();
 
-        console.log(from);
+        console.log(from.toISOString());
+        console.log(from.toUTCString());
+        console.log(from.getDate());
+        console.log(from.getUTCDate());
+        console.log(from.getHours());
         
-        data.getTodo(true, "2021-01-01 12:13:23", "2021-12-25 12:13:23").then((response) => {
+        data.getTodo(true, from.toLocaleString(), "2021-12-25 12:13:23").then((response) => {
             console.log(response.data.data);
             data_onSetTodoList(utility.parse(response.data.data));
         });
