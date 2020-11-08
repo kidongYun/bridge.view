@@ -19,16 +19,14 @@ const TodoController = () => {
     const { data_todoList, data_onSetTodoList } = useData();
 
     React.useEffect(() => {
-
         let from: Date = new Date();
+        let to: Date = new Date();
+        to.setDate(to.getDate() + 7);
 
-        console.log(from.toISOString());
-        console.log(from.toUTCString());
-        console.log(from.getDate());
-        console.log(from.getUTCDate());
-        console.log(from.getHours());
+        console.log(from.toISOString().split(".")[0].replace("T", " "));
+        console.log(to.toISOString().split(".")[0].replace("T", " "));
         
-        data.getTodo(true, from.toLocaleString(), "2021-12-25 12:13:23").then((response) => {
+        data.getTodo(true, from.toISOString().split(".")[0].replace("T", " "), to.toISOString().split(".")[0].replace("T", " ")).then((response) => {
             console.log(response.data.data);
             data_onSetTodoList(utility.parse(response.data.data));
         });
@@ -36,7 +34,6 @@ const TodoController = () => {
 
     let view = 
     <Container>
-
         {data_todoList.map((todo) => {
             if(todo instanceof TodoType && todo.type === "TODO") {
                 return <CellComponent
