@@ -49,7 +49,7 @@ const TodoController = () => {
                 return <>
                     <CellComponent
                         borderRadius="0px"
-                        title={{ text: todo.getDate(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
+                        title={{ text: todo.getDate() + " " + utility.titleOf(new Date(todo.getDate()).getDay()), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
                     />
                     <CellComponent
                         borderRadius="10px"
