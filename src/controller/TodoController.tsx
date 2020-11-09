@@ -11,7 +11,6 @@ import * as utility from '../service/Utility'
 
 import useHandle from '../hooks/useHandle';
 import useData from '../hooks/useData';
-import useCell from '../hooks/useCell';
 
 const TodoController = () => {
     const { handle_onShow } = useHandle();
@@ -42,6 +41,7 @@ const TodoController = () => {
                 backgroundHover="#e4e4e4"
                 height="80px"
                 title={{ text: todo.task, fontSize: "13pt", verticalAlign: "center", horizontalAlign: "center" }}
+                status={{ type: "outline-success", text: "FINISH", onClick:()=>{} }}
                 onClick={() => {}}/>
             }
 

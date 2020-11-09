@@ -5,16 +5,20 @@ import Button from 'react-bootstrap/Button'
 import { TextProps } from '../props'
 import { ButtonProps } from '../props'
 
-interface CellProps {
-    borderRadius?: string
-    backgroundColor?: string
-    backgroundHover?: string
-    height?: string
-    title?: TextProps
-    contents?: TextProps[]
-    status?: number
-    buttons?: ButtonProps[]
-    onClick?: () => void
+import AtomComponent, { AtomProps } from './AtomComponent'
+
+interface CellProps extends AtomProps {
+    graph: Array<typeof AtomComponent>
+    // width?: string,
+    // height?: string
+    // borderRadius?: string
+    // backgroundColor?: string
+    // backgroundHover?: string
+    // title?: TextProps
+    // contents?: TextProps[]
+    // status?: ButtonProps
+    // buttons?: ButtonProps[]
+    // onClick?: () => void
 }
 
 const CellComponent = ({ 
@@ -29,20 +33,24 @@ const CellComponent = ({
     onClick 
 }: CellProps) => {
 
-    let titleFrame = <></>;
+    let topLeftFrame = <></>;
     if(title !== undefined) {
-        titleFrame = 
-            <TitleFrame>
+        topLeftFrame = 
+            <TopLeftFrame>
                 <TextFrame fontSize={title.fontSize!} color={title.color!} verticalAlign={title.verticalAlign!} horizontalAlign={title.horizontalAlign!}>
                     {title.text}
                 </TextFrame>
-            </TitleFrame>
+            </TopLeftFrame>
     }
 
     let statusFrame = <></>;
     if(status !== undefined) {
         statusFrame = 
-        <StatusFrame></StatusFrame>;
+        <StatusFrame>
+            <Button variant={status.type} onClick={status.onClick}>
+                {status.text}
+            </Button>
+        </StatusFrame>
     }
 
 
@@ -80,7 +88,7 @@ const CellComponent = ({
     <Container height={height} onClick={onClick}>
         <Frame height={height} backgroundColor={backgroundColor!} backgroundHover={backgroundHover!} borderRadius={borderRadius}>
             <FlexFrame>
-                {titleFrame}
+                {topLeftFrame}
                 {statusFrame}
             </FlexFrame>
             {contentsFrame}
@@ -119,7 +127,7 @@ const Frame = styled.div<{ height: string, backgroundColor: string, backgroundHo
     }
 `;
 
-const TitleFrame = styled.div`
+const TopLeftFrame = styled.div`
     width: 600%;
     height: auto;
     font-weight: bold;
@@ -129,8 +137,13 @@ const TitleFrame = styled.div`
 const StatusFrame = styled.div`
     width: 100%;
     height: auto;
-    background-color: #884342;
     display: flex;
+
+    margin: auto;
+    padding: auto;
+
+    justify-content: center;
+    align-items: center;
 `;
 
 const ContentsFrame = styled.div`
