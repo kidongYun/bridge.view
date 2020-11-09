@@ -6,6 +6,7 @@ import { TextProps } from '../props'
 import { ButtonProps } from '../props'
 
 import AtomComponent, { AtomProps } from './AtomComponent'
+import ButtonComponent from '../atom/ButtonComponent'
 
 interface CellProps extends AtomProps {
     graph: Array<typeof AtomComponent>
@@ -47,9 +48,7 @@ const CellComponent = ({
     if(status !== undefined) {
         statusFrame = 
         <StatusFrame>
-            <Button variant={status.type} onClick={status.onClick}>
-                {status.text}
-            </Button>
+            <ButtonComponent type={status.type} text={status.text} onClick={status.onClick}/>
         </StatusFrame>
     }
 
