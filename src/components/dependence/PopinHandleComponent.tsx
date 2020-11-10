@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
-import LabelComponent from './LabelComponent';
-import TextComponent from './TextComponent';
-import TextareaComponent from './TextareaComponent'
-import SelectComponent, { OptionProps } from './SelectComponent';
+import LabelComponent from '../independence/LabelComponent';
+import TextComponent from '../independence/TextComponent';
+import TextareaComponent from '../independence/TextareaComponent'
+import SelectComponent from '../independence/SelectComponent';
 
 import { HandleComponentProps } from '../props';
 
@@ -42,13 +42,13 @@ const PopinHandleComponent = ({
                 />
             }
 
-            if(form.type === "SELECT") {
-                return <SelectComponent 
-                    value={form.value}
-                    options={form.options}
-                    onChange={form.onChange}
-                />
-            }
+            // if(form.type === "SELECT") {
+            //     return <SelectComponent 
+            //         value={form.value}
+            //         options={form.options}
+            //         onChange={form.onChange}
+            //     />
+            // }
         })}
         </Form>
     }

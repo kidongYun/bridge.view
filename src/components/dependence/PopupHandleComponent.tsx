@@ -5,10 +5,10 @@ import Form from 'react-bootstrap/Form'
 
 import { HandleComponentProps } from '../props'
 
-import LabelComponent from './LabelComponent';
-import TextComponent from './TextComponent';
-import TextareaComponent from './TextareaComponent'
-import SelectComponent from './SelectComponent';
+import LabelComponent from '../independence/LabelComponent';
+import TextComponent from '../independence/TextComponent';
+import TextareaComponent from '../independence/TextareaComponent'
+import SelectComponent from '../independence/SelectComponent';
 
 const PopupHandleComponent = ({
     title, forms, buttons
@@ -42,13 +42,13 @@ const PopupHandleComponent = ({
                 />
             }
 
-            if(form.type === "SELECT") {
-                return <SelectComponent 
-                    value={form.value}
-                    options={form.options}
-                    onChange={form.onChange}
-                />
-            }
+            // if(form.type === "SELECT") {
+            //     return <SelectComponent 
+            //         value={form.value}
+            //         options={form.options}
+            //         onChange={form.onChange}
+            //     />
+            // }
         })}
         </Form>
     }

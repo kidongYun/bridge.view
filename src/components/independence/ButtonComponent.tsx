@@ -1,9 +1,10 @@
 import React from 'react'
-import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
 
-interface ButtonProps {
-    type:     
+import Component from './Component'
+
+export interface ButtonProps extends Component {
+    theme:     
     | 'primary'
     | 'secondary'
     | 'success'
@@ -25,8 +26,8 @@ interface ButtonProps {
     onClick: (params?: any) => void
 }
 
-const ButtonComponent = ({ type, text, onClick }: ButtonProps) => {
-    return <Button variant={type} onClick={onClick}>{text}</Button>
+const ButtonComponent = ({ theme, text, onClick }: ButtonProps) => {
+    return <Button variant={theme} onClick={onClick}>{text}</Button>
 }
 
 export default ButtonComponent;

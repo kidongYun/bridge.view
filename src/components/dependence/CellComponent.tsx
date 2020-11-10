@@ -3,26 +3,23 @@ import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
 
 import { TextProps } from '../props'
-import { ButtonProps } from '../props'
 
-import AtomComponent, { AtomProps } from './AtomComponent'
-import ButtonComponent from '../atom/ButtonComponent'
+import ButtonComponent, { ButtonProps } from '../independence/ButtonComponent'
+import Component from '../independence/Component'
 
-interface CellProps extends AtomProps {
-    graph: Array<typeof AtomComponent>
-    // width?: string,
-    // height?: string
-    // borderRadius?: string
-    // backgroundColor?: string
-    // backgroundHover?: string
-    // title?: TextProps
-    // contents?: TextProps[]
-    // status?: ButtonProps
-    // buttons?: ButtonProps[]
-    // onClick?: () => void
+interface CellProps<T extends Component> extends Component {
+    graph: Array<Array<T>>
+    borderRadius?: string
+    backgroundColor?: string
+    backgroundHover?: string
+    title?: TextProps
+    contents?: TextProps[]
+    status?: ButtonProps
+    buttons?: ButtonProps[]
 }
 
 const CellComponent = ({ 
+    graph,
     borderRadius = "0px", 
     backgroundColor = "#ffffff", 
     backgroundHover = "#ffffff", 
@@ -34,6 +31,16 @@ const CellComponent = ({
     onClick 
 }: CellProps) => {
 
+    console.log("HELLO CELL COMPONENT");
+
+    graph.map(
+        (components) => components.map(
+            (component) => {
+                console.log(component);
+            }
+        )
+    )
+
     let topLeftFrame = <></>;
     if(title !== undefined) {
         topLeftFrame = 
@@ -44,13 +51,13 @@ const CellComponent = ({
             </TopLeftFrame>
     }
 
-    let statusFrame = <></>;
-    if(status !== undefined) {
-        statusFrame = 
-        <StatusFrame>
-            <ButtonComponent type={status.type} text={status.text} onClick={status.onClick}/>
-        </StatusFrame>
-    }
+    // let statusFrame = <></>;
+    // if(status !== undefined) {
+    //     statusFrame = 
+    //     <StatusFrame>
+    //         <ButtonComponent type={status.type} text={status.text} onClick={status.onClick}/>
+    //     </StatusFrame>
+    // }
 
 
     let contentsFrame = <></>;
@@ -67,33 +74,33 @@ const CellComponent = ({
         </ContentsFrame>
     }
 
-    let buttonsFrame = <></>;
-    if(buttons !== undefined) {
-        buttonsFrame =
-        <ButtonsFrame>
-            {
-                buttons.map((button) => {
-                    return <ButtonFrame>
-                        <Button variant={button.type} onClick={button.onClick}>
-                            {button.text}
-                        </Button>
-                    </ButtonFrame>
-                })
-            }
-        </ButtonsFrame>
-    }
+    // let buttonsFrame = <></>;
+    // if(buttons !== undefined) {
+    //     buttonsFrame =
+    //     <ButtonsFrame>
+    //         {
+    //             buttons.map((button) => {
+    //                 return <ButtonFrame>
+    //                     <Button variant={button.type} onClick={button.onClick}>
+    //                         {button.text}
+    //                     </Button>
+    //                 </ButtonFrame>
+    //             })
+    //         }
+    //     </ButtonsFrame>
+    // }
 
-    let view =
-    <Container height={height} onClick={onClick}>
-        <Frame height={height} backgroundColor={backgroundColor!} backgroundHover={backgroundHover!} borderRadius={borderRadius}>
-            <FlexFrame>
-                {topLeftFrame}
-                {statusFrame}
-            </FlexFrame>
-            {contentsFrame}
-            {buttonsFrame}
-        </Frame>
-    </Container>
+    let view = <></>
+    // <Container height={height} onClick={onClick}>
+    //     <Frame height={height} backgroundColor={backgroundColor!} backgroundHover={backgroundHover!} borderRadius={borderRadius}>
+    //         <FlexFrame>
+    //             {topLeftFrame}
+    //             {statusFrame}
+    //         </FlexFrame>
+    //         {contentsFrame}
+    //         {buttonsFrame}
+    //     </Frame>
+    // </Container>
 
     return view;
 }

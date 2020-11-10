@@ -1,23 +1,22 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 
-export interface OptionProps {
-    title: string
-    value: string
-}
+import OptionComponent, { OptionProps } from './OptionComponent'
+import Component from './Component'
 
-interface SelectComponentProps {
+interface SelectProps extends Component {
     value?: string
-    options?: OptionProps[]
+    options?: Array<OptionProps>
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const SelectComponent = ({ value, options, onChange }: SelectComponentProps) => {
+const SelectComponent = ({ value, options, onChange }: SelectProps) => {
     let optionView = <></>;
+
     if(options !== undefined) {
         optionView = 
         <>
-            {options.map((option) => { return <option value={option.value}>{option.title}</option>})}
+            {options.map((option) => <OptionComponent title={option.title} value={option.value} /> )}
         </>;
     }
 

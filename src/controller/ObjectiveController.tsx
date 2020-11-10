@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import CellComponent from '../components/cell/CellComponent';
+import CellComponent from '../components/dependence/CellComponent';
 import ObjectiveType from '../model/ObjectiveType';
 import DateType from '../model/DateType';
 
@@ -11,6 +11,10 @@ import * as utility from '../service/Utility'
 import useHandle from '../hooks/useHandle';
 import useData from '../hooks/useData';
 import useCell from '../hooks/useCell';
+
+import SelectComponent from '../components/independence/SelectComponent';
+import OptionComponent from '../components/independence/OptionComponent';
+import ButtonComponent from '../components/independence/ButtonComponent';
 
 
 const ObjectiveController = () => {
@@ -39,6 +43,9 @@ const ObjectiveController = () => {
     let view = 
     <Container>
         <CellComponent
+            graph={[[
+                { width: "80%", height: "80%", theme: "primary" }
+            ]]}
             borderRadius="10px"
             backgroundColor="#007bff"
             backgroundHover="#0069d9"
@@ -47,7 +54,7 @@ const ObjectiveController = () => {
             onClick={() => { handle_onShow("OBJECTIVE_POST"); }}
         />
 
-        {data_objectiveList.map((obj) => {
+        {/* {data_objectiveList.map((obj) => {
             if(obj instanceof ObjectiveType && obj.type === "OBJECTIVE") {
                 return <CellComponent
                 borderRadius="10px"
@@ -75,7 +82,7 @@ const ObjectiveController = () => {
                     title={{ text: obj.getDate(), backgroundColor: "513674", verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
                 />
             }
-        })}
+        })} */}
     </Container>
 
     return view;

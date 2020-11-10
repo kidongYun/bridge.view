@@ -1,21 +1,20 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 
-interface TextareaComponentProps {
-    value?: string
+import Component from './Component'
+
+interface TextProps extends Component {
     placeholder?: string
-    rows?: string
+    value?: string
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const TextareaComponent = ({ value, placeholder, rows, onChange }: TextareaComponentProps) => {
+const TextComponent = ({ value, placeholder, onChange }: TextProps) => {
     let view =
     <Form.Group>
         <Form.Control
             defaultValue={value}
             placeholder={placeholder}
-            as="textarea"
-            rows={rows}
             onChange={onChange}
         />
     </Form.Group>
@@ -23,4 +22,4 @@ const TextareaComponent = ({ value, placeholder, rows, onChange }: TextareaCompo
     return view;
 }
 
-export default TextareaComponent;
+export default TextComponent;

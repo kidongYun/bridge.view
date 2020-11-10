@@ -1,6 +1,6 @@
 import React from 'react'
-import PopupHandleComponent from '../components/handle/PopupHandleComponent';
-import PopinHandleComponent from '../components/handle/PopinHandleComponent';
+import PopupHandleComponent from '../components/dependence/PopupHandleComponent';
+import PopinHandleComponent from '../components/dependence/PopinHandleComponent';
 
 import * as data from '../service/Data'
 import * as utility from '../service/Utility'

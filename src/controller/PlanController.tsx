@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import CellComponent from '../components/cell/CellComponent';
+import CellComponent from '../components/dependence/CellComponent';
 
 import * as data from '../service/Data'
 import * as utility from '../service/Utility';
@@ -72,30 +72,30 @@ const PlanController = () => {
 
                     console.log(target);
 
-                    return <CellComponent 
-                        borderRadius="10px"
-                        backgroundColor="#eeeeee"
-                        backgroundHover="#e4e4e4"
-                        height="150px"
-                        title={{ text: target.title, verticalAlign: "", horizontalAlign: "" }}
-                        contents={[
-                            content
-                        ]}
-                        onClick={() => {
-                            onSetCellStartDateTime(plan.startDateTime);
-                            onSetSubjectId(plan.id);
-                            onSetPlanObjectiveId(plan.objectiveId);
-                            onSetPlanContent(plan.content);
-                            handle_onShow("PLAN");
-                        }}
-                    />
+                    // return <CellComponent 
+                    //     borderRadius="10px"
+                    //     backgroundColor="#eeeeee"
+                    //     backgroundHover="#e4e4e4"
+                    //     height="150px"
+                    //     title={{ text: target.title, verticalAlign: "", horizontalAlign: "" }}
+                    //     contents={[
+                    //         content
+                    //     ]}
+                    //     onClick={() => {
+                    //         onSetCellStartDateTime(plan.startDateTime);
+                    //         onSetSubjectId(plan.id);
+                    //         onSetPlanObjectiveId(plan.objectiveId);
+                    //         onSetPlanContent(plan.content);
+                    //         handle_onShow("PLAN");
+                    //     }}
+                    // />
                 }
 
                 if(plan instanceof DateType && plan.type === "DATE") {
-                    return <CellComponent
-                        borderRadius="0px"
-                        title={{ text: plan.getDate().substring(0, 7), verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
-                    />
+                    // return <CellComponent
+                    //     borderRadius="0px"
+                    //     title={{ text: plan.getDate().substring(0, 7), verticalAlign: "flex-end", horizontalAlign: "flex-start" }}
+                    // />
                 }
             }
         )}

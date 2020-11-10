@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import CellComponent from '../components/cell/CellComponent';
+import CellComponent from '../components/dependence/CellComponent';
 
 import TodoType from '../model/TodoType';
 import DateType from '../model/DateType';
@@ -33,7 +33,7 @@ const TodoController = () => {
 
     let view = 
     <Container>
-        {data_todoList.map((todo) => {
+        {/* {data_todoList.map((todo) => {
             if(todo instanceof TodoType && todo.type === "TODO") {
                 return <CellComponent
                 borderRadius="10px"
@@ -61,7 +61,7 @@ const TodoController = () => {
                     />
                 </>
             }
-        })}
+        })} */}
     </Container>;
 
     return view;

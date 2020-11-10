@@ -1,11 +1,13 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 
-interface LabelComponentProps {
+import Component from './Component'
+
+interface LabelProps extends Component {
     label: string
 }
 
-const LabelComponent = ({ label }: LabelComponentProps) => {
+const LabelComponent = ({ label }: LabelProps) => {
     let view =
     <Form.Group>
         <Form.Label>{label}</Form.Label>
