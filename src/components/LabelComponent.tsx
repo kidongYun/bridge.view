@@ -21,7 +21,7 @@ const LabelComponent: React.FC<LabelProps> = ({
 }) => {
 
     let view = 
-    <Component>
+    <Component width={width} height={height} backgroundColor={backgroundColor}>
         <Form.Group>
             <Form.Label>{label}</Form.Label>
         </Form.Group>

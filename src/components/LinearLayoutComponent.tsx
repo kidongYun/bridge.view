@@ -1,27 +1,26 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Component, { ComponentProps } from '../independence/Component'
+import Component, { ComponentProps } from './Component'
 
-interface CellProps extends ComponentProps {
-    // borderRadius?: string
-    // backgroundColor?: string
-    // backgroundHover?: string
-    // title?: TextProps
-    // contents?: TextProps[]
-    // status?: ButtonProps
-    // buttons?: ButtonProps[]
-    components: Array<Array<JSX.Element>>
+interface LayoutProps extends ComponentProps {
+    graph: Array<Array<JSX.Element>>
 }
 
-const CellComponent: React.FC<CellProps> = ({ 
-    components
+const LinearLayoutComponent: React.FC<LayoutProps> = ({ 
+    graph
 }) => {
     let view =
     <Container height="100px">
-        {components.map(
-            (component) => {
-                return <Component>{component}</Component>
+        {graph.map(
+            (components) => {
+                return <Linear>
+                    {components.map(
+                        (component) => {
+                            return <>{component}</>;
+                        }
+                    )}
+                </Linear>
             }
         )}
     </Container>
@@ -103,6 +102,13 @@ const Container = styled.div<{ height: string }>`
     width: 100%;
     height: ${props => props.height};
     padding: 5px;
+`;
+
+const Linear = styled.div`
+    width: 100%;
+    height: 100%;
+
+    display: flex;
 `;
 
 const Frame = styled.div<{ height: string, backgroundColor: string, backgroundHover: string, borderRadius: string }>`
@@ -208,4 +214,4 @@ const FlexFrame = styled.div`
     display: flex;
 `;
 
-export default CellComponent;
+export default LinearLayoutComponent;

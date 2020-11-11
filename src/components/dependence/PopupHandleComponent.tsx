@@ -5,10 +5,10 @@ import Form from 'react-bootstrap/Form'
 
 import { HandleComponentProps } from '../props'
 
-import LabelComponent from '../independence/LabelComponent';
-import TextComponent from '../independence/TextComponent';
-import TextareaComponent from '../independence/TextareaComponent'
-import SelectComponent from '../independence/SelectComponent';
+import LabelComponent from '../LabelComponent';
+import TextComponent from '../TextComponent';
+import TextareaComponent from '../TextareaComponent'
+import SelectComponent from '../SelectComponent';
 
 const PopupHandleComponent = ({
     title, forms, buttons

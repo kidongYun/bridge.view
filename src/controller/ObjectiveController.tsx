@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import CellComponent from '../components/dependence/CellComponent';
+import LinearLayoutComponent from '../components/LinearLayoutComponent';
 import ObjectiveType from '../model/ObjectiveType';
 import DateType from '../model/DateType';
 
@@ -12,9 +12,12 @@ import useHandle from '../hooks/useHandle';
 import useData from '../hooks/useData';
 import useCell from '../hooks/useCell';
 
-import SelectComponent from '../components/independence/SelectComponent';
-import OptionComponent from '../components/independence/OptionComponent';
-import ButtonComponent from '../components/independence/ButtonComponent';
+import SelectComponent from '../components/SelectComponent';
+import OptionComponent from '../components/OptionComponent';
+import ButtonComponent from '../components/ButtonComponent';
+import TextComponent from '../components/TextComponent';
+import LabelComponent from '../components/LabelComponent';
+import Component from '../components/Component'
 
 
 const ObjectiveController = () => {
@@ -42,14 +45,16 @@ const ObjectiveController = () => {
 
     let view = 
     <Container>
-        <CellComponent
-            components={[
+        <LinearLayoutComponent
+            graph={[
                 [
-                    <></>,
-                    <></>
+                    <Component backgroundColor="#111111"></Component>,
+                    <LabelComponent label="HELL12" backgroundColor="#222222"></LabelComponent>
                 ],
                 [
-                    <></>
+                    <LabelComponent label="HELL21" backgroundColor="#333333"></LabelComponent>,
+                    <LabelComponent label="HELL22" backgroundColor="#444444"></LabelComponent>,
+                    <LabelComponent label="HELL23" backgroundColor="#555555"></LabelComponent>
                 ]
             ]}
         />

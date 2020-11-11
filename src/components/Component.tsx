@@ -20,23 +20,24 @@ const Component: React.FC<ComponentProps> = ({
     borderColor,
     borderWidth,
     borderStyle,
-    backgroundColor,
+    backgroundColor = "transparent",
     backgroundHover,
     onClick, 
     children 
 }) => {
 
     let view =
-    <Container width={width} height={height} onClick={onClick}>
+    <Container width={width} height={height} backgroundColor={backgroundColor} onClick={onClick}>
         {children}
     </Container>
 
     return view;
 }
 
-const Container = styled.div<{ width: string, height: string }>`
-    width: ${props => props.width}
-    height: ${props => props.height}
+const Container = styled.div<{ width: string, height: string, backgroundColor: string }>`
+    width: ${props => props.width};
+    height: ${props => props.height};
+    background-color: ${props => props.backgroundColor};
 `;
 
 export default Component;

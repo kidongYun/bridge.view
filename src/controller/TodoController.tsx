@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import CellComponent from '../components/dependence/CellComponent';
+import CellComponent from '../components/LinearLayoutComponent';
 
 import TodoType from '../model/TodoType';
 import DateType from '../model/DateType';
