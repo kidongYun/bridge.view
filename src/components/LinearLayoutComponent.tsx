@@ -8,10 +8,29 @@ interface LayoutProps extends ComponentProps {
 }
 
 const LinearLayoutComponent: React.FC<LayoutProps> = ({ 
+    width,
+    height,
+    backgroundColor,
+    backgroundHover,
+    borderRadius,
+    borderColor,
+    borderWidth,
+    borderStyle,
+    onClick, 
     graph
 }) => {
     let view =
-    <Container height="100px">
+    <Component 
+        width={width} 
+        height={height} 
+        activeHeight={Number(height!.replace(/[^0-9]/g,'')) + 10 + "px"}
+        backgroundColor={backgroundColor}
+        backgroundHover={backgroundHover}
+        borderRadius={borderRadius}
+        borderColor={borderColor}
+        borderWidth={borderWidth}
+        borderStyle={borderStyle}
+        >
         {graph.map(
             (components) => {
                 return <Linear>
@@ -23,16 +42,9 @@ const LinearLayoutComponent: React.FC<LayoutProps> = ({
                 </Linear>
             }
         )}
-    </Container>
+    </Component>
 
-
-    // graph.map(
-    //     (components) => components.map(
-    //         (component) => {
-    //             console.log(component);
-    //         }
-    //     )
-    // )
+    
 
     // let topLeftFrame = <></>;
     // if(title !== undefined) {
@@ -98,16 +110,9 @@ const LinearLayoutComponent: React.FC<LayoutProps> = ({
     return view;
 }
 
-const Container = styled.div<{ height: string }>`
-    width: 100%;
-    height: ${props => props.height};
-    padding: 5px;
-`;
-
 const Linear = styled.div`
     width: 100%;
     height: 100%;
-
     display: flex;
 `;
 

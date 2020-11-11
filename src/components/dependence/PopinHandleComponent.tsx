@@ -8,79 +8,75 @@ import TextComponent from '../TextComponent';
 import TextareaComponent from '../TextareaComponent'
 import SelectComponent from '../SelectComponent';
 
-import { HandleComponentProps } from '../props';
+const PopinHandleComponent = ({}) => {
 
-const PopinHandleComponent = ({
-    title, forms, buttons
-}: HandleComponentProps) => {
-
-    let formView = <Form></Form>
-    if(forms !== undefined) {
-        formView =
-        <Form>
-        {forms!.map((form) => {
-            if(form.type === "LABEL") {
-                return <LabelComponent 
-                    label={form.value!} 
-                />
-            }
+    // let formView = <Form></Form>
+    // if(forms !== undefined) {
+    //     formView =
+    //     <Form>
+    //     {forms!.map((form) => {
+    //         if(form.type === "LABEL") {
+    //             return <LabelComponent 
+    //                 label={form.value!} 
+    //             />
+    //         }
         
-            if(form.type === "TEXT") {
-                return <TextComponent
-                    value={form.value}
-                    placeholder={form.placeholder} 
-                    onChange={form.onChange} 
-                />
-            }
+    //         if(form.type === "TEXT") {
+    //             return <TextComponent
+    //                 value={form.value}
+    //                 placeholder={form.placeholder} 
+    //                 onChange={form.onChange} 
+    //             />
+    //         }
 
-            if(form.type === "TEXTAREA") {
-                return <TextareaComponent
-                    value={form.value}
-                    placeholder={form.placeholder} 
-                    rows={form.rows}
-                    onChange={form.onChange}
-                />
-            }
+    //         if(form.type === "TEXTAREA") {
+    //             return <TextareaComponent
+    //                 value={form.value}
+    //                 placeholder={form.placeholder} 
+    //                 rows={form.rows}
+    //                 onChange={form.onChange}
+    //             />
+    //         }
 
-            // if(form.type === "SELECT") {
-            //     return <SelectComponent 
-            //         value={form.value}
-            //         options={form.options}
-            //         onChange={form.onChange}
-            //     />
-            // }
-        })}
-        </Form>
-    }
+    //         // if(form.type === "SELECT") {
+    //         //     return <SelectComponent 
+    //         //         value={form.value}
+    //         //         options={form.options}
+    //         //         onChange={form.onChange}
+    //         //     />
+    //         // }
+    //     })}
+    //     </Form>
+    // }
 
-    let buttonView = <></>;
-    if(buttons !== undefined) {
-        buttonView = 
-        <>
-        {buttons.map((button) => {
-            return <ButtonFrame>
-                <Button variant={button.type} onClick={() => { button.onClick(); }}>
-                    {button.text}
-                </Button>
-            </ButtonFrame>
-        })}
-        </>
-    }
+    // let buttonView = <></>;
+    // if(buttons !== undefined) {
+    //     buttonView = 
+    //     <>
+    //     {buttons.map((button) => {
+    //         return <ButtonFrame>
+    //             <Button variant={button.type} onClick={() => { button.onClick(); }}>
+    //                 {button.text}
+    //             </Button>
+    //         </ButtonFrame>
+    //     })}
+    //     </>
+    // }
 
-    let view = 
-    <Container>
-        <Header>
-            <Title>{title.text}</Title>
-        </Header>
-        <Content>
-            {formView}
-        </Content>
-        <Footer>
-            {buttonView}
-        </Footer>
-    </Container>
+    // let view = 
+    // <Container>
+    //     <Header>
+    //         <Title>{title.text}</Title>
+    //     </Header>
+    //     <Content>
+    //         {formView}
+    //     </Content>
+    //     <Footer>
+    //         {buttonView}
+    //     </Footer>
+    // </Container>
 
-    return view;
+    return <></>;
 }
 
 const Container = styled.div`

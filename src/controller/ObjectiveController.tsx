@@ -45,16 +45,17 @@ const ObjectiveController = () => {
 
     let view = 
     <Container>
-        <LinearLayoutComponent
+        <LinearLayoutComponent height="300px" backgroundColor="#007bff" backgroundHover="#0069d9" borderRadius="10px"
             graph={[
                 [
-                    <Component backgroundColor="#111111"></Component>,
-                    <LabelComponent label="HELL12" backgroundColor="#222222"></LabelComponent>
+                    <LabelComponent height="150px" label="+" labelSize="20pt" labelColor="#ffffff" labelWeight="bold" backgroundColor="#817232"></LabelComponent>,
+                    <LabelComponent height="150px" label="+" labelSize="20pt" labelColor="#ffffff" labelWeight="bold"></LabelComponent>,
+                    <LabelComponent height="150px" label="+" labelSize="20pt" labelColor="#ffffff" labelWeight="bold"></LabelComponent>
                 ],
                 [
-                    <LabelComponent label="HELL21" backgroundColor="#333333"></LabelComponent>,
-                    <LabelComponent label="HELL22" backgroundColor="#444444"></LabelComponent>,
-                    <LabelComponent label="HELL23" backgroundColor="#555555"></LabelComponent>
+                    <LabelComponent height="150px" label="+" labelSize="20pt" labelColor="#ffffff" labelWeight="bold" backgroundColor="#452332"></LabelComponent>,
+                    <LabelComponent height="150px" label="+" labelSize="20pt" labelColor="#ffffff" labelWeight="bold"></LabelComponent>,
+                    <LabelComponent height="150px" label="+" labelSize="20pt" labelColor="#ffffff" labelWeight="bold"></LabelComponent>
                 ]
             ]}
         />
