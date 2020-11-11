@@ -1,55 +1,49 @@
 import React from 'react'
 import styled from 'styled-components'
-import Button from 'react-bootstrap/Button'
 
-import { TextProps } from '../props'
+import Component, { ComponentProps } from '../independence/Component'
 
-import ButtonComponent, { ButtonProps } from '../independence/ButtonComponent'
-import Component from '../independence/Component'
-
-interface CellProps<T extends Component> extends Component {
-    graph: Array<Array<T>>
-    borderRadius?: string
-    backgroundColor?: string
-    backgroundHover?: string
-    title?: TextProps
-    contents?: TextProps[]
-    status?: ButtonProps
-    buttons?: ButtonProps[]
+interface CellProps extends ComponentProps {
+    // borderRadius?: string
+    // backgroundColor?: string
+    // backgroundHover?: string
+    // title?: TextProps
+    // contents?: TextProps[]
+    // status?: ButtonProps
+    // buttons?: ButtonProps[]
+    components: Array<Array<JSX.Element>>
 }
 
-const CellComponent = ({ 
-    graph,
-    borderRadius = "0px", 
-    backgroundColor = "#ffffff", 
-    backgroundHover = "#ffffff", 
-    height = "auto", 
-    title, 
-    contents, 
-    status, 
-    buttons, 
-    onClick 
-}: CellProps) => {
-
-    console.log("HELLO CELL COMPONENT");
-
-    graph.map(
-        (components) => components.map(
+const CellComponent: React.FC<CellProps> = ({ 
+    components
+}) => {
+    let view =
+    <Container height="100px">
+        {components.map(
             (component) => {
-                console.log(component);
+                return <Component>{component}</Component>
             }
-        )
-    )
+        )}
+    </Container>
 
-    let topLeftFrame = <></>;
-    if(title !== undefined) {
-        topLeftFrame = 
-            <TopLeftFrame>
-                <TextFrame fontSize={title.fontSize!} color={title.color!} verticalAlign={title.verticalAlign!} horizontalAlign={title.horizontalAlign!}>
-                    {title.text}
-                </TextFrame>
-            </TopLeftFrame>
-    }
+
+    // graph.map(
+    //     (components) => components.map(
+    //         (component) => {
+    //             console.log(component);
+    //         }
+    //     )
+    // )
+
+    // let topLeftFrame = <></>;
+    // if(title !== undefined) {
+    //     topLeftFrame = 
+    //         <TopLeftFrame>
+    //             <TextFrame fontSize={title.fontSize!} color={title.color!} verticalAlign={title.verticalAlign!} horizontalAlign={title.horizontalAlign!}>
+    //                 {title.text}
+    //             </TextFrame>
+    //         </TopLeftFrame>
+    // }
 
     // let statusFrame = <></>;
     // if(status !== undefined) {
@@ -60,19 +54,19 @@ const CellComponent = ({
     // }
 
 
-    let contentsFrame = <></>;
-    if(contents !== undefined) {
-        contentsFrame =
-        <ContentsFrame>
-            {
-                contents.map((content) => {
-                    return <ContentFrame borderRadius={content.borderRadius!} backgroundColor={content.backgroundColor!}>
-                        {content.text}
-                    </ContentFrame>
-                })
-            }
-        </ContentsFrame>
-    }
+    // let contentsFrame = <></>;
+    // if(contents !== undefined) {
+    //     contentsFrame =
+    //     <ContentsFrame>
+    //         {
+    //             contents.map((content) => {
+    //                 return <ContentFrame borderRadius={content.borderRadius!} backgroundColor={content.backgroundColor!}>
+    //                     {content.text}
+    //                 </ContentFrame>
+    //             })
+    //         }
+    //     </ContentsFrame>
+    // }
 
     // let buttonsFrame = <></>;
     // if(buttons !== undefined) {
@@ -90,7 +84,7 @@ const CellComponent = ({
     //     </ButtonsFrame>
     // }
 
-    let view = <></>
+    // let view = <></>
     // <Container height={height} onClick={onClick}>
     //     <Frame height={height} backgroundColor={backgroundColor!} backgroundHover={backgroundHover!} borderRadius={borderRadius}>
     //         <FlexFrame>

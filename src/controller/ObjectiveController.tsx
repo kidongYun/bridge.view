@@ -43,16 +43,25 @@ const ObjectiveController = () => {
     let view = 
     <Container>
         <CellComponent
-            graph={[[
-                { width: "80%", height: "80%", theme: "primary" }
-            ]]}
+            components={[
+                [
+                    <></>,
+                    <></>
+                ],
+                [
+                    <></>
+                ]
+            ]}
+        />
+        
+        {/* <CellComponent
             borderRadius="10px"
             backgroundColor="#007bff"
             backgroundHover="#0069d9"
             height="100px"
             title={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
             onClick={() => { handle_onShow("OBJECTIVE_POST"); }}
-        />
+        /> */}
 
         {/* {data_objectiveList.map((obj) => {
             if(obj instanceof ObjectiveType && obj.type === "OBJECTIVE") {

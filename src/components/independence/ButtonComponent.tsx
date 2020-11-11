@@ -1,9 +1,9 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 
-import Component from './Component'
+import Component, { ComponentProps } from './Component'
 
-export interface ButtonProps extends Component {
+export interface ButtonProps extends ComponentProps {
     theme:     
     | 'primary'
     | 'secondary'
@@ -23,11 +23,21 @@ export interface ButtonProps extends Component {
     | 'outline-dark'
     | 'outline-light';
     text: string
-    onClick: (params?: any) => void
 }
 
-const ButtonComponent = ({ theme, text, onClick }: ButtonProps) => {
-    return <Button variant={theme} onClick={onClick}>{text}</Button>
+const ButtonComponent: React.FC<ButtonProps> = ({ 
+    width, 
+    height, 
+    theme, 
+    text, 
+    onClick 
+}) => {
+    let view =
+    <Component width={width} height={height}>
+        <Button variant={theme} onClick={onClick}>{text}</Button>
+    </Component>
+
+    return view;
 }
 
 export default ButtonComponent;

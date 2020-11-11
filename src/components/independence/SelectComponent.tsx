@@ -2,15 +2,28 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 
 import OptionComponent, { OptionProps } from './OptionComponent'
-import Component from './Component'
+import Component, { ComponentProps } from './Component'
 
-interface SelectProps extends Component {
+interface SelectProps extends ComponentProps {
     value?: string
     options?: Array<OptionProps>
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const SelectComponent = ({ value, options, onChange }: SelectProps) => {
+const SelectComponent: React.FC<SelectProps> = ({ 
+    width,
+    height,
+    borderRadius,
+    borderColor,
+    borderWidth,
+    borderStyle,
+    backgroundColor,
+    backgroundHover,
+    onClick, 
+    value, 
+    options, 
+    onChange 
+}) => {
     let optionView = <></>;
 
     if(options !== undefined) {
@@ -21,11 +34,13 @@ const SelectComponent = ({ value, options, onChange }: SelectProps) => {
     }
 
     let view =
-    <Form.Group>
-        <Form.Control as="select" defaultValue={value} onChange={onChange}>
-            {optionView}
-        </Form.Control>
-    </Form.Group>
+    <Component>
+        <Form.Group>
+            <Form.Control as="select" defaultValue={value} onChange={onChange}>
+                {optionView}
+            </Form.Control>
+        </Form.Group>
+    </Component>
 
     return view;
 }
