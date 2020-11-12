@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import LinearLayoutComponent from '../components/LinearLayoutComponent';
 import ObjectiveType from '../model/ObjectiveType';
 import DateType from '../model/DateType';
 
@@ -12,12 +11,9 @@ import useHandle from '../hooks/useHandle';
 import useData from '../hooks/useData';
 import useCell from '../hooks/useCell';
 
-import SelectComponent from '../components/SelectComponent';
-import OptionComponent from '../components/OptionComponent';
-import ButtonComponent from '../components/ButtonComponent';
-import TextComponent from '../components/TextComponent';
-import LabelComponent from '../components/LabelComponent';
-import Component from '../components/Component'
+import ObjectiveComponent from '../components/molecules/ObjectiveComponent'
+import AddComponent from '../components/molecules/AddComponent';
+import DateComponent from '../components/molecules/DateComponent';
 
 
 const ObjectiveController = () => {
@@ -45,29 +41,31 @@ const ObjectiveController = () => {
 
     let view = 
     <Container>
-        <LinearLayoutComponent height="300px" backgroundColor="#007bff" backgroundHover="#0069d9" borderRadius="10px"
-            graph={[
-                [
-                    <LabelComponent height="150px" label="+" labelSize="20pt" labelColor="#ffffff" labelWeight="bold" backgroundColor="#817232"></LabelComponent>,
-                    <LabelComponent height="150px" label="+" labelSize="20pt" labelColor="#ffffff" labelWeight="bold"></LabelComponent>,
-                    <LabelComponent height="150px" label="+" labelSize="20pt" labelColor="#ffffff" labelWeight="bold"></LabelComponent>
-                ],
-                [
-                    <LabelComponent height="150px" label="+" labelSize="20pt" labelColor="#ffffff" labelWeight="bold" backgroundColor="#452332"></LabelComponent>,
-                    <LabelComponent height="150px" label="+" labelSize="20pt" labelColor="#ffffff" labelWeight="bold"></LabelComponent>,
-                    <LabelComponent height="150px" label="+" labelSize="20pt" labelColor="#ffffff" labelWeight="bold"></LabelComponent>
-                ]
-            ]}
-        />
-        
-        {/* <CellComponent
-            borderRadius="10px"
-            backgroundColor="#007bff"
-            backgroundHover="#0069d9"
-            height="100px"
-            title={{ text: "+", fontSize: "20pt", color: "#ffffff", verticalAlign: "center", horizontalAlign: "center" }}
+        <AddComponent
             onClick={() => { handle_onShow("OBJECTIVE_POST"); }}
-        /> */}
+        />
+
+        {data_objectiveList.map((obj) => {
+            if(obj instanceof ObjectiveType && obj.type === "OBJECTIVE") {
+                return <ObjectiveComponent
+                    title={obj.title}
+                    description={obj.description}
+                    deadline={obj.getDate()}
+                    onClick={() => {
+                        onSetCellType(obj.type);
+                        onSetCellEndDateTime(obj.endDateTime);
+                        onSetSubjectId(obj.id);
+                        onSetObjectiveTitle(obj.title);
+                        onSetObjectiveDescription(obj.description);
+                        handle_onShow("OBJECTIVE_PUT"); 
+                    }}
+                />
+            }
+
+            if(obj instanceof DateType && obj.type === "DATE") {
+                return <DateComponent date={obj.getDate()} />
+            }
+        })}
 
         {/* {data_objectiveList.map((obj) => {
             if(obj instanceof ObjectiveType && obj.type === "OBJECTIVE") {

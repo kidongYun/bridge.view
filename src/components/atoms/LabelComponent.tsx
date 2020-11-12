@@ -16,12 +16,22 @@ interface LabelProps extends ComponentProps {
 const LabelComponent: React.FC<LabelProps> = ({ 
     width,
     height,
+    activeHeight,
+    backgroundColor,
+    backgroundHover,
     borderRadius,
     borderColor,
     borderWidth,
     borderStyle,
-    backgroundColor,
-    backgroundHover,
+    marginTop,
+    marginBottom,
+    marginLeft,
+    marginRight,
+    paddingTop,
+    paddingBottom,
+    paddingLeft,
+    paddingRight,
+    direction,
     onClick, 
     label,
     labelSize = "10pt",
@@ -32,8 +42,32 @@ const LabelComponent: React.FC<LabelProps> = ({
 }) => {
 
     let view = 
-    <Component width={width} height={height} backgroundColor={backgroundColor}>
-        <Container labelSize={labelSize} labelColor={labelColor} labelWeight={labelWeight} verticalAlign={verticalAlign} horizontalAlign={horizontalAlign}>
+    <Component 
+        width={width} 
+        height={height}
+        activeHeight={activeHeight!}
+        backgroundColor={backgroundColor} 
+        backgroundHover={backgroundHover}
+        borderRadius={borderRadius}
+        borderColor={borderColor}
+        borderWidth={borderWidth}
+        borderStyle={borderStyle}
+        marginTop={marginTop}
+        marginBottom={marginBottom}
+        marginLeft={marginLeft}
+        marginRight={marginRight}
+        paddingTop={paddingTop}
+        paddingBottom={paddingBottom}
+        paddingLeft={paddingLeft}
+        paddingRight={paddingRight}
+        direction={direction}
+        onClick={onClick}>
+        <Container 
+            labelSize={labelSize} 
+            labelColor={labelColor} 
+            labelWeight={labelWeight} 
+            verticalAlign={verticalAlign} 
+            horizontalAlign={horizontalAlign}>
             <Form.Group>
                 <Form.Label>{label}</Form.Label>
             </Form.Group>

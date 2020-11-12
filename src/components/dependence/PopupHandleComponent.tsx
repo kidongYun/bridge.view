@@ -3,10 +3,10 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 
-import LabelComponent from '../LabelComponent';
-import TextComponent from '../TextComponent';
-import TextareaComponent from '../TextareaComponent'
-import SelectComponent from '../SelectComponent';
+import LabelComponent from '../atoms/LabelComponent';
+import TextComponent from '../atoms/TextComponent';
+import TextareaComponent from '../atoms/TextareaComponent'
+import SelectComponent from '../atoms/SelectComponent';
 
 const PopupHandleComponent = ({}) => {
 

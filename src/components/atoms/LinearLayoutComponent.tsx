@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Component, { ComponentProps } from './Component'
+import LabelComponent from './LabelComponent'
 
 interface LayoutProps extends ComponentProps {
     graph: Array<Array<JSX.Element>>
@@ -31,7 +32,11 @@ const LinearLayoutComponent: React.FC<LayoutProps> = ({
         borderWidth={borderWidth}
         borderStyle={borderStyle}
         >
-        {graph.map(
+
+        <LabelComponent height="50%" label="+" labelSize="20pt" labelColor="#ffffff" labelWeight="bold" backgroundColor="#452332"/>
+        <LabelComponent height="50%" label="+" labelSize="20pt" labelColor="#ffffff" labelWeight="bold" backgroundColor="#643342"/>
+        <LabelComponent height="50%" label="+" labelSize="20pt" labelColor="#ffffff" labelWeight="bold" backgroundColor="#123123"/>
+        {/* {graph.map(
             (components) => {
                 return <Linear>
                     {components.map(
@@ -41,7 +46,7 @@ const LinearLayoutComponent: React.FC<LayoutProps> = ({
                     )}
                 </Linear>
             }
-        )}
+        )} */}
     </Component>
 
     
@@ -111,8 +116,8 @@ const LinearLayoutComponent: React.FC<LayoutProps> = ({
 }
 
 const Linear = styled.div`
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
     display: flex;
 `;
 
