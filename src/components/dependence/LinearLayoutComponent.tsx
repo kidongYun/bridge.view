@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Component, { ComponentProps } from './Component'
-import LabelComponent from './LabelComponent'
+import Component, { ComponentProps } from '../atoms/Component'
+import LabelComponent from '../atoms/LabelComponent'
 
 interface LayoutProps extends ComponentProps {
     graph: Array<Array<JSX.Element>>

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import CellComponent from '../components/atoms/LinearLayoutComponent';
+import CellComponent from '../components/dependence/LinearLayoutComponent';
 
 import * as data from '../service/Data'
 import * as utility from '../service/Utility';

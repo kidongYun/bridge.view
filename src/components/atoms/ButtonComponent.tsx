@@ -35,10 +35,14 @@ const ButtonComponent: React.FC<ButtonProps> = ({
     borderColor,
     borderWidth,
     borderStyle,
+    marginHorizon,
+    marginVertical,
     marginTop,
     marginBottom,
     marginLeft,
     marginRight,
+    paddingHorizon,
+    paddingVertical,
     paddingTop,
     paddingBottom,
     paddingLeft,
@@ -59,10 +63,14 @@ const ButtonComponent: React.FC<ButtonProps> = ({
         borderColor={borderColor}
         borderWidth={borderWidth}
         borderStyle={borderStyle}
+        marginHorizon={marginHorizon}
+        marginVertical={marginVertical}
         marginTop={marginTop}
         marginBottom={marginBottom}
         marginLeft={marginLeft}
         marginRight={marginRight}
+        paddingHorizon={paddingHorizon}
+        paddingVertical={paddingVertical}
         paddingTop={paddingTop}
         paddingBottom={paddingBottom}
         paddingLeft={paddingLeft}

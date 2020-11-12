@@ -1,7 +1,6 @@
 import React from 'react'
 import Component, { ComponentProps } from '../atoms/Component'
 import LabelComponent from '../atoms/LabelComponent'
-import useHandle from '../../hooks/useHandle';
 
 interface AddProps extends ComponentProps {
 
@@ -10,8 +9,6 @@ interface AddProps extends ComponentProps {
 const AddComponent: React.FC<AddProps> = ({
     onClick
 }) => {
-    const { handle_onShow } = useHandle();
-
     let view =
     <Component
         height="100px"

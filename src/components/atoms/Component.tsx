@@ -11,10 +11,14 @@ export interface ComponentProps {
     borderColor?: string,
     borderWidth?: string,
     borderStyle?: string,
+    marginHorizon?: string,
+    marginVertical?: string,
     marginTop?: string,
     marginBottom?: string,
     marginLeft?: string,
     marginRight?: string,
+    paddingHorizon?: string,
+    paddingVertical?: string,
     paddingTop?: string,
     paddingBottom?: string,
     paddingLeft?: string,
@@ -33,10 +37,14 @@ const Component: React.FC<ComponentProps> = ({
     borderColor = "#000000",
     borderWidth = "1px",
     borderStyle = "solid",
+    marginHorizon,
+    marginVertical,
     marginTop = "0px",
     marginBottom = "0px",
     marginLeft = "0px",
     marginRight = "0px",
+    paddingHorizon,
+    paddingVertical,
     paddingTop = "0px",
     paddingBottom = "0px",
     paddingLeft = "0px",
@@ -46,6 +54,26 @@ const Component: React.FC<ComponentProps> = ({
     children 
 }) => {
     
+    if(marginHorizon !== undefined) {
+        marginLeft = marginHorizon;
+        marginRight = marginHorizon;
+    }
+
+    if(marginVertical !== undefined) {
+        marginTop = marginVertical;
+        marginBottom = marginVertical;
+    }
+
+    if(paddingHorizon !== undefined) {
+        paddingLeft = paddingHorizon;
+        paddingRight = paddingHorizon;
+    }
+
+    if(paddingVertical !== undefined) {
+        paddingTop = paddingVertical;
+        paddingBottom = paddingVertical;
+    }
+
     let view =
     <Container 
         width={width} 
