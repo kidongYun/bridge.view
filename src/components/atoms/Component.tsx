@@ -131,21 +131,28 @@ const Container = styled.div<{
 }>`
     width: ${props => props.width};
     height: ${props => props.height};
+    
     background-color: ${props => props.backgroundColor};
     &:hover { background-color: ${props => props.backgroundHover }; }
     border-radius: ${props => props.borderRadius };
+
     &:active { height: ${props => props.activeHeight}; }
     transition: all ease 0.2s 0s;
-    display: flex;
-    flex-direction: ${props => props.direction};
+
     margin-top: ${props => props.marginTop};
     margin-bottom: ${props => props.marginBottom};
     margin-left: ${props => props.marginLeft};
     margin-right: ${props => props.marginRight};
+
     padding-top: ${props => props.paddingTop};
     padding-bottom: ${props => props.paddingBottom};
     padding-left: ${props => props.paddingLeft};
     padding-right: ${props => props.paddingBottom};
+
+    display: flex;
+    flex-direction: ${props => props.direction};
+    justify-content: ${props => props.horizontalAlign};
+    align-items: ${props => props.verticalAlign};
 `;
 
 export default Component;

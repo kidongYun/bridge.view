@@ -4,78 +4,53 @@ import Form from 'react-bootstrap/Form'
 
 import Component, { ComponentProps } from './Component'
 
-interface LabelProps extends ComponentProps {
+interface LabelProps {
+    component: ComponentProps
     label: string
-    labelSize?: string
-    labelColor?: string
-    labelWeight?: string
-    verticalAlign?: string
-    horizontalAlign?: string
+    size?: string
+    color?: string
+    weight?: string
 }
 
 const LabelComponent: React.FC<LabelProps> = ({ 
-    width,
-    height,
-    activeHeight,
-    backgroundColor,
-    backgroundHover,
-    borderRadius,
-    borderColor,
-    borderWidth,
-    borderStyle,
-    marginHorizon,
-    marginVertical,
-    marginTop,
-    marginBottom,
-    marginLeft,
-    marginRight,
-    paddingHorizon,
-    paddingVertical,
-    paddingTop,
-    paddingBottom,
-    paddingLeft,
-    paddingRight,
-    direction,
-    onClick, 
+    component,
     label,
-    labelSize = "10pt",
-    labelColor = "#000000",
-    labelWeight = "normal",
-    verticalAlign = "center",
-    horizontalAlign = "center"
+    size = "10pt",
+    color = "#000000",
+    weight = "normal",
 }) => {
 
     let view = 
     <Component 
-        width={width} 
-        height={height}
-        activeHeight={activeHeight!}
-        backgroundColor={backgroundColor} 
-        backgroundHover={backgroundHover}
-        borderRadius={borderRadius}
-        borderColor={borderColor}
-        borderWidth={borderWidth}
-        borderStyle={borderStyle}
-        marginHorizon={marginHorizon}
-        marginVertical={marginVertical}
-        marginTop={marginTop}
-        marginBottom={marginBottom}
-        marginLeft={marginLeft}
-        marginRight={marginRight}
-        paddingHorizon={paddingHorizon}
-        paddingVertical={paddingVertical}
-        paddingTop={paddingTop}
-        paddingBottom={paddingBottom}
-        paddingLeft={paddingLeft}
-        paddingRight={paddingRight}
-        direction={direction}
-        onClick={onClick}>
+        width={component.width} 
+        height={component.height}
+        activeHeight={component.activeHeight!}
+        backgroundColor={component.backgroundColor} 
+        backgroundHover={component.backgroundHover}
+        borderRadius={component.borderRadius}
+        borderColor={component.borderColor}
+        borderWidth={component.borderWidth}
+        borderStyle={component.borderStyle}
+        marginHorizon={component.marginHorizon}
+        marginVertical={component.marginVertical}
+        marginTop={component.marginTop}
+        marginBottom={component.marginBottom}
+        marginLeft={component.marginLeft}
+        marginRight={component.marginRight}
+        paddingHorizon={component.paddingHorizon}
+        paddingVertical={component.paddingVertical}
+        paddingTop={component.paddingTop}
+        paddingBottom={component.paddingBottom}
+        paddingLeft={component.paddingLeft}
+        paddingRight={component.paddingRight}
+        direction={component.direction}
+        onClick={component.onClick}>
         <Container 
-            labelSize={labelSize} 
-            labelColor={labelColor} 
-            labelWeight={labelWeight} 
-            verticalAlign={verticalAlign} 
-            horizontalAlign={horizontalAlign}>
+            size={size} 
+            color={color} 
+            weight={weight}
+            verticalAlign=""
+            horizontalAlign="">
             <Form.Group>
                 <Form.Label>{label}</Form.Label>
             </Form.Group>
@@ -85,13 +60,19 @@ const LabelComponent: React.FC<LabelProps> = ({
     return view;
 }
 
-const Container = styled.div<{ labelSize: string, labelColor: string, labelWeight: string, verticalAlign: string, horizontalAlign: string }>`
+const Container = styled.div<{ 
+    size: string, 
+    color: string, 
+    weight: string,
+    horizontalAlign: string,
+    verticalAlign: string
+}>`
     width: 100%;
     height: 100%;
 
-    font-size: ${props => props.labelSize};
-    font-weight: ${props => props.labelWeight};
-    color: ${props => props.labelColor};
+    font-size: ${props => props.size};
+    font-weight: ${props => props.color};
+    color: ${props => props.weight};
 
     display: flex;
     justify-content: ${props => props.horizontalAlign};
