@@ -1,6 +1,6 @@
 import React from 'react'
 import PopupHandleComponent from '../components/dependence/PopupHandleComponent';
-import PopinHandleComponent from '../components/dependence/PopinHandleComponent';
+import PopinHandleComponent from '../components/molecules/PopinHandleComponent';
 
 import * as data from '../service/Data'
 import * as utility from '../service/Utility'
@@ -72,104 +72,16 @@ const HandleController = () => {
     //     return <></>;
     // }
 
-    // if(handle_name === "SIGN") {
-    //     title = { text: "SIGN" }
-    //     forms = [
-    //         { 
-    //             type: "TEXT", 
-    //             placeholder: "EMAIL", 
-    //             onChange:(event: React.ChangeEvent<HTMLInputElement>) => {
-    //                 const { value } = event.target;
-    //                 sign_onUpdateEmail(value);
-    //             }
-    //         },
-    //         { 
-    //             type: "TEXT", 
-    //             placeholder: "PASSWORD", 
-    //             onChange:(event: React.ChangeEvent<HTMLInputElement>) => {
-    //                 const { value } = event.target;
-    //                 sign_onUpdatePassword(value);
-    //             } 
-    //         },
-    //         { 
-    //             type: "LABEL", 
-    //             value: sign_desc
-    //         }
-    //     ]
-    //     buttons = [
-    //         {
-    //             text: "Close", 
-    //             type: "secondary", 
-    //             onClick:() => {
-    //                 handle_onHide();
-    //             }
-    //         },
-    //         { 
-    //             text: "Sign In", 
-    //             type: "primary", 
-    //             onClick:() => {
-    //                 const params = {
-    //                     email: sign_email,
-    //                     password: sign_password
-    //                 }
-
-    //                 data.signIn(params).then((response) => {
-
-    //                     /* 로그인 실패한 경우 */
-    //                     if(response.data.errorCode !== 200) {
-    //                         sign_onUpdateStatus(false);
-    //                         sign_onUpdateDesc(response.data.errorDesc);
-    //                         return;
-    //                     }
-
-    //                     sign_onUpdateStatus(true);
-    //                     sign_onUpdateEmail(params.email);
-
-    //                     onShowNoti("success", "로그인되었습니다.");
-    //                     setTimeout(onHideNoti, 2300);
-    //                     handle_onHide();
-    //                 })
-    //             }
-    //         },
-    //         { 
-    //             text: "Sign Up", 
-    //             type: "primary", 
-    //             onClick:() => {
-    //                 const params = {
-    //                     email: sign_email,
-    //                     password: sign_password
-    //                 }
-
-    //                 data.signUp(params).then((response) => {
-    //                     if(response.data.errorCode === 200) {
-    //                         onShowNoti("success", "가입이 완료되었습니다.");
-    //                         setTimeout(onHideNoti, 2300);
-    //                         handle_onHide(); 
-    //                     }
-    //                 })
-    //             } 
-    //         }
-    //     ]
-
-    //     handle_onType("POPUP");
-
-    //     return <PopupHandleComponent 
-    //         title={title}
-    //         forms={forms}
-    //         buttons={buttons}
-    //     /> 
-    // }
-
     // if(handle_name === "OBJECTIVE_POST") {
     //     title = { text:"CREATE OBJECTIVE" }
     //     forms = [
     //         { 
     //             type: "TEXT", 
     //             placeholder: "TITLE",
-    //             onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
-    //                 const { value } = event.target;
-    //                 onSetObjectiveTitle(value);
-    //             }
+                // onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+                //     const { value } = event.target;
+                //     onSetObjectiveTitle(value);
+                // }
     //         },
     //         { 
     //             type: "TEXTAREA", 

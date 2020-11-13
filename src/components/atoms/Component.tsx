@@ -23,6 +23,8 @@ export interface ComponentProps {
     paddingBottom?: string,
     paddingLeft?: string,
     paddingRight?: string,
+    verticalAlign?: string,
+    horizontalAlign?: string,
     direction?: string,
     onClick?: () => void
 }
@@ -49,6 +51,8 @@ const Component: React.FC<ComponentProps> = ({
     paddingBottom = "0px",
     paddingLeft = "0px",
     paddingRight = "0px",
+    verticalAlign = "center",
+    horizontalAlign = "center",
     direction = "row",
     onClick, 
     children 
@@ -93,6 +97,8 @@ const Component: React.FC<ComponentProps> = ({
         paddingBottom={paddingBottom}
         paddingLeft={paddingLeft}
         paddingRight={paddingRight}
+        verticalAlign={verticalAlign}
+        horizontalAlign={horizontalAlign}
         direction={direction}
         onClick={onClick}>
         {children}
@@ -119,6 +125,8 @@ const Container = styled.div<{
     paddingBottom: string,
     paddingLeft: string,
     paddingRight: string,
+    verticalAlign: string,
+    horizontalAlign: string,
     direction: string,
 }>`
     width: ${props => props.width};

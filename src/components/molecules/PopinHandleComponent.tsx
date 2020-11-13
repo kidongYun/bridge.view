@@ -21,13 +21,14 @@ const PopinHandleComponent = ({}) => {
     //             />
     //         }
         
-    //         if(form.type === "TEXT") {
-    //             return <TextComponent
-    //                 value={form.value}
-    //                 placeholder={form.placeholder} 
-    //                 onChange={form.onChange} 
-    //             />
-    //         }
+            // /*  */
+            // if(form.type === "TEXT") {
+            //     return <TextComponent
+            //         value={form.value}
+            //         placeholder={form.placeholder} 
+            //         onChange={form.onChange} 
+            //     />
+            // }
 
     //         if(form.type === "TEXTAREA") {
     //             return <TextareaComponent
@@ -38,13 +39,13 @@ const PopinHandleComponent = ({}) => {
     //             />
     //         }
 
-    //         // if(form.type === "SELECT") {
-    //         //     return <SelectComponent 
-    //         //         value={form.value}
-    //         //         options={form.options}
-    //         //         onChange={form.onChange}
-    //         //     />
-    //         // }
+    //         if(form.type === "SELECT") {
+    //             return <SelectComponent 
+    //                 value={form.value}
+    //                 options={form.options}
+    //                 onChange={form.onChange}
+    //             />
+    //         }
     //     })}
     //     </Form>
     // }

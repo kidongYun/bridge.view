@@ -7,13 +7,17 @@ import ObjectiveController from './ObjectiveController';
 import PlanController from './PlanController';
 import TodoController from './TodoController';
 
+import ObjectiveListComponent from '../components/organisms/ObjectiveListComponent'
+import SignComponent from '../components/organisms/SignComponent'
+import ObjectivePostComponent from '../components/organisms/ObjectivePostComponent'
+
 const WorkspaceController = () => {
     const { name } = useStage();
 
     let view = <Container></Container>;
 
     if(name === "OBJECTIVE") {
-        view = <Container><ObjectiveController/></Container>;
+        view = <Container><ObjectivePostComponent/></Container>;
     }
 
     if(name === "PLAN") {
