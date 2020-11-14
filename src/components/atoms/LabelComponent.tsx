@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import Form from 'react-bootstrap/Form'
 
-import Component, { ComponentProps } from './Component'
+import Component, { ComponentProps, Default } from './Component'
 
 interface LabelProps {
-    component: ComponentProps
+    component?: ComponentProps
     label: string
     size?: string
     color?: string
@@ -13,7 +13,7 @@ interface LabelProps {
 }
 
 const LabelComponent: React.FC<LabelProps> = ({ 
-    component,
+    component = Default,
     label,
     size = "10pt",
     color = "#000000",
@@ -24,21 +24,17 @@ const LabelComponent: React.FC<LabelProps> = ({
     <Component 
         width={component.width} 
         height={component.height}
-        activeHeight={component.activeHeight!}
+        activeHeight={component.activeHeight}
         backgroundColor={component.backgroundColor} 
         backgroundHover={component.backgroundHover}
         borderRadius={component.borderRadius}
         borderColor={component.borderColor}
         borderWidth={component.borderWidth}
         borderStyle={component.borderStyle}
-        marginHorizon={component.marginHorizon}
-        marginVertical={component.marginVertical}
         marginTop={component.marginTop}
         marginBottom={component.marginBottom}
         marginLeft={component.marginLeft}
         marginRight={component.marginRight}
-        paddingHorizon={component.paddingHorizon}
-        paddingVertical={component.paddingVertical}
         paddingTop={component.paddingTop}
         paddingBottom={component.paddingBottom}
         paddingLeft={component.paddingLeft}
@@ -49,8 +45,8 @@ const LabelComponent: React.FC<LabelProps> = ({
             size={size} 
             color={color} 
             weight={weight}
-            verticalAlign=""
-            horizontalAlign="">
+            verticalAlign={component.verticalAlign!}
+            horizontalAlign={component.horizontalAlign!}>
             <Form.Group>
                 <Form.Label>{label}</Form.Label>
             </Form.Group>

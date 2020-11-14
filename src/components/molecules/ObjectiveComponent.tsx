@@ -14,6 +14,7 @@ const ObjectiveComponent: React.FC<ObjectiveProps> = ({
     deadline,
     onClick
 }) => {
+
     let view =
     <Component
         height="250px"
@@ -25,9 +26,40 @@ const ObjectiveComponent: React.FC<ObjectiveProps> = ({
         marginBottom="5px"
         direction="column"
         onClick={onClick}>
-        <LabelComponent label={title} height="200%" labelSize="15pt"/>
-        <LabelComponent label={description} width="90%" borderRadius="10px" backgroundColor="#ffffff" marginHorizon="auto" marginTop="2px" marginBottom="2px" />
-        <LabelComponent label={deadline} width="90%" borderRadius="10px" backgroundColor="#ffffff" horizontalAlign="flex-start" marginHorizon="auto" marginTop="2px" marginBottom="2px" />
+
+        <LabelComponent 
+            label={title} 
+            size="15pt" 
+            component={{ height: "200%" }} 
+        />
+
+        <LabelComponent 
+            label={description} 
+            component={{
+                width: "90%",
+                borderRadius: "10px",
+                backgroundColor: "#ffffff",
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginTop: "2px",
+                marginBottom: "2px"
+            }} 
+        />
+
+        <LabelComponent 
+            label={deadline} 
+            component={{
+                width: "90%",
+                borderRadius: "10px",
+                backgroundColor: "#ffffff",
+                horizontalAlign: "flex-start",
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginTop: "2px",
+                marginBottom: "2px"
+            }}
+        />
+
     </Component>;
 
     return view;

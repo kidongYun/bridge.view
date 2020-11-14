@@ -1,42 +1,21 @@
 import React from 'react'
+import styled from 'styled-components'
 import Form from 'react-bootstrap/Form'
-
 import OptionComponent, { OptionProps } from './OptionComponent'
-import Component, { ComponentProps } from './Component'
+import Component, { ComponentProps, Default } from './Component'
 
-interface SelectProps extends ComponentProps {
+interface SelectProps {
+    component?: ComponentProps
     value?: string
     options?: Array<OptionProps>
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const SelectComponent: React.FC<SelectProps> = ({ 
-    width,
-    height,
-    activeHeight,
-    backgroundColor,
-    backgroundHover,
-    borderRadius,
-    borderColor,
-    borderWidth,
-    borderStyle,
-    marginHorizon,
-    marginVertical,
-    marginTop,
-    marginBottom,
-    marginLeft,
-    marginRight,
-    paddingHorizon,
-    paddingVertical,
-    paddingTop,
-    paddingBottom,
-    paddingLeft,
-    paddingRight,
-    direction,
-    onClick, 
-    value, 
-    options, 
-    onChange 
+    component = Default,
+    value = "", 
+    options = [], 
+    onChange = () => {} 
 }) => {
     let optionView = <></>;
 
@@ -48,38 +27,50 @@ const SelectComponent: React.FC<SelectProps> = ({
     }
 
     let view =
-    <Component
-        width={width} 
-        height={height}
-        activeHeight={activeHeight!}
-        backgroundColor={backgroundColor} 
-        backgroundHover={backgroundHover}
-        borderRadius={borderRadius}
-        borderColor={borderColor}
-        borderWidth={borderWidth}
-        borderStyle={borderStyle}
-        marginHorizon={marginHorizon}
-        marginVertical={marginVertical}
-        marginTop={marginTop}
-        marginBottom={marginBottom}
-        marginLeft={marginLeft}
-        marginRight={marginRight}
-        paddingHorizon={paddingHorizon}
-        paddingVertical={paddingVertical}
-        paddingTop={paddingTop}
-        paddingBottom={paddingBottom}
-        paddingLeft={paddingLeft}
-        paddingRight={paddingRight}
-        direction={direction}
-        onClick={onClick}>
-        <Form.Group>
-            <Form.Control as="select" defaultValue={value} onChange={onChange}>
-                {optionView}
-            </Form.Control>
-        </Form.Group>
+    <Component 
+        width={component.width} 
+        height={component.height}
+        activeHeight={component.activeHeight}
+        backgroundColor={component.backgroundColor} 
+        backgroundHover={component.backgroundHover}
+        borderRadius={component.borderRadius}
+        borderColor={component.borderColor}
+        borderWidth={component.borderWidth}
+        borderStyle={component.borderStyle}
+        marginTop={component.marginTop}
+        marginBottom={component.marginBottom}
+        marginLeft={component.marginLeft}
+        marginRight={component.marginRight}
+        paddingTop={component.paddingTop}
+        paddingBottom={component.paddingBottom}
+        paddingLeft={component.paddingLeft}
+        paddingRight={component.paddingRight}
+        direction={component.direction}
+        onClick={component.onClick}>
+        <Container 
+            verticalAlign={component.verticalAlign!}
+            horizontalAlign={component.horizontalAlign!}>
+            <Form.Group>
+                <Form.Control as="select" defaultValue={value} onChange={onChange}>
+                    {optionView}
+                </Form.Control>
+            </Form.Group>
+        </Container>
     </Component>
 
     return view;
 }
+
+const Container = styled.div<{ 
+    verticalAlign: string, 
+    horizontalAlign: string 
+}>`
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: ${props => props.horizontalAlign};
+    align-items: ${props => props.verticalAlign};
+`;
 
 export default SelectComponent;

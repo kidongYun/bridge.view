@@ -11,14 +11,10 @@ export interface ComponentProps {
     borderColor?: string,
     borderWidth?: string,
     borderStyle?: string,
-    marginHorizon?: string,
-    marginVertical?: string,
     marginTop?: string,
     marginBottom?: string,
     marginLeft?: string,
     marginRight?: string,
-    paddingHorizon?: string,
-    paddingVertical?: string,
     paddingTop?: string,
     paddingBottom?: string,
     paddingLeft?: string,
@@ -29,79 +25,56 @@ export interface ComponentProps {
     onClick?: () => void
 }
 
-const Component: React.FC<ComponentProps> = ({ 
-    width = "100%",
-    height = "100%",
-    activeHeight,
-    backgroundColor = "transparent",
-    backgroundHover = "transparent",
-    borderRadius = "0px",
-    borderColor = "#000000",
-    borderWidth = "1px",
-    borderStyle = "solid",
-    marginHorizon,
-    marginVertical,
-    marginTop = "0px",
-    marginBottom = "0px",
-    marginLeft = "0px",
-    marginRight = "0px",
-    paddingHorizon,
-    paddingVertical,
-    paddingTop = "0px",
-    paddingBottom = "0px",
-    paddingLeft = "0px",
-    paddingRight = "0px",
-    verticalAlign = "center",
-    horizontalAlign = "center",
-    direction = "row",
-    onClick, 
-    children 
-}) => {
-    
-    if(marginHorizon !== undefined) {
-        marginLeft = marginHorizon;
-        marginRight = marginHorizon;
-    }
+export const Default: ComponentProps = {
+    width: "100%",
+    height: "100%",
+    activeHeight: "100%",
+    backgroundColor: "transparent",
+    backgroundHover: "transparent",
+    borderRadius: "0px",
+    borderColor: "#000000",
+    borderWidth: "1px",
+    borderStyle: "solid",
+    marginTop: "0px",
+    marginBottom: "0px",
+    marginLeft: "0px",
+    marginRight: "0px",
+    paddingTop: "0px",
+    paddingBottom: "0px",
+    paddingLeft: "0px",
+    paddingRight: "0px",
+    verticalAlign: "center",
+    horizontalAlign: "center",
+    direction: "row",
+    onClick: () => {}
+}
 
-    if(marginVertical !== undefined) {
-        marginTop = marginVertical;
-        marginBottom = marginVertical;
-    }
-
-    if(paddingHorizon !== undefined) {
-        paddingLeft = paddingHorizon;
-        paddingRight = paddingHorizon;
-    }
-
-    if(paddingVertical !== undefined) {
-        paddingTop = paddingVertical;
-        paddingBottom = paddingVertical;
-    }
+const Component: React.FC<ComponentProps> = (props = Default) => {
 
     let view =
     <Container 
-        width={width} 
-        height={height}
-        activeHeight={activeHeight!}
-        backgroundColor={backgroundColor} 
-        backgroundHover={backgroundHover}
-        borderRadius={borderRadius}
-        borderColor={borderColor}
-        borderWidth={borderWidth}
-        borderStyle={borderStyle}
-        marginTop={marginTop}
-        marginBottom={marginBottom}
-        marginLeft={marginLeft}
-        marginRight={marginRight}
-        paddingTop={paddingTop}
-        paddingBottom={paddingBottom}
-        paddingLeft={paddingLeft}
-        paddingRight={paddingRight}
-        verticalAlign={verticalAlign}
-        horizontalAlign={horizontalAlign}
-        direction={direction}
-        onClick={onClick}>
-        {children}
+        width={props.width!} 
+        height={props.height!}
+        activeHeight={props.activeHeight!}
+        backgroundColor={props.backgroundColor!} 
+        backgroundHover={props.backgroundHover!}
+        borderRadius={props.borderRadius!}
+        borderColor={props.borderColor!}
+        borderWidth={props.borderWidth!}
+        borderStyle={props.borderStyle!}
+        marginTop={props.marginTop!}
+        marginBottom={props.marginBottom!}
+        marginLeft={props.marginLeft!}
+        marginRight={props.marginRight!}
+        paddingTop={props.paddingTop!}
+        paddingBottom={props.paddingBottom!}
+        paddingLeft={props.paddingLeft!}
+        paddingRight={props.paddingRight!}
+        verticalAlign={props.verticalAlign!}
+        horizontalAlign={props.horizontalAlign!}
+        direction={props.direction!}
+        onClick={props.onClick!}>
+        {props.children}
     </Container>
 
     return view;

@@ -20,7 +20,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
     let view =
     <Component direction="column">
         <LabelComponent
-            label="OBJECTIVE POST" />
+            label="HELLO" />
 
         <TextComponent
             placeholder="TITLE"

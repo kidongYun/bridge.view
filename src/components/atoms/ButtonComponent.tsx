@@ -1,10 +1,11 @@
 import React from 'react'
+import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
+import Component, { ComponentProps, Default } from './Component'
 
-import Component, { ComponentProps } from './Component'
-
-export interface ButtonProps extends ComponentProps {
-    theme:     
+export interface ButtonProps {
+    component?: ComponentProps
+    theme?:     
     | 'primary'
     | 'secondary'
     | 'success'
@@ -22,66 +23,56 @@ export interface ButtonProps extends ComponentProps {
     | 'outline-info'
     | 'outline-dark'
     | 'outline-light';
-    text: string
+    text?: string
 }
 
 const ButtonComponent: React.FC<ButtonProps> = ({ 
-    width,
-    height,
-    activeHeight,
-    backgroundColor,
-    backgroundHover,
-    borderRadius,
-    borderColor,
-    borderWidth,
-    borderStyle,
-    marginHorizon,
-    marginVertical,
-    marginTop,
-    marginBottom,
-    marginLeft,
-    marginRight,
-    paddingHorizon,
-    paddingVertical,
-    paddingTop,
-    paddingBottom,
-    paddingLeft,
-    paddingRight,
-    direction,
-    onClick, 
-    theme, 
-    text
+    component = Default,
+    theme = "primary", 
+    text = ""
 }) => {
     let view =
     <Component 
-        width={width} 
-        height={height}
-        activeHeight={activeHeight!}
-        backgroundColor={backgroundColor} 
-        backgroundHover={backgroundHover}
-        borderRadius={borderRadius}
-        borderColor={borderColor}
-        borderWidth={borderWidth}
-        borderStyle={borderStyle}
-        marginHorizon={marginHorizon}
-        marginVertical={marginVertical}
-        marginTop={marginTop}
-        marginBottom={marginBottom}
-        marginLeft={marginLeft}
-        marginRight={marginRight}
-        paddingHorizon={paddingHorizon}
-        paddingVertical={paddingVertical}
-        paddingTop={paddingTop}
-        paddingBottom={paddingBottom}
-        paddingLeft={paddingLeft}
-        paddingRight={paddingRight}
-        direction={direction}>
-        <Button variant={theme} onClick={onClick}>
-            {text}
-        </Button>
+        width={component.width} 
+        height={component.height}
+        activeHeight={component.activeHeight}
+        backgroundColor={component.backgroundColor} 
+        backgroundHover={component.backgroundHover}
+        borderRadius={component.borderRadius}
+        borderColor={component.borderColor}
+        borderWidth={component.borderWidth}
+        borderStyle={component.borderStyle}
+        marginTop={component.marginTop}
+        marginBottom={component.marginBottom}
+        marginLeft={component.marginLeft}
+        marginRight={component.marginRight}
+        paddingTop={component.paddingTop}
+        paddingBottom={component.paddingBottom}
+        paddingLeft={component.paddingLeft}
+        paddingRight={component.paddingRight}
+        direction={component.direction}>
+        <Container 
+            verticalAlign={component.verticalAlign!}
+            horizontalAlign={component.horizontalAlign!}>
+            <Button variant={theme} onClick={component.onClick}>
+                {text}
+            </Button>
+        </Container>
     </Component>
 
     return view;
 }
+
+const Container = styled.div<{ 
+    verticalAlign: string, 
+    horizontalAlign: string 
+}>`
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: ${props => props.horizontalAlign};
+    align-items: ${props => props.verticalAlign};
+`;
 
 export default ButtonComponent;

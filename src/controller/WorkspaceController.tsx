@@ -17,7 +17,7 @@ const WorkspaceController = () => {
     let view = <Container></Container>;
 
     if(name === "OBJECTIVE") {
-        view = <Container><ObjectivePostComponent/></Container>;
+        view = <Container><SignComponent/></Container>;
     }
 
     if(name === "PLAN") {
