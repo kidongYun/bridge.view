@@ -20,7 +20,7 @@ const DateComponent: React.FC<DateProps> = ({
         />
     </Component>
 
-    return view
+    return view;
 }
 
 export default DateComponent;

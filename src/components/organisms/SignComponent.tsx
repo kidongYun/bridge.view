@@ -37,13 +37,21 @@ const SignComponent: React.FC<SignProps> = ({
 
     let view =
     <Component 
-        width="300px" 
-        height="300px" 
+        width="500px" 
+        height="500px" 
         direction="column" 
         backgroundColor="#aaaaaa"
-        backgroundHover="#ffffff">
+        backgroundHover="#ffffff"
+        borderColor="#543454"
+        borderWidth="20px">
         <LabelComponent 
-            label="SIGN" 
+            label="SIGN"
+            component={{
+                backgroundColor: "#454355",
+                backgroundHover: "#894945",
+                borderWidth: "20px",
+                borderColor: "#543423"
+            }} 
         />
 
         <TextComponent 

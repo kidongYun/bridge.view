@@ -99,12 +99,12 @@ const HandleController = () => {
     //         { 
     //             type: "SELECT",
     //             options: [
-    //                 { title: "Major", value: "1" },
-    //                 { title: "Minor", value: "2" }
+                    // { title: "Major", value: "1" },
+                    // { title: "Minor", value: "2" }
     //             ],
     //             onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
-    //                 const { value } = event.target;
-    //                 onSetObjectivePriority(Number.parseInt(value));
+                    // const { value } = event.target;
+                    // onSetObjectivePriority(Number.parseInt(value));
     //             }
     //         },
     //         { 
@@ -115,9 +115,9 @@ const HandleController = () => {
     //             type: "TEXT",
     //             placeholder: "2020-07-21",
     //             onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
-    //                 const { value } = event.target;
-    //                 console.log("KIDONG : " + value);
-    //                 onSetCellEndDateTime(value);
+                    // const { value } = event.target;
+                    // console.log("KIDONG : " + value);
+                    // onSetCellEndDateTime(value);
     //             }
     //         }
     //     ]

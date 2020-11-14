@@ -20,6 +20,8 @@ const LabelComponent: React.FC<LabelProps> = ({
     weight = "normal",
 }) => {
 
+    console.log("YKD - LABEL : " + component.borderWidth);
+
     let view = 
     <Component 
         width={component.width} 

@@ -33,7 +33,7 @@ export const Default: ComponentProps = {
     backgroundHover: "transparent",
     borderRadius: "0px",
     borderColor: "#000000",
-    borderWidth: "1px",
+    borderWidth: "0px",
     borderStyle: "solid",
     marginTop: "0px",
     marginBottom: "0px",
@@ -50,6 +50,8 @@ export const Default: ComponentProps = {
 }
 
 const Component: React.FC<ComponentProps> = (props = Default) => {
+
+    console.log("YKD : " + props.borderWidth!)
 
     let view =
     <Container 
@@ -107,7 +109,11 @@ const Container = styled.div<{
     
     background-color: ${props => props.backgroundColor};
     &:hover { background-color: ${props => props.backgroundHover }; }
+
     border-radius: ${props => props.borderRadius };
+    border-color: ${props => props.borderColor };
+    border-width: ${props => props.borderWidth };
+    border-style: ${props => props.borderStyle };
 
     &:active { height: ${props => props.activeHeight}; }
     transition: all ease 0.2s 0s;

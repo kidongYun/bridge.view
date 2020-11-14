@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import Form from 'react-bootstrap/Form'
-import OptionComponent, { OptionProps } from './OptionComponent'
 import Component, { ComponentProps, Default } from './Component'
 
 interface SelectProps {
     component?: ComponentProps
     value?: string
-    options?: Array<OptionProps>
+    options?: Array<{ value: string, title: string }>
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -22,7 +21,7 @@ const SelectComponent: React.FC<SelectProps> = ({
     if(options !== undefined) {
         optionView = 
         <>
-            {options.map((option) => <OptionComponent title={option.title} value={option.value} /> )}
+            {options.map((option) => <option value={option.value}>{option.title}</option> )}
         </>;
     }
 
