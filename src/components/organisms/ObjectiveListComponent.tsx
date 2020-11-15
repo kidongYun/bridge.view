@@ -43,7 +43,6 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = ({}) => {
 
     let view =
     <Component>
-        <>
         <AddComponent 
             onClick={() => { handle_onShow("OBJECTIVE_POST"); }}
         />
@@ -71,7 +70,6 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = ({}) => {
                 return <DateComponent date={obj.getDate()} />
             }
         })}
-        </>
     </Component>
 
     return view;

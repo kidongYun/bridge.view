@@ -26,7 +26,7 @@ export interface ComponentProps {
 export const defaultProps: ComponentProps = {
     width: "100%",
     height: "100%",
-    activeHeight: "100%",
+    activeHeight: "",
     backgroundColor: "transparent",
     backgroundHover: "transparent",
     borderRadius: "0px",

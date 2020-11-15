@@ -54,8 +54,8 @@ const TextareaComponent: React.FC<TextareaProps> = ({
 }
 
 const Container = styled.div`
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
 `;
 
 export default TextareaComponent;

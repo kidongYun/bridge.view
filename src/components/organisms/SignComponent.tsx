@@ -39,33 +39,30 @@ const SignComponent: React.FC<SignProps> = ({
         height="300px" 
         direction="column" 
         backgroundColor="#aaaaaa"
-        backgroundHover="#ffffff"
-        border="solid 1px #123123">
-        <>
+        backgroundHover="#ffffff">
+
         <LabelComponent 
-            label="SIGN"
-        />
+            label="SIGN" />
 
         <TextComponent 
             value="" 
             placeholder="EMAIL"
-            // component={{
-            //     width: "70%",
-            //     verticalAlign: "center"
-            // }}
-        />
+            component={{
+                width: "70%"
+            }} />
 
         <TextComponent 
             value="" 
             placeholder="PASSWORD" 
-        />
+            component={{
+                width: "70%"
+            }} />
 
         <LabelComponent 
-            label="HELLO" 
-        />
+            label="HELLO"  />
 
         <Component>
-            <>
+            <Component width="100%" />
             <ButtonComponent 
                 text="Close" 
                 theme="secondary"
@@ -73,8 +70,7 @@ const SignComponent: React.FC<SignProps> = ({
                     onClick: () => { 
                         handle_onHide(); 
                     }
-                }}
-            />
+                }} />
 
             <ButtonComponent 
                 text="Sign In" 
@@ -103,8 +99,7 @@ const SignComponent: React.FC<SignProps> = ({
                             handle_onHide();
                         })
                     }
-                }}
-            />
+                }} />
 
             <ButtonComponent 
                 text="Sign Up" 
@@ -124,11 +119,8 @@ const SignComponent: React.FC<SignProps> = ({
                             }
                         })
                     } 
-                }}
-            />
-            </>
+                }} />
         </Component>
-        </>
     </Component>
 
     return view;

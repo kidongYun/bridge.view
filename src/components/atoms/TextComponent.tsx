@@ -51,8 +51,8 @@ const TextComponent: React.FC<TextProps> = ({
 }
 
 const Container = styled.div`
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
 `;
 
 export default TextComponent;

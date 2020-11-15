@@ -22,11 +22,13 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
     } = useCell();
 
     let view =
-    <Component direction="column" border="solid 300px #123123">
-        <>
+    <Component 
+        direction="column" 
+        marginLeft="auto" 
+        marginRight="auto">
+            
         <LabelComponent
-            label="HELLO" 
-        />
+            label="HELLO" />
 
         <TextComponent
             placeholder="TITLE"
@@ -34,9 +36,14 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
                 const { value } = event.target;
                 onSetObjectiveTitle(value);
             }}
-        />
+            component={{
+                width: "80%"
+            }} />
 
-        <TextareaComponent/>
+        <TextareaComponent
+            component={{
+                width: "80%"
+            }} />
 
         <LabelComponent label="Priority" />
 
@@ -49,10 +56,9 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const { value } = event.target;
                 onSetObjectivePriority(Number.parseInt(value));
-            }}
-        />
+            }} />
 
-        <LabelComponent label="Deadline"/>
+        <LabelComponent label="Deadline" />
 
         <TextComponent 
             placeholder="2020-07-21"
@@ -60,8 +66,9 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
                 const { value } = event.target;
                 onSetCellEndDateTime(value);
             }}
-        />
-        </>
+            component={{
+                width: "80%"
+            }} />
     </Component>
 
     return view;
