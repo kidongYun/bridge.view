@@ -50,13 +50,15 @@ const ObjectiveController = () => {
                     title={obj.title}
                     description={obj.description}
                     deadline={obj.getDate()}
-                    onClick={() => {
-                        onSetCellType(obj.type);
-                        onSetCellEndDateTime(obj.endDateTime);
-                        onSetSubjectId(obj.id);
-                        onSetObjectiveTitle(obj.title);
-                        onSetObjectiveDescription(obj.description);
-                        handle_onShow("OBJECTIVE_PUT"); 
+                    component={{
+                        onClick: () => {
+                            onSetCellType(obj.type);
+                            onSetCellEndDateTime(obj.endDateTime);
+                            onSetSubjectId(obj.id);
+                            onSetObjectiveTitle(obj.title);
+                            onSetObjectiveDescription(obj.description);
+                            handle_onShow("OBJECTIVE_PUT"); 
+                        }
                     }}
                 />
             }

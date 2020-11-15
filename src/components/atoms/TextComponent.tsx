@@ -2,27 +2,27 @@ import React from 'react'
 import styled from 'styled-components'
 import Form from 'react-bootstrap/Form'
 
-import Component, { ComponentProps, Default } from './Component'
+import Component, { ComponentProps, defaultProps } from './Component'
 
 interface TextProps {
     component?: ComponentProps
-    placeholder?: string
     value?: string
+    placeholder?: string
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const TextComponent: React.FC<TextProps> = ({ 
-    component = Default,
+const TextComponent: React.FC<TextProps> = ({
+    component = defaultProps,
     value = "", 
     placeholder = "", 
     onChange = () => {} 
 }) => {
     let view =
-    <Component 
-        width={component.width} 
+    <Component
+        width={component.width}
         height={component.height}
         activeHeight={component.activeHeight}
-        backgroundColor={component.backgroundColor} 
+        backgroundColor={component.backgroundColor}
         backgroundHover={component.backgroundHover}
         borderRadius={component.borderRadius}
         border={component.border}
@@ -34,34 +34,25 @@ const TextComponent: React.FC<TextProps> = ({
         paddingBottom={component.paddingBottom}
         paddingLeft={component.paddingLeft}
         paddingRight={component.paddingRight}
+        verticalAlign={component.verticalAlign}
+        horizontalAlign={component.horizontalAlign}
         direction={component.direction}
         onClick={component.onClick}>
-        <Container 
-            verticalAlign={component.verticalAlign!}
-            horizontalAlign={component.horizontalAlign!}>
-            <Form.Group>
-                <Form.Control
-                    defaultValue={value}
-                    placeholder={placeholder}
-                    onChange={onChange}
-                />
-            </Form.Group>
+        <Container>
+            <Form.Control
+                defaultValue={value}
+                placeholder={placeholder}
+                onChange={onChange}
+            />
         </Container>
     </Component>
 
     return view;
 }
 
-const Container = styled.div<{ 
-    verticalAlign: string, 
-    horizontalAlign: string 
-}>`
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: ${props => props.horizontalAlign};
-    align-items: ${props => props.verticalAlign};
+const Container = styled.div`
+    width: auto;
+    height: auto;
 `;
 
 export default TextComponent;

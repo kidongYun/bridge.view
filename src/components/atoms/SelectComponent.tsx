@@ -1,20 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 import Form from 'react-bootstrap/Form'
-import Component, { ComponentProps, Default } from './Component'
+import Component, { ComponentProps, defaultProps } from './Component'
 
 interface SelectProps {
     component?: ComponentProps
     value?: string
-    options?: Array<{ value: string, title: string }>
+    options: Array<{ value: string, title: string }>
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const SelectComponent: React.FC<SelectProps> = ({ 
-    component = Default,
+    component = defaultProps,
     value = "", 
-    options = [], 
-    onChange = () => {} 
+    options, 
+    onChange = () => {}
 }) => {
     let optionView = <></>;
 
@@ -26,11 +26,11 @@ const SelectComponent: React.FC<SelectProps> = ({
     }
 
     let view =
-    <Component 
-        width={component.width} 
+    <Component
+        width={component.width}
         height={component.height}
         activeHeight={component.activeHeight}
-        backgroundColor={component.backgroundColor} 
+        backgroundColor={component.backgroundColor}
         backgroundHover={component.backgroundHover}
         borderRadius={component.borderRadius}
         border={component.border}
@@ -42,32 +42,23 @@ const SelectComponent: React.FC<SelectProps> = ({
         paddingBottom={component.paddingBottom}
         paddingLeft={component.paddingLeft}
         paddingRight={component.paddingRight}
+        verticalAlign={component.verticalAlign}
+        horizontalAlign={component.horizontalAlign}
         direction={component.direction}
         onClick={component.onClick}>
-        <Container 
-            verticalAlign={component.verticalAlign!}
-            horizontalAlign={component.horizontalAlign!}>
-            <Form.Group>
-                <Form.Control as="select" defaultValue={value} onChange={onChange}>
-                    {optionView}
-                </Form.Control>
-            </Form.Group>
+        <Container>
+            <Form.Control as="select" defaultValue={value} onChange={onChange}>
+                {optionView}
+            </Form.Control>
         </Container>
     </Component>
 
     return view;
 }
 
-const Container = styled.div<{ 
-    verticalAlign: string, 
-    horizontalAlign: string 
-}>`
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: ${props => props.horizontalAlign};
-    align-items: ${props => props.verticalAlign};
+const Container = styled.div`
+    width: auto;
+    height: auto;
 `;
 
 export default SelectComponent;

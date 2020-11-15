@@ -15,11 +15,11 @@ import ObjectiveComponent from '../molecules/ObjectiveComponent'
 import AddComponent from '../molecules/AddComponent';
 import DateComponent from '../molecules/DateComponent';
 
-interface ObjectiveListProps extends ComponentProps {
-
+interface ObjectiveListProps {
+    component?: ComponentProps
 }
 
-const ObjectiveListComponent = () => {
+const ObjectiveListComponent: React.FC<ObjectiveListProps> = ({}) => {
     const { handle_onShow } = useHandle();
 
     const { 
@@ -43,6 +43,7 @@ const ObjectiveListComponent = () => {
 
     let view =
     <Component>
+        <>
         <AddComponent 
             onClick={() => { handle_onShow("OBJECTIVE_POST"); }}
         />
@@ -53,13 +54,15 @@ const ObjectiveListComponent = () => {
                     title={obj.title}
                     description={obj.description}
                     deadline={obj.getDate()}
-                    onClick={() => {
-                        onSetCellType(obj.type);
-                        onSetCellEndDateTime(obj.endDateTime);
-                        onSetSubjectId(obj.id);
-                        onSetObjectiveTitle(obj.title);
-                        onSetObjectiveDescription(obj.description);
-                        handle_onShow("OBJECTIVE_PUT"); 
+                    component={{
+                        onClick: () => {
+                            onSetCellType(obj.type);
+                            onSetCellEndDateTime(obj.endDateTime);
+                            onSetSubjectId(obj.id);
+                            onSetObjectiveTitle(obj.title);
+                            onSetObjectiveDescription(obj.description);
+                            handle_onShow("OBJECTIVE_PUT"); 
+                        }
                     }}
                 />
             }
@@ -68,6 +71,7 @@ const ObjectiveListComponent = () => {
                 return <DateComponent date={obj.getDate()} />
             }
         })}
+        </>
     </Component>
 
     return view;

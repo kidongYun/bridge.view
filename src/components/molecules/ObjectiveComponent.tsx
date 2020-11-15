@@ -2,17 +2,18 @@ import React from 'react'
 import Component, { ComponentProps } from '../atoms/Component'
 import LabelComponent from '../atoms/LabelComponent'
 
-interface ObjectiveProps extends ComponentProps {
+interface ObjectiveProps {
+    component?: ComponentProps
     title: string
     description: string
     deadline: string
 }
 
 const ObjectiveComponent: React.FC<ObjectiveProps> = ({
+    component,
     title,
     description,
     deadline,
-    onClick
 }) => {
 
     let view =
@@ -25,8 +26,8 @@ const ObjectiveComponent: React.FC<ObjectiveProps> = ({
         marginTop="5px"
         marginBottom="5px"
         direction="column"
-        onClick={onClick}>
-
+        onClick={component?.onClick}>
+        <>
         <LabelComponent 
             label={title} 
             size="15pt" 
@@ -59,7 +60,7 @@ const ObjectiveComponent: React.FC<ObjectiveProps> = ({
                 marginBottom: "2px"
             }}
         />
-
+        </>
     </Component>;
 
     return view;

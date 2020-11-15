@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
-import Component, { ComponentProps, Default } from './Component'
+import Component, { ComponentProps, defaultProps } from './Component'
 
 export interface ButtonProps {
     component?: ComponentProps
-    theme?:     
+    theme:     
     | 'primary'
     | 'secondary'
     | 'success'
@@ -23,20 +23,20 @@ export interface ButtonProps {
     | 'outline-info'
     | 'outline-dark'
     | 'outline-light';
-    text?: string
+    text: string
 }
 
 const ButtonComponent: React.FC<ButtonProps> = ({ 
-    component = Default,
-    theme = "primary", 
-    text = ""
+    component = defaultProps,
+    theme, 
+    text,
 }) => {
     let view =
-    <Component 
-        width={component.width} 
+    <Component
+        width={component.width}
         height={component.height}
         activeHeight={component.activeHeight}
-        backgroundColor={component.backgroundColor} 
+        backgroundColor={component.backgroundColor}
         backgroundHover={component.backgroundHover}
         borderRadius={component.borderRadius}
         border={component.border}
@@ -48,10 +48,10 @@ const ButtonComponent: React.FC<ButtonProps> = ({
         paddingBottom={component.paddingBottom}
         paddingLeft={component.paddingLeft}
         paddingRight={component.paddingRight}
+        verticalAlign={component.verticalAlign}
+        horizontalAlign={component.horizontalAlign}
         direction={component.direction}>
-        <Container 
-            verticalAlign={component.verticalAlign!}
-            horizontalAlign={component.horizontalAlign!}>
+        <Container>
             <Button variant={theme} onClick={component.onClick}>
                 {text}
             </Button>
@@ -61,16 +61,9 @@ const ButtonComponent: React.FC<ButtonProps> = ({
     return view;
 }
 
-const Container = styled.div<{ 
-    verticalAlign: string, 
-    horizontalAlign: string 
-}>`
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: ${props => props.horizontalAlign};
-    align-items: ${props => props.verticalAlign};
+const Container = styled.div`
+    width: auto;
+    height: auto;
 `;
 
 export default ButtonComponent;

@@ -1,5 +1,5 @@
 import React from 'react'
-import Component, { ComponentProps, Default } from '../atoms/Component'
+import Component from '../atoms/Component'
 
 import * as data from '../../service/Data'
 
@@ -12,11 +12,9 @@ import LabelComponent from '../atoms/LabelComponent'
 import ButtonComponent from '../atoms/ButtonComponent'
 
 interface SignProps {
-    component?: ComponentProps
 }
 
 const SignComponent: React.FC<SignProps> = ({
-    component = Default
 }) => {
     const { 
         handle_onHide,
@@ -38,22 +36,23 @@ const SignComponent: React.FC<SignProps> = ({
     let view =
     <Component 
         width="500px" 
-        height="500px" 
+        height="300px" 
         direction="column" 
         backgroundColor="#aaaaaa"
         backgroundHover="#ffffff"
         border="solid 1px #123123">
+        <>
         <LabelComponent 
             label="SIGN"
-            component={{
-                backgroundColor: "#454355",
-                backgroundHover: "#894945"
-            }} 
         />
 
         <TextComponent 
             value="" 
-            placeholder="EMAIL" 
+            placeholder="EMAIL"
+            // component={{
+            //     width: "70%",
+            //     verticalAlign: "center"
+            // }}
         />
 
         <TextComponent 
@@ -66,7 +65,7 @@ const SignComponent: React.FC<SignProps> = ({
         />
 
         <Component>
-
+            <>
             <ButtonComponent 
                 text="Close" 
                 theme="secondary"
@@ -127,7 +126,9 @@ const SignComponent: React.FC<SignProps> = ({
                     } 
                 }}
             />
+            </>
         </Component>
+        </>
     </Component>
 
     return view;

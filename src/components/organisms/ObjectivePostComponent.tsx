@@ -9,11 +9,10 @@ import SelectComponent from '../atoms/SelectComponent'
 import useCell from '../../hooks/useCell';
 
 interface ObjectivePostProps {
-
+    component?: ComponentProps
 }
 
 const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
-
 }) => {
 
     const { 
@@ -24,6 +23,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
 
     let view =
     <Component direction="column" border="solid 300px #123123">
+        <>
         <LabelComponent
             label="HELLO" 
         />
@@ -41,6 +41,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
         <LabelComponent label="Priority" />
 
         <SelectComponent
+            value="Major"
             options={[
                 { title: "Major", value: "1" },
                 { title: "Minor", value: "2" }
@@ -60,7 +61,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
                 onSetCellEndDateTime(value);
             }}
         />
-
+        </>
     </Component>
 
     return view;

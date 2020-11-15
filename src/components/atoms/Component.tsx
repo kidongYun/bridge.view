@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 export interface ComponentProps {
@@ -23,7 +23,7 @@ export interface ComponentProps {
     onClick?: () => void
 }
 
-export const Default: ComponentProps = {
+export const defaultProps: ComponentProps = {
     width: "100%",
     height: "100%",
     activeHeight: "100%",
@@ -42,13 +42,10 @@ export const Default: ComponentProps = {
     verticalAlign: "center",
     horizontalAlign: "center",
     direction: "row",
-    onClick: () => {}
+    onClick: () => {},
 }
 
-const Component: React.FC<ComponentProps> = (props = Default) => {
-
-    console.log("YKD : backgroundColor - " + props.backgroundColor!)
-    console.log("YKD : border - " + props.border!)
+const Component: React.FC<ComponentProps> = (props) => {
 
     let view =
     <Container 
@@ -71,11 +68,13 @@ const Component: React.FC<ComponentProps> = (props = Default) => {
         horizontalAlign={props.horizontalAlign!}
         direction={props.direction!}
         onClick={props.onClick!}>
-        {props.children}
+        {props.children!}
     </Container>
 
     return view;
 }
+
+Component.defaultProps = defaultProps;
 
 const Container = styled.div<{ 
     width: string, 
