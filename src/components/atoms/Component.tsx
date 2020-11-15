@@ -8,9 +8,7 @@ export interface ComponentProps {
     backgroundColor?: string, 
     backgroundHover?: string, 
     borderRadius?: string,
-    borderColor?: string,
-    borderWidth?: string,
-    borderStyle?: string,
+    border?: string,
     marginTop?: string,
     marginBottom?: string,
     marginLeft?: string,
@@ -32,9 +30,7 @@ export const Default: ComponentProps = {
     backgroundColor: "transparent",
     backgroundHover: "transparent",
     borderRadius: "0px",
-    borderColor: "#000000",
-    borderWidth: "0px",
-    borderStyle: "solid",
+    border: "solid 0px #000000",
     marginTop: "0px",
     marginBottom: "0px",
     marginLeft: "0px",
@@ -51,7 +47,8 @@ export const Default: ComponentProps = {
 
 const Component: React.FC<ComponentProps> = (props = Default) => {
 
-    console.log("YKD : " + props.borderWidth!)
+    console.log("YKD : backgroundColor - " + props.backgroundColor!)
+    console.log("YKD : border - " + props.border!)
 
     let view =
     <Container 
@@ -61,9 +58,7 @@ const Component: React.FC<ComponentProps> = (props = Default) => {
         backgroundColor={props.backgroundColor!} 
         backgroundHover={props.backgroundHover!}
         borderRadius={props.borderRadius!}
-        borderColor={props.borderColor!}
-        borderWidth={props.borderWidth!}
-        borderStyle={props.borderStyle!}
+        border={props.border!}
         marginTop={props.marginTop!}
         marginBottom={props.marginBottom!}
         marginLeft={props.marginLeft!}
@@ -89,9 +84,7 @@ const Container = styled.div<{
     backgroundColor: string, 
     backgroundHover: string,
     borderRadius: string,
-    borderColor: string,
-    borderWidth: string,
-    borderStyle: string,
+    border: string,
     marginTop: string,
     marginBottom: string,
     marginLeft: string,
@@ -111,9 +104,7 @@ const Container = styled.div<{
     &:hover { background-color: ${props => props.backgroundHover }; }
 
     border-radius: ${props => props.borderRadius };
-    border-color: ${props => props.borderColor };
-    border-width: ${props => props.borderWidth };
-    border-style: ${props => props.borderStyle };
+    border: ${props => props.border };
 
     &:active { height: ${props => props.activeHeight}; }
     transition: all ease 0.2s 0s;

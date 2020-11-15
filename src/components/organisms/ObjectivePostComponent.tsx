@@ -23,7 +23,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
     } = useCell();
 
     let view =
-    <Component direction="column" borderWidth="300px" borderColor="#123123">
+    <Component direction="column" border="solid 300px #123123">
         <LabelComponent
             label="HELLO" 
         />

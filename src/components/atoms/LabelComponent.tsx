@@ -19,9 +19,6 @@ const LabelComponent: React.FC<LabelProps> = ({
     color = "#000000",
     weight = "normal",
 }) => {
-
-    console.log("YKD - LABEL : " + component.borderWidth);
-
     let view = 
     <Component 
         width={component.width} 
@@ -30,9 +27,7 @@ const LabelComponent: React.FC<LabelProps> = ({
         backgroundColor={component.backgroundColor} 
         backgroundHover={component.backgroundHover}
         borderRadius={component.borderRadius}
-        borderColor={component.borderColor}
-        borderWidth={component.borderWidth}
-        borderStyle={component.borderStyle}
+        border={component.border}
         marginTop={component.marginTop}
         marginBottom={component.marginBottom}
         marginLeft={component.marginLeft}

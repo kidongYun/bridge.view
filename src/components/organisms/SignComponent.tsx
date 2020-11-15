@@ -42,15 +42,12 @@ const SignComponent: React.FC<SignProps> = ({
         direction="column" 
         backgroundColor="#aaaaaa"
         backgroundHover="#ffffff"
-        borderColor="#543454"
-        borderWidth="20px">
+        border="solid 1px #123123">
         <LabelComponent 
             label="SIGN"
             component={{
                 backgroundColor: "#454355",
-                backgroundHover: "#894945",
-                borderWidth: "20px",
-                borderColor: "#543423"
+                backgroundHover: "#894945"
             }} 
         />
 
