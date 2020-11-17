@@ -34,7 +34,7 @@ const TestComponent: React.FC<TestProps> = ({
         <ButtonComponent theme="primary" text="test" component={{
             width: "20%",
             backgroundColor: "#574839",
-            border: "solid 3px #123123",
+            borderTop: "solid 3px #123123",
         }}/>
         </Component>
         <Component>

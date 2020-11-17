@@ -42,7 +42,7 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = ({}) => {
     }, []);
 
     let view =
-    <Component>
+    <Component direction="column">
         <AddComponent 
             onClick={() => { handle_onShow("OBJECTIVE_POST"); }}
         />

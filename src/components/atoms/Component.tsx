@@ -8,7 +8,10 @@ export interface ComponentProps {
     backgroundColor?: string, 
     backgroundHover?: string, 
     borderRadius?: string,
-    border?: string,
+    borderTop?: string,
+    borderBottom?: string,
+    borderLeft?: string,
+    borderRight?: string,
     marginTop?: string,
     marginBottom?: string,
     marginLeft?: string,
@@ -30,7 +33,10 @@ export const defaultProps: ComponentProps = {
     backgroundColor: "transparent",
     backgroundHover: "transparent",
     borderRadius: "0px",
-    border: "solid 0px #000000",
+    borderTop: "solid 0px #000000",
+    borderBottom: "solid 0px #000000",
+    borderLeft: "solid 0px #000000",
+    borderRight: "solid 0px #000000",
     marginTop: "0px",
     marginBottom: "0px",
     marginLeft: "0px",
@@ -55,7 +61,10 @@ const Component: React.FC<ComponentProps> = (props) => {
         backgroundColor={props.backgroundColor!} 
         backgroundHover={props.backgroundHover!}
         borderRadius={props.borderRadius!}
-        border={props.border!}
+        borderTop={props.borderTop!}
+        borderBottom={props.borderBottom!}
+        borderLeft={props.borderLeft!}
+        borderRight={props.borderRight!}
         marginTop={props.marginTop!}
         marginBottom={props.marginBottom!}
         marginLeft={props.marginLeft!}
@@ -83,7 +92,10 @@ const Container = styled.div<{
     backgroundColor: string, 
     backgroundHover: string,
     borderRadius: string,
-    border: string,
+    borderTop: string,
+    borderBottom: string,
+    borderLeft: string,
+    borderRight: string,
     marginTop: string,
     marginBottom: string,
     marginLeft: string,
@@ -103,7 +115,10 @@ const Container = styled.div<{
     &:hover { background-color: ${props => props.backgroundHover }; }
 
     border-radius: ${props => props.borderRadius };
-    border: ${props => props.border };
+    border-top: ${props => props.borderTop };
+    border-bottom: ${props => props.borderBottom };
+    border-left: ${props => props.borderLeft };
+    border-right: ${props => props.borderRight };
 
     &:active { height: ${props => props.activeHeight}; }
     transition: all ease 0.2s 0s;

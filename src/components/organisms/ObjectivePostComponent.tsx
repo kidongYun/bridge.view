@@ -7,6 +7,7 @@ import TextareaComponent from '../atoms/TextareaComponent'
 import SelectComponent from '../atoms/SelectComponent'
 
 import useCell from '../../hooks/useCell';
+import ButtonComponent from '../atoms/ButtonComponent'
 
 interface ObjectivePostProps {
     component?: ComponentProps
@@ -28,7 +29,11 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
         marginRight="auto">
             
         <LabelComponent
-            label="HELLO" />
+            label="목표 추가" size="20pt" component={{
+                borderBottom: "solid 1px #eeeeee",
+                marginBottom: "10px",
+                paddingBottom: "10px"
+            }}/>
 
         <TextComponent
             placeholder="TITLE"
@@ -69,6 +74,12 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
             component={{
                 width: "80%"
             }} />
+
+        <Component  borderTop="solid 1px #eeeeee" marginTop="10px" paddingTop="10px">
+            <Component width="300%"></Component>
+            <ButtonComponent theme="secondary" text="취소"/>
+            <ButtonComponent theme="primary" text="추가"/>
+        </Component>
     </Component>
 
     return view;

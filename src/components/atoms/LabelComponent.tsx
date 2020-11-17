@@ -26,7 +26,10 @@ const LabelComponent: React.FC<LabelProps> = ({
         backgroundColor={component.backgroundColor}
         backgroundHover={component.backgroundHover}
         borderRadius={component.borderRadius}
-        border={component.border}
+        borderTop={component.borderTop}
+        borderBottom={component.borderBottom}
+        borderLeft={component.borderLeft}
+        borderRight={component.borderRight}
         marginTop={component.marginTop}
         marginBottom={component.marginBottom}
         marginLeft={component.marginLeft}
@@ -59,8 +62,8 @@ const Container = styled.div<{
     height: auto;
 
     font-size: ${props => props.size};
-    font-weight: ${props => props.color};
-    color: ${props => props.weight};
+    font-weight: ${props => props.weight};
+    color: ${props => props.color};
 `;
 
 export default LabelComponent;

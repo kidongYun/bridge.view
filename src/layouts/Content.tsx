@@ -3,12 +3,21 @@ import styled from 'styled-components'
 
 import Workspace from './Workspace'
 import Handle from './Handle'
+import WorkspaceComponent from '../components/templates/WorkspaceComponent'
+import ObjectiveListComponent from '../components/organisms/ObjectiveListComponent'
+import PopupComponent from '../components/templates/PopupComponent'
+import ObjectivePostComponent from '../components/organisms/ObjectivePostComponent'
 
 const Content = () => {
     let view =
     <Container>
         <Frame>
-            <Workspace/>
+            <WorkspaceComponent>
+                <ObjectiveListComponent/>
+            </WorkspaceComponent>
+            <PopupComponent>
+                <ObjectivePostComponent/>
+            </PopupComponent>
             <Handle/>
         </Frame>
     </Container>

@@ -25,7 +25,7 @@ const WorkspaceController = () => {
         view = <Container><PlanController/></Container>;
     }
 
-    if(name == "TODO") {
+    if(name === "TODO") {
         view = <Container><TodoController/></Container>;
     }
 
