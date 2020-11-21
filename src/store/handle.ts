@@ -1,5 +1,3 @@
-import { stat } from "fs"
-
 const SHOW_HANDLE = 'handle/SHOW' as const
 const HIDE_HANDLE = 'handle/HIDE' as const
 const TYPE_HANDLE = 'handle/TYPE' as const
