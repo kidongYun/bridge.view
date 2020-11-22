@@ -7,6 +7,7 @@ import TextareaComponent from '../atoms/TextareaComponent'
 import SelectComponent from '../atoms/SelectComponent'
 
 import useCell from '../../hooks/useCell';
+import useTemplate from '../../data/hooks/useTemplate'
 import ButtonComponent from '../atoms/ButtonComponent'
 
 interface ObjectivePostProps {
@@ -15,12 +16,12 @@ interface ObjectivePostProps {
 
 const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
 }) => {
-
-    const { 
-        onSetCellEndDateTime,
-        onSetObjectiveTitle,
-        onSetObjectivePriority
-    } = useCell();
+    
+    // const { 
+    //     onSetCellEndDateTime,
+    //     onSetObjectiveTitle,
+    //     onSetObjectivePriority
+    // } = useCell();
 
     let view =
     <Component 
@@ -39,7 +40,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
             placeholder="TITLE"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const { value } = event.target;
-                onSetObjectiveTitle(value);
+                // onSetObjectiveTitle(value);
             }}
             component={{
                 width: "80%"
@@ -60,7 +61,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
             ]}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const { value } = event.target;
-                onSetObjectivePriority(Number.parseInt(value));
+                // onSetObjectivePriority(Number.parseInt(value));
             }} />
 
         <LabelComponent label="Deadline" />
@@ -69,7 +70,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
             placeholder="2020-07-21"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const { value } = event.target;
-                onSetCellEndDateTime(value);
+                // onSetCellEndDateTime(value);
             }}
             component={{
                 width: "80%"

@@ -5,7 +5,7 @@ import handle from './handle'
 import data from './data'
 import sign from './sign'
 import cell from './cell'
-import layout from '../reducers/layout'
+import templateReducer from '../data/reducers/templateReducer'
 
 const rootReducer = combineReducers({
     stage,
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
     sign,
     data,
     cell,
-    layout
+    templateReducer
 })
 
 export default rootReducer;

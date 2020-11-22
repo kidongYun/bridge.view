@@ -6,6 +6,7 @@ import { updateStage } from '../store/stage';
 
 export default function useStage() {
     const name = useSelector((state: RootState) => state.stage.name);
+    
 
     const dispatch = useDispatch();
     const onUpdateStage = useCallback((name: string) => dispatch(updateStage(name)), [dispatch]);
