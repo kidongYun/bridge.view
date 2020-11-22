@@ -9,6 +9,7 @@ interface AddProps extends ComponentProps {
 const AddComponent: React.FC<AddProps> = ({
     onClick
 }) => {
+
     let view =
     <Component
         height="100px"

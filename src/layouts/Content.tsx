@@ -5,7 +5,7 @@ import Workspace from './Workspace'
 import Handle from './Handle'
 import WorkspaceComponent from '../components/templates/WorkspaceComponent'
 import ObjectiveListComponent from '../components/organisms/ObjectiveListComponent'
-import PopupComponent from '../components/templates/PopupComponent'
+import DialogComponent from '../components/templates/DialogComponent'
 import ObjectivePostComponent from '../components/organisms/ObjectivePostComponent'
 
 const Content = () => {
@@ -15,9 +15,9 @@ const Content = () => {
             <WorkspaceComponent>
                 <ObjectiveListComponent/>
             </WorkspaceComponent>
-            <PopupComponent>
+            <DialogComponent>
                 <ObjectivePostComponent/>
-            </PopupComponent>
+            </DialogComponent>
             <Handle/>
         </Frame>
     </Container>
