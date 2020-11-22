@@ -1,8 +1,8 @@
 import Cell from "../data/stores/cell";
 import { ObjectiveBuilder } from "../data/stores/objective";
-// import { PlanBuilder } from "../data/stores/";
-// import { DateBuilder } from "../model/DateType";
-// import { TodoBuilder } from "../model/TodoType";
+import { PlanBuilder } from "../data/stores/plan";
+import { DateBuilder } from "../data/stores/date";
+import { TodoBuilder } from "../data/stores/todo";
 
 export function parse(src: any) {
     let cells: Cell[] = [];
@@ -10,6 +10,8 @@ export function parse(src: any) {
     if(src === undefined || src === null) {
         return cells;
     }
+
+    console.log(src);
 
     for(let i=0; i<src.length; i++) {
         if(src[i].type === "OBJECTIVE") {
@@ -25,39 +27,41 @@ export function parse(src: any) {
             )
         }
 
-        // if(src[i].type === "PLAN") {
-        //     cells.push(
-        //         new PlanBuilder()
-        //         .startDateTime(src[i].startDateTime)
-        //         .endDateTime(src[i].endDateTime)
-        //         .id(src[i].id)
-        //         .objectiveId(src[i].objectiveId)
-        //         .content(src[i].content)
-        //         .build()
-        //     )
-        // }
+        if(src[i].type === "PLAN") {
+            cells.push(
+                new PlanBuilder()
+                .startDateTime(src[i].startDateTime)
+                .endDateTime(src[i].endDateTime)
+                .id(src[i].id)
+                .objectiveId(src[i].objectiveId)
+                .content(src[i].content)
+                .build()
+            )
+        }
 
-        // if(src[i].type === "TODO") {
-        //     cells.push(
-        //         new TodoBuilder()
-        //         .startDateTime(src[i].startDateTime)
-        //         .endDateTime(src[i].endDateTime)
-        //         .id(src[i].id)
-        //         .planId(src[i].planId)
-        //         .task(src[i].task)
-        //         .build()
-        //     )
-        // }
+        if(src[i].type === "TODO") {
+            cells.push(
+                new TodoBuilder()
+                .startDateTime(src[i].startDateTime)
+                .endDateTime(src[i].endDateTime)
+                .id(src[i].id)
+                .planId(src[i].planId)
+                .task(src[i].task)
+                .build()
+            )
+        }
 
-        // if(src[i].type === "DATE") {
-        //     cells.push(
-        //         new DateBuilder()
-        //         .startDateTime(src[i].startDateTime)
-        //         .endDateTime(src[i].endDateTime)
-        //         .build()
-        //     )
-        // }
+        if(src[i].type === "DATE") {
+            cells.push(
+                new DateBuilder()
+                .startDateTime(src[i].startDateTime)
+                .endDateTime(src[i].endDateTime)
+                .build()
+            )
+        }
     }
+
+    console.log(cells);
 
     return cells;
 }

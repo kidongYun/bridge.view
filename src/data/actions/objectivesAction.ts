@@ -13,7 +13,14 @@ export const callObjectivesAction = () => {
     let cells: Cell[] = [];
     
     getObj(true).then((response) => {
+        console.log(response.data.data);
         cells = utility.parse(response.data.data);
+        console.log(cells);
+
+        return {
+            type: CALL_OBJECTIVES_ACTION,
+            payload: utility.parse(response.data.data)
+        }
     });
 
     console.log("YKD : " + cells);
