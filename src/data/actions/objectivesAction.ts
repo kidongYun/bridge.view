@@ -9,19 +9,9 @@ export const setObjectivesAction = (cells: Cell[]) => ({
 })
 
 export const CALL_OBJECTIVES_ACTION = "CALL_OBJECTIVES_ACTION" as const
-export const callObjectivesAction = () => {
-    let cells: Cell[] = [];
-    
-    getObj(true).then((response) => {
-        console.log(response.data.data);
-        cells = utility.parse(response.data.data);
-        console.log(cells);
-
-        return {
-            type: CALL_OBJECTIVES_ACTION,
-            payload: utility.parse(response.data.data)
-        }
-    });
+export const callObjectivesAction = async () => {
+    let response = await axios.get("http://localhost:8080/objective", { params: { date: true }});
+    const cells: Cell[] = utility.parse(response.data.data);
 
     console.log("YKD : " + cells);
 
@@ -34,7 +24,3 @@ export const callObjectivesAction = () => {
 export type ObjectivesAction = 
     | ReturnType<typeof setObjectivesAction>
     | ReturnType<typeof callObjectivesAction>
-
-async function getObj(date: boolean) {
-    return await axios.get("http://localhost:8080/objective", { params: { date: date }});
-}

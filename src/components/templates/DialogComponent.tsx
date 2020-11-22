@@ -4,11 +4,11 @@ import Modal from 'react-bootstrap/Modal'
 import useTemplate from '../../data/hooks/useTemplate'
 import useObjectives from '../../data/hooks/useObjectives'
 
-interface PopupProps {
+interface DialogProps {
     component?: ComponentProps;
 }
 
-const PopupComponent: React.FC<PopupProps> = (props) => {
+const DialogComponent: React.FC<DialogProps> = (props) => {
     const { getTemplate } = useTemplate();
     const { getObjectives, callObjectives } = useObjectives();
 
@@ -29,4 +29,4 @@ const PopupComponent: React.FC<PopupProps> = (props) => {
     return view;
 }
 
-export default PopupComponent;
+export default DialogComponent;
