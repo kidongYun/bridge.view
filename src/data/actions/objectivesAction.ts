@@ -10,8 +10,12 @@ export const setObjectivesAction = (cells: Cell[]) => ({
 
 export const CALL_OBJECTIVES_ACTION = "CALL_OBJECTIVES_ACTION" as const
 export const callObjectivesAction = async () => {
-    let response = await axios.get("http://localhost:8080/objective", { params: { date: true }});
-    const cells: Cell[] = utility.parse(response.data.data);
+    let cells: Cell[] = [];
+    axios.get("http://localhost:8080/objective", { params: { date: true }})
+    .then(response => {
+        console.log(response.data);
+        cells = utility.parse(response.data.data);
+    });
 
     console.log("YKD : " + cells);
 
