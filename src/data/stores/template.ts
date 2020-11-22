@@ -28,43 +28,43 @@ export default class Template {
 }
 
 export class TemplateBuilder {
-    private readonly _template: Template;
+    private readonly template: Template;
 
     constructor() {
-        this._template = new Template();
+        this.template = new Template();
     }
 
     dialog(val: boolean): TemplateBuilder {
-        this._template.dialog = val;
+        this.template.dialog = val;
         return this;
     }
 
     center(val: boolean): TemplateBuilder {
-        this._template.center = val;
+        this.template.center = val;
         return this;
     }
 
     top(val: boolean): TemplateBuilder {
-        this._template.top = val;
+        this.template.top = val;
         return this;
     }
 
     bottom(val: boolean): TemplateBuilder {
-        this._template.bottom = val;
+        this.template.bottom = val;
         return this;
     }
 
     left(val: boolean): TemplateBuilder {
-        this._template.left = val;
+        this.template.left = val;
         return this;
     }
 
     right(val: boolean): TemplateBuilder {
-        this._template.right = val;
+        this.template.right = val;
         return this;
     }
 
     build(): Template {
-        return this._template;
+        return this.template;
     }
 }

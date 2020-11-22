@@ -1,19 +1,19 @@
-import CellType from "../model/CellType";
-import { ObjectiveBuilder } from "../model/ObjectiveType";
-import { PlanBuilder } from "../model/PlanType";
-import { DateBuilder } from "../model/DateType";
-import { TodoBuilder } from "../model/TodoType";
+import Cell from "../data/stores/cell";
+import { ObjectiveBuilder } from "../data/stores/objective";
+// import { PlanBuilder } from "../data/stores/";
+// import { DateBuilder } from "../model/DateType";
+// import { TodoBuilder } from "../model/TodoType";
 
 export function parse(src: any) {
-    let cellList: CellType[] = [];
+    let cells: Cell[] = [];
 
     if(src === undefined || src === null) {
-        return cellList;
+        return cells;
     }
 
     for(let i=0; i<src.length; i++) {
         if(src[i].type === "OBJECTIVE") {
-            cellList.push(
+            cells.push(
                 new ObjectiveBuilder()
                 .startDateTime(src[i].startDateTime)
                 .endDateTime(src[i].endDateTime)
@@ -25,41 +25,41 @@ export function parse(src: any) {
             )
         }
 
-        if(src[i].type === "PLAN") {
-            cellList.push(
-                new PlanBuilder()
-                .startDateTime(src[i].startDateTime)
-                .endDateTime(src[i].endDateTime)
-                .id(src[i].id)
-                .objectiveId(src[i].objectiveId)
-                .content(src[i].content)
-                .build()
-            )
-        }
+        // if(src[i].type === "PLAN") {
+        //     cells.push(
+        //         new PlanBuilder()
+        //         .startDateTime(src[i].startDateTime)
+        //         .endDateTime(src[i].endDateTime)
+        //         .id(src[i].id)
+        //         .objectiveId(src[i].objectiveId)
+        //         .content(src[i].content)
+        //         .build()
+        //     )
+        // }
 
-        if(src[i].type === "TODO") {
-            cellList.push(
-                new TodoBuilder()
-                .startDateTime(src[i].startDateTime)
-                .endDateTime(src[i].endDateTime)
-                .id(src[i].id)
-                .planId(src[i].planId)
-                .task(src[i].task)
-                .build()
-            )
-        }
+        // if(src[i].type === "TODO") {
+        //     cells.push(
+        //         new TodoBuilder()
+        //         .startDateTime(src[i].startDateTime)
+        //         .endDateTime(src[i].endDateTime)
+        //         .id(src[i].id)
+        //         .planId(src[i].planId)
+        //         .task(src[i].task)
+        //         .build()
+        //     )
+        // }
 
-        if(src[i].type === "DATE") {
-            cellList.push(
-                new DateBuilder()
-                .startDateTime(src[i].startDateTime)
-                .endDateTime(src[i].endDateTime)
-                .build()
-            )
-        }
+        // if(src[i].type === "DATE") {
+        //     cells.push(
+        //         new DateBuilder()
+        //         .startDateTime(src[i].startDateTime)
+        //         .endDateTime(src[i].endDateTime)
+        //         .build()
+        //     )
+        // }
     }
 
-    return cellList;
+    return cells;
 }
 
 export function titleOf(day: number) {

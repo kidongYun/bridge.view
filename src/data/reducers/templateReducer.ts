@@ -11,7 +11,7 @@ export default function template(state: Template = new Template(), action: Templ
 }
 
 function setTemplateReducer(state: Template, action: TemplateAction) {
-    let result: Template = new Template().clone(state);
+    let result: Template = new Template().clone(state)!;
 
     if(action.payload.type === "DIALOG") {
         result.dialog = action.payload.flag;
