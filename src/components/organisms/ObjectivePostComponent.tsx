@@ -16,7 +16,7 @@ interface ObjectivePostProps {
 
 const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
 }) => {
-    
+    const { setTemplate } = useTemplate();
     // const { 
     //     onSetCellEndDateTime,
     //     onSetObjectiveTitle,
@@ -78,8 +78,20 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
 
         <Component  borderTop="solid 1px #eeeeee" marginTop="10px" paddingTop="10px">
             <Component width="300%"></Component>
-            <ButtonComponent theme="secondary" text="취소"/>
-            <ButtonComponent theme="primary" text="추가"/>
+            <ButtonComponent 
+                theme="secondary" 
+                text="취소" 
+                component={{
+                    onClick: () => { setTemplate("DIALOG", false); }
+                }}
+            />
+            <ButtonComponent 
+                theme="primary" 
+                text="추가"
+                component={{
+                    onClick: () => { setTemplate("DIALOG", false); }
+                }}
+            />
         </Component>
     </Component>
 

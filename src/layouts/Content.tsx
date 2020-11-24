@@ -1,23 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Workspace from './Workspace'
 import Handle from './Handle'
-import WorkspaceComponent from '../components/templates/WorkspaceComponent'
-import ObjectiveListComponent from '../components/organisms/ObjectiveListComponent'
-import DialogComponent from '../components/templates/DialogComponent'
-import ObjectivePostComponent from '../components/organisms/ObjectivePostComponent'
 
 const Content = () => {
     let view =
     <Container>
         <Frame>
-            <WorkspaceComponent>
-                <ObjectiveListComponent/>
-            </WorkspaceComponent>
-            <DialogComponent>
-                <ObjectivePostComponent/>
-            </DialogComponent>
             <Handle/>
         </Frame>
     </Container>

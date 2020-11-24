@@ -1,8 +1,7 @@
 import React from 'react'
-import { ComponentProps } from '../atoms/Component'
+import { ComponentProps } from '../../components/atoms/Component'
 import Modal from 'react-bootstrap/Modal'
 import useTemplate from '../../data/hooks/useTemplate'
-import useObjectives from '../../data/hooks/useObjectives'
 
 interface DialogProps {
     component?: ComponentProps;
@@ -10,14 +9,6 @@ interface DialogProps {
 
 const DialogComponent: React.FC<DialogProps> = (props) => {
     const { getTemplate } = useTemplate();
-    const { getObjectives, callObjectives } = useObjectives();
-
-    React.useEffect(() => {
-        console.log("YKD : " + getObjectives);
-        callObjectives();
-    }, []);
-
-    console.log("YKD : " + getObjectives);
 
     let view = 
     <Modal show={getTemplate.dialog}>

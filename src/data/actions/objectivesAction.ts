@@ -2,25 +2,25 @@ import axios, { AxiosResponse } from 'axios'
 import { promises } from 'dns'
 import * as utility from '../../service/Utility'
 import Cell from '../stores/cell'
+import { ObjectiveBuilder } from '../stores/objective';
+import { DateBuilder } from '../stores/date';
 
-export const SET_OBJECTIVES_ACTION = "SET_OBJECTIVES_ACTION" as const
 export const setObjectivesAction = (cells: Cell[]) => ({
-    type: SET_OBJECTIVES_ACTION,
+    type: 'SET_OBJECTIVES_ACTION',
     payload: cells
 })
 
-export const CALL_OBJECTIVES_ACTION = "CALL_OBJECTIVES_ACTION" as const
 export const callObjectivesAction = () => {
     let cells: Cell[] = [];
 
-    getObj(true).then(response => {
-        console.log("YKD2 : " + response.data)
-    }).catch(err => {
-        console.log("YKD2 : " + err);
-    })
+    /** We should get the data from API server */
+
+    cells.push(new ObjectiveBuilder().build());
+    cells.push(new ObjectiveBuilder().build());
+    cells.push(new DateBuilder().build());
 
     return {
-        type: CALL_OBJECTIVES_ACTION,
+        type: 'CALL_OBJECTIVES_ACTION',
         payload: cells
     }
 }

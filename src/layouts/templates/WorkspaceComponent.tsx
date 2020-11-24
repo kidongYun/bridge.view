@@ -1,6 +1,6 @@
-import React from 'react'
-import Component, { ComponentProps } from '../atoms/Component'
-import ObjectiveListComponent from '../organisms/ObjectiveListComponent';
+import React from 'react';
+import Component, { ComponentProps } from '../../components/atoms/Component';
+import ObjectiveListComponent from '../../components/organisms/ObjectiveListComponent'
 
 interface WorkspaceProps {
     component?: ComponentProps;
@@ -8,7 +8,7 @@ interface WorkspaceProps {
 
 const WorkspaceComponent: React.FC<WorkspaceProps> = (props) => {
     let view =
-    <Component>
+    <Component width="80%">
         {props.children}
     </Component>
 

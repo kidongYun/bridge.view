@@ -1,6 +1,9 @@
 import React from 'react'
 import Component, { ComponentProps } from '../atoms/Component'
 
+import Objective from '../../data/stores/objective'
+import Date from '../../data/stores/date';
+
 import ObjectiveType from '../../model/ObjectiveType';
 import DateType from '../../model/DateType';
 
@@ -10,6 +13,9 @@ import * as utility from '../../service/Utility'
 import useHandle from '../../hooks/useHandle'
 import useData from '../../hooks/useData'
 import useCell from '../../hooks/useCell'
+
+import useObjectives from '../../data/hooks/useObjectives'
+import useTemplate from '../../data/hooks/useTemplate'
 
 import ObjectiveComponent from '../molecules/ObjectiveComponent'
 import AddComponent from '../molecules/AddComponent';
@@ -23,11 +29,6 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = ({}) => {
     const { handle_onShow } = useHandle();
 
     const { 
-        data_objectiveList, 
-        data_onSetObjectiveList 
-    } = useData();
-
-    const { 
         onSetCellType,
         onSetCellEndDateTime,
         onSetSubjectId,
@@ -35,39 +36,49 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = ({}) => {
         onSetObjectiveDescription
      } = useCell();
 
+     const {
+        getObjectives,
+        callObjectives
+     } = useObjectives();
+
+     const {
+        setTemplate
+     } = useTemplate();
+
     React.useEffect(() => {
-        data.getObj(true).then((response) => {
-            data_onSetObjectiveList(utility.parse(response.data.data));
-        });
+        console.log("useEffect!!!");
+        callObjectives();
     }, []);
 
     let view =
     <Component direction="column">
         <AddComponent 
-            onClick={() => { handle_onShow("OBJECTIVE_POST"); }}
+            onClick={() => {
+                setTemplate("DIALOG", true);
+            }}
         />
 
-        {data_objectiveList.map((obj) => {
-            if(obj instanceof ObjectiveType && obj.type === "OBJECTIVE") {
+        {getObjectives.map(cell => {
+            if(cell instanceof Objective && cell.type === "OBJECTIVE") {
                 return <ObjectiveComponent
-                    title={obj.title}
-                    description={obj.description}
-                    deadline={obj.getDate()}
+                    title={cell.title}
+                    description={cell.description}
+                    deadline={cell.getDate()}
                     component={{
                         onClick: () => {
-                            onSetCellType(obj.type);
-                            onSetCellEndDateTime(obj.endDateTime);
-                            onSetSubjectId(obj.id);
-                            onSetObjectiveTitle(obj.title);
-                            onSetObjectiveDescription(obj.description);
+                            onSetCellType(cell.type);
+                            onSetCellEndDateTime(cell.endDateTime);
+                            onSetSubjectId(cell.id);
+                            onSetObjectiveTitle(cell.title);
+                            onSetObjectiveDescription(cell.description);
                             handle_onShow("OBJECTIVE_PUT"); 
                         }
                     }}
                 />
             }
 
-            if(obj instanceof DateType && obj.type === "DATE") {
-                return <DateComponent date={obj.getDate()} />
+            if(cell instanceof Date && cell.type === "DATE") {
+                return <DateComponent date={cell.getDate()} />
             }
         })}
     </Component>

@@ -1,9 +1,9 @@
 import Template from '../stores/template'
-import { SET_TEMPLATE_ACTION, TemplateAction } from '../actions/templateAction'
+import { TemplateAction } from '../actions/templateAction'
 
 export default function template(state: Template = new Template(), action: TemplateAction) {
     switch(action.type) {
-        case SET_TEMPLATE_ACTION :
+        case 'SET_TEMPLATE_ACTION' :
             return setTemplateReducer(state, action);
         default :
             return state;
