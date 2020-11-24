@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
+import { promises } from 'dns'
 import * as utility from '../../service/Utility'
 import Cell from '../stores/cell'
 
@@ -9,15 +10,14 @@ export const setObjectivesAction = (cells: Cell[]) => ({
 })
 
 export const CALL_OBJECTIVES_ACTION = "CALL_OBJECTIVES_ACTION" as const
-export const callObjectivesAction = async () => {
+export const callObjectivesAction = () => {
     let cells: Cell[] = [];
-    axios.get("http://localhost:8080/objective", { params: { date: true }})
-    .then(response => {
-        console.log(response.data);
-        cells = utility.parse(response.data.data);
-    });
 
-    console.log("YKD : " + cells);
+    getObj(true).then(response => {
+        console.log("YKD2 : " + response.data)
+    }).catch(err => {
+        console.log("YKD2 : " + err);
+    })
 
     return {
         type: CALL_OBJECTIVES_ACTION,
@@ -28,3 +28,11 @@ export const callObjectivesAction = async () => {
 export type ObjectivesAction = 
     | ReturnType<typeof setObjectivesAction>
     | ReturnType<typeof callObjectivesAction>
+
+function getObj(date: boolean): Promise<AxiosResponse<any>> {
+    return axios.get("http://localhost:8080/objective", { params: { date: date }})
+}
+
+
+  
+    

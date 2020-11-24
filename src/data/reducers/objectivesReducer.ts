@@ -6,7 +6,6 @@ export default function objectives(state: Cell[] = [], action: ObjectivesAction)
         case SET_OBJECTIVES_ACTION :
             return action.payload;
         case CALL_OBJECTIVES_ACTION :
-            return action.payload.data;
         default :
             return state;
     }
