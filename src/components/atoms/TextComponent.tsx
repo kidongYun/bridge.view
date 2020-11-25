@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Form from 'react-bootstrap/Form'
 
-import Component, { ComponentProps, defaultProps } from './Component'
+import Component, { ComponentProps, defaultProps } from '../templates/Component'
 
 interface TextProps {
     component?: ComponentProps

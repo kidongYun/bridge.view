@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
-import Component, { ComponentProps, defaultProps } from './Component'
+import Component, { ComponentProps, defaultProps } from '../templates/Component'
 
 export interface ButtonProps {
     component?: ComponentProps

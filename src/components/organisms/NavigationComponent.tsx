@@ -1,5 +1,5 @@
 import React from 'react'
-import Component, { ComponentProps } from '../atoms/Component'
+import Component, { ComponentProps } from '../templates/Component'
 import { ButtonProps } from '../atoms/ButtonComponent';
 import ButtonsComponent from '../molecules/ButtonsComponent'
 

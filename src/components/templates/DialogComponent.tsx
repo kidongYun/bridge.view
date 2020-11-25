@@ -1,5 +1,5 @@
 import React from 'react'
-import { ComponentProps } from '../../components/atoms/Component'
+import { ComponentProps } from './Component'
 import Modal from 'react-bootstrap/Modal'
 import useTemplate from '../../data/hooks/useTemplate'
 

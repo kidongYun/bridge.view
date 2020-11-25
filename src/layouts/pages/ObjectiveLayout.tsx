@@ -1,9 +1,7 @@
 import React from 'react'
-import Component, { ComponentProps } from '../../components/atoms/Component'
+import Component, { ComponentProps } from '../../components/templates/Component'
 
 import useTemplate, {} from '../../data/hooks/useTemplate'
-import WorkspaceComponent from '../templates/WorkspaceComponent';
-
 import ObjectiveListComponent from '../../components/organisms/ObjectiveListComponent'
 
 interface ObjectiveProps {
@@ -15,9 +13,12 @@ const ObjectiveLayout: React.FC<ObjectiveProps> = (props) => {
 
     let view = 
     <Component>
-        <WorkspaceComponent>
+        <Component>
+
+        </Component>
+        <Component>
             <ObjectiveListComponent/>
-        </WorkspaceComponent>
+        </Component>
     </Component>
 
     return view; 

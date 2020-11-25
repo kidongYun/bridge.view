@@ -1,5 +1,5 @@
 import React from 'react'
-import Component from '../atoms/Component'
+import Component from '../templates/Component'
 
 import * as data from '../../service/Data'
 

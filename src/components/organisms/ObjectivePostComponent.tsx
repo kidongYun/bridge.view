@@ -1,5 +1,5 @@
 import React from 'react'
-import Component, { ComponentProps } from '../atoms/Component'
+import Component, { ComponentProps } from '../templates/Component'
 
 import LabelComponent from '../atoms/LabelComponent'
 import TextComponent from '../atoms/TextComponent'

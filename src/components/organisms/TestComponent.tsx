@@ -1,6 +1,6 @@
 import React from 'react'
 import ButtonComponent from '../atoms/ButtonComponent'
-import Component from '../atoms/Component'
+import Component from '../templates/Component'
 import LabelComponent from '../atoms/LabelComponent'
 import SelectComponent from '../atoms/SelectComponent'
 import TextareaComponent from '../atoms/TextareaComponent'
