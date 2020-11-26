@@ -1,5 +1,5 @@
 import React from 'react'
-import Component, { ComponentProps } from '../templates/Component'
+import Component from '../templates/Component'
 
 import Objective from '../../data/stores/objective'
 import Date from '../../data/stores/date';
@@ -22,10 +22,10 @@ import AddComponent from '../molecules/AddComponent';
 import DateComponent from '../molecules/DateComponent';
 
 interface ObjectiveListProps {
-    component?: ComponentProps
+    
 }
 
-const ObjectiveListComponent: React.FC<ObjectiveListProps> = ({}) => {
+const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
     const { handle_onShow } = useHandle();
 
     const { 
