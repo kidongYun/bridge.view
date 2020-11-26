@@ -1,5 +1,5 @@
 import React from 'react'
-import Component, { ComponentProps } from '../templates/Component'
+import Component, { ComponentProps, defaultProps } from '../templates/Component'
 import { ButtonProps } from '../atoms/ButtonComponent';
 import ButtonsComponent from '../molecules/ButtonsComponent'
 
@@ -11,8 +11,10 @@ interface NavigationProps {
 
 const NavigationComponent: React.FC<NavigationProps> = (props) => {
     let view =
-    <Component>
-        <ButtonsComponent buttons={props.leftButtons}/>
+    <Component backgroundColor="#24292e">
+        <ButtonsComponent buttons={props.leftButtons} component={{
+            horizontalAlign: "left"
+        }}/>
         <ButtonsComponent buttons={props.rightButtons}/>
     </Component>
 
