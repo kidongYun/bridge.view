@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Root } from '../Root'
 import Button from 'react-bootstrap/Button'
+import ContainerComponent from '../templates/ContainerComponent'
 
 export interface ButtonProps {
     theme:     
@@ -32,15 +32,13 @@ const ButtonComponent: React.FC<ButtonProps> = ({
     onClick
 }) => {
     let view =
-    <Container>
+    <ContainerComponent>
         <Button variant={theme} onClick={onClick}>
             {text}
         </Button>
-    </Container>
+    </ContainerComponent>
 
     return view;
 }
-
-const Container = styled(Root)``;
 
 export default ButtonComponent;

@@ -1,11 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Root } from '../Root'
 
 export interface ComponentProps {
     width?: string,
-    minWidth?: string,
     height?: string,
+    minWidth?: string,
     minHeight?: string,
     activeHeight?: string,
     backgroundColor?: string, 
@@ -26,13 +25,15 @@ export interface ComponentProps {
     verticalAlign?: string,
     horizontalAlign?: string,
     direction?: string,
-    onClick?: () => void
+    fontSize?: string,
+    fontWeight?: string,
+    color?: string
 }
 
 export const defaultProps: ComponentProps = {
     width: "100%",
-    minWidth: "100%",
     height: "100%",
+    minWidth: "100%",
     minHeight: "100%",
     activeHeight: "",
     backgroundColor: "transparent",
@@ -53,13 +54,16 @@ export const defaultProps: ComponentProps = {
     verticalAlign: "center",
     horizontalAlign: "center",
     direction: "row",
-    onClick: () => {},
+    fontSize: "1rem",
+    fontWeight: "normal",
+    color: "#000000"
+
 }
 
 const Component: React.FC<ComponentProps> = (props) => {
 
     let view =
-    <Container 
+    <Container
         width={props.width!} 
         minWidth={props.minWidth!}
         height={props.height!}
@@ -82,8 +86,7 @@ const Component: React.FC<ComponentProps> = (props) => {
         paddingRight={props.paddingRight!}
         verticalAlign={props.verticalAlign!}
         horizontalAlign={props.horizontalAlign!}
-        direction={props.direction!}
-        onClick={props.onClick!}>
+        direction={props.direction!}>
         {props.children!}
     </Container>
 
@@ -92,10 +95,10 @@ const Component: React.FC<ComponentProps> = (props) => {
 
 Component.defaultProps = defaultProps;
 
-const Container = styled(Root)<{ 
+const Container = styled.div<{ 
     width: string,
-    minWidth: string,
     height: string,
+    minWidth: string,
     minHeight: string, 
     activeHeight: string,
     backgroundColor: string, 

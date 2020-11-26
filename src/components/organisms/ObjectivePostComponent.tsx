@@ -27,25 +27,18 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
     <Component 
         direction="column" 
         marginLeft="auto" 
-        marginRight="auto">
-            
-        <LabelComponent
-            label="목표 추가" size="20pt" />
+        marginRight="auto"
+        width="80%">
+        
+        <LabelComponent label="목표 추가" size="20pt" />
 
-        <TextComponent
-            placeholder="TITLE"
+        <TextComponent placeholder="TITLE"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const { value } = event.target;
                 // onSetObjectiveTitle(value);
-            }}
-            component={{
-                width: "80%"
-            }} />
+            }}/>      
 
-        <TextareaComponent
-            component={{
-                width: "80%"
-            }} />
+        <TextareaComponent/>
 
         <LabelComponent label="Priority" />
 
@@ -67,9 +60,6 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 const { value } = event.target;
                 // onSetCellEndDateTime(value);
-            }}
-            component={{
-                width: "80%"
             }} />
 
         <Component  borderTop="solid 1px #eeeeee" marginTop="10px" paddingTop="10px">

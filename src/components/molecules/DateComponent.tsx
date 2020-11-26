@@ -1,8 +1,9 @@
 import React from 'react'
-import Component, { ComponentProps } from '../templates/Component'
+import styled from 'styled-components'
+import { RootContainer } from '../RootContainer'
 import LabelComponent from '../atoms/LabelComponent'
 
-interface DateProps extends ComponentProps {
+interface DateProps {
     date: string
 }
 
@@ -10,11 +11,13 @@ const DateComponent: React.FC<DateProps> = ({
     date
 }) => {
     let view =
-    <Component height="50px">
+    <Container>
         <LabelComponent label={date} />
-    </Component>
+    </Container>
 
     return view;
 }
+
+const Container = styled(RootContainer)``;
 
 export default DateComponent;

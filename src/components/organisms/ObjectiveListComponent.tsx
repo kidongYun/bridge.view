@@ -64,15 +64,13 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = ({}) => {
                     title={cell.title}
                     description={cell.description}
                     deadline={cell.getDate()}
-                    component={{
-                        onClick: () => {
-                            onSetCellType(cell.type);
-                            onSetCellEndDateTime(cell.endDateTime);
-                            onSetSubjectId(cell.id);
-                            onSetObjectiveTitle(cell.title);
-                            onSetObjectiveDescription(cell.description);
-                            handle_onShow("OBJECTIVE_PUT"); 
-                        }
+                    onClick={() => {
+                        onSetCellType(cell.type);
+                        onSetCellEndDateTime(cell.endDateTime);
+                        onSetSubjectId(cell.id);
+                        onSetObjectiveTitle(cell.title);
+                        onSetObjectiveDescription(cell.description);
+                        handle_onShow("OBJECTIVE_PUT"); 
                     }}
                 />
             }

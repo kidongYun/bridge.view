@@ -44,19 +44,13 @@ const SignComponent: React.FC<SignProps> = ({
         <LabelComponent 
             label="SIGN" />
 
-        <TextComponent 
-            value="" 
-            placeholder="EMAIL"
-            component={{
-                width: "70%"
-            }} />
+        <Component width="70%">
+            <TextComponent value="" placeholder="EMAIL"/>
+        </Component>
 
-        <TextComponent 
-            value="" 
-            placeholder="PASSWORD" 
-            component={{
-                width: "70%"
-            }} />
+        <Component width="70%">
+            <TextComponent value="" placeholder="PASSWORD"/>
+        </Component>
 
         <LabelComponent 
             label="HELLO"  />

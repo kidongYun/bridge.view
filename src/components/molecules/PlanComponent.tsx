@@ -1,15 +1,17 @@
 import React from 'react'
-import Component, { ComponentProps } from '../templates/Component'
+import styled from 'styled-components'
+import { RootContainer } from '../RootContainer'
 
 interface PlanProps {
-    component?: ComponentProps
 }
 
 const PlanComponent: React.FC<PlanProps> = () => {
     let view =
-    <Component></Component>
+    <Container></Container>
 
     return view;
 }
+
+const Container = styled(RootContainer)``;
 
 export default PlanComponent;

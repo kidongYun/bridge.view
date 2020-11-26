@@ -1,17 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
+import { RootContainer } from '../RootContainer'
 import Form from 'react-bootstrap/Form'
-import Component, { ComponentProps, defaultProps } from '../templates/Component'
 
 interface SelectProps {
-    component?: ComponentProps
     value?: string
     options: Array<{ value: string, title: string }>
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const SelectComponent: React.FC<SelectProps> = ({ 
-    component = defaultProps,
     value = "", 
     options, 
     onChange = () => {}
@@ -26,42 +24,15 @@ const SelectComponent: React.FC<SelectProps> = ({
     }
 
     let view =
-    <Component
-        width={component.width}
-        height={component.height}
-        activeHeight={component.activeHeight}
-        backgroundColor={component.backgroundColor}
-        backgroundHover={component.backgroundHover}
-        borderRadius={component.borderRadius}
-        borderTop={component.borderTop}
-        borderBottom={component.borderBottom}
-        borderLeft={component.borderLeft}
-        borderRight={component.borderRight}
-        marginTop={component.marginTop}
-        marginBottom={component.marginBottom}
-        marginLeft={component.marginLeft}
-        marginRight={component.marginRight}
-        paddingTop={component.paddingTop}
-        paddingBottom={component.paddingBottom}
-        paddingLeft={component.paddingLeft}
-        paddingRight={component.paddingRight}
-        verticalAlign={component.verticalAlign}
-        horizontalAlign={component.horizontalAlign}
-        direction={component.direction}
-        onClick={component.onClick}>
-        <Container>
-            <Form.Control as="select" defaultValue={value} onChange={onChange}>
-                {optionView}
-            </Form.Control>
-        </Container>
-    </Component>
+    <Container>
+        <Form.Control as="select" defaultValue={value} onChange={onChange}>
+            {optionView}
+        </Form.Control>
+    </Container>
 
     return view;
 }
 
-const Container = styled.div`
-    width: auto;
-    height: auto;
-`;
+const Container = styled(RootContainer)``;
 
 export default SelectComponent;

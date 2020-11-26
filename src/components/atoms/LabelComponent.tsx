@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Root } from '../Root'
 import Form from 'react-bootstrap/Form'
+import Component from '../templates/Component'
 
 interface LabelProps {
     label: string
@@ -17,21 +17,26 @@ const LabelComponent: React.FC<LabelProps> = ({
     weight = "normal",                                   
 }) => {
     let view = 
-    <Container 
-        size={size} 
-        color={color} 
-        weight={weight}>
-        <Form.Label>{label}</Form.Label>
-    </Container>
+    <Component>
+        <Container 
+            size={size} 
+            color={color} 
+            weight={weight}>
+            <Form.Label>{label}</Form.Label>
+        </Container>
+    </Component>
 
     return view;
 }
 
-const Container = styled(Root)<{ 
+const Container = styled.div<{ 
     size: string, 
     color: string, 
     weight: string
 }>`
+    width: 100%;
+    height: 100%; 
+
     font-size: ${props => props.size};
     font-weight: ${props => props.weight};
     color: ${props => props.color};
