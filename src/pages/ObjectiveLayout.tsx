@@ -17,14 +17,13 @@ const ObjectiveLayout: React.FC<ObjectiveProps> = (props) => {
         <Component height="70px">
             <NavigationComponent
                 leftButtons={[
-                    { theme: "primary", text: "Objective" },
-                    { theme: "primary", text: "Plan" },
-                    { theme: "primary", text: "Todo"}
+                    { theme: "outline-light", text: "Objective", onClick: () => {} },
+                    { theme: "outline-light", text: "Plan", onClick: () => {} },
+                    { theme: "outline-light", text: "Todo", onClick: () => {} }
                 ]} 
 
                 rightButtons={[
-                    { theme: "primary", text: "button1" },
-                    { theme: "primary", text: "button2" }
+                    { theme: "primary", text: "Login", onClick: () => {} }
                 ]} 
             />
         </Component>

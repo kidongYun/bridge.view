@@ -66,59 +66,53 @@ const SignComponent: React.FC<SignProps> = ({
             <ButtonComponent 
                 text="Close" 
                 theme="secondary"
-                component={{
-                    onClick: () => { 
-                        handle_onHide(); 
-                    }
+                onClick={() => {
+                    handle_onHide(); 
                 }} />
 
             <ButtonComponent 
                 text="Sign In" 
                 theme="primary"
-                component={{
-                    onClick: () => {
-                        const params = {
-                            email: sign_email,
-                            password: sign_password
-                        }
-    
-                        data.signIn(params).then((response) => {
-    
-                            /* 로그인 실패한 경우 */
-                            if(response.data.errorCode !== 200) {
-                                sign_onUpdateStatus(false);
-                                sign_onUpdateDesc(response.data.errorDesc);
-                                return;
-                            }
-    
-                            sign_onUpdateStatus(true);
-                            sign_onUpdateEmail(params.email);
-    
-                            onShowNoti("success", "로그인되었습니다.");
-                            setTimeout(onHideNoti, 2300);
-                            handle_onHide();
-                        })
+                onClick={() => {
+                    const params = {
+                        email: sign_email,
+                        password: sign_password
                     }
+
+                    data.signIn(params).then((response) => {
+
+                        /* 로그인 실패한 경우 */
+                        if(response.data.errorCode !== 200) {
+                            sign_onUpdateStatus(false);
+                            sign_onUpdateDesc(response.data.errorDesc);
+                            return;
+                        }
+
+                        sign_onUpdateStatus(true);
+                        sign_onUpdateEmail(params.email);
+
+                        onShowNoti("success", "로그인되었습니다.");
+                        setTimeout(onHideNoti, 2300);
+                        handle_onHide();
+                    })
                 }} />
 
             <ButtonComponent 
                 text="Sign Up" 
                 theme="primary"
-                component={{
-                    onClick: () => {
-                        const params = {
-                            email: sign_email,
-                            password: sign_password
+                onClick={() => {
+                    const params = {
+                        email: sign_email,
+                        password: sign_password
+                    }
+
+                    data.signUp(params).then((response) => {
+                        if(response.data.errorCode === 200) {
+                            onShowNoti("success", "가입이 완료되었습니다.");
+                            setTimeout(onHideNoti, 2300);
+                            handle_onHide(); 
                         }
-    
-                        data.signUp(params).then((response) => {
-                            if(response.data.errorCode === 200) {
-                                onShowNoti("success", "가입이 완료되었습니다.");
-                                setTimeout(onHideNoti, 2300);
-                                handle_onHide(); 
-                            }
-                        })
-                    } 
+                    })
                 }} />
         </Component>
     </Component>

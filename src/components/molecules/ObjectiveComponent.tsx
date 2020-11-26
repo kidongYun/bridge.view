@@ -27,40 +27,9 @@ const ObjectiveComponent: React.FC<ObjectiveProps> = ({
         marginBottom="5px"
         direction="column"
         onClick={component?.onClick}>
-        <>
-        <LabelComponent 
-            label={title} 
-            size="15pt" 
-            component={{ height: "200%" }} 
-        />
-
-        <LabelComponent 
-            label={description} 
-            component={{
-                width: "90%",
-                borderRadius: "10px",
-                backgroundColor: "#ffffff",
-                marginLeft: "auto",
-                marginRight: "auto",
-                marginTop: "2px",
-                marginBottom: "2px"
-            }} 
-        />
-
-        <LabelComponent 
-            label={deadline} 
-            component={{
-                width: "90%",
-                borderRadius: "10px",
-                backgroundColor: "#ffffff",
-                horizontalAlign: "flex-start",
-                marginLeft: "auto",
-                marginRight: "auto",
-                marginTop: "2px",
-                marginBottom: "2px"
-            }}
-        />
-        </>
+        <LabelComponent label={title} size="15pt" />
+        <LabelComponent label={description} />
+        <LabelComponent label={deadline} />
     </Component>;
 
     return view;

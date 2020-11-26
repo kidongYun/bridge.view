@@ -11,13 +11,7 @@ const DateComponent: React.FC<DateProps> = ({
 }) => {
     let view =
     <Component height="50px">
-        <LabelComponent 
-            label={date} 
-            component={{ 
-                verticalAlign: "flex-end", 
-                horizontalAlign: "flex-start" 
-            }} 
-        />
+        <LabelComponent label={date} />
     </Component>
 
     return view;

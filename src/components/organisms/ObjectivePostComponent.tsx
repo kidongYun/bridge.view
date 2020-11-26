@@ -30,11 +30,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
         marginRight="auto">
             
         <LabelComponent
-            label="목표 추가" size="20pt" component={{
-                borderBottom: "solid 1px #eeeeee",
-                marginBottom: "10px",
-                paddingBottom: "10px"
-            }}/>
+            label="목표 추가" size="20pt" />
 
         <TextComponent
             placeholder="TITLE"
@@ -81,16 +77,12 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
             <ButtonComponent 
                 theme="secondary" 
                 text="취소" 
-                component={{
-                    onClick: () => { setTemplate("DIALOG", false); }
-                }}
+                onClick={() => {}}
             />
             <ButtonComponent 
                 theme="primary" 
                 text="추가"
-                component={{
-                    onClick: () => { setTemplate("DIALOG", false); }
-                }}
+                onClick={() => {}}
             />
         </Component>
     </Component>

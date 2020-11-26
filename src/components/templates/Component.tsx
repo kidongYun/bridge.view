@@ -1,9 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Root } from '../Root'
 
 export interface ComponentProps {
     width?: string,
+    minWidth?: string,
     height?: string,
+    minHeight?: string,
     activeHeight?: string,
     backgroundColor?: string, 
     backgroundHover?: string, 
@@ -28,7 +31,9 @@ export interface ComponentProps {
 
 export const defaultProps: ComponentProps = {
     width: "100%",
+    minWidth: "100%",
     height: "100%",
+    minHeight: "100%",
     activeHeight: "",
     backgroundColor: "transparent",
     backgroundHover: "transparent",
@@ -56,7 +61,9 @@ const Component: React.FC<ComponentProps> = (props) => {
     let view =
     <Container 
         width={props.width!} 
+        minWidth={props.minWidth!}
         height={props.height!}
+        minHeight={props.minHeight!}
         activeHeight={props.activeHeight!}
         backgroundColor={props.backgroundColor!} 
         backgroundHover={props.backgroundHover!}
@@ -85,10 +92,12 @@ const Component: React.FC<ComponentProps> = (props) => {
 
 Component.defaultProps = defaultProps;
 
-const Container = styled.div<{ 
-    width: string, 
-    height: string, 
-    activeHeight: string
+const Container = styled(Root)<{ 
+    width: string,
+    minWidth: string,
+    height: string,
+    minHeight: string, 
+    activeHeight: string,
     backgroundColor: string, 
     backgroundHover: string,
     borderRadius: string,
@@ -106,7 +115,7 @@ const Container = styled.div<{
     paddingRight: string,
     verticalAlign: string,
     horizontalAlign: string,
-    direction: string,
+    direction: string
 }>`
     width: ${props => props.width};
     height: ${props => props.height};

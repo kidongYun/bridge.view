@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Root } from '../Root'
 import Button from 'react-bootstrap/Button'
-import Component, { ComponentProps, defaultProps } from '../templates/Component'
 
 export interface ButtonProps {
-    component?: ComponentProps
     theme:     
     | 'primary'
     | 'secondary'
@@ -22,51 +21,26 @@ export interface ButtonProps {
     | 'outline-warning'
     | 'outline-info'
     | 'outline-dark'
-    | 'outline-light';
+    | 'outline-light'
     text: string
+    onClick: () => void
 }
 
-const ButtonComponent: React.FC<ButtonProps> = ({ 
-    component = defaultProps,
+const ButtonComponent: React.FC<ButtonProps> = ({
     theme, 
     text,
+    onClick
 }) => {
     let view =
-    <Component
-        width={component.width}
-        height={component.height}
-        activeHeight={component.activeHeight}
-        backgroundColor={component.backgroundColor}
-        backgroundHover={component.backgroundHover}
-        borderRadius={component.borderRadius}
-        borderTop={component.borderTop}
-        borderBottom={component.borderBottom}
-        borderLeft={component.borderLeft}
-        borderRight={component.borderRight}
-        marginTop={component.marginTop}
-        marginBottom={component.marginBottom}
-        marginLeft={component.marginLeft}
-        marginRight={component.marginRight}
-        paddingTop={component.paddingTop}
-        paddingBottom={component.paddingBottom}
-        paddingLeft={component.paddingLeft}
-        paddingRight={component.paddingRight}
-        verticalAlign={component.verticalAlign}
-        horizontalAlign={component.horizontalAlign}
-        direction={component.direction}>
-        <Container>
-            <Button variant={theme} onClick={component.onClick}>
-                {text}
-            </Button>
-        </Container>
-    </Component>
+    <Container>
+        <Button variant={theme} onClick={onClick}>
+            {text}
+        </Button>
+    </Container>
 
     return view;
 }
 
-const Container = styled.div`
-    width: auto;
-    height: auto;
-`;
+const Container = styled(Root)``;
 
 export default ButtonComponent;
