@@ -1,29 +1,26 @@
 import React from 'react'
-import styled from 'styled-components'
-import { RootContainer } from '../RootContainer'
 import LabelComponent from '../atoms/LabelComponent'
+import Component from '../templates/Component'
 
 interface AddProps {
-    onClick: () => void
+    onClick?: () => void
 }
 
-const AddComponent: React.FC<AddProps> = ({
-    onClick
-}) => {
+const AddComponent: React.FC<AddProps> = (props) => {
 
     let view =
-    <Container onClick={onClick}>
-        <LabelComponent 
-            label="+" 
-            size="20pt" 
-            color="#ffffff" 
-            weight="bold" 
-        />
-    </Container>
+    <Component 
+        onClick={props.onClick} 
+        backgroundColor="#007bff"
+        borderRadius="10px">
+        <LabelComponent label="+" size="20pt" color="#ffffff" weight="bold" />
+    </Component>
 
     return view;
 }
 
-const Container = styled(RootContainer)``;
+AddComponent.defaultProps = {
+    onClick: () => {}
+}
 
 export default AddComponent;

@@ -27,37 +27,8 @@ export interface ComponentProps {
     direction?: string,
     fontSize?: string,
     fontWeight?: string,
-    color?: string
-}
-
-export const defaultProps: ComponentProps = {
-    width: "100%",
-    height: "100%",
-    minWidth: "100%",
-    minHeight: "100%",
-    activeHeight: "",
-    backgroundColor: "transparent",
-    backgroundHover: "transparent",
-    borderRadius: "0px",
-    borderTop: "solid 0px #000000",
-    borderBottom: "solid 0px #000000",
-    borderLeft: "solid 0px #000000",
-    borderRight: "solid 0px #000000",
-    marginTop: "0px",
-    marginBottom: "0px",
-    marginLeft: "0px",
-    marginRight: "0px",
-    paddingTop: "0px",
-    paddingBottom: "0px",
-    paddingLeft: "0px",
-    paddingRight: "0px",
-    verticalAlign: "center",
-    horizontalAlign: "center",
-    direction: "row",
-    fontSize: "1rem",
-    fontWeight: "normal",
-    color: "#000000"
-
+    color?: string,
+    onClick?: () => void
 }
 
 const Component: React.FC<ComponentProps> = (props) => {
@@ -86,14 +57,46 @@ const Component: React.FC<ComponentProps> = (props) => {
         paddingRight={props.paddingRight!}
         verticalAlign={props.verticalAlign!}
         horizontalAlign={props.horizontalAlign!}
-        direction={props.direction!}>
+        direction={props.direction!}
+        fontSize={props.fontSize!}
+        fontWeight={props.fontWeight!}
+        color={props.color!}
+        onClick={props.onClick!}>
         {props.children!}
     </Container>
 
     return view;
 }
 
-Component.defaultProps = defaultProps;
+Component.defaultProps = {
+    width: "100%",
+    height: "100%",
+    minWidth: "100%",
+    minHeight: "100%",
+    activeHeight: "",
+    backgroundColor: "transparent",
+    backgroundHover: "transparent",
+    borderRadius: "0px",
+    borderTop: "solid 0px #000000",
+    borderBottom: "solid 0px #000000",
+    borderLeft: "solid 0px #000000",
+    borderRight: "solid 0px #000000",
+    marginTop: "0px",
+    marginBottom: "0px",
+    marginLeft: "0px",
+    marginRight: "0px",
+    paddingTop: "0px",
+    paddingBottom: "0px",
+    paddingLeft: "0px",
+    paddingRight: "0px",
+    verticalAlign: "center",
+    horizontalAlign: "center",
+    direction: "row",
+    fontSize: "1rem",
+    fontWeight: "normal",
+    color: "#000000",
+    onClick: () => {}
+};
 
 const Container = styled.div<{ 
     width: string,
@@ -118,7 +121,10 @@ const Container = styled.div<{
     paddingRight: string,
     verticalAlign: string,
     horizontalAlign: string,
-    direction: string
+    direction: string,
+    fontSize: string,
+    fontWeight: string,
+    color: string
 }>`
     width: ${props => props.width};
     height: ${props => props.height};
@@ -149,6 +155,10 @@ const Container = styled.div<{
     flex-direction: ${props => props.direction};
     justify-content: ${props => props.horizontalAlign};
     align-items: ${props => props.verticalAlign};
+
+    font-size: ${props => props.fontSize};
+    font-weight: ${props => props.fontWeight};
+    color: ${props => props.color};
 `;
 
 export default Component;

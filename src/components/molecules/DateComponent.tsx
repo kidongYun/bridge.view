@@ -1,23 +1,22 @@
 import React from 'react'
-import styled from 'styled-components'
-import { RootContainer } from '../RootContainer'
 import LabelComponent from '../atoms/LabelComponent'
+import Component from '../templates/Component'
 
 interface DateProps {
     date: string
 }
 
-const DateComponent: React.FC<DateProps> = ({
-    date
-}) => {
+const DateComponent: React.FC<DateProps> = (props) => {
     let view =
-    <Container>
-        <LabelComponent label={date} />
-    </Container>
+    <Component>
+        <LabelComponent label={props.date}/>
+    </Component>
 
     return view;
 }
 
-const Container = styled(RootContainer)``;
+DateComponent.defaultProps = {
+    date: ""
+}
 
 export default DateComponent;

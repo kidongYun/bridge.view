@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import Form from 'react-bootstrap/Form'
 import Component from '../templates/Component'
 
@@ -10,36 +9,22 @@ interface LabelProps {
     weight?: string
 }
 
-const LabelComponent: React.FC<LabelProps> = ({
-    label,
-    size = "10pt",
-    color = "#000000",
-    weight = "normal",                                   
-}) => {
+const defaultProps: LabelProps = {
+    label: "",
+    size: "10pt",
+    color: "#000000",
+    weight: "normal"
+}
+
+const LabelComponent: React.FC<LabelProps> = (props) => {
     let view = 
-    <Component>
-        <Container 
-            size={size} 
-            color={color} 
-            weight={weight}>
-            <Form.Label>{label}</Form.Label>
-        </Container>
+    <Component fontSize={props.size} fontWeight={props.weight} color={props.color}>
+        <Form.Label>{props.label}</Form.Label>
     </Component>
 
     return view;
 }
 
-const Container = styled.div<{ 
-    size: string, 
-    color: string, 
-    weight: string
-}>`
-    width: 100%;
-    height: 100%; 
-
-    font-size: ${props => props.size};
-    font-weight: ${props => props.weight};
-    color: ${props => props.color};
-`;
+LabelComponent.defaultProps = defaultProps;
 
 export default LabelComponent;

@@ -1,7 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
-import { RootContainer } from '../RootContainer'
 import Form from 'react-bootstrap/Form'
+import Component from '../templates/Component'
 
 interface SelectProps {
     value?: string
@@ -9,30 +8,29 @@ interface SelectProps {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const SelectComponent: React.FC<SelectProps> = ({ 
-    value = "", 
-    options, 
-    onChange = () => {}
-}) => {
+const SelectComponent: React.FC<SelectProps> = (props) => {
     let optionView = <></>;
 
-    if(options !== undefined) {
+    if(props.options !== undefined) {
         optionView = 
         <>
-            {options.map((option) => <option value={option.value}>{option.title}</option> )}
+            {props.options.map((option) => <option value={option.value}>{option.title}</option> )}
         </>;
     }
 
     let view =
-    <Container>
-        <Form.Control as="select" defaultValue={value} onChange={onChange}>
+    <Component>
+        <Form.Control as="select" defaultValue={props.value} onChange={props.onChange}>
             {optionView}
         </Form.Control>
-    </Container>
+    </Component>
 
     return view;
 }
 
-const Container = styled(RootContainer)``;
+SelectComponent.defaultProps = {
+    value: "",
+    onChange: () => {}
+}
 
 export default SelectComponent;

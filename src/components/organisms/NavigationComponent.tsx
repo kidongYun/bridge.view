@@ -1,15 +1,13 @@
 import React from 'react'
-import Component, { ComponentProps, defaultProps } from '../templates/Component'
+import Component from '../templates/Component'
 import ButtonComponent, { ButtonProps } from '../atoms/ButtonComponent';
 
 interface NavigationProps {
-    component?: ComponentProps
     leftButtons: ButtonProps[]
     rightButtons: ButtonProps[]
 }
 
 const NavigationComponent: React.FC<NavigationProps> = ({
-    component = defaultProps,
     leftButtons,
     rightButtons
 }) => {

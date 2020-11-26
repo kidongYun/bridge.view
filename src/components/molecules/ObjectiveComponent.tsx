@@ -1,7 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
-import { RootContainer } from '../RootContainer'
 import LabelComponent from '../atoms/LabelComponent'
+import Component from '../templates/Component'
 
 interface ObjectiveProps {
     title: string
@@ -10,36 +9,28 @@ interface ObjectiveProps {
     onClick: () => void
 }
 
-const ObjectiveComponent: React.FC<ObjectiveProps> = ({
-    title,
-    description,
-    deadline,
-    onClick
-}) => {
+const ObjectiveComponent: React.FC<ObjectiveProps> = (props) => {
 
     let view =
-    <Container>
-        <LabelComponent label={title} size="15pt" />
-        <LabelComponent label={description} />
-        <LabelComponent label={deadline} />
-    </Container>
+    <Component 
+        height="250px" 
+        activeHeight="260px" 
+        backgroundColor="#eeeeee" 
+        backgroundHover="#e4e4e4"
+        borderRadius="10px"
+        marginTop="5px"
+        marginBottom="5px"
+        direction="column">
+        <LabelComponent label={props.title} size="15pt" />
+        <LabelComponent label={props.description} />
+        <LabelComponent label={props.deadline} />
+    </Component>
 
     return view;
 }
 
-const Container = styled(RootContainer)`
-    height: 250px;
-    &:active { height: 260px; }
-    transition: all ease 0.2s 0s;
-
-    background-color: #eeeeee;
-    &:hover { background-color: #e4e4e4; }
-
-    border-radius: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+ObjectiveComponent.defaultProps = {
     
-    flex-direction: column;
-`;
+}
 
 export default ObjectiveComponent;

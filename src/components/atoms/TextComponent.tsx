@@ -1,7 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
-import { RootContainer } from '../RootContainer'
 import Form from 'react-bootstrap/Form'
+import Component from '../templates/Component'
 
 interface TextProps {
     value?: string
@@ -9,23 +8,23 @@ interface TextProps {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const TextComponent: React.FC<TextProps> = ({
-    value = "", 
-    placeholder = "", 
-    onChange = () => {} 
-}) => {
+const TextComponent: React.FC<TextProps> = (props) => {
     let view =
-    <Container>
+    <Component>
         <Form.Control
-            defaultValue={value}
-            placeholder={placeholder}
-            onChange={onChange}
+            defaultValue={props.value}
+            placeholder={props.placeholder}
+            onChange={props.onChange}
         />
-    </Container>
+    </Component>
 
     return view;
 }
 
-const Container = styled(RootContainer)``;
+TextComponent.defaultProps = {
+    value: "",
+    placeholder: "",
+    onChange: () => {}
+}
 
 export default TextComponent;

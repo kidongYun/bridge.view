@@ -1,7 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
-import { RootContainer } from '../RootContainer'
 import Form from 'react-bootstrap/Form'
+import Component from '../templates/Component'
 
 interface TextareaProps {
     value?: string
@@ -10,26 +9,26 @@ interface TextareaProps {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const TextareaComponent: React.FC<TextareaProps> = ({ 
-    value = "", 
-    placeholder = "", 
-    rows = "10", 
-    onChange = () => {}
-}) => {
+const TextareaComponent: React.FC<TextareaProps> = (props) => {
     let view =
-    <Container>
+    <Component>
         <Form.Control
-            defaultValue={value}
-            placeholder={placeholder}
+            defaultValue={props.value}
+            placeholder={props.placeholder}
             as="textarea"
-            rows={rows}
-            onChange={onChange}
+            rows={props.rows}
+            onChange={props.onChange}
         />
-    </Container>
+    </Component>
 
     return view;
 }
 
-const Container = styled(RootContainer)``;
+TextareaComponent.defaultProps = {
+    value: "",
+    placeholder: "",
+    rows: "10",
+    onChange: () => {}
+}
 
 export default TextareaComponent;

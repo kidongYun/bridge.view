@@ -1,7 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import Button from 'react-bootstrap/Button'
-import ContainerComponent from '../templates/ContainerComponent'
+import Component from '../templates/Component'
 
 export interface ButtonProps {
     theme:     
@@ -26,17 +25,13 @@ export interface ButtonProps {
     onClick: () => void
 }
 
-const ButtonComponent: React.FC<ButtonProps> = ({
-    theme, 
-    text,
-    onClick
-}) => {
+const ButtonComponent: React.FC<ButtonProps> = (props) => {
     let view =
-    <ContainerComponent>
-        <Button variant={theme} onClick={onClick}>
-            {text}
+    <Component>
+        <Button variant={props.theme} onClick={props.onClick}>
+            {props.text}
         </Button>
-    </ContainerComponent>
+    </Component>
 
     return view;
 }
