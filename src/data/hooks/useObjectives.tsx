@@ -5,7 +5,7 @@ import { setObjectivesAction, callObjectivesAction } from '../actions/objectives
 import Cell from '../stores/cell'
 
 export default function useObjectives() {
-    const getObjectives = useSelector((state: RootState) => state.objectivesReducer);
+    const getObjectives = useSelector((state: RootState) => state.objectives);
 
     const dispatch = useDispatch();
     const setObjectives = useCallback((cells: Cell[]) =>

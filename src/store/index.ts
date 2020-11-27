@@ -6,7 +6,7 @@ import data from './data'
 import sign from './sign'
 import cell from './cell'
 import templateReducer from '../data/reducers/templateReducer'
-import objectivesReducer from '../data/reducers/objectivesReducer'
+import objectives from '../data/actions/objectivesAction'
 
 const rootReducer = combineReducers({
     stage,
@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
     data,
     cell,
     templateReducer,
-    objectivesReducer
+    objectives
 })
 
 export default rootReducer;

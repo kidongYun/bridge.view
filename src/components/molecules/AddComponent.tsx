@@ -13,7 +13,7 @@ const AddComponent: React.FC<AddProps> = (props) => {
         onClick={props.onClick} 
         backgroundColor="#007bff"
         borderRadius="10px">
-        <LabelComponent label="+" size="20pt" color="#ffffff" weight="bold" />
+        <LabelComponent label="+" size="20pt" color="#ffffff" weight="bold"/>
     </Component>
 
     return view;
