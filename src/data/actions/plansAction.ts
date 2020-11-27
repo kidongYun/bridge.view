@@ -23,3 +23,14 @@ export const callPlansAction = () => {
 export type PlansAction =
     | ReturnType<typeof setPlansAction>
     | ReturnType<typeof callPlansAction>
+
+export default function plans(state: Cell[] = [], action: PlansAction) {
+    switch(action.type) {
+        case 'SET_PLANS_ACTION' :
+            return action.payload;
+        case 'CALL_PLANS_ACTION' :
+            return action.payload;
+        default :
+            return state;
+    }
+}

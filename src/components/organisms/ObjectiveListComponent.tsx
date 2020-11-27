@@ -15,7 +15,6 @@ import useData from '../../hooks/useData'
 import useCell from '../../hooks/useCell'
 
 import useObjectives from '../../data/hooks/useObjectives'
-import useTemplate from '../../data/hooks/useTemplate'
 
 import ObjectiveComponent from '../molecules/ObjectiveComponent'
 import AddComponent from '../molecules/AddComponent';
@@ -41,10 +40,6 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
         callObjectives
      } = useObjectives();
 
-     const {
-        setTemplate
-     } = useTemplate();
-
     React.useEffect(() => {
         console.log("useEffect!!!");
         callObjectives();
@@ -53,9 +48,7 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
     let view =
     <Component direction="column">
         <AddComponent 
-            onClick={() => {
-                setTemplate("DIALOG", true);
-            }}
+            onClick={() => {}}
         />
 
         {getObjectives.map(cell => {

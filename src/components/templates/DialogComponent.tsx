@@ -1,17 +1,16 @@
 import React from 'react'
 import { ComponentProps } from './Component'
 import Modal from 'react-bootstrap/Modal'
-import useTemplate from '../../data/hooks/useTemplate'
+import { truncate } from 'fs'
 
 interface DialogProps {
     component?: ComponentProps;
 }
 
 const DialogComponent: React.FC<DialogProps> = (props) => {
-    const { getTemplate } = useTemplate();
 
     let view = 
-    <Modal show={getTemplate.dialog}>
+    <Modal show={true}>
         <Modal.Body>
             {props.children}
         </Modal.Body>

@@ -1,7 +1,6 @@
 import React from 'react'
 import Component, { ComponentProps } from '../components/templates/Component'
 
-import useTemplate, {} from '../data/hooks/useTemplate'
 import ObjectiveListComponent from '../components/organisms/ObjectiveListComponent'
 import NavigationComponent from '../components/organisms/NavigationComponent';
 
@@ -10,7 +9,6 @@ interface ObjectiveProps {
 }
 
 const ObjectiveLayout: React.FC<ObjectiveProps> = (props) => {
-    const { getTemplate } = useTemplate();
 
     let view = 
     <Component direction="column">

@@ -7,7 +7,6 @@ import TextareaComponent from '../atoms/TextareaComponent'
 import SelectComponent from '../atoms/SelectComponent'
 
 import useCell from '../../hooks/useCell';
-import useTemplate from '../../data/hooks/useTemplate'
 import ButtonComponent from '../atoms/ButtonComponent'
 
 interface ObjectivePostProps {
@@ -16,7 +15,6 @@ interface ObjectivePostProps {
 
 const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
 }) => {
-    const { setTemplate } = useTemplate();
     // const { 
     //     onSetCellEndDateTime,
     //     onSetObjectiveTitle,

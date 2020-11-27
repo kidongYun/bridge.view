@@ -8,6 +8,7 @@ export default function useObjectives() {
     const getObjectives = useSelector((state: RootState) => state.objectives);
 
     const dispatch = useDispatch();
+    
     const setObjectives = useCallback((cells: Cell[]) =>
         dispatch(setObjectivesAction(cells)), [dispatch]);
 
