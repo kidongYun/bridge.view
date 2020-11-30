@@ -1,5 +1,5 @@
 import React from 'react'
-import ObjectiveLayout from './pages/ObjectiveLayout';
+import ObjectiveLayout from './pages/MainLayout';
 
 const App = () => {
 
