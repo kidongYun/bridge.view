@@ -15,13 +15,12 @@ interface ObjectiveProps {
 }
 
 const MainLayout: React.FC<ObjectiveProps> = () => {
-    const { getCenter, setCenter, getTop } = usePage();
+    const { getCenter, setCenter, getTop, setTop } = usePage();
     const { getObjectives, callObjectives } = useObjectives();
 
     React.useEffect(() => {
         callObjectives();
     }, []);
-
 
     let center = <></>;
     if(getCenter.component === "ObjectiveList") {
@@ -34,7 +33,7 @@ const MainLayout: React.FC<ObjectiveProps> = () => {
 
     let view = 
     <Component direction="column">
-        <Component height="70px" display={getTop.display}>
+        <Component height="200px" display={getTop.display}>
             <NavigationComponent
                 leftButtons={[
                     { 
@@ -62,8 +61,8 @@ const MainLayout: React.FC<ObjectiveProps> = () => {
                 ]} 
             />
         </Component>
-        <Component width="60%" marginLeft="auto" marginRight="auto" display={getCenter.display}>
-            {center}
+        <Component marginLeft="auto" marginRight="auto" display={getCenter.display} backgroundColor="">
+            <Component width="60%" height="200%"  backgroundColor="#535235"></Component>
         </Component>
     </Component>
 
