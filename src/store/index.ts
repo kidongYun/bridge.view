@@ -8,6 +8,7 @@ import cell from './cell'
 import objectives from '../data/actions/objectivesAction'
 import plans from '../data/actions/plansAction'
 import todos from '../data/actions/todosAction'
+import window from '../data/actions/pageAction'
 
 const rootReducer = combineReducers({
     stage,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     cell,
     objectives,
     plans,
-    todos
+    todos,
+    window
 })
 
 export default rootReducer;

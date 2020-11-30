@@ -1,36 +1,37 @@
-import Window, { WindowBuilder } from "../stores/window"
+import Page, { PageBuilder } from "../stores/page"
+import Template from "../stores/template"
 
-export const setDialogAction = (dialog: boolean) => ({
+export const setDialogAction = (dialog: Template) => ({
     type: 'SET_DIALOG_ACTION',
     payload: dialog
 })
 
-export const setCenterAction = (center: boolean) => ({
+export const setCenterAction = (center: Template) => ({
     type: 'SET_CENTER_ACTION',
     payload: center
 })
 
-export const setTopAction = (top: boolean) => ({
+export const setTopAction = (top: Template) => ({
     type: 'SET_TOP_ACTION',
     payload: top
 })
 
-export const setBottomAction = (bottom: boolean) => ({
+export const setBottomAction = (bottom: Template) => ({
     type: 'SET_BOTTOM_ACTION',
     payload: bottom
 })
 
-export const setLeftAction = (left: boolean) => ({
+export const setLeftAction = (left: Template) => ({
     type: 'SET_LEFT_ACTION',
     payload: left
 })
 
-export const setRightAction = (right: boolean) => ({
+export const setRightAction = (right: Template) => ({
     type: 'SET_RIGHT_ACTION',
     payload: right
 })
 
-export type WindowAction =
+export type PageAction =
     | ReturnType<typeof setDialogAction>
     | ReturnType<typeof setCenterAction>
     | ReturnType<typeof setTopAction>
@@ -38,7 +39,7 @@ export type WindowAction =
     | ReturnType<typeof setLeftAction>
     | ReturnType<typeof setRightAction>
 
-export default function window(state: Window = new WindowBuilder().build(), action: WindowAction) {
+export default function window(state: Page = new PageBuilder().build(), action: PageAction) {
     switch(action.type) {
         case 'SET_DIALOG_ACTION' :
             return { ...state, dialog: action.payload }

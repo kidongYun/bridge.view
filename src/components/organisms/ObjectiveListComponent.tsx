@@ -19,13 +19,18 @@ import useObjectives from '../../data/hooks/useObjectives'
 import ObjectiveComponent from '../molecules/ObjectiveComponent'
 import AddComponent from '../molecules/AddComponent';
 import DateComponent from '../molecules/DateComponent';
+import Cell from '../../data/stores/cell';
 
 interface ObjectiveListProps {
-    
 }
 
 const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
     const { handle_onShow } = useHandle();
+
+    const {
+        getObjectives,
+        callObjectives
+     } = useObjectives();
 
     const { 
         onSetCellType,
@@ -34,11 +39,6 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
         onSetObjectiveTitle,
         onSetObjectiveDescription
      } = useCell();
-
-     const {
-        getObjectives,
-        callObjectives
-     } = useObjectives();
 
     React.useEffect(() => {
         console.log("useEffect!!!");

@@ -28,10 +28,13 @@ export interface ComponentProps {
     fontSize?: string,
     fontWeight?: string,
     color?: string,
+    display?: boolean,
     onClick?: () => void
 }
 
 const Component: React.FC<ComponentProps> = (props) => {
+
+    console.log(props.display);
 
     let view =
     <Container
@@ -61,6 +64,7 @@ const Component: React.FC<ComponentProps> = (props) => {
         fontSize={props.fontSize!}
         fontWeight={props.fontWeight!}
         color={props.color!}
+        display={(props.display!) ? "flex" : "none"}
         onClick={props.onClick!}>
         {props.children!}
     </Container>
@@ -95,6 +99,7 @@ Component.defaultProps = {
     fontSize: "1rem",
     fontWeight: "normal",
     color: "#000000",
+    display: true,
     onClick: () => {}
 };
 
@@ -124,6 +129,7 @@ const Container = styled.div<{
     direction: string,
     fontSize: string,
     fontWeight: string,
+    display: string,
     color: string
 }>`
     width: ${props => props.width};
@@ -151,7 +157,8 @@ const Container = styled.div<{
     padding-left: ${props => props.paddingLeft};
     padding-right: ${props => props.paddingBottom};
 
-    display: flex;
+    display: ${props => props.display};
+
     flex-direction: ${props => props.direction};
     justify-content: ${props => props.horizontalAlign};
     align-items: ${props => props.verticalAlign};
