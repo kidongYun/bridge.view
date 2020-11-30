@@ -25,8 +25,6 @@ interface ObjectiveListProps {
 }
 
 const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
-    const { handle_onShow } = useHandle();
-
     const {
         getObjectives,
         callObjectives
@@ -41,7 +39,6 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
      } = useCell();
 
     React.useEffect(() => {
-        console.log("useEffect!!!");
         callObjectives();
     }, []);
 
@@ -63,7 +60,6 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
                         onSetSubjectId(cell.id);
                         onSetObjectiveTitle(cell.title);
                         onSetObjectiveDescription(cell.description);
-                        handle_onShow("OBJECTIVE_PUT"); 
                     }}
                 />
             }

@@ -4,6 +4,8 @@ import Component, { ComponentProps } from '../components/templates/Component'
 import ObjectiveListComponent from '../components/organisms/ObjectiveListComponent'
 import NavigationComponent from '../components/organisms/NavigationComponent'
 import usePage from '../data/hooks/usePage'
+import PlanListComponent from '../components/organisms/PlanLIstComponent';
+import TodoListComponent from '../components/organisms/TodoListComponent';
 
 interface ObjectiveProps {
     component?: ComponentProps
@@ -11,6 +13,15 @@ interface ObjectiveProps {
 
 const MainLayout: React.FC<ObjectiveProps> = (props) => {
     const { getCenter, getTop } = usePage();
+
+    let center = <></>;
+    if(getCenter.component === "ObjectiveList") {
+        center = <ObjectiveListComponent/>
+    } else if(getCenter.component === "PlanList") {
+        center = <PlanListComponent/>;
+    } else if(getCenter.component === "TodoList") {
+        center = <TodoListComponent/>;
+    }
 
     let view = 
     <Component direction="column">
@@ -28,15 +39,7 @@ const MainLayout: React.FC<ObjectiveProps> = (props) => {
             />
         </Component>
         <Component width="60%" marginLeft="auto" marginRight="auto" display={getCenter.display}>
-            {() => { 
-                if(getCenter.component === "ObjectiveList") {
-                    return <ObjectiveListComponent/>
-                } else if(getCenter.component === "PlanList") {
-                    return <></>
-                } else if(getCenter.component === "TodoList") {
-                    return <></>
-                }
-            }}
+            {center}
         </Component>
     </Component>
 
