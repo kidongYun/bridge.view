@@ -37,9 +37,6 @@ export interface ComponentProps {
 }
 
 const Component: React.FC<ComponentProps> = (props) => {
-
-    console.log(props.display);
-
     let view =
     <Container
         width={props.width!} 

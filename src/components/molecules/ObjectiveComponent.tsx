@@ -20,7 +20,8 @@ const ObjectiveComponent: React.FC<ObjectiveProps> = (props) => {
         borderRadius="10px"
         marginTop="5px"
         marginBottom="5px"
-        direction="column">
+        direction="column"
+        onClick={props.onClick}>
         <LabelComponent label={props.title} size="15pt"/>
         <LabelComponent label={props.description} />
         <LabelComponent label={props.deadline} />

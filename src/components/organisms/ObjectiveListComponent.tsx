@@ -4,25 +4,24 @@ import Component from '../templates/Component'
 import Objective from '../../data/stores/objective'
 import Date from '../../data/stores/date';
 
-import useCell from '../../hooks/useCell'
+import useCell from '../../data/hooks/useCell'
+import useWindow from '../../data/hooks/usePage'
 
 import ObjectiveComponent from '../molecules/ObjectiveComponent'
 import AddComponent from '../molecules/AddComponent';
 import DateComponent from '../molecules/DateComponent';
 import Cell from '../../data/stores/cell';
+import { ObjectiveBuilder } from '../../data/stores/objective'
+import usePage from '../../data/hooks/usePage';
+import { TemplateBuilder } from '../../data/stores/template';
 
 interface ObjectiveListProps {
     objectives: Cell[];
 }
 
 const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
-    const { 
-        onSetCellType,
-        onSetCellEndDateTime,
-        onSetSubjectId,
-        onSetObjectiveTitle,
-        onSetObjectiveDescription
-     } = useCell();
+    const { setObjective } = useCell();
+    const { setDialog } = usePage();
 
     let view =
     <Component direction="column" display="inline-block">
@@ -37,11 +36,11 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
                     description={cell.description}
                     deadline={cell.getDate()}
                     onClick={() => {
-                        onSetCellType(cell.type);
-                        onSetCellEndDateTime(cell.endDateTime);
-                        onSetSubjectId(cell.id);
-                        onSetObjectiveTitle(cell.title);
-                        onSetObjectiveDescription(cell.description);
+                        setObjective(new ObjectiveBuilder().type(cell.type)
+                        .endDateTime(cell.endDateTime).id(cell.id)
+                        .title(cell.title).description(cell.description).build());
+
+                        setDialog(new TemplateBuilder().display(true).component("ObjectivePost").build());
                     }}
                 />
             }

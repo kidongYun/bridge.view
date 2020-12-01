@@ -1,16 +1,14 @@
 import React from 'react'
-import { ComponentProps } from './Component'
 import Modal from 'react-bootstrap/Modal'
-import { truncate } from 'fs'
 
 interface DialogProps {
-    component?: ComponentProps;
+    display: boolean
 }
 
 const DialogComponent: React.FC<DialogProps> = (props) => {
 
     let view = 
-    <Modal show={true}>
+    <Modal show={props.display}>
         <Modal.Body>
             {props.children}
         </Modal.Body>

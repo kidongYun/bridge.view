@@ -16,7 +16,7 @@ export type CellAction =
     | ReturnType<typeof setObjectiveAction>
     | ReturnType<typeof setPlanAction>
 
-export default function cell(state: Cell, action: CellAction) {
+export default function cell(state: Cell = new Cell("CELL"), action: CellAction) {
     switch(action.type) {
         case 'SET_OBJECTIVE_ACTION' :
             return action.payload;

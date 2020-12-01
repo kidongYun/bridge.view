@@ -19,19 +19,19 @@ import {
  } from '../store/cell'
 
 export default function useCell() {
-    const cellType = useSelector((state: RootState) => state.cell.cellType);
-    const cellStartDateTime = useSelector((state: RootState) => state.cell.cellStartDateTime);
-    const cellEndDateTime = useSelector((state: RootState) => state.cell.cellEndDateTime);
-    const subjectId = useSelector((state: RootState) => state.cell.subjectId);
-    const subjectStatus = useSelector((state: RootState) => state.cell.subjectStatus);
-    const subjectDisplay = useSelector((state: RootState) => state.cell.subjectDisplay);
-    const objectiveTitle = useSelector((state: RootState) => state.cell.objectiveTitle);
-    const objectiveDescription = useSelector((state: RootState) => state.cell.objectiveDescription);
-    const objectivePriority = useSelector((state: RootState) => state.cell.objectivePriority);
-    const planObjectiveId = useSelector((state: RootState) => state.cell.planObjectiveId);
-    const planContent = useSelector((state: RootState) => state.cell.planContent);
-    const todoPlanId = useSelector((state: RootState) => state.cell.todoPlanId);
-    const todoTask = useSelector((state: RootState) => state.cell.todoTask);
+    // const cellType = useSelector((state: RootState) => state.cell.cellType);
+    // const cellStartDateTime = useSelector((state: RootState) => state.cell.cellStartDateTime);
+    // const cellEndDateTime = useSelector((state: RootState) => state.cell.cellEndDateTime);
+    // const subjectId = useSelector((state: RootState) => state.cell.subjectId);
+    // const subjectStatus = useSelector((state: RootState) => state.cell.subjectStatus);
+    // const subjectDisplay = useSelector((state: RootState) => state.cell.subjectDisplay);
+    // const objectiveTitle = useSelector((state: RootState) => state.cell.objectiveTitle);
+    // const objectiveDescription = useSelector((state: RootState) => state.cell.objectiveDescription);
+    // const objectivePriority = useSelector((state: RootState) => state.cell.objectivePriority);
+    // const planObjectiveId = useSelector((state: RootState) => state.cell.planObjectiveId);
+    // const planContent = useSelector((state: RootState) => state.cell.planContent);
+    // const todoPlanId = useSelector((state: RootState) => state.cell.todoPlanId);
+    // const todoTask = useSelector((state: RootState) => state.cell.todoTask);
 
     const dispatch = useDispatch();
     const onSetCellType = useCallback((type: string) => dispatch(setCellType(type)), [dispatch]);
@@ -49,19 +49,19 @@ export default function useCell() {
     const onSetTodoTask = useCallback((task: string) => dispatch(setTodoTask(task)), [dispatch]);
 
     return {
-        cellType,
-        cellStartDateTime,
-        cellEndDateTime,
-        subjectId,
-        subjectStatus,
-        subjectDisplay,
-        objectiveTitle,
-        objectiveDescription,
-        objectivePriority,
-        planObjectiveId,
-        planContent,
-        todoPlanId,
-        todoTask,
+        // cellType,
+        // cellStartDateTime,
+        // cellEndDateTime,
+        // subjectId,
+        // subjectStatus,
+        // subjectDisplay,
+        // objectiveTitle,
+        // objectiveDescription,
+        // objectivePriority,
+        // planObjectiveId,
+        // planContent,
+        // todoPlanId,
+        // todoTask,
         onSetCellType,
         onSetCellStartDateTime,
         onSetCellEndDateTime,
