@@ -36,7 +36,7 @@ const MainLayout: React.FC<MainProps> = () => {
         <Component height="70px">
             <NavigationComponent
                 leftButtons={[
-                    { 
+                    {
                         theme: "outline-light", 
                         text: "Objective", 
                         onClick: () => { setCenter(new TemplateBuilder()
@@ -62,7 +62,7 @@ const MainLayout: React.FC<MainProps> = () => {
             />
         </Component>
         <Component marginLeft="auto" marginRight="auto" backgroundColor="">
-            <Component width="60%" direction="column" overflowY="scroll">
+            <Component width="60%" direction="column" overflowY="auto">
                 {center}
             </Component>
         </Component>

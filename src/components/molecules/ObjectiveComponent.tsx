@@ -21,7 +21,7 @@ const ObjectiveComponent: React.FC<ObjectiveProps> = (props) => {
         marginTop="5px"
         marginBottom="5px"
         direction="column">
-        <LabelComponent label={props.title} size="15pt" />
+        <LabelComponent label={props.title} size="15pt"/>
         <LabelComponent label={props.description} />
         <LabelComponent label={props.deadline} />
     </Component>
