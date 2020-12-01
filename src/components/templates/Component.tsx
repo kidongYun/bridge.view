@@ -6,6 +6,8 @@ export interface ComponentProps {
     height?: string,
     minWidth?: string,
     minHeight?: string,
+    maxWidth?: string,
+    maxHeight?: string,
     activeHeight?: string,
     backgroundColor?: string, 
     backgroundHover?: string, 
@@ -41,9 +43,11 @@ const Component: React.FC<ComponentProps> = (props) => {
     let view =
     <Container
         width={props.width!} 
-        minWidth={props.minWidth!}
         height={props.height!}
+        minWidth={props.minWidth!}
         minHeight={props.minHeight!}
+        maxWidth={props.maxWidth!}
+        maxHeight={props.maxHeight!}
         activeHeight={props.activeHeight!}
         backgroundColor={props.backgroundColor!} 
         backgroundHover={props.backgroundHover!}
@@ -79,8 +83,10 @@ const Component: React.FC<ComponentProps> = (props) => {
 Component.defaultProps = {
     width: "100%",
     height: "100%",
-    minWidth: "100%",
-    minHeight: "100%",
+    minWidth: "0%",
+    minHeight: "0%",
+    maxWidth: "100%",
+    maxHeight: "100%",
     activeHeight: "",
     backgroundColor: "transparent",
     backgroundHover: "transparent",
@@ -114,6 +120,8 @@ const Container = styled.div<{
     height: string,
     minWidth: string,
     minHeight: string, 
+    maxWidth: string,
+    maxHeight: string,
     activeHeight: string,
     backgroundColor: string, 
     backgroundHover: string,
@@ -143,6 +151,12 @@ const Container = styled.div<{
     width: ${props => props.width};
     height: ${props => props.height};
     
+    min-width: ${props => props.minWidth};
+    min-height: ${props => props.minHeight};
+
+    max-width: ${props => props.maxWidth};
+    max-height: ${props => props.maxHeight};
+
     background-color: ${props => props.backgroundColor};
     &:hover { background-color: ${props => props.backgroundHover }; }
 

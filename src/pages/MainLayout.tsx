@@ -33,7 +33,7 @@ const MainLayout: React.FC<MainProps> = () => {
 
     let view =
     <Component direction="column">
-        <Component height="70px" display="inline-block">
+        <Component height="70px">
             <NavigationComponent
                 leftButtons={[
                     { 
