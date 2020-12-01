@@ -8,8 +8,10 @@ interface DateProps {
 
 const DateComponent: React.FC<DateProps> = (props) => {
     let view =
-    <Component>
-        <LabelComponent label={props.date}/>
+    <Component height="100px" horizontalAlign="flex-start" verticalAlign="flex-end">
+        <Component width="auto" height="auto" >
+            <LabelComponent label={props.date}/>
+        </Component>
     </Component>
 
     return view;

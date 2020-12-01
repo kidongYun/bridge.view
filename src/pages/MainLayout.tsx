@@ -33,7 +33,7 @@ const MainLayout: React.FC<MainProps> = () => {
 
     let view =
     <Component direction="column">
-        <Component height="70px" display={(getTop.display) ? "flex" : "none"}>
+        <Component height="70px" display="inline-block">
             <NavigationComponent
                 leftButtons={[
                     { 
@@ -61,8 +61,8 @@ const MainLayout: React.FC<MainProps> = () => {
                 ]} 
             />
         </Component>
-        <Component marginLeft="auto" marginRight="auto" display={(getCenter.display) ? "flex" : "none"} backgroundColor="">
-            <Component width="60%" backgroundColor="#535235" direction="column" overflowY="scroll">
+        <Component marginLeft="auto" marginRight="auto" backgroundColor="">
+            <Component width="60%" direction="column" overflowY="scroll">
                 {center}
             </Component>
         </Component>

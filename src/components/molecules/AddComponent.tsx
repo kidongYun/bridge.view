@@ -9,7 +9,8 @@ interface AddProps {
 const AddComponent: React.FC<AddProps> = (props) => {
 
     let view =
-    <Component 
+    <Component
+        height="100px"
         onClick={props.onClick} 
         backgroundColor="#007bff"
         borderRadius="10px">
