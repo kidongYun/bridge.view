@@ -28,7 +28,7 @@ export interface ComponentProps {
     fontSize?: string,
     fontWeight?: string,
     color?: string,
-    display?: boolean,
+    display?: "flex" | "none" | "inline-block",
     overflowX?: "visible" | "hidden" | "scroll" | "auto",
     overflowY?: "visible" | "hidden" | "scroll" | "auto",
     onClick?: () => void
@@ -66,7 +66,7 @@ const Component: React.FC<ComponentProps> = (props) => {
         fontSize={props.fontSize!}
         fontWeight={props.fontWeight!}
         color={props.color!}
-        display={(props.display!) ? "flex" : "none"}
+        display={props.display!}
         overflowX={props.overflowX!}
         overflowY={props.overflowY!}
         onClick={props.onClick!}>
@@ -103,7 +103,7 @@ Component.defaultProps = {
     fontSize: "1rem",
     fontWeight: "normal",
     color: "#000000",
-    display: true,
+    display: "flex",
     overflowX: "visible",
     overflowY: "visible",
     onClick: () => {}
@@ -135,7 +135,7 @@ const Container = styled.div<{
     direction: string,
     fontSize: string,
     fontWeight: string,
-    display: string,
+    display: "flex" | "none" | "inline-block",
     overflowX: "visible" | "hidden" | "scroll" | "auto",
     overflowY: "visible" | "hidden" | "scroll" | "auto",
     color: string

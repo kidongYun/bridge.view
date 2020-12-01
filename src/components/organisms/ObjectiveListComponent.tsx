@@ -25,11 +25,11 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
      } = useCell();
 
     let view =
-    <Component direction="column">
+    <Component direction="column" display="inline-block">
         <AddComponent 
             onClick={() => {}}
         />
-
+        
         {props.objectives.map(cell => {
             if(cell instanceof Objective && cell.type === "OBJECTIVE") {
                 return <ObjectiveComponent

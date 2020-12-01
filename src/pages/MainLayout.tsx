@@ -10,11 +10,11 @@ import usePage from '../data/hooks/usePage'
 import useObjectives from '../data/hooks/useObjectives'
 import { TemplateBuilder } from '../data/stores/template';
 
-interface ObjectiveProps {
+interface MainProps {
     component?: ComponentProps
 }
 
-const MainLayout: React.FC<ObjectiveProps> = () => {
+const MainLayout: React.FC<MainProps> = () => {
     const { getCenter, setCenter, getTop, setTop } = usePage();
     const { getObjectives, callObjectives } = useObjectives();
 
@@ -31,9 +31,9 @@ const MainLayout: React.FC<ObjectiveProps> = () => {
         center = <TodoListComponent/>;
     }
 
-    let view = 
+    let view =
     <Component direction="column">
-        <Component height="200px" display={getTop.display}>
+        <Component height="70px" display={(getTop.display) ? "flex" : "none"}>
             <NavigationComponent
                 leftButtons={[
                     { 
@@ -61,12 +61,14 @@ const MainLayout: React.FC<ObjectiveProps> = () => {
                 ]} 
             />
         </Component>
-        <Component marginLeft="auto" marginRight="auto" display={getCenter.display} backgroundColor="">
-            <Component width="60%" height="200%"  backgroundColor="#535235"></Component>
+        <Component marginLeft="auto" marginRight="auto" display={(getCenter.display) ? "flex" : "none"} backgroundColor="">
+            <Component width="60%" backgroundColor="#535235" direction="column" overflowY="scroll">
+                {center}
+            </Component>
         </Component>
     </Component>
 
     return view; 
 }
 
-export default MainLayout
+export default MainLayout;

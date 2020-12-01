@@ -42,6 +42,13 @@ export const callObjectivesAction = () => {
         .description("Some application should be very famous thing")
         .priority(2)
         .build());
+    
+    cells.push(new ObjectiveBuilder()
+        .startDateTime("20131194032021").id(4)
+        .title("Creating the useful application")
+        .description("Some application should be very famous thing")
+        .priority(2)
+        .build());
 
     return {
         type: 'CALL_OBJECTIVES_ACTION',

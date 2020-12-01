@@ -1,11 +1,11 @@
 import React from 'react'
-import ObjectiveLayout from './pages/MainLayout';
+import MainLayout from './pages/MainLayout';
 
 const App = () => {
 
     return (
         <>
-            <ObjectiveLayout/>
+            <MainLayout/>
         </>
     );
 }
