@@ -1,33 +1,31 @@
 import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
-import Component, { ComponentProps } from '../components/templates/Component'
+import Component from '../components/templates/Component'
 
 import ObjectiveListComponent from '../components/organisms/ObjectiveListComponent'
 import NavigationComponent from '../components/organisms/NavigationComponent'
-import PlanListComponent from '../components/organisms/PlanLIstComponent';
-import TodoListComponent from '../components/organisms/TodoListComponent';
+import PlanListComponent from '../components/organisms/PlanLIstComponent'
+import TodoListComponent from '../components/organisms/TodoListComponent'
+import NotiComponent from '../components/templates/NotiComponent'
+import DialogComponent from '../components/templates/DialogComponent'
+import ObjectiveHandleComponent from '../components/organisms/ObjectiveHandleComponent'
+import SignComponent from '../components/organisms/SignComponent'
 
 import usePage from '../data/hooks/usePage'
 import useObjectives from '../data/hooks/useObjectives'
 import { TemplateBuilder } from '../data/stores/template';
-import DialogComponent from '../components/templates/DialogComponent';
-import ObjectiveHandleComponent from '../components/organisms/ObjectiveHandleComponent';
-import SignComponent from '../components/organisms/SignComponent'
 
-interface MainProps {
-    component?: ComponentProps
-}
+interface MainProps {}
 
 const MainLayout: React.FC<MainProps> = () => {
     const { getCenter, getTop, getDialog, getLeft, setCenter, setDialog } = usePage();
     const { getObjectives, callObjectives } = useObjectives();
 
-    console.log("YKD : " + window.innerWidth);
-    console.log("YKD : " + window.innerHeight);
-
     React.useEffect(() => {
         callObjectives();
     }, []);
+
+    let noti = <NotiComponent/>
 
     let dialog = <></>;
     if(getDialog.component === "ObjectiveHandle") {
@@ -85,6 +83,7 @@ const MainLayout: React.FC<MainProps> = () => {
 
     let view =
     <Component direction="column">
+        {noti}
         <DialogComponent display={getDialog.display}>
             {dialog}
         </DialogComponent>

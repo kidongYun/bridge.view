@@ -31,11 +31,11 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
         marginRight="auto"
         width="80%">
         
-        <Component borderBottom="solid 1px #eeeeee" marginBottom="10px" paddingBottom="10px">
+        <Component borderBottom="solid 1px #eeeeee">
             <LabelComponent label="Create Objective" size="20pt" />
         </Component>
 
-        <Component marginTop="10px" marginBottom="10px">
+        <Component>
             <TextComponent 
                 placeholder="TITLE"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +45,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
             />      
         </Component>
 
-        <Component marginTop="10px" marginBottom="10px">
+        <Component>
             <TextareaComponent 
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     const { value } = event.target;
@@ -56,11 +56,11 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
             />
         </Component>
 
-        <Component marginTop="10px" horizontalAlign="flex-start" verticalAlign="flex-end">
+        <Component horizontalAlign="flex-start" verticalAlign="flex-end">
             <Component width="auto" height="auto"><LabelComponent label="Priority" /></Component>
         </Component>
 
-        <Component marginBottom="10px">
+        <Component>
             <SelectComponent
                 value="Major"
                 options={[
@@ -74,11 +74,11 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
             />
         </Component>
 
-        <Component marginTop="10px" horizontalAlign="flex-start" verticalAlign="flex-end">
+        <Component horizontalAlign="flex-start" verticalAlign="flex-end">
             <Component width="auto" height="auto"><LabelComponent label="Deadline" /></Component>
         </Component>
 
-        <Component marginBottom="10px">
+        <Component >
             <TextComponent 
                 placeholder="2020-07-21"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,7 +90,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
             />
         </Component>
 
-        <Component  borderTop="solid 1px #eeeeee" marginTop="10px" paddingTop="10px">
+        <Component  borderTop="solid 1px #eeeeee">
             <Component width="300%"></Component>
             <ButtonComponent 
                 theme="secondary" 

@@ -1,7 +1,13 @@
 const SHOW_NOTI = 'noti/SHOW' as const;
 const HIDE_NOTI = 'noti/HIDE' as const;
 
-export const showNoti = (type: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark" | "light" | undefined, text: string) => ({ type: SHOW_NOTI, payload: {type, text} });
+export const showNoti = (
+    type: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark" | "light" | undefined, 
+    text: string
+) => ({
+    type: SHOW_NOTI, 
+    payload: {type, text} 
+});
 export const hideNoti = () => ({ type: HIDE_NOTI });
 
 type NotiAction = 
