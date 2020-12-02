@@ -3,22 +3,21 @@ import Component from '../templates/Component'
 
 import * as data from '../../service/Data'
 
-import useHandle from '../../hooks/useHandle';
+import usePage from '../../data/hooks/usePage'
 import useNoti from '../../hooks/useNoti';
 import useSign from '../../hooks/useSign';
 
 import TextComponent from '../atoms/TextComponent'
 import LabelComponent from '../atoms/LabelComponent'
 import ButtonComponent from '../atoms/ButtonComponent'
+import { TemplateBuilder } from '../../data/stores/template';
 
 interface SignProps {
 }
 
 const SignComponent: React.FC<SignProps> = ({
 }) => {
-    const { 
-        handle_onHide,
-    } = useHandle();
+    const { setDialog } = usePage();
 
     const { 
         onShowNoti, 
@@ -33,27 +32,42 @@ const SignComponent: React.FC<SignProps> = ({
         sign_onUpdateEmail, 
     } = useSign();
 
+    let email: string = "";
+    let password: string = "";
+
     let view =
     <Component 
         width="500px" 
         height="300px" 
-        direction="column" 
-        backgroundColor="#aaaaaa"
-        backgroundHover="#ffffff">
+        direction="column" >
 
-        <LabelComponent 
-            label="SIGN" />
-
-        <Component width="70%">
-            <TextComponent value="" placeholder="EMAIL"/>
+        <Component borderBottom="solid 1px #eeeeee" marginBottom="10px" paddingBottom="10px">
+            <LabelComponent label="Sign" size="20pt" />
         </Component>
 
         <Component width="70%">
-            <TextComponent value="" placeholder="PASSWORD"/>
+            <TextComponent
+                value="" 
+                placeholder="EMAIL" 
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    const { value } = event.target; 
+                    email = value;
+                }}
+            />
         </Component>
 
-        <LabelComponent 
-            label="HELLO"  />
+        <Component width="70%">
+            <TextComponent 
+                value="" 
+                placeholder="PASSWORD"
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    const { value } = event.target;
+                    password = value;
+                }}
+            />
+        </Component>
+
+        <LabelComponent label=""/>
 
         <Component>
             <Component width="100%" />
@@ -61,7 +75,7 @@ const SignComponent: React.FC<SignProps> = ({
                 text="Close" 
                 theme="secondary"
                 onClick={() => {
-                    handle_onHide(); 
+                    setDialog(new TemplateBuilder().display(false).build());
                 }} />
 
             <ButtonComponent 
@@ -87,7 +101,7 @@ const SignComponent: React.FC<SignProps> = ({
 
                         onShowNoti("success", "로그인되었습니다.");
                         setTimeout(onHideNoti, 2300);
-                        handle_onHide();
+                        setDialog(new TemplateBuilder().display(false).build());
                     })
                 }} />
 
@@ -104,7 +118,7 @@ const SignComponent: React.FC<SignProps> = ({
                         if(response.data.errorCode === 200) {
                             onShowNoti("success", "가입이 완료되었습니다.");
                             setTimeout(onHideNoti, 2300);
-                            handle_onHide(); 
+                            setDialog(new TemplateBuilder().display(false).build());
                         }
                     })
                 }} />

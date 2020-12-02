@@ -21,13 +21,17 @@ interface ObjectiveListProps {
 
 const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
     const { setObjective } = useCell();
-    const { setDialog } = usePage();
+    const { setDialog, setLeft } = usePage();
 
     let view =
     <Component direction="column" display="inline-block">
         <AddComponent 
             onClick={() => {
-                setDialog(new TemplateBuilder().display(true).component("ObjectiveHandle").build());
+                if(window.innerWidth >= 1000) {
+                    setLeft(new TemplateBuilder().display(true).component("ObjectiveHandle").build());
+                } else {
+                    setDialog(new TemplateBuilder().display(true).component("ObjectiveHandle").build());
+                }
             }}
         />
         

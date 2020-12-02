@@ -1,4 +1,5 @@
 import React from 'react'
+import styled, { keyframes, css } from 'styled-components'
 import Component, { ComponentProps } from '../components/templates/Component'
 
 import ObjectiveListComponent from '../components/organisms/ObjectiveListComponent'
@@ -11,14 +12,18 @@ import useObjectives from '../data/hooks/useObjectives'
 import { TemplateBuilder } from '../data/stores/template';
 import DialogComponent from '../components/templates/DialogComponent';
 import ObjectiveHandleComponent from '../components/organisms/ObjectiveHandleComponent';
+import SignComponent from '../components/organisms/SignComponent'
 
 interface MainProps {
     component?: ComponentProps
 }
 
 const MainLayout: React.FC<MainProps> = () => {
-    const { getCenter, setCenter, getTop, getDialog } = usePage();
+    const { getCenter, getTop, getDialog, getLeft, setCenter, setDialog } = usePage();
     const { getObjectives, callObjectives } = useObjectives();
+
+    console.log("YKD : " + window.innerWidth);
+    console.log("YKD : " + window.innerHeight);
 
     React.useEffect(() => {
         callObjectives();
@@ -27,6 +32,8 @@ const MainLayout: React.FC<MainProps> = () => {
     let dialog = <></>;
     if(getDialog.component === "ObjectiveHandle") {
         dialog = <ObjectiveHandleComponent/>
+    } else if(getDialog.component === "Sign") {
+        dialog = <SignComponent/>
     }
 
     let top =
@@ -53,7 +60,11 @@ const MainLayout: React.FC<MainProps> = () => {
         ]} 
         
         rightButtons={[
-            { theme: "primary", text: "Login", onClick: () => {} }
+            { 
+                theme: "primary", 
+                text: "Login", 
+                onClick: () => { setDialog(new TemplateBuilder().display(true).component("Sign").build())}
+            }
         ]} 
     />
 
@@ -67,6 +78,11 @@ const MainLayout: React.FC<MainProps> = () => {
         center = <TodoListComponent/>;
     }
 
+    let left = <></>;
+    if(getLeft.component === "ObjectiveHandle") {
+        left = <ObjectiveHandleComponent/>;
+    }
+
     let view =
     <Component direction="column">
         <DialogComponent display={getDialog.display}>
@@ -75,12 +91,55 @@ const MainLayout: React.FC<MainProps> = () => {
         <Component height="70px" display={(getTop.display) ? "flex" : "none"}>
             {top}
         </Component>
-        <Component width="60%" marginLeft="auto" marginRight="auto" overflowY="auto" display={(getCenter.display) ? "flex" : "none"}>
-            {center}
+        <Component>
+            <Component display="none" backgroundColor="#839203">
+
+            </Component>
+            <Component width="200%" maxWidth="60%" marginLeft="auto" marginRight="auto" overflowY="auto" display={(getCenter.display) ? "flex" : "none"}>
+                {center}
+            </Component>
+            <Animation display={getLeft.display}>
+                <Component width="80%" height="80%">
+                    {left}
+                </Component>
+            </Animation>
         </Component>
     </Component>
 
     return view; 
 }
+
+const Animation = styled.div<{ display: boolean }>`
+    display: flex;
+    width: 0%;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+
+    ${(props) => { 
+        if(props.display) {
+            return css`
+                animation: ${openAnim} 0.3s linear; 
+                width: 50%;
+            `
+        } else {
+            return css`
+                animation: ${closeAnim} 0.3s linear;
+                width: 0%;
+            `
+        }
+    }}
+`;
+
+const openAnim = keyframes`
+    0% { width: 0%; }
+    100% { width: 50%; }
+`;
+
+const closeAnim = keyframes`
+    0% { width: 50%; }
+    100% { width: 0%; }
+`;
 
 export default MainLayout;

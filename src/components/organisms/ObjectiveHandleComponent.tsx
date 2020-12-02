@@ -17,7 +17,7 @@ interface ObjectivePostProps {
 
 const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
 }) => {
-    const { setDialog } = usePage();
+    const { setDialog, setLeft } = usePage();
 
     let title: string = "";
     let description: string = "";
@@ -96,20 +96,27 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
                 theme="secondary" 
                 text="Cancel" 
                 onClick={() => {
-                    setDialog(new TemplateBuilder().display(false).build());
+
+                    if(window.innerWidth >= 1000) {
+                        setLeft(new TemplateBuilder().display(false).build());
+                    } else {
+                        setDialog(new TemplateBuilder().display(false).build());
+                    }
                 }}
             />
             <ButtonComponent 
                 theme="primary" 
                 text="Add"
                 onClick={() => {
-                    setDialog(new TemplateBuilder().display(false).build());
-
                     const obj: Objective = new ObjectiveBuilder()
                         .title(title).description(description)
                         .endDateTime(deadline).priority(priority).build();
 
-                    
+                    if(window.innerWidth >= 1000) {
+                        setLeft(new TemplateBuilder().display(false).build());
+                    } else {
+                        setDialog(new TemplateBuilder().display(false).build());
+                    }
                 }}
             />
         </Component>
