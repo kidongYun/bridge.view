@@ -10,7 +10,7 @@ import usePage from '../data/hooks/usePage'
 import useObjectives from '../data/hooks/useObjectives'
 import { TemplateBuilder } from '../data/stores/template';
 import DialogComponent from '../components/templates/DialogComponent';
-import ObjectivePostComponent from '../components/organisms/ObjectivePostComponent';
+import ObjectiveHandleComponent from '../components/organisms/ObjectiveHandleComponent';
 
 interface MainProps {
     component?: ComponentProps
@@ -24,10 +24,10 @@ const MainLayout: React.FC<MainProps> = () => {
         callObjectives();
     }, []);
 
-    let dialog = 
-    <DialogComponent display={getDialog.display}>
-        <ObjectivePostComponent/>
-    </DialogComponent>;
+    let dialog = <></>;
+    if(getDialog.component === "ObjectiveHandle") {
+        dialog = <ObjectiveHandleComponent/>
+    }
 
     let top =
     <NavigationComponent
@@ -69,7 +69,9 @@ const MainLayout: React.FC<MainProps> = () => {
 
     let view =
     <Component direction="column">
-        {dialog}
+        <DialogComponent display={getDialog.display}>
+            {dialog}
+        </DialogComponent>
         <Component height="70px" display={(getTop.display) ? "flex" : "none"}>
             {top}
         </Component>

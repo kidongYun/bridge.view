@@ -26,7 +26,9 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
     let view =
     <Component direction="column" display="inline-block">
         <AddComponent 
-            onClick={() => {}}
+            onClick={() => {
+                setDialog(new TemplateBuilder().display(true).component("ObjectiveHandle").build());
+            }}
         />
         
         {props.objectives.map(cell => {
@@ -39,8 +41,6 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
                         setObjective(new ObjectiveBuilder().type(cell.type)
                         .endDateTime(cell.endDateTime).id(cell.id)
                         .title(cell.title).description(cell.description).build());
-
-                        setDialog(new TemplateBuilder().display(true).component("ObjectivePost").build());
                     }}
                 />
             }
