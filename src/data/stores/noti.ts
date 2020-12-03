@@ -1,6 +1,6 @@
 export default class Noti {
     text: string
-    type: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark" | "light" | undefined
+    type: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark" | "light"
     visible: boolean
     
     constructor() {

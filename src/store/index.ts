@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import stage from './stage'
-import noti from './noti'
 import handle from './handle'
 import data from './data'
 import sign from './sign'
@@ -9,10 +8,10 @@ import objectives from '../data/actions/objectivesAction'
 import plans from '../data/actions/plansAction'
 import todos from '../data/actions/todosAction'
 import window from '../data/actions/pageAction'
+import noti from '../data/actions/notiAction'
 
 const rootReducer = combineReducers({
     stage,
-    noti,
     handle,
     sign,
     data,
@@ -20,7 +19,8 @@ const rootReducer = combineReducers({
     objectives,
     plans,
     todos,
-    window
+    window,
+    noti
 })
 
 export default rootReducer;

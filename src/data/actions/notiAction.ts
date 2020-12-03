@@ -4,7 +4,7 @@ const SHOW_NOTI_ACTION = 'SHOW_NOTI_ACTION' as const
 const HIDE_NOTI_ACTION = 'HIDE_NOTI_ACTION' as const
 
 export const showNotiAction = (
-    type: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark" | "light" | undefined, 
+    type: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark" | "light", 
     text: string
 ) => ({
     type: SHOW_NOTI_ACTION, 
@@ -20,9 +20,9 @@ type NotiAction =
 function noti(state: Noti = new Noti(), action: NotiAction) {
     switch (action.type) {
         case SHOW_NOTI_ACTION :
-            return { }
+            return { type: action.payload.type, text: action.payload.text, visible: true };
         case HIDE_NOTI_ACTION :
-            return {}
+            return { ...state, visible: false };
         default :
             return state;
     }

@@ -1,17 +1,10 @@
 import React from 'react';
 import styled, { keyframes, css } from 'styled-components'
 
-import useHandle from '../hooks/useHandle'
-
 import HandleController from '../controller/HandleController'
 
 const Handle = () => {
-    const { handle_type, handle_visible } = useHandle();
-
-    let view = 
-    <Container type={handle_type} visible={handle_visible}>
-        <HandleController/>
-    </Container>
+    let view = <HandleController/>
 
     return view;
 }
