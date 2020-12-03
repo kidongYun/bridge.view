@@ -14,6 +14,8 @@ export const setObjectivesAction = (cells: Cell[]) => ({
 export const callObjectivesAction = () => {
     let cells: Cell[] = [];
 
+    console.log(getObj(true));
+
     /** We should get the data from API server */
 
     cells.push(new DateBuilder().startDateTime("20131194032021").endDateTime("20131194032021").build());

@@ -9,10 +9,7 @@ import * as utility from '../service/Utility';
 import useData from '../hooks/useData';
 import useCell from '../hooks/useCell';
 
-import PlanType from '../model/PlanType';
 import DateType from '../model/DateType';
-import ObjectiveType from '../model/ObjectiveType';
-import { ObjectiveBuilder } from '../model/ObjectiveType';
 // import { TextProps } from '../components/props';
 
 const PlanController = () => {

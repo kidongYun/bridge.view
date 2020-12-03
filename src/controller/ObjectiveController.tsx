@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import ObjectiveType from '../model/ObjectiveType';
 import DateType from '../model/DateType';
 
 import * as data from '../service/Data'
@@ -43,20 +42,20 @@ const ObjectiveController = () => {
         />
 
         {data_objectiveList.map((obj) => {
-            if(obj instanceof ObjectiveType && obj.type === "OBJECTIVE") {
-                return <ObjectiveComponent
-                    title={obj.title}
-                    description={obj.description}
-                    deadline={obj.getDate()}
-                    onClick={() => {
-                        onSetCellType(obj.type);
-                        onSetCellEndDateTime(obj.endDateTime);
-                        onSetSubjectId(obj.id);
-                        onSetObjectiveTitle(obj.title);
-                        onSetObjectiveDescription(obj.description);
-                    }}
-                />
-            }
+            // if(obj instanceof ObjectiveType && obj.type === "OBJECTIVE") {
+            //     return <ObjectiveComponent
+            //         title={obj.title}
+            //         description={obj.description}
+            //         deadline={obj.getDate()}
+            //         onClick={() => {
+            //             onSetCellType(obj.type);
+            //             onSetCellEndDateTime(obj.endDateTime);
+            //             onSetSubjectId(obj.id);
+            //             onSetObjectiveTitle(obj.title);
+            //             onSetObjectiveDescription(obj.description);
+            //         }}
+            //     />
+            // }
 
             if(obj instanceof DateType && obj.type === "DATE") {
                 return <DateComponent date={obj.getDate()} />
