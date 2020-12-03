@@ -12,6 +12,7 @@ import ObjectiveHandleComponent from '../components/organisms/ObjectiveHandleCom
 import SignComponent from '../components/organisms/SignComponent'
 
 import usePage from '../data/hooks/usePage'
+import useNoti from '../data/hooks/useNoti'
 import useObjectives from '../data/hooks/useObjectives'
 import { TemplateBuilder } from '../data/stores/template';
 
@@ -19,13 +20,17 @@ interface MainProps {}
 
 const MainLayout: React.FC<MainProps> = () => {
     const { getCenter, getTop, getDialog, getLeft, setCenter, setDialog } = usePage();
+    const { getVisible } = useNoti();
     const { getObjectives, callObjectives } = useObjectives();
 
     React.useEffect(() => {
         callObjectives();
     }, []);
 
-    let noti = <NotiComponent/>
+    let noti = <></>;
+    if(getVisible) {
+        noti = <NotiComponent/>
+    }
 
     let dialog = <></>;
     if(getDialog.component === "ObjectiveHandle") {

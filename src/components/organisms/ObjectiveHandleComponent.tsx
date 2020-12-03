@@ -8,6 +8,7 @@ import SelectComponent from '../atoms/SelectComponent'
 import ButtonComponent from '../atoms/ButtonComponent'
 
 import usePage from '../../data/hooks/usePage'
+import useNoti from '../../data/hooks/useNoti'
 import { TemplateBuilder } from '../../data/stores/template'
 import Objective, { ObjectiveBuilder } from '../../data/stores/objective'
 
@@ -18,6 +19,7 @@ interface ObjectivePostProps {
 const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
 }) => {
     const { setDialog, setLeft } = usePage();
+    const { showNoti, hideNoti } = useNoti();
 
     let title: string = "";
     let description: string = "";
@@ -96,12 +98,12 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
                 theme="secondary" 
                 text="Cancel" 
                 onClick={() => {
-
                     if(window.innerWidth >= 1000) {
                         setLeft(new TemplateBuilder().display(false).build());
                     } else {
                         setDialog(new TemplateBuilder().display(false).build());
                     }
+
                 }}
             />
             <ButtonComponent 
@@ -117,6 +119,9 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
                     } else {
                         setDialog(new TemplateBuilder().display(false).build());
                     }
+
+                    showNoti("Objective is Created", "success");
+                    setTimeout(hideNoti, 2300);
                 }}
             />
         </Component>

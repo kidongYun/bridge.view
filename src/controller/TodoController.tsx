@@ -9,11 +9,9 @@ import DateType from '../model/DateType';
 import * as data from '../service/Data'
 import * as utility from '../service/Utility'
 
-import useHandle from '../hooks/useHandle';
 import useData from '../hooks/useData';
 
 const TodoController = () => {
-    const { handle_onShow } = useHandle();
 
     const { data_todoList, data_onSetTodoList } = useData();
 

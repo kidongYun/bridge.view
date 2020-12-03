@@ -7,7 +7,6 @@ import DateType from '../model/DateType';
 import * as data from '../service/Data'
 import * as utility from '../service/Utility'
 
-import useHandle from '../hooks/useHandle';
 import useData from '../hooks/useData';
 import useCell from '../hooks/useCell';
 
@@ -17,7 +16,6 @@ import DateComponent from '../components/molecules/DateComponent';
 
 
 const ObjectiveController = () => {
-    const { handle_onShow } = useHandle();
     
     const { 
         data_objectiveList, 
@@ -41,7 +39,7 @@ const ObjectiveController = () => {
     let view = 
     <Container>
         <AddComponent
-            onClick={() => { handle_onShow("OBJECTIVE_POST"); }}
+            onClick={() => { }}
         />
 
         {data_objectiveList.map((obj) => {
@@ -56,7 +54,6 @@ const ObjectiveController = () => {
                         onSetSubjectId(obj.id);
                         onSetObjectiveTitle(obj.title);
                         onSetObjectiveDescription(obj.description);
-                        handle_onShow("OBJECTIVE_PUT"); 
                     }}
                 />
             }

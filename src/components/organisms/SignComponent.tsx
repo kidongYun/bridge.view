@@ -4,7 +4,7 @@ import Component from '../templates/Component'
 import * as data from '../../service/Data'
 
 import usePage from '../../data/hooks/usePage'
-import useNoti from '../../hooks/useNoti';
+import useNoti from '../../data/hooks/useNoti';
 import useSign from '../../hooks/useSign';
 
 import TextComponent from '../atoms/TextComponent'
@@ -19,10 +19,7 @@ const SignComponent: React.FC<SignProps> = ({
 }) => {
     const { setDialog } = usePage();
 
-    const { 
-        onShowNoti, 
-        onHideNoti 
-    } = useNoti();
+    const { showNoti, hideNoti } = useNoti();
 
     const { 
         sign_email, 
@@ -99,8 +96,8 @@ const SignComponent: React.FC<SignProps> = ({
                         sign_onUpdateStatus(true);
                         sign_onUpdateEmail(params.email);
 
-                        onShowNoti("success", "로그인되었습니다.");
-                        setTimeout(onHideNoti, 2300);
+                        showNoti("로그인되었습니다.", "success");
+                        setTimeout(hideNoti, 2300);
                         setDialog(new TemplateBuilder().display(false).build());
                     })
                 }} />
@@ -116,8 +113,8 @@ const SignComponent: React.FC<SignProps> = ({
 
                     data.signUp(params).then((response) => {
                         if(response.data.errorCode === 200) {
-                            onShowNoti("success", "가입이 완료되었습니다.");
-                            setTimeout(onHideNoti, 2300);
+                            showNoti("가입이 완료되었습니다.", "success");
+                            setTimeout(hideNoti, 2300);
                             setDialog(new TemplateBuilder().display(false).build());
                         }
                     })

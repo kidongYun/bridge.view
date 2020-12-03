@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import * as data from '../service/Data'
 import * as utility from '../service/Utility';
 
-import useHandle from '../hooks/useHandle';
 import useData from '../hooks/useData';
 import useCell from '../hooks/useCell';
 
