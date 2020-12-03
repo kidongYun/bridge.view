@@ -85,7 +85,6 @@ const SignComponent: React.FC<SignProps> = ({
                     }
 
                     data.signIn(params).then((response) => {
-
                         /* 로그인 실패한 경우 */
                         if(response.data.errorCode !== 200) {
                             sign_onUpdateStatus(false);

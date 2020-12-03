@@ -6,7 +6,7 @@ import ObjectiveListComponent from '../components/organisms/ObjectiveListCompone
 import NavigationComponent from '../components/organisms/NavigationComponent'
 import PlanListComponent from '../components/organisms/PlanLIstComponent'
 import TodoListComponent from '../components/organisms/TodoListComponent'
-import NotiComponent from '../components/templates/NotiComponent'
+import NotiComponent from '../components/atoms/NotiComponent'
 import DialogComponent from '../components/templates/DialogComponent'
 import ObjectiveHandleComponent from '../components/organisms/ObjectiveHandleComponent'
 import SignComponent from '../components/organisms/SignComponent'

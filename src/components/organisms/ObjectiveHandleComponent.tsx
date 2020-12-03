@@ -52,8 +52,6 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     const { value } = event.target;
                     description = value;
-
-                    console.log("YKD : " + description);
                 }}
             />
         </Component>
@@ -86,8 +84,6 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     const { value } = event.target;
                     deadline = value;
-
-                    console.log("YKD : " + deadline);
                 }} 
             />
         </Component>
