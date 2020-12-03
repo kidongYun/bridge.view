@@ -3,8 +3,11 @@ import Cell from '../stores/cell'
 import { ObjectiveBuilder } from '../stores/objective';
 import { DateBuilder } from '../stores/date';
 
+const SET_OBJECTIVES_ACTION = 'SET_OBJECTIVES_ACTION' as const
+const CALL_OBJECTIVES_ACTION = 'CALL_OBJECTIVES_ACTION' as const
+
 export const setObjectivesAction = (cells: Cell[]) => ({
-    type: 'SET_OBJECTIVES_ACTION',
+    type: SET_OBJECTIVES_ACTION,
     payload: cells
 })
 
@@ -51,7 +54,7 @@ export const callObjectivesAction = () => {
         .build());
 
     return {
-        type: 'CALL_OBJECTIVES_ACTION',
+        type: CALL_OBJECTIVES_ACTION,
         payload: cells
     }
 }
@@ -62,9 +65,9 @@ export type ObjectivesAction =
 
 export default function objectives(state: Cell[] = [], action: ObjectivesAction) {
     switch (action.type) {
-        case 'SET_OBJECTIVES_ACTION' :
+        case SET_OBJECTIVES_ACTION :
             return action.payload;
-        case 'CALL_OBJECTIVES_ACTION' :
+        case CALL_OBJECTIVES_ACTION :
             return action.payload;
         default :
             return state;

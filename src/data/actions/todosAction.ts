@@ -2,8 +2,11 @@ import Cell from "../stores/cell"
 import { DateBuilder } from "../stores/date";
 import { TodoBuilder } from "../stores/todo";
 
+const SET_TODOS_ACTION = 'SET_TODOS_ACTION' as const
+const CALL_TODOS_ACTION = 'CALL_TODOS_ACTION' as const
+
 export const setTodosAction = (cells: Cell[]) => ({
-    type: 'SET_TODOS_ACTION',
+    type: SET_TODOS_ACTION,
     payload: cells
 })
 
@@ -15,7 +18,7 @@ export const callTodosAction = () => {
     cells.push(new DateBuilder().build());
 
     return {
-        type: 'CALL_TODOS_ACTION',
+        type: CALL_TODOS_ACTION,
         payload: cells
     }
 }
@@ -26,9 +29,9 @@ export type TodoAction =
 
 export default function todos(state: Cell[] = [], action: TodoAction) {
     switch(action.type) {
-        case 'SET_TODOS_ACTION' :
+        case SET_TODOS_ACTION :
             return action.payload;
-        case 'CALL_TODOS_ACTION' :
+        case CALL_TODOS_ACTION :
             return action.payload;
         default :
             return state;
