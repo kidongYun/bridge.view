@@ -11,53 +11,55 @@ export const setObjectivesAction = (cells: Cell[]) => ({
     payload: cells
 })
 
-export const callObjectivesAction = () => {
+export const callObjectivesAction = async () => {
     let cells: Cell[] = [];
 
-    console.log(getObj(true));
+    const faqData = await axios.get("http://localhost:8080/objective", { params: { date: true }});
+
+    console.log();
 
     /** We should get the data from API server */
 
-    cells.push(new DateBuilder().startDateTime("20131194032021").endDateTime("20131194032021").build());
-    cells.push(new ObjectiveBuilder()
-        .startDateTime("20131194032021").id(1)
-        .title("I would like to say English well")
-        .description("A lot of the information is created by English language.")
-        .priority(1)
-        .build());
+    // cells.push(new DateBuilder().startDateTime("20131194032021").endDateTime("20131194032021").build());
+    // cells.push(new ObjectiveBuilder()
+    //     .startDateTime("20131194032021").id(1)
+    //     .title("I would like to say English well")
+    //     .description("A lot of the information is created by English language.")
+    //     .priority(1)
+    //     .build());
 
-    cells.push(new ObjectiveBuilder()
-        .startDateTime("20131194032021").id(2)
-        .title("Creating the useful application")
-        .description("Some application should be very famous thing")
-        .priority(2)
-        .build());
+    // cells.push(new ObjectiveBuilder()
+    //     .startDateTime("20131194032021").id(2)
+    //     .title("Creating the useful application")
+    //     .description("Some application should be very famous thing")
+    //     .priority(2)
+    //     .build());
 
-    cells.push(new DateBuilder().startDateTime("20131194032021").endDateTime("20131194032021").build());
-    cells.push(new ObjectiveBuilder()
-        .startDateTime("20131194032021").id(3)
-        .title("I would like to say English well")
-        .description("A lot of the information is created by English language.")
-        .priority(1)
-        .build());
+    // cells.push(new DateBuilder().startDateTime("20131194032021").endDateTime("20131194032021").build());
+    // cells.push(new ObjectiveBuilder()
+    //     .startDateTime("20131194032021").id(3)
+    //     .title("I would like to say English well")
+    //     .description("A lot of the information is created by English language.")
+    //     .priority(1)
+    //     .build());
     
-    cells.push(new ObjectiveBuilder()
-        .startDateTime("20131194032021").id(4)
-        .title("Creating the useful application")
-        .description("Some application should be very famous thing")
-        .priority(2)
-        .build());
+    // cells.push(new ObjectiveBuilder()
+    //     .startDateTime("20131194032021").id(4)
+    //     .title("Creating the useful application")
+    //     .description("Some application should be very famous thing")
+    //     .priority(2)
+    //     .build());
     
-    cells.push(new ObjectiveBuilder()
-        .startDateTime("20131194032021").id(4)
-        .title("Creating the useful application")
-        .description("Some application should be very famous thing")
-        .priority(2)
-        .build());
+    // cells.push(new ObjectiveBuilder()
+    //     .startDateTime("20131194032021").id(4)
+    //     .title("Creating the useful application")
+    //     .description("Some application should be very famous thing")
+    //     .priority(2)
+    //     .build());
 
     return {
         type: CALL_OBJECTIVES_ACTION,
-        payload: cells
+        payload: faqData.data
     }
 }
 
