@@ -3,14 +3,14 @@ import Component from '../templates/Component'
 
 import * as data from '../../service/Data'
 
-import usePage from '../../data/hooks/usePage'
-import useNoti from '../../data/hooks/useNoti';
+import usePage from '../../redux/hooks/usePage'
+import useNoti from '../../redux/hooks/useNoti';
 import useSign from '../../hooks/useSign';
 
 import TextComponent from '../atoms/TextComponent'
 import LabelComponent from '../atoms/LabelComponent'
 import ButtonComponent from '../atoms/ButtonComponent'
-import { TemplateBuilder } from '../../data/stores/template';
+import { TemplateBuilder } from '../../redux/stores/template';
 
 interface SignProps {
 }

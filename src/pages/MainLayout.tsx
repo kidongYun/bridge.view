@@ -11,10 +11,10 @@ import DialogComponent from '../components/templates/DialogComponent'
 import ObjectiveHandleComponent from '../components/organisms/ObjectiveHandleComponent'
 import SignComponent from '../components/organisms/SignComponent'
 
-import usePage from '../data/hooks/usePage'
-import useNoti from '../data/hooks/useNoti'
-import useObjectives from '../data/hooks/useObjectives'
-import { TemplateBuilder } from '../data/stores/template';
+import usePage from '../redux/hooks/usePage'
+import useNoti from '../redux/hooks/useNoti'
+import useObjectives from '../redux/hooks/useObjectives'
+import { TemplateBuilder } from '../redux/stores/template';
 
 interface MainProps {}
 

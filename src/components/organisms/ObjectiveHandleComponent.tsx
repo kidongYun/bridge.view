@@ -7,10 +7,10 @@ import TextareaComponent from '../atoms/TextareaComponent'
 import SelectComponent from '../atoms/SelectComponent'
 import ButtonComponent from '../atoms/ButtonComponent'
 
-import usePage from '../../data/hooks/usePage'
-import useNoti from '../../data/hooks/useNoti'
-import { TemplateBuilder } from '../../data/stores/template'
-import Objective, { ObjectiveBuilder } from '../../data/stores/objective'
+import usePage from '../../redux/hooks/usePage'
+import useNoti from '../../redux/hooks/useNoti'
+import { TemplateBuilder } from '../../redux/stores/template'
+import Objective, { ObjectiveBuilder } from '../../redux/stores/objective'
 
 interface ObjectivePostProps {
     component?: ComponentProps

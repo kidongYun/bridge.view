@@ -1,8 +1,8 @@
-import Cell from "../data/stores/cell";
-import { ObjectiveBuilder } from "../data/stores/objective";
-import { PlanBuilder } from "../data/stores/plan";
-import { DateBuilder } from "../data/stores/date";
-import { TodoBuilder } from "../data/stores/todo";
+import Cell from "../redux/stores/cell";
+import { ObjectiveBuilder } from "../redux/stores/objective";
+import { PlanBuilder } from "../redux/stores/plan";
+import { DateBuilder } from "../redux/stores/date";
+import { TodoBuilder } from "../redux/stores/todo";
 
 export function parse(src: any) {
     let cells: Cell[] = [];

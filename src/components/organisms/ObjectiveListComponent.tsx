@@ -1,19 +1,19 @@
 import React from 'react'
 import Component from '../templates/Component'
 
-import Objective from '../../data/stores/objective'
-import Date from '../../data/stores/date';
+import Objective from '../../redux/stores/objective'
+import Date from '../../redux/stores/date';
 
-import useCell from '../../data/hooks/useCell'
-import useWindow from '../../data/hooks/usePage'
+import useCell from '../../redux/hooks/useCell'
+import useWindow from '../../redux/hooks/usePage'
 
 import ObjectiveComponent from '../molecules/ObjectiveComponent'
 import AddComponent from '../molecules/AddComponent';
 import DateComponent from '../molecules/DateComponent';
-import Cell from '../../data/stores/cell';
-import { ObjectiveBuilder } from '../../data/stores/objective'
-import usePage from '../../data/hooks/usePage';
-import { TemplateBuilder } from '../../data/stores/template';
+import Cell from '../../redux/stores/cell';
+import { ObjectiveBuilder } from '../../redux/stores/objective'
+import usePage from '../../redux/hooks/usePage';
+import { TemplateBuilder } from '../../redux/stores/template';
 
 interface ObjectiveListProps {
     objectives: Cell[];
