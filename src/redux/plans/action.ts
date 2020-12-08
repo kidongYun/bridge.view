@@ -3,9 +3,9 @@ import { AxiosError } from 'axios'
 import Cell from '../stores/cell'
 import Response from '../stores/response'
 
-export const GET_PLANS_ACTION = 'GET_PLANS_ACTION'
-export const GET_PLANS_SUCCESS_ACTION = 'GET_PLANS_SUCCESS_ACTION'
-export const GET_PLANS_ERROR_ACTION = 'GET_PLANS_ERROR_ACTION'
+export const GET_PLANS_ACTION = 'GET_PLANS_ACTION' as const
+export const GET_PLANS_SUCCESS_ACTION = 'GET_PLANS_SUCCESS_ACTION' as const
+export const GET_PLANS_ERROR_ACTION = 'GET_PLANS_ERROR_ACTION' as const
 
 export const getPlansAction = createStandardAction(GET_PLANS_ACTION)();
 export const getPlansSuccessAction = createStandardAction(GET_PLANS_SUCCESS_ACTION)<Response<Cell[]>>();

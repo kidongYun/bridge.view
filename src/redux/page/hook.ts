@@ -1,16 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../configureStore';
 import { useCallback } from 'react'
-import { setDialogAction, setCenterAction, setTopAction, setBottomAction, setLeftAction, setRightAction } from '../actions/pageAction'
+import { setDialogAction, setCenterAction, setTopAction, setBottomAction, setLeftAction, setRightAction } from './action'
 import Template from '../stores/template';
 
 export default function usePage() {
-    const getDialog = useSelector((state: RootState) => state.window.dialog);
-    const getCenter = useSelector((state: RootState) => state.window.center);
-    const getTop = useSelector((state: RootState) => state.window.top);
-    const getBottom = useSelector((state: RootState) => state.window.bottom);
-    const getLeft = useSelector((state: RootState) => state.window.left);
-    const getRight = useSelector((state: RootState) => state.window.right);
+    const selectPage = useSelector((state: RootState) => state.page);
 
     const dispatch = useDispatch();
 
@@ -22,12 +17,7 @@ export default function usePage() {
     const setRight = useCallback((right: Template) => dispatch(setRightAction(right)), [dispatch]);
 
     return {
-        getDialog,
-        getCenter,
-        getTop,
-        getBottom,
-        getLeft,
-        getRight,
+        selectPage,
         setDialog,
         setCenter,
         setTop,

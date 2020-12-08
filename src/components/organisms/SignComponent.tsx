@@ -1,10 +1,9 @@
 import React from 'react'
 import Component from '../templates/Component'
 
-import * as data from '../../service/Data'
+import usePage from '../../redux/page/hook'
+import useNoti from '../../redux/noti/hook';
 
-import usePage from '../../redux/hooks/usePage'
-import useNoti from '../../redux/hooks/useNoti';
 import useSign from '../../hooks/useSign';
 
 import TextComponent from '../atoms/TextComponent'

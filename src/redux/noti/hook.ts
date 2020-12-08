@@ -1,12 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../configureStore';
 import { useCallback } from 'react'
-import { showNotiAction, hideNotiAction } from '../actions/notiAction'
+import { showNotiAction, hideNotiAction } from './action'
 
 export default function useNoti() {
-    const getText = useSelector((state: RootState) => state.noti.text);
-    const getType = useSelector((state: RootState) => state.noti.type);
-    const getVisible = useSelector((state: RootState) => state.noti.visible);
+    const selectNoti = useSelector((state: RootState) => state.noti);
 
     const dispatch = useDispatch();
 
@@ -17,9 +15,7 @@ export default function useNoti() {
         dispatch(hideNotiAction()), [dispatch]);
 
     return {
-        getText,
-        getType,
-        getVisible,
+        selectNoti,
         showNoti,
         hideNoti
     }

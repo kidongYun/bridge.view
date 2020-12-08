@@ -1,9 +1,5 @@
 import axios from 'axios'
 
-import MenuType, { MenuBuilder } from '../model/MenuType';
-
-import { TabBuilder } from '../model/TabType';
-
 export async function getTodo(date: boolean, startDateTime: string, endDateTime: string) {
     return await axios.get("http://localhost:8080/todo", { params: { date: date, startDateTime: startDateTime, endDateTime: endDateTime }});
 }
@@ -76,21 +72,4 @@ export async function sign() {
 
 export async function signOut() {
     return await axios.get("http://localhost:8080/signOut");
-}
-
-export function postNavList() {
-    let menuList: Array<MenuType> = [];
-
-    let leftMenu: MenuType = new MenuBuilder().build();
-    leftMenu.tabs.push(new TabBuilder().type('outline-light').title('Objective').event('OBJECTIVE').build());
-    leftMenu.tabs.push(new TabBuilder().type('outline-light').title('Plan').event('PLAN').build());
-    leftMenu.tabs.push(new TabBuilder().type('outline-light').title('Todo').event('TODO').build());
-
-    let rightMenu: MenuType = new MenuBuilder().align('flex-end').build();
-    rightMenu.tabs.push(new TabBuilder().type('primary').title('Login').event('LOGIN').build());
-
-    menuList.push(leftMenu);
-    menuList.push(rightMenu);
-
-    return menuList;
 }

@@ -5,14 +5,13 @@ import Objective from '../../redux/stores/objective'
 import Date from '../../redux/stores/date';
 
 import useCell from '../../redux/cell/hook'
-import useWindow from '../../redux/hooks/usePage'
+import usePage from '../../redux/page/hook'
 
 import ObjectiveComponent from '../molecules/ObjectiveComponent'
 import AddComponent from '../molecules/AddComponent';
 import DateComponent from '../molecules/DateComponent';
 import Cell from '../../redux/stores/cell';
 import { ObjectiveBuilder } from '../../redux/stores/objective'
-import usePage from '../../redux/hooks/usePage';
 import { TemplateBuilder } from '../../redux/stores/template';
 
 interface ObjectiveListProps {
@@ -33,7 +32,6 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
                 console.log(cell.type);
 
                 if(cell instanceof Objective && cell.type === "OBJECTIVE") {
-                    console.log("!!!!!!!")
                     return <ObjectiveComponent
                         title={cell.title}
                         description={cell.description}

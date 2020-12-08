@@ -2,17 +2,17 @@ import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import Alert from 'react-bootstrap/Alert'
 
-import useNoti from '../../redux/hooks/useNoti'
+import useNoti from '../../redux/noti/hook'
 
 interface NotiProps {
 }
 
 const NotiComponent: React.FC<NotiProps> = (props) => {
-	const { getText, getType, hideNoti } = useNoti();
+	const { selectNoti, hideNoti } = useNoti();
     return (
         <Container>
-            <Alert variant={getType} onClose={hideNoti} dismissible>
-                {getText}
+            <Alert variant={selectNoti.type} onClose={hideNoti} dismissible>
+                {selectNoti.text}
             </Alert>
         </Container>
     )

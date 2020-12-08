@@ -12,16 +12,16 @@ import DialogComponent from '../components/templates/DialogComponent'
 import ObjectiveHandleComponent from '../components/organisms/ObjectiveHandleComponent'
 import SignComponent from '../components/organisms/SignComponent'
 
-import usePage from '../redux/hooks/usePage'
-import useNoti from '../redux/hooks/useNoti'
+import usePage from '../redux/page/hook'
+import useNoti from '../redux/noti/hook'
 import useObjectives from '../redux/objectives/hook'
 import { TemplateBuilder } from '../redux/stores/template';
 
 interface MainProps {}
 
 const MainLayout: React.FC<MainProps> = () => {
-    const { getCenter, getTop, getDialog, getLeft, setCenter, setDialog } = usePage();
-    const { getVisible } = useNoti();
+    const { selectPage, setCenter, setDialog } = usePage();
+    const { selectNoti } = useNoti();
     const { selectObjectives, getObjectives } = useObjectives();
 
 
@@ -32,14 +32,14 @@ const MainLayout: React.FC<MainProps> = () => {
     console.log(selectObjectives.data?.data);
 
     let noti = <></>;
-    if(getVisible) {
+    if(selectNoti.visible) {
         noti = <NotiComponent/>
     }
 
     let dialog = <></>;
-    if(getDialog.component === "ObjectiveHandle") {
+    if(selectPage.dialog.component === "ObjectiveHandle") {
         dialog = <ObjectiveHandleComponent/>
-    } else if(getDialog.component === "Sign") {
+    } else if(selectPage.dialog.component === "Sign") {
         dialog = <SignComponent/>
     }
 
@@ -77,36 +77,36 @@ const MainLayout: React.FC<MainProps> = () => {
 
 
     let center = <></>;
-    if(getCenter.component === "ObjectiveList") {
+    if(selectPage.center.component === "ObjectiveList") {
         center = <ObjectiveListComponent objectives={util.parse(selectObjectives.data?.data)}/>
-    } else if(getCenter.component === "PlanList") {
+    } else if(selectPage.center.component === "PlanList") {
         center = <PlanListComponent/>;
-    } else if(getCenter.component === "TodoList") {
+    } else if(selectPage.center.component === "TodoList") {
         center = <TodoListComponent/>;
     }
 
     let left = <></>;
-    if(getLeft.component === "ObjectiveHandle") {
+    if(selectPage.left.component === "ObjectiveHandle") {
         left = <ObjectiveHandleComponent/>;
     }
 
     let view =
     <Component direction="column">
         {noti}
-        <DialogComponent display={getDialog.display}>
+        <DialogComponent display={selectPage.dialog.display}>
             {dialog}
         </DialogComponent>
-        <Component height="70px" display={(getTop.display) ? "flex" : "none"}>
+        <Component height="70px" display={(selectPage.top.display) ? "flex" : "none"}>
             {top}
         </Component>
         <Component>
             <Component display="none" backgroundColor="#839203">
 
             </Component>
-            <Component width="200%" maxWidth="60%" marginLeft="auto" marginRight="auto" overflowY="auto" display={(getCenter.display) ? "flex" : "none"}>
+            <Component width="200%" maxWidth="60%" marginLeft="auto" marginRight="auto" overflowY="auto" display={(selectPage.center.display) ? "flex" : "none"}>
                 {center}
             </Component>
-            <Animation display={getLeft.display}>
+            <Animation display={selectPage.left.display}>
                 <Component width="80%" height="80%">
                     {left}
                 </Component>

@@ -1,4 +1,3 @@
-import { createReducer } from 'typesafe-actions'
 import { CellAction } from './type'
 import { SET_OBJECTIVE_ACTION, SET_PLAN_ACTION } from './action'
 import Cell from '../stores/cell';
