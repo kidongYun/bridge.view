@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import Component from '../components/templates/Component'
+import * as util from '../service/Utility'
 
 import ObjectiveListComponent from '../components/organisms/ObjectiveListComponent'
 import NavigationComponent from '../components/organisms/NavigationComponent'
@@ -13,7 +14,7 @@ import SignComponent from '../components/organisms/SignComponent'
 
 import usePage from '../redux/hooks/usePage'
 import useNoti from '../redux/hooks/useNoti'
-import useObjectives from '../redux/objectives/hooks'
+import useObjectives from '../redux/objectives/hook'
 import { TemplateBuilder } from '../redux/stores/template';
 
 interface MainProps {}
@@ -21,13 +22,14 @@ interface MainProps {}
 const MainLayout: React.FC<MainProps> = () => {
     const { getCenter, getTop, getDialog, getLeft, setCenter, setDialog } = usePage();
     const { getVisible } = useNoti();
-    const { data, getObjectives } = useObjectives();
+    const { selectObjectives, getObjectives } = useObjectives();
+
 
     React.useEffect(() => {
-        getObjectives();
+        getObjectives(true);
     }, []);
 
-    console.log(data);
+    console.log(selectObjectives.data?.data);
 
     let noti = <></>;
     if(getVisible) {
@@ -76,7 +78,7 @@ const MainLayout: React.FC<MainProps> = () => {
 
     let center = <></>;
     if(getCenter.component === "ObjectiveList") {
-        center = <ObjectiveListComponent objectives={[]}/>
+        center = <ObjectiveListComponent objectives={util.parse(selectObjectives.data?.data)}/>
     } else if(getCenter.component === "PlanList") {
         center = <PlanListComponent/>;
     } else if(getCenter.component === "TodoList") {

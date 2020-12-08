@@ -1,12 +1,12 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import thunk from 'redux-thunk'
+import { combineReducers } from 'redux';
 
-import cell from '../redux/actions/cellAction'
-import plans from '../redux/actions/plansAction'
-import todos from '../redux/actions/todosAction'
 import window from '../redux/actions/pageAction'
 import noti from '../redux/actions/notiAction'
-import objectives from './objectives/reducers'
+
+import objectives from './objectives/reducer'
+import plans from './plans/reducer'
+import todos from './todos/reducer'
+import cell from './cell/reducer'
 
 const rootReducer = combineReducers({
     cell,

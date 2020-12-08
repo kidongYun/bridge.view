@@ -1,9 +1,9 @@
 import { createReducer } from 'typesafe-actions'
-import { ObjectivesState, ObjectivesAction } from './types'
-import { GET_OBJECTIVES_ACTION, GET_OBJECTIVES_ACTION_SUCCESS, GET_OBJECTIVES_ACTION_ERROR } from './actions'
+import { ObjectivesState, ObjectivesAction } from './type'
+import { GET_OBJECTIVES_ACTION, GET_OBJECTIVES_SUCCESS_ACTION, GET_OBJECTIVES_ERROR_ACTION } from './action'
 
 const initialState: ObjectivesState = {
-    objectives: {
+    response: {
         loading: false,
         error: null,
         data: null
@@ -13,23 +13,23 @@ const initialState: ObjectivesState = {
 const objectives = createReducer<ObjectivesState, ObjectivesAction>(initialState, {
     [GET_OBJECTIVES_ACTION]: state => ({
         ...state,
-        objectives: {
+        response: {
             loading: true,
             error: null,
             data: null
         }
     }),
-    [GET_OBJECTIVES_ACTION_SUCCESS]: (state, action) => ({
+    [GET_OBJECTIVES_SUCCESS_ACTION]: (state, action) => ({
         ...state,
-        objectives: {
+        response: {
             loading: false,
             error: null,
             data: action.payload
         }
     }),
-    [GET_OBJECTIVES_ACTION_ERROR]: (state, action) => ({
+    [GET_OBJECTIVES_ERROR_ACTION]: (state, action) => ({
         ...state,
-        objectives: {
+        response: {
             loading: false,
             error: action.payload,
             data: null

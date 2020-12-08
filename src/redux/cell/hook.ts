@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../configureStore';
 import { useCallback } from 'react'
-import { setObjectiveAction, setPlanAction } from '../actions/cellAction'
+import { setObjectiveAction, setPlanAction } from './action'
 import Objective from '../stores/objective';
 import Plan from '../stores/plan';
 
 export default function useCell() {
-    const getCell = useSelector((state: RootState) => state.cell);
+    const selectCell = useSelector((state: RootState) => state.cell);
 
     const dispatch = useDispatch();
 
@@ -17,7 +17,7 @@ export default function useCell() {
         dispatch(setPlanAction(plan)), [dispatch]);
 
     return {
-        getCell,
+        selectCell,
         setObjective,
         setPlan
     }
