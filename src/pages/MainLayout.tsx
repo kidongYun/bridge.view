@@ -13,7 +13,7 @@ import SignComponent from '../components/organisms/SignComponent'
 
 import usePage from '../redux/hooks/usePage'
 import useNoti from '../redux/hooks/useNoti'
-import useObjectives from '../redux/hooks/useObjectives'
+import useObjectives from '../redux/objectives/hooks'
 import { TemplateBuilder } from '../redux/stores/template';
 
 interface MainProps {}
@@ -21,11 +21,13 @@ interface MainProps {}
 const MainLayout: React.FC<MainProps> = () => {
     const { getCenter, getTop, getDialog, getLeft, setCenter, setDialog } = usePage();
     const { getVisible } = useNoti();
-    const { getObjectives, callObjectives } = useObjectives();
+    const { data, getObjectives } = useObjectives();
 
     React.useEffect(() => {
-        callObjectives();
+        getObjectives();
     }, []);
+
+    console.log(data);
 
     let noti = <></>;
     if(getVisible) {
@@ -74,7 +76,7 @@ const MainLayout: React.FC<MainProps> = () => {
 
     let center = <></>;
     if(getCenter.component === "ObjectiveList") {
-        center = <ObjectiveListComponent objectives={getObjectives}/>
+        center = <ObjectiveListComponent objectives={[]}/>
     } else if(getCenter.component === "PlanList") {
         center = <PlanListComponent/>;
     } else if(getCenter.component === "TodoList") {

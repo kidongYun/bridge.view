@@ -2,11 +2,11 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk'
 
 import cell from '../redux/actions/cellAction'
-import objectives from '../redux/actions/objectivesAction'
 import plans from '../redux/actions/plansAction'
 import todos from '../redux/actions/todosAction'
 import window from '../redux/actions/pageAction'
 import noti from '../redux/actions/notiAction'
+import objectives from './objectives/reducers'
 
 const rootReducer = combineReducers({
     cell,
@@ -17,6 +17,6 @@ const rootReducer = combineReducers({
     noti
 })
 
-export default createStore(rootReducer, applyMiddleware(thunk));
+export default rootReducer;
 
 export type RootState = ReturnType<typeof rootReducer>;

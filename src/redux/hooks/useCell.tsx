@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store/index';
+import { RootState } from '../configureStore';
 import { useCallback } from 'react'
 import { setObjectiveAction, setPlanAction } from '../actions/cellAction'
 import Objective from '../stores/objective';

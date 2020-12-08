@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store/index';
+import { RootState } from '../configureStore';
 import { useCallback } from 'react'
 import { showNotiAction, hideNotiAction } from '../actions/notiAction'
 
