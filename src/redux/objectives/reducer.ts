@@ -3,7 +3,7 @@ import { ObjectivesState, ObjectivesAction } from './type'
 import { GET_OBJECTIVES_ACTION, GET_OBJECTIVES_SUCCESS_ACTION, GET_OBJECTIVES_ERROR_ACTION } from './action'
 
 const initialState: ObjectivesState = {
-    response: {
+    response: { 
         loading: false,
         error: null,
         data: null

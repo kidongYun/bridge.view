@@ -1,5 +1,9 @@
 export default class Response<T> {
-    errorCode?: number;
-    errorDesc?: string;
+    loading: boolean
+    error?: number;
     data?: T;
+
+    constructor() {
+        this.loading = false;
+    }
 }

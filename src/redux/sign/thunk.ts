@@ -2,25 +2,40 @@ import axios from 'axios'
 import { ThunkAction } from 'redux-thunk'
 import { RootState } from '../configureStore'
 import { SignAction } from './type'
-import Sign from '../stores/sign'
-import Response from '../stores/response'
-import { signInAsyncAction } from './action'
+import { signInAsyncAction, signUpAsyncAction } from './action'
 
-export function signInThunk(signIn: { email: string, password: string }): ThunkAction<void, RootState, null, SignAction> {
+export function signInThunk(param: { email: string, password: string }): ThunkAction<void, RootState, null, SignAction> {
     return async dispatch => {
         const { request, success, failure } = signInAsyncAction;
         dispatch(request());
         try {
-            const sign = await call(signIn);
-            console.log(sign);
-            dispatch(success(sign));
+            const signIn = await callSignIn(param);
+            dispatch(success(signIn));
         } catch (e) {
             dispatch(failure(e));
         }
     }
 }
 
-async function call(signIn: { email: string, password: string }) {
-    const response = await axios.post("http://localhost:8080/sign/in", signIn);
+export function signUpThunk(param: { email: string, password: string }): ThunkAction<void, RootState, null, SignAction> {
+    return async dispatch => {
+        const { request, success, failure } = signUpAsyncAction;
+        dispatch(request());
+        try {
+            const signUp = await callSignUp(param);
+            dispatch(success(signUp));
+        } catch (e) {
+            dispatch(failure(e));
+        }
+    }
+}
+
+async function callSignIn(param: { email: string, password: string }) {
+    const response = await axios.post("http://localhost:8080/sign/in", param);
+    return response.data;
+}
+
+async function callSignUp(param: { email: string, password: string }) {
+    const response = await axios.post("http://localhost:8080/sign/up", param);
     return response.data;
 }
