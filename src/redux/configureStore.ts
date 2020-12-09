@@ -6,6 +6,7 @@ import todos from './todos/reducer'
 import cell from './cell/reducer'
 import page from './page/reducer'
 import noti from './noti/reducer'
+import sign from './sign/reducer'
 
 const rootReducer = combineReducers({
     objectives,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     todos,
     cell,
     page,
-    noti
+    noti,
+    sign
 })
 
 export default rootReducer;

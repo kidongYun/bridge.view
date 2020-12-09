@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Component from '../templates/Component'
 
 interface LabelProps {
-    label: string
+    label?: string
     size?: string
     color?: string
     weight?: string

@@ -3,8 +3,7 @@ import Component from '../templates/Component'
 
 import usePage from '../../redux/page/hook'
 import useNoti from '../../redux/noti/hook';
-
-import useSign from '../../hooks/useSign';
+import useSign from '../../redux/sign/hook';
 
 import TextComponent from '../atoms/TextComponent'
 import LabelComponent from '../atoms/LabelComponent'
@@ -17,19 +16,14 @@ interface SignProps {
 const SignComponent: React.FC<SignProps> = ({
 }) => {
     const { setDialog } = usePage();
-
     const { showNoti, hideNoti } = useNoti();
+    const { selectSign, signIn } = useSign();
 
-    // const { 
-    //     sign_email, 
-    //     sign_password, 
-    //     sign_onUpdateStatus, 
-    //     sign_onUpdateDesc, 
-    //     sign_onUpdateEmail, 
-    // } = useSign();
 
     let email: string = "";
     let password: string = "";
+
+    console.log(selectSign);
 
     let view =
     <Component 
@@ -63,7 +57,7 @@ const SignComponent: React.FC<SignProps> = ({
             />
         </Component>
 
-        <LabelComponent label=""/>
+        <LabelComponent label={selectSign.data?.errorDesc}/>
 
         <Component>
             <Component width="100%" />
@@ -77,48 +71,44 @@ const SignComponent: React.FC<SignProps> = ({
             <ButtonComponent 
                 text="Sign In" 
                 theme="primary"
-                onClick={() => {}}
-                // onClick={() => {
-                //     const params = {
-                //         email: sign_email,
-                //         password: sign_password
-                //     }
+                onClick={() => {
+                    signIn({ email: email, password: password });
 
-                //     data.signIn(params).then((response) => {
-                //         /* 로그인 실패한 경우 */
-                //         if(response.data.errorCode !== 200) {
-                //             sign_onUpdateStatus(false);
-                //             sign_onUpdateDesc(response.data.errorDesc);
-                //             return;
-                //         }
+                    // data.signIn(params).then((response) => {
+                    //     /* 로그인 실패한 경우 */
+                    //     if(response.data.errorCode !== 200) {
+                    //         sign_onUpdateStatus(false);
+                    //         sign_onUpdateDesc(response.data.errorDesc);
+                    //         return;
+                    //     }
 
-                //         sign_onUpdateStatus(true);
-                //         sign_onUpdateEmail(params.email);
+                    //     sign_onUpdateStatus(true);
+                    //     sign_onUpdateEmail(params.email);
 
-                //         showNoti("로그인되었습니다.", "success");
-                //         setTimeout(hideNoti, 2300);
-                //         setDialog(new TemplateBuilder().display(false).build());
-                //     })
-                // }} 
+                    //     showNoti("로그인되었습니다.", "success");
+                    //     setTimeout(hideNoti, 2300);
+                    //     setDialog(new TemplateBuilder().display(false).build());
+                    // })
+                }} 
             />
 
-            {/* <ButtonComponent 
+            <ButtonComponent 
                 text="Sign Up" 
                 theme="primary"
                 onClick={() => {
-                    const params = {
-                        email: sign_email,
-                        password: sign_password
-                    }
+                    // const params = {
+                    //     email: sign_email,
+                    //     password: sign_password
+                    // }
 
-                    data.signUp(params).then((response) => {
-                        if(response.data.errorCode === 200) {
-                            showNoti("가입이 완료되었습니다.", "success");
-                            setTimeout(hideNoti, 2300);
-                            setDialog(new TemplateBuilder().display(false).build());
-                        }
-                    })
-                }} /> */}
+                    // data.signUp(params).then((response) => {
+                    //     if(response.data.errorCode === 200) {
+                    //         showNoti("가입이 완료되었습니다.", "success");
+                    //         setTimeout(hideNoti, 2300);
+                    //         setDialog(new TemplateBuilder().display(false).build());
+                    //     }
+                    // })
+                }} />
         </Component>
     </Component>
 

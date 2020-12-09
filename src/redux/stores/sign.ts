@@ -1,4 +1,4 @@
-export default class SignType {
+export default class Sign {
     status: boolean
     desc: string
     email: string
@@ -13,10 +13,10 @@ export default class SignType {
 }
 
 export class SignBuilder {
-    private readonly _sign: SignType;
+    private readonly _sign: Sign;
 
     constructor() {
-        this._sign = new SignType();
+        this._sign = new Sign();
     }
 
     status(status: boolean): SignBuilder {
@@ -39,7 +39,7 @@ export class SignBuilder {
         return this;
     }
 
-    build(): SignType {
+    build(): Sign {
         return this._sign;
     }
 }
