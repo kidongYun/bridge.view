@@ -1,5 +1,6 @@
 import React from 'react'
 import Component from '../templates/Component'
+import Sign from '../../redux/stores/sign'
 
 import usePage from '../../redux/page/hook'
 import useNoti from '../../redux/noti/hook';
@@ -24,6 +25,12 @@ const SignComponent: React.FC<SignProps> = ({
     let password: string = "";
 
     console.log(selectSign);
+
+    if(selectSign.data instanceof Sign) {
+        console.log(selectSign.data.desc);
+    } else if(selectSign.data instanceof Error) {
+        console.log(selectSign.data.message);
+    }
 
     let view =
     <Component 
@@ -57,7 +64,7 @@ const SignComponent: React.FC<SignProps> = ({
             />
         </Component>
 
-        <LabelComponent/>
+        {/* <LabelComponent label={selectSign.data}/> */}
 
         <Component>
             <Component width="100%" />
