@@ -3,7 +3,6 @@ import { ThunkAction } from 'redux-thunk'
 import { RootState } from '../configureStore'
 import { ObjectivesAction } from './type'
 import Cell from '../stores/cell'
-import Response from '../stores/response'
 import { getObjectivesAsyncAction } from './action'
 
 export function getObjectivesThunk(date: boolean): ThunkAction<void, RootState, null, ObjectivesAction> {
@@ -20,6 +19,6 @@ export function getObjectivesThunk(date: boolean): ThunkAction<void, RootState, 
 }
 
 async function call(date: boolean) {
-    const response = await axios.get<Response<Cell[]>>("http://localhost:8080/objective", { params: { date: date }});
+    const response = await axios.get<Cell[]>("http://localhost:8080/objective", { params: { date: date }});
     return response.data;
 }

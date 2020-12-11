@@ -5,7 +5,6 @@ import { GET_OBJECTIVES_ACTION, GET_OBJECTIVES_SUCCESS_ACTION, GET_OBJECTIVES_ER
 const initialState: ObjectivesState = {
     response: { 
         loading: false,
-        error: null,
         data: null
     }
 };
@@ -15,7 +14,6 @@ const objectives = createReducer<ObjectivesState, ObjectivesAction>(initialState
         ...state,
         response: {
             loading: true,
-            error: null,
             data: null
         }
     }),
@@ -23,7 +21,6 @@ const objectives = createReducer<ObjectivesState, ObjectivesAction>(initialState
         ...state,
         response: {
             loading: false,
-            error: null,
             data: action.payload
         }
     }),
@@ -31,8 +28,7 @@ const objectives = createReducer<ObjectivesState, ObjectivesAction>(initialState
         ...state,
         response: {
             loading: false,
-            error: action.payload,
-            data: null
+            data: action.payload
         }
     })
 });

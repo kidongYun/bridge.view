@@ -3,7 +3,7 @@ import { RootState } from '../configureStore';
 import { getPlansThunk } from './thunk'
 
 export default function usePlans() {
-    const selectPlans = useSelector((state: RootState) => state.objectives.response);
+    const selectPlans = useSelector((state: RootState) => state.plans.response);
     
     const dispatch = useDispatch();
     const getPlans = (date: boolean) => { dispatch(getPlansThunk(date)) }

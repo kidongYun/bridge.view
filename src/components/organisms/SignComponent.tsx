@@ -29,7 +29,7 @@ const SignComponent: React.FC<SignProps> = ({
     <Component 
         width="500px" 
         height="300px" 
-        direction="column" >
+        direction="column">
 
         <Component borderBottom="solid 1px #eeeeee" marginBottom="10px" paddingBottom="10px">
             <LabelComponent label="Sign" size="20pt" />
@@ -57,7 +57,7 @@ const SignComponent: React.FC<SignProps> = ({
             />
         </Component>
 
-        <LabelComponent label={selectSign.data?.errorDesc}/>
+        <LabelComponent/>
 
         <Component>
             <Component width="100%" />

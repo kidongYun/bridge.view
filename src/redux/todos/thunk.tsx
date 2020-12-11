@@ -3,7 +3,6 @@ import { ThunkAction } from 'redux-thunk'
 import { RootState } from '../configureStore'
 import { TodosAction } from './type'
 import Cell from '../stores/cell'
-import Response from '../stores/response'
 import { getTodosAsyncAction } from './action'
 
 export function getTodosThunk(date: boolean): ThunkAction<void, RootState, null, TodosAction> {
@@ -20,6 +19,6 @@ export function getTodosThunk(date: boolean): ThunkAction<void, RootState, null,
 }
 
 async function call(date: boolean) {
-    const response = await axios.get<Response<Cell[]>>("http://localhost:8080/todo", { params: { date: date }});
+    const response = await axios.get<Cell[]>("http://localhost:8080/todo", { params: { date: date }});
     return response.data;
 }

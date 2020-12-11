@@ -5,7 +5,6 @@ import { GET_PLANS_ACTION, GET_PLANS_SUCCESS_ACTION, GET_PLANS_ERROR_ACTION } fr
 const initialState: PlansState = {
     response: {
         loading: false,
-        error: null,
         data: null
     }
 };
@@ -15,7 +14,6 @@ const plans = createReducer<PlansState, PlansAction>(initialState, {
         ...state,
         response: {
             loading: true,
-            error: null,
             data: null
         }
     }),
@@ -23,7 +21,6 @@ const plans = createReducer<PlansState, PlansAction>(initialState, {
         ...state,
         response: {
             loading: false,
-            error: null,
             data: action.payload
         }
     }),
@@ -31,8 +28,7 @@ const plans = createReducer<PlansState, PlansAction>(initialState, {
         ...state,
         response: {
             loading: false,
-            error: action.payload,
-            data: null
+            data: action.payload
         }
     })
 });

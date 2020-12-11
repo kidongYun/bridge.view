@@ -1,14 +1,13 @@
 import * as actions from './action'
 import { ActionType } from 'typesafe-actions'
 import Cell from '../stores/cell'
-import Response from '../stores/response'
+import Objective from '../stores/objective'
 
 export type ObjectivesAction = ActionType<typeof actions>
 
 export type ObjectivesState = {
     response: {
         loading: boolean;
-        error: Error | null;
-        data: Response<Cell[]> | null;
+        data: Cell[] | Objective | Error | null;
     }
 }
