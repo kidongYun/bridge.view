@@ -1,4 +1,4 @@
-import { createStandardAction, createAsyncAction } from 'typesafe-actions';
+import { createAsyncAction } from 'typesafe-actions';
 import { AxiosError, AxiosResponse } from 'axios'
 import Sign from '../stores/sign'
 
@@ -25,13 +25,19 @@ export const signInErrorAction = (error: AxiosError) => ({
     payload: error
 })
 
-// export const signInAction = createStandardAction(SIGN_IN_ACTION)();
-// export const signInSuccessAction = createStandardAction(SIGN_IN_SUCCESS_ACTION)<Sign>();
-// export const signInErrorAction = createStandardAction(SIGN_IN_ERROR_ACTION)<AxiosError>();
+export const signUpAction = () => ({
+    type: SIGN_UP_ACTION
+})
 
-// export const signUpAction = createStandardAction(SIGN_UP_ACTION)();
-// export const signUpSuccessAction = createStandardAction(SIGN_UP_SUCCESS_ACTION)<Sign>();
-// export const signUpErrorAction = createStandardAction(SIGN_UP_ERROR_ACTION)<AxiosError>();
+export const signUpSuccessAction = (response: AxiosResponse) => ({
+    type: SIGN_UP_SUCCESS_ACTION,
+    payload: response
+})
+
+export const signUpErrorAction = (error: AxiosError) => ({
+    type: SIGN_UP_ERROR_ACTION,
+    payload: error
+})
 
 export const signInAsyncAction = createAsyncAction(
     SIGN_IN_ACTION,
@@ -39,8 +45,8 @@ export const signInAsyncAction = createAsyncAction(
     SIGN_IN_ERROR_ACTION
 )<{ email: string, password: string }, AxiosResponse, AxiosError>();
 
-// export const signUpAsyncAction = createAsyncAction(
-//     SIGN_UP_ACTION,
-//     SIGN_UP_SUCCESS_ACTION,
-//     SIGN_UP_ERROR_ACTION
-// )<undefined, Sign, AxiosError>();
+export const signUpAsyncAction = createAsyncAction(
+    SIGN_UP_ACTION,
+    SIGN_UP_SUCCESS_ACTION,
+    SIGN_UP_ERROR_ACTION
+)<undefined, AxiosResponse, AxiosError>();
