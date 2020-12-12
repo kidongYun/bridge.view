@@ -9,8 +9,8 @@ export function signInThunk(param: { email: string, password: string }): ThunkAc
         const { request, success, failure } = signInAsyncAction;
         dispatch(request({ email: param.email, password: param.password }));
         try {
-            const signIn = await callSignIn(param);
-            dispatch(success(signIn));
+            const response = await callSignIn(param);
+            dispatch(success(response));
         } catch (e) {
             dispatch(failure(e));
         }
@@ -22,8 +22,8 @@ export function signUpThunk(param: { email: string, password: string }): ThunkAc
         const { request, success, failure } = signUpAsyncAction;
         dispatch(request());
         try {
-            const signUp = await callSignUp(param);
-            dispatch(success(signUp));
+            const response = await callSignUp(param);
+            dispatch(success(response));
         } catch (e) {
             dispatch(failure(e));
         }

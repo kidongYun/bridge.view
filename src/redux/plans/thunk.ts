@@ -10,8 +10,8 @@ export function getPlansThunk(date: boolean): ThunkAction<void, RootState, null,
         const { request, success, failure } = getPlansAsyncAction;
         dispatch(request());
         try {
-            const plans = await call(date);
-            dispatch(success(plans));
+            const response = await call(date);
+            dispatch(success(response));
         } catch (e) {
             dispatch(failure(e));
         }

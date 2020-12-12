@@ -9,6 +9,7 @@ import ButtonComponent from '../atoms/ButtonComponent'
 
 import usePage from '../../redux/page/hook'
 import useNoti from '../../redux/noti/hook'
+import useObjectives from '../../redux/objectives/hook'
 
 import { TemplateBuilder } from '../../redux/stores/template'
 import Objective, { ObjectiveBuilder } from '../../redux/stores/objective'
@@ -21,6 +22,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
 }) => {
     const { setDialog, setLeft } = usePage();
     const { showNoti, hideNoti } = useNoti();
+    const { postObjectives } = useObjectives();
 
     let title: string = "";
     let description: string = "";
@@ -107,6 +109,9 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
                 theme="primary" 
                 text="Add"
                 onClick={() => {
+
+                    postObjectives();
+
                     const obj: Objective = new ObjectiveBuilder()
                         .title(title).description(description)
                         .endDateTime(deadline).priority(priority).build();

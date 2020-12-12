@@ -37,10 +37,6 @@ export const postObjectivesErrorAction = (error: AxiosError) => ({
     payload: error
 })
 
-// export const postObjectivesAction = createStandardAction(POST_OBJECTIVES_ACTION)();
-// export const postObjectivesSuccessAction = createStandardAction(POST_OBJECTIVES_SUCCESS_ACTION)<Objective>();
-// export const postObjectivesErrorAction = createStandardAction(POST_OBJECTIVES_ERROR_ACTION)<AxiosError>();
-
 export const getObjectivesAsyncAction = createAsyncAction(
     GET_OBJECTIVES_ACTION,
     GET_OBJECTIVES_SUCCESS_ACTION,
