@@ -19,6 +19,5 @@ export function getPlansThunk(date: boolean): ThunkAction<void, RootState, null,
 }
 
 async function call(date: boolean) {
-    const response = await axios.get<Cell[]>("http://localhost:8080/plan", { params: { date: date }});
-    return response.data;
+    return await axios.get<Cell[]>("http://localhost:8080/plan", { params: { date: date }});
 }

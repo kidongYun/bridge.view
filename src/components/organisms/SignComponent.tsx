@@ -58,7 +58,7 @@ const SignComponent: React.FC<SignProps> = ({
             />
         </Component>
 
-        {/* <LabelComponent label={selectSign.data}/> */}
+        <LabelComponent label={selectSign.status + ""}/>
 
         <Component>
             <Component width="100%" />

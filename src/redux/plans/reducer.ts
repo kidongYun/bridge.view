@@ -1,35 +1,24 @@
 import { createReducer } from 'typesafe-actions'
-import { PlansState, PlansAction } from './type'
+import { PlansAction } from './type'
 import { GET_PLANS_ACTION, GET_PLANS_SUCCESS_ACTION, GET_PLANS_ERROR_ACTION } from './action'
+import Response from '../stores/response';
+import Cell from '../stores/cell'
 
-const initialState: PlansState = {
-    response: {
-        loading: false,
-        data: null
-    }
-};
-
-const plans = createReducer<PlansState, PlansAction>(initialState, {
+const plans = createReducer<Response<Cell[]>, PlansAction>(new Response(), {
     [GET_PLANS_ACTION]: state => ({
         ...state,
-        response: {
-            loading: true,
-            data: null
-        }
+        status: undefined,
+        body: undefined
     }),
     [GET_PLANS_SUCCESS_ACTION]: (state, action) => ({
         ...state,
-        response: {
-            loading: false,
-            data: action.payload
-        }
+        status: action.payload.status,
+        body: action.payload.data
     }),
     [GET_PLANS_ERROR_ACTION]: (state, action) => ({
         ...state,
-        response: {
-            loading: false,
-            data: action.payload
-        }
+        status: action.payload.response!.status,
+        body: action.payload.response!.data
     })
 });
 

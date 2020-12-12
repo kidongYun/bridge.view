@@ -18,8 +18,8 @@ const sign = createReducer<Response<Sign>, SignAction>(new Response(), {
     }),
     [SIGN_IN_ERROR_ACTION]: (state, action) => ({
         ...state,
-        status: action.payload.response?.status,
-        body: action.payload.response?.data
+        status: action.payload.response!.status,
+        body: action.payload.response!.data
     }),
     [SIGN_UP_ACTION]: state => ({
         ...state,
@@ -38,8 +38,8 @@ const sign = createReducer<Response<Sign>, SignAction>(new Response(), {
     },
     [SIGN_UP_ERROR_ACTION]: (state, action) => ({
         ...state,
-        status: action.payload.response?.status,
-        body: action.payload.response?.data
+        status: action.payload.response!.status,
+        body: action.payload.response!.data
     })
 });
 

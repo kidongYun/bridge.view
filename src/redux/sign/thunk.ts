@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios'
+import axios from 'axios'
 import { ThunkAction } from 'redux-thunk'
 import { RootState } from '../configureStore'
 import { SignAction } from './type'
@@ -31,11 +31,9 @@ export function signUpThunk(param: { email: string, password: string }): ThunkAc
 }
 
 async function callSignIn(param: { email: string, password: string }) {
-    const response: AxiosResponse = await axios.post("http://localhost:8080/sign/in", param);
-    return response;
+    return await axios.post("http://localhost:8080/sign/in", param);
 }
 
 async function callSignUp(param: { email: string, password: string }) {
-    const response = await axios.post("http://localhost:8080/sign/up", param);
-    return response;
+    return await axios.post("http://localhost:8080/sign/up", param);
 }

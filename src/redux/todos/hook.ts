@@ -3,7 +3,7 @@ import { RootState } from '../configureStore';
 import { getTodosThunk } from './thunk'
 
 export default function useTodos() {
-    const selectTodos = useSelector((state: RootState) => state.todos.response);
+    const selectTodos = useSelector((state: RootState) => state.todos);
     const dispatch = useDispatch();
 
     const getTodos = (date: boolean) => { dispatch(getTodosThunk(date)) }
