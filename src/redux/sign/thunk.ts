@@ -1,13 +1,13 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { ThunkAction } from 'redux-thunk'
 import { RootState } from '../configureStore'
 import { SignAction } from './type'
-import { signInAsyncAction, signUpAsyncAction } from './action'
+import { signInAsyncAction } from './action'
 
 export function signInThunk(param: { email: string, password: string }): ThunkAction<void, RootState, null, SignAction> {
     return async dispatch => {
         const { request, success, failure } = signInAsyncAction;
-        dispatch(request());
+        dispatch(request({ email: param.email, password: param.password }));
         try {
             const signIn = await callSignIn(param);
             dispatch(success(signIn));
@@ -17,25 +17,25 @@ export function signInThunk(param: { email: string, password: string }): ThunkAc
     }
 }
 
-export function signUpThunk(param: { email: string, password: string }): ThunkAction<void, RootState, null, SignAction> {
-    return async dispatch => {
-        const { request, success, failure } = signUpAsyncAction;
-        dispatch(request());
-        try {
-            const signUp = await callSignUp(param);
-            dispatch(success(signUp));
-        } catch (e) {
-            dispatch(failure(e));
-        }
-    }
-}
+// export function signUpThunk(param: { email: string, password: string }): ThunkAction<void, RootState, null, SignAction> {
+//     return async dispatch => {
+//         const { request, success, failure } = signUpAsyncAction;
+//         dispatch(request());
+//         try {
+//             const signUp = await callSignUp(param);
+//             dispatch(success(signUp));
+//         } catch (e) {
+//             dispatch(failure(e));
+//         }
+//     }
+// }
 
 async function callSignIn(param: { email: string, password: string }) {
-    const response = await axios.post("http://localhost:8080/sign/in", param);
-    return response.data;
+    const response: AxiosResponse = await axios.post("http://localhost:8080/sign/in", param);
+    return response;
 }
 
-async function callSignUp(param: { email: string, password: string }) {
-    const response = await axios.post("http://localhost:8080/sign/up", param);
-    return response.data;
-}
+// async function callSignUp(param: { email: string, password: string }) {
+//     const response = await axios.post("http://localhost:8080/sign/up", param);
+//     return response.data;
+// }
