@@ -37,5 +37,5 @@ async function callSignIn(param: { email: string, password: string }) {
 
 async function callSignUp(param: { email: string, password: string }) {
     const response = await axios.post("http://localhost:8080/sign/up", param);
-    return response.data;
+    return response;
 }

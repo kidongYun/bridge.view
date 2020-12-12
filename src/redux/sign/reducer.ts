@@ -26,11 +26,16 @@ const sign = createReducer<Response<Sign>, SignAction>(new Response(), {
         status: undefined,
         body: undefined
     }),
-    [SIGN_UP_SUCCESS_ACTION]: (state, action) => ({
-        ...state,
-        status: action.payload.status,
-        body: action.payload.data
-    }),
+    [SIGN_UP_SUCCESS_ACTION]: (state, action) => {
+
+        console.log(action.payload);
+
+        return {
+            ...state,
+            status: action.payload.status,
+            body: action.payload.data
+        }
+    },
     [SIGN_UP_ERROR_ACTION]: (state, action) => ({
         ...state,
         status: action.payload.response?.status,

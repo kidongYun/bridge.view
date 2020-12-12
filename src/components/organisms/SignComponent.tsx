@@ -18,7 +18,7 @@ const SignComponent: React.FC<SignProps> = ({
 }) => {
     const { setDialog } = usePage();
     const { showNoti, hideNoti } = useNoti();
-    const { selectSign, signIn } = useSign();
+    const { selectSign, signIn, signUp } = useSign();
 
 
     let email: string = "";
@@ -97,7 +97,7 @@ const SignComponent: React.FC<SignProps> = ({
                 text="Sign Up" 
                 theme="primary"
                 onClick={() => {
-                    // signUp({ email: email, password: password });
+                    signUp({ email: email, password: password });
                     
                     // const params = {
                     //     email: sign_email,

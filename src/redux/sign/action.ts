@@ -1,6 +1,5 @@
 import { createAsyncAction } from 'typesafe-actions';
 import { AxiosError, AxiosResponse } from 'axios'
-import Sign from '../stores/sign'
 
 export const SIGN_IN_ACTION = 'SIGN_IN_ACTION' as const
 export const SIGN_IN_SUCCESS_ACTION = 'SIGN_IN_SUCCESS_ACTION' as const
