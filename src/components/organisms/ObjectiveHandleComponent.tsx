@@ -13,6 +13,7 @@ import useObjectives from '../../redux/objectives/hook'
 
 import { TemplateBuilder } from '../../redux/stores/template'
 import Objective, { ObjectiveBuilder } from '../../redux/stores/objective'
+import { getObjectivesAction } from '../../redux/objectives/action'
 
 interface ObjectivePostProps {
     component?: ComponentProps
@@ -22,7 +23,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
 }) => {
     const { setDialog, setLeft } = usePage();
     const { showNoti, hideNoti } = useNoti();
-    const { postObjectives } = useObjectives();
+    const { selectObjectives, postObjectives, getObjectives } = useObjectives();
 
     let title: string = "";
     let description: string = "";
@@ -111,6 +112,8 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
                 onClick={() => {
 
                     postObjectives();
+
+                    console.log(selectObjectives);
 
                     const obj: Objective = new ObjectiveBuilder()
                         .title(title).description(description)

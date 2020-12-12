@@ -22,7 +22,7 @@ interface MainProps {}
 const MainLayout: React.FC<MainProps> = () => {
     const { selectPage, setCenter, setDialog } = usePage();
     const { selectNoti } = useNoti();
-    const { selectObjectives, getObjectives } = useObjectives();
+    const { selectObjectives, getObjectives, postObjectives } = useObjectives();
 
     React.useEffect(() => {
         getObjectives(true);

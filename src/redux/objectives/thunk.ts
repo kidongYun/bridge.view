@@ -24,7 +24,7 @@ export function postObjectivesThunk(): ThunkAction<void, RootState, null, Object
         const { request, success, failure } = postObjectivesAsyncAction;
         dispatch(request());
         try {
-            const response = await post({ title: "title", description: "description", endDateTime: "2021-07-20", priority: 1, status: 1, date: true });
+            const response = await post({ title: "title", description: "description", endDateTime: "2021-07-20", priority: 1, status: 1 });
             dispatch(success(response));
         } catch (e) {
             dispatch(failure(e));
@@ -41,8 +41,7 @@ async function post(param: {
     description: string, 
     endDateTime: string, 
     priority: number, 
-    status: number, 
-    date: boolean 
+    status: number
 }) {
     return await axios.post<Objective>("http://localhost:8080/objective", param);
 }
