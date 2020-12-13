@@ -28,8 +28,6 @@ const MainLayout: React.FC<MainProps> = () => {
         getObjectives(true);
     }, []);
 
-    console.log(selectObjectives);
-
     let noti = <></>;
     if(selectNoti.visible) {
         noti = <NotiComponent/>
@@ -74,10 +72,13 @@ const MainLayout: React.FC<MainProps> = () => {
         ]} 
     />
 
+    // console.log(selectObjectives.body);
+    let test = util.parse(selectObjectives.body);
+    // console.log(test);
 
     let center = <></>;
     if(selectPage.center.component === "ObjectiveList") {
-        center = <ObjectiveListComponent objectives={ util.parse(selectObjectives.body) }/>
+        center = <ObjectiveListComponent objectives={ test }/>
     } else if(selectPage.center.component === "PlanList") {
         center = <PlanListComponent/>;
     } else if(selectPage.center.component === "TodoList") {

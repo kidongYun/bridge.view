@@ -22,15 +22,11 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
     const { setObjective } = useCell();
     const { setDialog, setLeft } = usePage();
 
-    console.log(props.objectives);
-
     let objectives = <></>;
     if(props.objectives !== undefined) {
         objectives = <>
         {
             props.objectives.map(cell => {
-                console.log(cell.type);
-
                 if(cell instanceof Objective && cell.type === "OBJECTIVE") {
                     return <ObjectiveComponent
                         title={cell.title}
