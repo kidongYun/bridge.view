@@ -10,7 +10,7 @@ export default class Cell {
     }
 
     getDate(): string {
-        return this.startDateTime.substring(0, 10);
+        return this.endDateTime.substring(0, 10);
     }
 }
 

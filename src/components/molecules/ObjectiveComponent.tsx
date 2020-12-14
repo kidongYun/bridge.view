@@ -13,8 +13,8 @@ const ObjectiveComponent: React.FC<ObjectiveProps> = (props) => {
 
     let view =
     <Component 
-        height="250px" 
-        activeHeight="260px" 
+        height="200px" 
+        activeHeight="210px" 
         backgroundColor="#eeeeee" 
         backgroundHover="#e4e4e4"
         borderRadius="10px"

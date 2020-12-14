@@ -34,9 +34,15 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
                         description={cell.description}
                         deadline={cell.getDate()}
                         onClick={() => {
+                            if(window.innerWidth >= 1000) {
+                                setLeft(new TemplateBuilder().display(true).component("ObjectiveHandle").build());
+                            } else {
+                                setDialog(new TemplateBuilder().display(true).component("ObjectiveHandle").build());
+                            }
+
                             setObjective(new ObjectiveBuilder().type(cell.type)
-                            .endDateTime(cell.endDateTime).id(cell.id)
-                            .title(cell.title).description(cell.description).build());
+                            .endDateTime(cell.endDateTime).id(cell.id).title(cell.title)
+                            .description(cell.description).priority(cell.priority).build());
                         }}
                     />
                 }

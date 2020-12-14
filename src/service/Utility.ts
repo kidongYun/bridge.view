@@ -11,8 +11,6 @@ export function parse(src: any) {
         return cells;
     }
 
-    console.log(src);
-
     for(let i=0; i<src.length; i++) {
         if(src[i].type === "OBJECTIVE") {
             cells.push(
@@ -60,8 +58,6 @@ export function parse(src: any) {
             )
         }
     }
-
-    console.log(cells);
 
     return cells;
 }

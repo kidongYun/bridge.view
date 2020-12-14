@@ -7,6 +7,7 @@ import TextareaComponent from '../atoms/TextareaComponent'
 import SelectComponent from '../atoms/SelectComponent'
 import ButtonComponent from '../atoms/ButtonComponent'
 
+import useCell from '../../redux/cell/hook'
 import usePage from '../../redux/page/hook'
 import useNoti from '../../redux/noti/hook'
 import useObjectives from '../../redux/objectives/hook'
@@ -20,14 +21,100 @@ interface ObjectivePostProps {
 
 const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
 }) => {
+    const { selectCell } = useCell();
     const { setDialog, setLeft } = usePage();
     const { showNoti, hideNoti } = useNoti();
-    const { selectObjectives, postObjectives, getObjectives } = useObjectives();
+    const { postObjectives, putObjectives } = useObjectives();
 
+    let postOrPut: string = "POST";
+
+    let id: number = -1;
     let title: string = "";
     let description: string = "";
-    let priority: number = 0;
+    let priority: number = 1;
     let deadline: string = "";
+
+    if(selectCell instanceof Objective && selectCell.type === "OBJECTIVE") {
+        postOrPut = "PUT";
+        
+        id = selectCell.id;
+        title = selectCell.title;
+        description = selectCell.description;
+        priority = selectCell.priority;
+        deadline = selectCell.endDateTime;
+    }
+
+    let buttons = <></>;
+    if(postOrPut == "POST") {
+        buttons = 
+        <>
+            <ButtonComponent 
+                theme="primary" 
+                text="Add"
+                onClick={() => {
+
+                    const obj: Objective = new ObjectiveBuilder()
+                    .title(title).description(description)
+                    .endDateTime(deadline).priority(priority).build();
+
+                    postObjectives(obj);
+                    showNoti("Objective is Created", "success");
+                    setTimeout(hideNoti, 2300);
+
+                    if(window.innerWidth >= 1000) {
+                        setLeft(new TemplateBuilder().display(false).build());
+                    } else {
+                        setDialog(new TemplateBuilder().display(false).build());
+                    }
+                }}
+            />
+        </>;
+    } else if(postOrPut == "PUT") {
+        buttons =
+        <>
+            <ButtonComponent 
+                theme="primary" 
+                text="Modify"
+                onClick={() => {
+
+                    const obj: Objective = new ObjectiveBuilder()
+                    .id(id).title(title).description(description)
+                    .endDateTime(deadline).priority(priority).build();
+                    
+                    putObjectives(obj);
+                    showNoti("Objective is Updated", "success");
+                    setTimeout(hideNoti, 2300);
+
+                    if(window.innerWidth >= 1000) {
+                        setLeft(new TemplateBuilder().display(false).build());
+                    } else {
+                        setDialog(new TemplateBuilder().display(false).build());
+                    }
+                }}
+            />
+
+            <ButtonComponent 
+                theme="danger" 
+                text="Remove"
+                onClick={() => {
+
+                    const obj: Objective = new ObjectiveBuilder()
+                    .id(id).title(title).description(description)
+                    .endDateTime(deadline).priority(priority).build();
+                    
+                    putObjectives(obj);
+                    showNoti("Objective is Updated", "success");
+                    setTimeout(hideNoti, 2300);
+
+                    if(window.innerWidth >= 1000) {
+                        setLeft(new TemplateBuilder().display(false).build());
+                    } else {
+                        setDialog(new TemplateBuilder().display(false).build());
+                    }
+                }}
+            />
+        </>;
+    }
 
     let view =
     <Component 
@@ -37,11 +124,12 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
         width="80%">
         
         <Component borderBottom="solid 1px #eeeeee">
-            <LabelComponent label="Create Objective" size="20pt" />
+            <LabelComponent label="Objective" size="20pt" />
         </Component>
 
         <Component>
-            <TextComponent 
+            <TextComponent
+                value={title}
                 placeholder="TITLE"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     const { value } = event.target; 
@@ -52,6 +140,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
 
         <Component>
             <TextareaComponent 
+                value={description}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     const { value } = event.target;
                     description = value;
@@ -65,7 +154,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
 
         <Component>
             <SelectComponent
-                value="Major"
+                value={priority + ""}
                 options={[
                     { title: "Major", value: "1" },
                     { title: "Minor", value: "2" }
@@ -105,27 +194,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
 
                 }}
             />
-            <ButtonComponent 
-                theme="primary" 
-                text="Add"
-                onClick={() => {
-
-                    const obj: Objective = new ObjectiveBuilder()
-                    .title(title).description(description)
-                    .endDateTime(deadline).priority(priority).build();
-
-                    postObjectives(obj);
-
-                    if(window.innerWidth >= 1000) {
-                        setLeft(new TemplateBuilder().display(false).build());
-                    } else {
-                        setDialog(new TemplateBuilder().display(false).build());
-                    }
-
-                    showNoti("Objective is Created", "success");
-                    setTimeout(hideNoti, 2300);
-                }}
-            />
+            {buttons}
         </Component>
     </Component>
 

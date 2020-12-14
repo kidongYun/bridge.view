@@ -23,12 +23,12 @@ interface MainProps {}
 const MainLayout: React.FC<MainProps> = () => {
     const { selectPage, setCenter, setDialog } = usePage();
     const { selectNoti } = useNoti();
-    const { selectObjectives, getObjectives, postObjectives } = useObjectives();
+    const { selectObjectives, getObjectives } = useObjectives();
     const { selectPlans, getPlans } = usePlans();
 
     React.useEffect(() => {
         getObjectives(true);
-        // getPlans(true);
+        getPlans(true);
     }, []);
 
     let noti = <></>;
@@ -74,8 +74,6 @@ const MainLayout: React.FC<MainProps> = () => {
             }
         ]} 
     />
-
-    console.log(selectObjectives);
 
     let center = <></>;
     if(selectPage.center.component === "ObjectiveList") {

@@ -1,50 +1,26 @@
 import { createAsyncAction } from 'typesafe-actions';
 import { AxiosError, AxiosResponse } from 'axios'
 
-export const GET_OBJECTIVES_ACTION = 'GET_OBJECTIVES_ACTION' as const
-export const GET_OBJECTIVES_SUCCESS_ACTION = 'GET_OBJECTIVES_SUCCESS_ACTION' as const
-export const GET_OBJECTIVES_ERROR_ACTION = 'GET_OBJECTIVES_ERROR_ACTION' as const
+export const OBJECTIVES_REQ_ACTION = 'OBJECTIVES_REQ_ACTION' as const
+export const OBJECTIVES_SUCCESS_ACTION = 'OBJECTIVES_SUCCESS_ACTION' as const
+export const OBJECTIVES_ERROR_ACTION = 'OBJECTIVES_ERROR_ACTION' as const
 
-export const POST_OBJECTIVES_ACTION = 'POST_OBJECTIVES_ACTION' as const
-export const POST_OBJECTIVES_SUCCESS_ACTION = 'POST_OBJECTIVES_SUCCESS_ACTION' as const
-export const POST_OBJECTIVES_ERROR_ACTION = 'POST_OBJECTIVES_ERROR_ACTION' as const
-
-export const getObjectivesAction = () => ({
-    type: GET_OBJECTIVES_ACTION
+export const objectivesReqAction = () => ({
+    type: OBJECTIVES_REQ_ACTION
 })
 
-export const getObjectivesSuccessAction = (response: AxiosResponse) => ({
-    type: GET_OBJECTIVES_SUCCESS_ACTION,
+export const objectivesSuccessAction = (response: AxiosResponse) => ({
+    type: OBJECTIVES_SUCCESS_ACTION,
     payload: response
 })
 
-export const getObjectivesErrorAction = (error: AxiosError) => ({
-    type: GET_OBJECTIVES_ERROR_ACTION,
+export const objectivesErrorAction = (error: AxiosError) => ({
+    type: OBJECTIVES_ERROR_ACTION,
     payload: error
 })
 
-export const postObjectivesAction = () => ({
-    type: POST_OBJECTIVES_ACTION,
-})
-
-export const postObjectivesSuccessAction = (response: AxiosResponse) => ({
-    type: POST_OBJECTIVES_SUCCESS_ACTION,
-    payload: response
-})
-
-export const postObjectivesErrorAction = (error: AxiosError) => ({
-    type: POST_OBJECTIVES_ERROR_ACTION,
-    payload: error
-})
-
-export const getObjectivesAsyncAction = createAsyncAction(
-    GET_OBJECTIVES_ACTION,
-    GET_OBJECTIVES_SUCCESS_ACTION,
-    GET_OBJECTIVES_ERROR_ACTION
-)<undefined, AxiosResponse, AxiosError>();
-
-export const postObjectivesAsyncAction = createAsyncAction(
-    POST_OBJECTIVES_ACTION,
-    POST_OBJECTIVES_SUCCESS_ACTION,
-    POST_OBJECTIVES_ERROR_ACTION
+export const objectivesAsyncAction = createAsyncAction(
+    OBJECTIVES_REQ_ACTION,
+    OBJECTIVES_SUCCESS_ACTION,
+    OBJECTIVES_ERROR_ACTION
 )<undefined, AxiosResponse, AxiosError>();
