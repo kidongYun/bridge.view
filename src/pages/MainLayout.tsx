@@ -15,6 +15,7 @@ import SignComponent from '../components/organisms/SignComponent'
 import usePage from '../redux/page/hook'
 import useNoti from '../redux/noti/hook'
 import useObjectives from '../redux/objectives/hook'
+import usePlans from '../redux/plans/hook'
 import { TemplateBuilder } from '../redux/stores/template';
 
 interface MainProps {}
@@ -23,9 +24,11 @@ const MainLayout: React.FC<MainProps> = () => {
     const { selectPage, setCenter, setDialog } = usePage();
     const { selectNoti } = useNoti();
     const { selectObjectives, getObjectives, postObjectives } = useObjectives();
+    const { selectPlans, getPlans } = usePlans();
 
     React.useEffect(() => {
         getObjectives(true);
+        // getPlans(true);
     }, []);
 
     let noti = <></>;
@@ -72,15 +75,13 @@ const MainLayout: React.FC<MainProps> = () => {
         ]} 
     />
 
-    // console.log(selectObjectives.body);
-    let test = util.parse(selectObjectives.body);
-    // console.log(test);
+    console.log(selectObjectives);
 
     let center = <></>;
     if(selectPage.center.component === "ObjectiveList") {
-        center = <ObjectiveListComponent objectives={ test }/>
+        center = <ObjectiveListComponent objectives={ util.parse(selectObjectives.body) }/>
     } else if(selectPage.center.component === "PlanList") {
-        center = <PlanListComponent/>;
+        center = <PlanListComponent plans={ util.parse(selectPlans.body) }/>;
     } else if(selectPage.center.component === "TodoList") {
         center = <TodoListComponent/>;
     }

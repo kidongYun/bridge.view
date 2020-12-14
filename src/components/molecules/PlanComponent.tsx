@@ -11,8 +11,8 @@ interface PlanProps {
 const PlanComponent: React.FC<PlanProps> = (props) => {
     let view =
     <Component
-        height="250px" 
-        activeHeight="260px" 
+        height="100px" 
+        activeHeight="110px" 
         backgroundColor="#eeeeee" 
         backgroundHover="#e4e4e4"
         borderRadius="10px"

@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../configureStore';
+import Objective from '../stores/objective';
 import { getObjectivesThunk, postObjectivesThunk } from './thunk'
 
 export default function useObjectives() {
@@ -7,7 +8,7 @@ export default function useObjectives() {
 
     const dispatch = useDispatch();
     const getObjectives = (date: boolean) => { dispatch(getObjectivesThunk(date)) }
-    const postObjectives = () => { dispatch(postObjectivesThunk()) }
+    const postObjectives = (param: Objective) => { dispatch(postObjectivesThunk(param)) }
 
     return {
         selectObjectives,

@@ -24,7 +24,8 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
 
     let objectives = <></>;
     if(props.objectives !== undefined) {
-        objectives = <>
+        objectives = 
+        <>
         {
             props.objectives.map(cell => {
                 if(cell instanceof Objective && cell.type === "OBJECTIVE") {
@@ -47,28 +48,6 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
         }
         </>;
     }
-
-    // let objectives = <></>;
-    // if(props.objectives !== undefined) {
-    //     objectives = props.objectives.map(cell => {
-    //         if(cell instanceof Objective && cell.type === "OBJECTIVE") {
-    //             return <ObjectiveComponent
-    //                 title={cell.title}
-    //                 description={cell.description}
-    //                 deadline={cell.getDate()}
-    //                 onClick={() => {
-    //                     setObjective(new ObjectiveBuilder().type(cell.type)
-    //                     .endDateTime(cell.endDateTime).id(cell.id)
-    //                     .title(cell.title).description(cell.description).build());
-    //                 }}
-    //             />
-    //         }
-
-    //         if(cell instanceof Date && cell.type === "DATE") {
-    //             return <DateComponent date={cell.getDate()} />
-    //         }
-    //     })
-    // }
 
     let view =
     <Component direction="column" display="inline-block">

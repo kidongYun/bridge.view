@@ -7,8 +7,7 @@ import Cell from '../stores/cell'
 const objectives = createReducer<Response<Cell[]>, ObjectivesAction>(new Response(), {
     [GET_OBJECTIVES_ACTION]: state => ({
         ...state,
-        status: undefined,
-        body: undefined
+        status: undefined
     }),
     [GET_OBJECTIVES_SUCCESS_ACTION]: (state, action) => ({
         ...state,
@@ -17,17 +16,16 @@ const objectives = createReducer<Response<Cell[]>, ObjectivesAction>(new Respons
     }),
     [GET_OBJECTIVES_ERROR_ACTION]: (state, action) => ({
         ...state,
-        status: action.payload.response!.status,
-        body: action.payload.response!.data
+        status: action.payload.response!.status
     }),
     [POST_OBJECTIVES_ACTION]: state => ({
         ...state,
         status: undefined,
-        body: undefined
     }),
     [POST_OBJECTIVES_SUCCESS_ACTION]: (state, action) => ({
         ...state,
-        status: action.payload.status
+        status: action.payload.status,
+        body: action.payload.data
     }),
     [POST_OBJECTIVES_ERROR_ACTION]: (state, action) => ({
         ...state,

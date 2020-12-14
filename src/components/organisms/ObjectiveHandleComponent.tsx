@@ -110,12 +110,11 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
                 text="Add"
                 onClick={() => {
 
-                    postObjectives();
-                    getObjectives(true);
-
                     const obj: Objective = new ObjectiveBuilder()
-                        .title(title).description(description)
-                        .endDateTime(deadline).priority(priority).build();
+                    .title(title).description(description)
+                    .endDateTime(deadline).priority(priority).build();
+
+                    postObjectives(obj);
 
                     if(window.innerWidth >= 1000) {
                         setLeft(new TemplateBuilder().display(false).build());
