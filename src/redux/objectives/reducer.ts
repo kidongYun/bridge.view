@@ -3,9 +3,8 @@ import { ObjectivesAction } from './type'
 import { GET_OBJECTIVES_ACTION, GET_OBJECTIVES_SUCCESS_ACTION, GET_OBJECTIVES_ERROR_ACTION, POST_OBJECTIVES_ACTION, POST_OBJECTIVES_SUCCESS_ACTION, POST_OBJECTIVES_ERROR_ACTION } from './action'
 import Response from '../stores/response';
 import Cell from '../stores/cell'
-import Objective from '../stores/objective';
 
-const objectives = createReducer<Response<Cell[] | Objective>, ObjectivesAction>(new Response(), {
+const objectives = createReducer<Response<Cell[]>, ObjectivesAction>(new Response(), {
     [GET_OBJECTIVES_ACTION]: state => ({
         ...state,
         status: undefined,
@@ -28,13 +27,11 @@ const objectives = createReducer<Response<Cell[] | Objective>, ObjectivesAction>
     }),
     [POST_OBJECTIVES_SUCCESS_ACTION]: (state, action) => ({
         ...state,
-        status: action.payload.status,
-        body: action.payload.data
+        status: action.payload.status
     }),
     [POST_OBJECTIVES_ERROR_ACTION]: (state, action) => ({
         ...state,
-        status: action.payload.response!.status,
-        body: action.payload.response!.data
+        status: action.payload.response!.status
     })
 });
 

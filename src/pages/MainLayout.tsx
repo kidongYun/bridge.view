@@ -5,7 +5,7 @@ import * as util from '../service/Utility'
 
 import ObjectiveListComponent from '../components/organisms/ObjectiveListComponent'
 import NavigationComponent from '../components/organisms/NavigationComponent'
-import PlanListComponent from '../components/organisms/PlanLIstComponent'
+import PlanListComponent from '../components/organisms/PlanListComponent'
 import TodoListComponent from '../components/organisms/TodoListComponent'
 import NotiComponent from '../components/atoms/NotiComponent'
 import DialogComponent from '../components/templates/DialogComponent'

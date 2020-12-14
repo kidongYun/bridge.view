@@ -14,9 +14,7 @@ export function parse(src: any) {
     console.log(src);
 
     for(let i=0; i<src.length; i++) {
-        console.log(src[i].type);
         if(src[i].type === "OBJECTIVE") {
-            console.log("OBJ!!!");
             cells.push(
                 new ObjectiveBuilder()
                 .startDateTime(src[i].startDateTime)
@@ -30,7 +28,6 @@ export function parse(src: any) {
         }
 
         if(src[i].type === "PLAN") {
-            console.log("PLAN!!!");
             cells.push(
                 new PlanBuilder()
                 .startDateTime(src[i].startDateTime)
@@ -43,7 +40,6 @@ export function parse(src: any) {
         }
 
         if(src[i].type === "TODO") {
-            console.log("TODO!!!");
             cells.push(
                 new TodoBuilder()
                 .startDateTime(src[i].startDateTime)
@@ -56,7 +52,6 @@ export function parse(src: any) {
         }
 
         if(src[i].type === "DATE") {
-            console.log("DATE!!!");
             cells.push(
                 new DateBuilder()
                 .startDateTime(src[i].startDateTime)

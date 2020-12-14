@@ -111,6 +111,7 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
                 onClick={() => {
 
                     postObjectives();
+                    getObjectives(true);
 
                     const obj: Objective = new ObjectiveBuilder()
                         .title(title).description(description)
