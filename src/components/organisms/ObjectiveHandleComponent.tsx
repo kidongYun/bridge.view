@@ -1,5 +1,5 @@
 import React from 'react'
-import Component, { ComponentProps } from '../templates/Component'
+import Component from '../templates/Component'
 
 import LabelComponent from '../atoms/LabelComponent'
 import TextComponent from '../atoms/TextComponent'
@@ -15,12 +15,9 @@ import useObjectives from '../../redux/objectives/hook'
 import { TemplateBuilder } from '../../redux/stores/template'
 import Objective, { ObjectiveBuilder } from '../../redux/stores/objective'
 
-interface ObjectivePostProps {
-    component?: ComponentProps
-}
+interface ObjectiveHandleProps {}
 
-const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
-}) => {
+const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
     const { selectCell } = useCell();
     const { setDialog, setLeft } = usePage();
     const { showNoti, hideNoti } = useNoti();
@@ -201,4 +198,4 @@ const ObjectivePostComponent: React.FC<ObjectivePostProps> = ({
     return view;
 }
 
-export default ObjectivePostComponent;
+export default ObjectiveHandleComponent;

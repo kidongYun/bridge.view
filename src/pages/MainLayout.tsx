@@ -17,6 +17,7 @@ import useNoti from '../redux/noti/hook'
 import useObjectives from '../redux/objectives/hook'
 import usePlans from '../redux/plans/hook'
 import { TemplateBuilder } from '../redux/stores/template';
+import PlanHandleComponent from '../components/organisms/PlanHandleComponent'
 
 interface MainProps {}
 
@@ -79,7 +80,7 @@ const MainLayout: React.FC<MainProps> = () => {
     if(selectPage.center.component === "ObjectiveList") {
         center = <ObjectiveListComponent objectives={ util.parse(selectObjectives.body) }/>
     } else if(selectPage.center.component === "PlanList") {
-        center = <PlanListComponent plans={ util.parse(selectPlans.body) }/>;
+        center = <PlanListComponent objectives={ util.parse(selectObjectives.body) } plans={ util.parse(selectPlans.body) }/>;
     } else if(selectPage.center.component === "TodoList") {
         center = <TodoListComponent/>;
     }
@@ -87,6 +88,8 @@ const MainLayout: React.FC<MainProps> = () => {
     let left = <></>;
     if(selectPage.left.component === "ObjectiveHandle") {
         left = <ObjectiveHandleComponent/>;
+    } else if(selectPage.left.component === "PlanHandle") {
+        left = <PlanHandleComponent/>;
     }
 
     let view =

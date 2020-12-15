@@ -18,6 +18,11 @@ export class PlanBuilder {
         this.plan = new Plan();
     }
 
+    type(type: "CELL" | "SUBJECT" | "OBJECTIVE" | "PLAN" | "TODO" | "DATE"): PlanBuilder {
+        this.plan.type = type;
+        return this;
+    }
+
     startDateTime(startDateTime: string): PlanBuilder {
         this.plan.startDateTime = startDateTime;
         return this;
