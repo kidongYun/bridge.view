@@ -10,27 +10,20 @@ import TodoListComponent from '../components/organisms/TodoListComponent'
 import NotiComponent from '../components/atoms/NotiComponent'
 import DialogComponent from '../components/templates/DialogComponent'
 import ObjectiveHandleComponent from '../components/organisms/ObjectiveHandleComponent'
+import PlanHandleComponent from '../components/organisms/PlanHandleComponent'
 import SignComponent from '../components/organisms/SignComponent'
 
 import usePage from '../redux/page/hook'
 import useNoti from '../redux/noti/hook'
-import useObjectives from '../redux/objectives/hook'
 import usePlans from '../redux/plans/hook'
 import { TemplateBuilder } from '../redux/stores/template';
-import PlanHandleComponent from '../components/organisms/PlanHandleComponent'
 
 interface MainProps {}
 
 const MainLayout: React.FC<MainProps> = () => {
     const { selectPage, setCenter, setDialog } = usePage();
     const { selectNoti } = useNoti();
-    const { selectObjectives, getObjectives } = useObjectives();
-    const { selectPlans, getPlans } = usePlans();
-
-    React.useEffect(() => {
-        getObjectives(true);
-        getPlans(true);
-    }, []);
+    const { selectPlans } = usePlans();
 
     let noti = <></>;
     if(selectNoti.visible) {
@@ -78,9 +71,9 @@ const MainLayout: React.FC<MainProps> = () => {
 
     let center = <></>;
     if(selectPage.center.component === "ObjectiveList") {
-        center = <ObjectiveListComponent objectives={ util.parse(selectObjectives.body) }/>
+        center = <ObjectiveListComponent/>
     } else if(selectPage.center.component === "PlanList") {
-        center = <PlanListComponent objectives={ util.parse(selectObjectives.body) } plans={ util.parse(selectPlans.body) }/>;
+        center = <PlanListComponent/>;
     } else if(selectPage.center.component === "TodoList") {
         center = <TodoListComponent/>;
     }

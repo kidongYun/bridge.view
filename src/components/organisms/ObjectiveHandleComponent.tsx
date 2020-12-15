@@ -21,7 +21,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
     const { selectCell } = useCell();
     const { setDialog, setLeft } = usePage();
     const { showNoti, hideNoti } = useNoti();
-    const { postObjectives, putObjectives } = useObjectives();
+    const { postObjectives, putObjectives, deleteObjectives } = useObjectives();
 
     let postOrPut: string = "POST";
 
@@ -94,13 +94,8 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                 theme="danger" 
                 text="Remove"
                 onClick={() => {
-
-                    const obj: Objective = new ObjectiveBuilder()
-                    .id(id).title(title).description(description)
-                    .endDateTime(deadline).priority(priority).build();
-                    
-                    putObjectives(obj);
-                    showNoti("Objective is Updated", "success");
+                    deleteObjectives(id);
+                    showNoti("Objective is removed", "success");
                     setTimeout(hideNoti, 2300);
 
                     if(window.innerWidth >= 1000) {

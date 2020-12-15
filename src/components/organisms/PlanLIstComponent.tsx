@@ -1,13 +1,16 @@
 import React from 'react'
 import Component from '../templates/Component'
-import Cell from '../../redux/stores/cell';
+import * as util from '../../service/Utility'
 
+import useObjectives from '../../redux/objectives/hook'
+import usePlans from '../../redux/plans/hook'
 import useCell from '../../redux/cell/hook'
 import usePage from '../../redux/page/hook'
 
 import PlanComponent from '../molecules/PlanComponent';
 import DateComponent from '../molecules/DateComponent';
 
+import Cell from '../../redux/stores/cell';
 import Objective from '../../redux/stores/objective';
 import Plan, { PlanBuilder } from '../../redux/stores/plan';
 import Date from '../../redux/stores/date'
@@ -15,25 +18,32 @@ import Date from '../../redux/stores/date'
 import { TemplateBuilder } from '../../redux/stores/template';
 
 interface PlanListProps {
-    plans?: Cell[];
-    objectives?: Cell[];
 }
 
 const PlanListComponent: React.FC<PlanListProps> = (props) => {
+    const { selectObjectives } = useObjectives();
+    const { selectPlans, getPlans } = usePlans();
     const { setPlan } = useCell();
     const { setDialog, setLeft } = usePage();
 
-    let plans = <></>;
-    if(props.plans !== undefined) {
+    React.useEffect(() => {
+        getPlans(true);
+    }, [])
 
-        plans = 
+    const plans: Cell[] = util.parse(selectPlans.body)
+    const objectives: Cell[] = util.parse(selectObjectives.body)
+
+    let plansView = <></>;
+    if(plans !== undefined) {
+
+        plansView = 
         <> 
         {
-            props.plans.map(cell => {
+            plans.map(cell => {
                 if(cell instanceof Plan && cell.type === "PLAN") {
                     let objective: Objective | undefined = undefined;
                     
-                    props.objectives!.map(obj => {
+                    objectives!.map(obj => {
                         if(obj instanceof Objective && obj.type === "OBJECTIVE") {
                             if(obj.id === cell.objectiveId) {
                                 objective = obj;
@@ -64,7 +74,7 @@ const PlanListComponent: React.FC<PlanListProps> = (props) => {
 
     let view =
     <Component direction="column" display="inline-block">
-        {plans}
+        {plansView}
     </Component>
 
     return view;

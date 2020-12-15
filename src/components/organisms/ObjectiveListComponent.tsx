@@ -1,9 +1,11 @@
 import React from 'react'
 import Component from '../templates/Component'
+import * as util from '../../service/Utility'
 
 import Objective from '../../redux/stores/objective'
 import Date from '../../redux/stores/date';
 
+import useObjectives from '../../redux/objectives/hook'
 import useCell from '../../redux/cell/hook'
 import usePage from '../../redux/page/hook'
 
@@ -14,20 +16,25 @@ import Cell from '../../redux/stores/cell';
 import { ObjectiveBuilder } from '../../redux/stores/objective'
 import { TemplateBuilder } from '../../redux/stores/template';
 
-interface ObjectiveListProps {
-    objectives?: Cell[];
-}
+interface ObjectiveListProps {}
 
-const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
+const ObjectiveListComponent: React.FC<ObjectiveListProps> = () => {
+    const { selectObjectives, getObjectives } = useObjectives();
     const { setObjective } = useCell();
     const { setDialog, setLeft } = usePage();
 
-    let objectives = <></>;
-    if(props.objectives !== undefined) {
-        objectives = 
+    React.useEffect(() => {
+        getObjectives(true);
+    }, [])
+
+    const objectives: Cell[] = util.parse(selectObjectives.body)
+
+    let objectivesView = <></>;
+    if(objectives !== undefined) {
+        objectivesView = 
         <>
         {
-            props.objectives.map(cell => {
+            objectives.map(cell => {
                 if(cell instanceof Objective && cell.type === "OBJECTIVE") {
                     return <ObjectiveComponent
                         title={cell.title}
@@ -66,7 +73,7 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = (props) => {
                 }
             }}
         />
-        {objectives}
+        {objectivesView}
     </Component>
 
     return view;
