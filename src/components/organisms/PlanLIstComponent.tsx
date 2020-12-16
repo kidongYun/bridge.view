@@ -73,7 +73,7 @@ const PlanListComponent: React.FC<PlanListProps> = (props) => {
     }
 
     let view =
-    <Component direction="column" display="inline-block">
+    <Component direction="column" display="inline-block" width="90%" height="90%">
         {plansView}
     </Component>
 

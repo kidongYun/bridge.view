@@ -112,57 +112,78 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
     <Component 
         direction="column" 
         marginLeft="auto" 
-        marginRight="auto"
+        marginRight="auto" 
         width="80%">
-        
+
         <Component borderBottom="solid 1px #eeeeee">
-            <LabelComponent label="Objective" size="20pt" />
+            <LabelComponent label="목표" size="20pt" />
         </Component>
 
-        <Component>
-            <TextComponent
-                value={title}
-                placeholder="TITLE"
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    const { value } = event.target; 
-                    title = value; 
-                }}
-            />      
+        <Component height="50%" horizontalAlign="flex-start" verticalAlign="flex-end">
+            <Component width="auto" height="auto">
+                <LabelComponent label="목표"/>
+            </Component>
         </Component>
 
-        <Component>
-            <TextareaComponent 
-                value={description}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    const { value } = event.target;
-                    description = value;
-                }}
-            />
+        <Component height="50%" verticalAlign="flex-start">
+            <Component height="auto">
+                <TextComponent
+                    value={title}
+                    placeholder="목표를 입력해주세요"
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        const { value } = event.target; 
+                        title = value; 
+                    }}
+                />     
+            </Component> 
         </Component>
 
-        <Component horizontalAlign="flex-start" verticalAlign="flex-end">
-            <Component width="auto" height="auto"><LabelComponent label="Priority" /></Component>
+        <Component height="50%" horizontalAlign="flex-start" verticalAlign="flex-end">
+            <Component width="auto" height="auto">
+                <LabelComponent label="설명"/>
+            </Component>
         </Component>
 
-        <Component>
-            <SelectComponent
-                value={priority + ""}
-                options={[
-                    { title: "Major", value: "1" },
-                    { title: "Minor", value: "2" }
-                ]}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    const { value } = event.target;
-                    priority = Number.parseInt(value);
-                }} 
-            />
+        <Component height="200%" verticalAlign="flex-start">
+            <Component height="auto">
+                <TextareaComponent 
+                    placeholder="어떤 목표인지 자세히 알려주세요"
+                    value={description}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        const { value } = event.target;
+                        description = value;
+                    }}
+                />
+            </Component>
         </Component>
 
-        <Component horizontalAlign="flex-start" verticalAlign="flex-end">
-            <Component width="auto" height="auto"><LabelComponent label="Deadline" /></Component>
+        <Component height="50%" horizontalAlign="flex-start" verticalAlign="flex-end">
+            <Component width="auto" height="auto">
+                <LabelComponent label="중요도"/>
+            </Component>
         </Component>
 
-        <Component >
+        <Component height="50%" verticalAlign="flex-start">
+            <Component height="auto">
+                <SelectComponent
+                    value={priority + ""}
+                    options={[
+                        { title: "Major", value: "1" },
+                        { title: "Minor", value: "2" }
+                    ]}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        const { value } = event.target;
+                        priority = Number.parseInt(value);
+                    }} 
+                />
+            </Component>
+        </Component>
+
+        <Component height="50%" horizontalAlign="flex-start" verticalAlign="flex-end">
+            <Component width="auto" height="auto"><LabelComponent label="기한" /></Component>
+        </Component>
+
+        <Component height="50%">
             <TextComponent 
                 placeholder="2020-07-21"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {

@@ -102,7 +102,7 @@ const MainLayout: React.FC<MainProps> = () => {
                 {center}
             </Component>
             <Animation display={selectPage.left.display}>
-                <Component width="80%" height="80%">
+                <Component width="80%" height="80%" borderLeft="1px solid #eeeeee">
                     {left}
                 </Component>
             </Animation>

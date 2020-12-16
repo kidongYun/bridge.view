@@ -9,13 +9,6 @@ interface LabelProps {
     weight?: string
 }
 
-const defaultProps: LabelProps = {
-    label: "",
-    size: "10pt",
-    color: "#000000",
-    weight: "normal"
-}
-
 const LabelComponent: React.FC<LabelProps> = (props) => {
     let view = 
     <Component fontSize={props.size} fontWeight={props.weight} color={props.color}>
@@ -25,6 +18,11 @@ const LabelComponent: React.FC<LabelProps> = (props) => {
     return view;
 }
 
-LabelComponent.defaultProps = defaultProps;
+LabelComponent.defaultProps = {
+    label: "",
+    size: "10pt",
+    color: "#000000",
+    weight: "normal"
+}
 
 export default LabelComponent;

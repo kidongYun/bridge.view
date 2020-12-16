@@ -20,7 +20,7 @@ interface ObjectiveListProps {}
 
 const ObjectiveListComponent: React.FC<ObjectiveListProps> = () => {
     const { selectObjectives, getObjectives } = useObjectives();
-    const { setObjective } = useCell();
+    const { setObjective, flush } = useCell();
     const { setDialog, setLeft } = usePage();
 
     React.useEffect(() => {
@@ -63,7 +63,7 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = () => {
     }
 
     let view =
-    <Component direction="column" display="inline-block">
+    <Component direction="column" display="inline-block" width="90%" height="90%">
         <AddComponent 
             onClick={() => {
                 if(window.innerWidth >= 1000) {
@@ -71,6 +71,8 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = () => {
                 } else {
                     setDialog(new TemplateBuilder().display(true).component("ObjectiveHandle").build());
                 }
+
+                flush();
             }}
         />
         {objectivesView}
