@@ -8,10 +8,6 @@ export default class Cell {
         this.startDateTime = "0000-00-00";
         this.endDateTime = "0000-00-00";
     }
-
-    getDate(): string {
-        return this.endDateTime.substring(0, 10);
-    }
 }
 
 export class CellBuilder {

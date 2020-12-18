@@ -37,9 +37,7 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = () => {
             objectives.map(cell => {
                 if(cell instanceof Objective && cell.type === "OBJECTIVE") {
                     return <ObjectiveComponent
-                        title={cell.title}
-                        description={cell.description}
-                        deadline={cell.getDate()}
+                        objective={cell}
                         onClick={() => {
                             if(window.innerWidth >= 1000) {
                                 setLeft(new TemplateBuilder().display(true).component("ObjectiveHandle").build());
@@ -55,7 +53,7 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = () => {
                 }
 
                 if(cell instanceof Date && cell.type === "DATE") {
-                    return <DateComponent date={cell.getDate()} />
+                    return <DateComponent date={cell.endDateTime.substring(0, 10)} />
                 }
             })
         }

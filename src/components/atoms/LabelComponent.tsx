@@ -6,7 +6,7 @@ interface LabelProps {
     label?: string
     size?: string
     color?: string
-    weight?: string
+    weight?: "normal" | "bold" | "bolder" | "lighter" | "number" | "initial" | "inherit"
 }
 
 const LabelComponent: React.FC<LabelProps> = (props) => {

@@ -65,7 +65,7 @@ const PlanListComponent: React.FC<PlanListProps> = (props) => {
                 }
 
                 if(cell instanceof Date && cell.type === "DATE") {
-                    return <DateComponent date={cell.getDate()} />
+                    return <DateComponent date={cell.endDateTime.substring(0, 7)} />
                 }
             })
         }
