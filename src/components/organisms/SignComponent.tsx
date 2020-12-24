@@ -1,6 +1,5 @@
 import React from 'react'
 import Component from '../templates/Component'
-import Sign from '../../redux/stores/sign'
 
 import usePage from '../../redux/page/hook'
 import useNoti from '../../redux/noti/hook';
@@ -17,7 +16,6 @@ interface SignProps {
 const SignComponent: React.FC<SignProps> = ({
 }) => {
     const { setDialog } = usePage();
-    const { showNoti, hideNoti } = useNoti();
     const { selectSign, signIn, signUp } = useSign();
 
 

@@ -40,7 +40,7 @@ const PlanComponent: React.FC<PlanProps> = (props) => {
             </Component>
             <LabelComponent label={props.plan.content}/>
         </Component>
-        <Component>
+        <Component width="10%">
         </Component>
     </Component>
 
