@@ -1,7 +1,6 @@
 import React from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import Component from '../components/templates/Component'
-import * as util from '../service/Utility'
 
 import ObjectiveListComponent from '../components/organisms/ObjectiveListComponent'
 import NavigationComponent from '../components/organisms/NavigationComponent'

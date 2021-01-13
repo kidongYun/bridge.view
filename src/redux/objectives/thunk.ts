@@ -11,7 +11,7 @@ export function getObjectivesThunk(date: boolean): ThunkAction<void, RootState, 
         const { request, success, failure } = objectivesAsyncAction;
         dispatch(request());
         try {
-            const response = await getObjectives(date);
+            const response = await getObjectives("john@gmail.com");
             dispatch(success(response));
         } catch (e) {
             dispatch(failure(e));
@@ -28,7 +28,7 @@ export function postObjectivesThunk(param: Objective): ThunkAction<void, RootSta
         } catch (e) {
             dispatch(failure(e));
         } finally {
-            const response = await getObjectives(true);
+            const response = await getObjectives("john@gmail.com");
             dispatch(success(response));
         }
     }
@@ -43,7 +43,7 @@ export function putObjectivesThunk(param: Objective): ThunkAction<void, RootStat
         } catch (e) {
             dispatch(failure(e));
         } finally {
-            const response = await getObjectives(true);
+            const response = await getObjectives("john@gmail.com");
             dispatch(success(response));
         }
     }
@@ -58,14 +58,14 @@ export function deleteObjectivesThunk(id: number): ThunkAction<void, RootState, 
         } catch (e) {
             dispatch(failure(e));
         } finally {
-            const response = await getObjectives(true);
+            const response = await getObjectives("john@gmail.com");
             dispatch(success(response));
         }
     }
 }
 
-async function getObjectives(date: boolean) {
-    return await axios.get<Cell[]>("http://localhost:8080/objective", { params: { date: date }});
+async function getObjectives(email: string) {
+    return await axios.get<Cell[]>("http://localhost:8080/api/v1/objective/email/", { params: { email: email }});
 }
 
 async function postObjectives(param: { 
@@ -77,7 +77,7 @@ async function postObjectives(param: {
 }) {
     console.log(param);
 
-    return await axios.post<Objective>("http://localhost:8080/objective", param);
+    return await axios.post<Objective>("http://localhost:8080/objective", param, { auth: { username: "john@gmail.com", password: "q1w2e3r4" }});
 }
 
 async function putObjectives(param: {
