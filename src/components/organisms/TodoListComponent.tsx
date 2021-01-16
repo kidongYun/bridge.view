@@ -1,5 +1,4 @@
 import React from 'react'
-import Component from '../templates/Component'
 
 interface TodoListProps {
 
