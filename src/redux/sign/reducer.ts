@@ -5,12 +5,10 @@ import Sign from '../stores/sign';
 import Response from '../stores/response';
 
 const sign = createReducer<Response<Sign>, SignAction>(new Response(), {
-    [SIGN_IN_ACTION]: (state, action) => ({
+    [SIGN_IN_ACTION]: state => ({
+        ...state,
         status: undefined,
-        body: {
-            email : action.payload.email,
-            password : action.payload.password
-        }
+        body: undefined
     }),
     [SIGN_IN_SUCCESS_ACTION]: (state, action) => ({
         ...state,
@@ -26,17 +24,27 @@ const sign = createReducer<Response<Sign>, SignAction>(new Response(), {
         status: undefined,
         body: undefined
     }),
-    [SIGN_UP_SUCCESS_ACTION]: (state, action) => {
-
-        console.log(action.payload);
-
-        return {
-            ...state,
-            status: action.payload.status,
-            body: action.payload.data
-        }
-    },
+    [SIGN_UP_SUCCESS_ACTION]: (state, action) => ({
+        ...state,
+        status: action.payload.status,
+        body: action.payload.data
+    }),
     [SIGN_UP_ERROR_ACTION]: (state, action) => ({
+        ...state,
+        status: action.payload.response!.status,
+        body: action.payload.response!.data
+    }),
+    [SIGN_ACTION]: state => ({
+        ...state,
+        status: undefined,
+        body: undefined
+    }),
+    [SIGN_SUCCESS_ACTION]: (state, action) => ({
+        ...state,
+        status: action.payload.status,
+        body: action.payload.data
+    }),
+    [SIGN_ERROR_ACTION]: (state, action) => ({
         ...state,
         status: action.payload.response!.status,
         body: action.payload.response!.data

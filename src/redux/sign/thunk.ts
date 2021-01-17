@@ -2,7 +2,7 @@ import axios from 'axios'
 import { ThunkAction } from 'redux-thunk'
 import { RootState } from '../configureStore'
 import { SignAction } from './type'
-import { signInAsyncAction, signUpAsyncAction } from './action'
+import { signAsyncAction, signInAsyncAction, signUpAsyncAction } from './action'
 
 export function signInThunk(param: { email: string, password: string }): ThunkAction<void, RootState, null, SignAction> {
     return async dispatch => {
@@ -30,10 +30,27 @@ export function signUpThunk(param: { email: string, password: string }): ThunkAc
     }
 }
 
+export function signThunk(): ThunkAction<void, RootState, null, SignAction> {
+    return async dispatch => {
+        const { request, success, failure } = signAsyncAction;
+        dispatch(request());
+        try {
+            const response = await callSign();
+            dispatch(success(response));
+        } catch (e) {
+            dispatch(failure(e));
+        }
+    }
+}
+
 async function callSignIn(param: { email: string, password: string }) {
     return await axios.post("http://localhost:8080/api/v1/sign/in", param);
 }
 
 async function callSignUp(param: { email: string, password: string }) {
     return await axios.post("http://localhost:8080/api/v1/sign/up", param);
+}
+
+async function callSign() {
+    return await axios.get("http://localhost:8080/api/v1/sign");
 }
