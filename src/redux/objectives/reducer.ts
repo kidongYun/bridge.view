@@ -14,10 +14,15 @@ const objectives = createReducer<Response<Cell[]>, ObjectivesAction>(new Respons
         status: action.payload.status,
         body: action.payload.data
     }),
-    [OBJECTIVES_ERROR_ACTION]: (state, action) => ({
-        ...state,
-        status: action.payload.response!.status
-    })
+    [OBJECTIVES_ERROR_ACTION]: (state, action) => {
+
+        console.log(action);
+
+        return {
+            ...state,
+            status: action.payload.response!.status
+        }
+    }
 });
 
 export default objectives;

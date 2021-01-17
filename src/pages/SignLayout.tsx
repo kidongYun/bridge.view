@@ -8,8 +8,6 @@ interface SignProps {}
 
 const SignLayout: React.FC<SignProps> = () => {
     const { selectSign, sign } = useSign();
-
-    sign();
     
     let view = 
     <Component backgroundColor="#eeeeee" backgroundHover="#eeeeee">

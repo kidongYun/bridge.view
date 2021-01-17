@@ -2,13 +2,22 @@ import React from 'react'
 import MainLayout from './pages/MainLayout';
 import SignLayout from './pages/SignLayout';
 
-const App = () => {
+import useSign from '../src/redux/sign/hook'
 
-    return (
-        <>
-            <SignLayout/>
-        </>
-    );
+const App = () => {
+    const { selectSign } = useSign();
+
+    console.log(selectSign);
+
+    let view = <></>;
+
+    if(selectSign.status !== 200) {
+        view = <SignLayout/>
+    } else {
+        view = <MainLayout/>
+    }
+
+    return view;
 }
 
 export default App;
