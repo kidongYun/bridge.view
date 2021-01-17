@@ -40,9 +40,6 @@ const sign = createReducer<Response<Sign>, SignAction>(new Response(), {
         ...state,
         status: action.payload.response!.status,
         body: action.payload.response!.data
-    }),
-    [SIGN_ACTION]: (state, action) => ({
-        
     })
 });
 
