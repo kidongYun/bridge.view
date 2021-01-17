@@ -8,8 +8,8 @@ const SignLayout: React.FC<SignProps> = () => {
     let view = 
     <Component backgroundColor="#eeeeee" backgroundHover="#eeeeee">
         <Component 
-            width="40%" 
-            height="50%" 
+            width="500px" 
+            height="350px" 
             backgroundColor="#ffffff" 
             backgroundHover="#ffffff" 
             borderRadius="10px">
