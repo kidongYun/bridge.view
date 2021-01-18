@@ -8,7 +8,6 @@ export default function useObjectives() {
     let selectObjectives: Array<Objective> = [];
 
     if(body instanceof Array) {
-        console.log(body);
         selectObjectives = body;
     }
 

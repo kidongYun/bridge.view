@@ -24,13 +24,15 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = () => {
 
     let objectivesView = <></>;
     if(selectObjectives !== undefined) {
+        console.log(selectObjectives);
+
         objectivesView = 
         <>
         {
-            selectObjectives.map(cell => {
-                if(cell instanceof Objective && cell.type === "OBJECTIVE") {
+            selectObjectives.map(obj => {
+                if(obj instanceof Objective && obj.type === "OBJECTIVE") {
                     return <ObjectiveComponent
-                        objective={cell}
+                        objective={obj}
                         onClick={() => {
                             if(window.innerWidth >= 1000) {
                                 setLeft(new TemplateBuilder().display(true).component("ObjectiveHandle").build());
@@ -38,9 +40,9 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = () => {
                                 setDialog(new TemplateBuilder().display(true).component("ObjectiveHandle").build());
                             }
 
-                            setObjective(new ObjectiveBuilder().id(cell.id!).type(cell.type)
-                            .endDateTime(cell.endDateTime!).title(cell.title!)
-                            .description(cell.description!).priorityId(cell.priorityId!).build());
+                            setObjective(new ObjectiveBuilder().id(obj.id!).type(obj.type)
+                            .endDateTime(obj.endDateTime!).title(obj.title!)
+                            .description(obj.description!).priorityId(obj.priorityId!).build());
                         }}
                     />
                 }
