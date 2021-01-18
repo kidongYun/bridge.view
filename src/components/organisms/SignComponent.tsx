@@ -21,9 +21,7 @@ const SignComponent: React.FC<SignProps> = ({
 
     let email: string = "";
     let password: string = "";
-
-    console.log(selectSign);
-
+    
     let view =
     <Component 
         width="500px" 

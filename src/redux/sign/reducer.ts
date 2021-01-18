@@ -15,11 +15,21 @@ const sign = createReducer<Response<Sign>, SignAction>(new Response(), {
         status: action.payload.status,
         body: action.payload.data
     }),
-    [SIGN_IN_ERROR_ACTION]: (state, action) => ({
-        ...state,
-        status: action.payload.response!.status,
-        body: action.payload.response!.data
-    }),
+    [SIGN_IN_ERROR_ACTION]: (state, action) => {
+        if(action.payload.response === undefined) {
+            return {
+                ...state,
+                status: undefined,
+                body: action.payload.message
+            }
+        }
+
+        return {
+            ...state,
+            status: action.payload.response.status,
+            body: action.payload.response.data
+        }
+    },
     [SIGN_UP_ACTION]: state => ({
         ...state,
         status: undefined,
@@ -30,11 +40,21 @@ const sign = createReducer<Response<Sign>, SignAction>(new Response(), {
         status: action.payload.status,
         body: action.payload.data
     }),
-    [SIGN_UP_ERROR_ACTION]: (state, action) => ({
-        ...state,
-        status: action.payload.response!.status,
-        body: action.payload.response!.data
-    }),
+    [SIGN_UP_ERROR_ACTION]: (state, action) => {
+        if(action.payload.response === undefined) {
+            return {
+                ...state,
+                status: undefined,
+                body: action.payload.message
+            }
+        }
+
+        return {
+            ...state,
+            status: action.payload.response.status,
+            body: action.payload.response.data
+        }
+    },
     [SIGN_ACTION]: state => ({
         ...state,
         status: undefined,
@@ -45,11 +65,21 @@ const sign = createReducer<Response<Sign>, SignAction>(new Response(), {
         status: action.payload.status,
         body: action.payload.data
     }),
-    [SIGN_ERROR_ACTION]: (state, action) => ({
-        ...state,
-        status: action.payload.response!.status,
-        body: action.payload.response!.data
-    })
+    [SIGN_ERROR_ACTION]: (state, action) => {
+        if(action.payload.response === undefined) {
+            return {
+                ...state,
+                status: undefined,
+                body: action.payload.message
+            }
+        }
+
+        return {
+            ...state,
+            status: action.payload.response.status,
+            body: action.payload.response.data
+        }
+    }
 });
 
 export default sign;

@@ -25,20 +25,12 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
 
     let postOrPut: string = "POST";
 
-    let id: number = -1;
-    let title: string = "";
-    let description: string = "";
-    let priority: number = 1;
-    let deadline: string = "";
+    let objective: Objective = new Objective();
 
     if(selectCell instanceof Objective && selectCell.type === "OBJECTIVE") {
         postOrPut = "PUT";
-        
-        id = selectCell.id;
-        title = selectCell.title;
-        description = selectCell.description;
-        priority = selectCell.priority;
-        deadline = selectCell.endDateTime;
+
+        objective = selectCell;
     }
 
     let buttons = <></>;
@@ -50,11 +42,12 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                 text="Add"
                 onClick={() => {
 
-                    const obj: Objective = new ObjectiveBuilder()
-                    .title(title).description(description)
-                    .endDateTime(deadline).priority(priority).build();
+                    if(objective.title === undefined || objective.description === undefined
+                        || objective.endDateTime === undefined || objective.priorityId === undefined) {
+                        return;
+                    }
 
-                    postObjectives(obj);
+                    postObjectives(objective);
                     showNoti("Objective is Created", "success");
                     setTimeout(hideNoti, 2300);
 
@@ -74,11 +67,12 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                 text="Modify"
                 onClick={() => {
 
-                    const obj: Objective = new ObjectiveBuilder()
-                    .id(id).title(title).description(description)
-                    .endDateTime(deadline).priority(priority).build();
-                    
-                    putObjectives(obj);
+                    if(objective.title === undefined || objective.description === undefined
+                        || objective.endDateTime === undefined || objective.priorityId === undefined) {
+                        return;
+                    }
+
+                    putObjectives(objective);
                     showNoti("Objective is Updated", "success");
                     setTimeout(hideNoti, 2300);
 
@@ -94,7 +88,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                 theme="danger" 
                 text="Remove"
                 onClick={() => {
-                    deleteObjectives(id);
+                    deleteObjectives(objective.id!);
                     showNoti("Objective is removed", "success");
                     setTimeout(hideNoti, 2300);
 
@@ -128,11 +122,11 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
         <Component height="50%" verticalAlign="flex-start">
             <Component height="auto">
                 <TextComponent
-                    value={title}
+                    value={objective.title}
                     placeholder="목표를 입력해주세요"
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target; 
-                        title = value; 
+                        objective.title = value; 
                     }}
                 />     
             </Component> 
@@ -148,10 +142,10 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
             <Component height="auto">
                 <TextareaComponent 
                     placeholder="어떤 목표인지 자세히 알려주세요"
-                    value={description}
+                    value={objective.description}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-                        description = value;
+                        objective.description = value;
                     }}
                 />
             </Component>
@@ -166,14 +160,14 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
         <Component height="50%" verticalAlign="flex-start">
             <Component height="auto">
                 <SelectComponent
-                    value={priority + ""}
+                    value={objective.priorityId + ""}
                     options={[
                         { title: "Major", value: "1" },
                         { title: "Minor", value: "2" }
                     ]}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                         const { value } = event.target;
-                        priority = Number.parseInt(value);
+                        objective.priorityId = Number.parseInt(value);
                     }} 
                 />
             </Component>
@@ -188,7 +182,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                 placeholder="2020-07-21"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     const { value } = event.target;
-                    deadline = value;
+                    objective.endDateTime = value;
                 }} 
             />
         </Component>

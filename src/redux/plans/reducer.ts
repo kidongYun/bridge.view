@@ -14,10 +14,21 @@ const plans = createReducer<Response<Cell[]>, PlansAction>(new Response(), {
         status: action.payload.status,
         body: action.payload.data
     }),
-    [PLANS_ERROR_ACTION]: (state, action) => ({
-        ...state,
-        status: action.payload.response!.status
-    })
+    [PLANS_ERROR_ACTION]: (state, action) => {
+        if(action.payload.response === undefined) {
+            return {
+                ...state,
+                status: undefined,
+                body: action.payload.message
+            }
+        }
+
+        return {
+            ...state,
+            status: action.payload.response.status,
+            body: action.payload.response.data
+        }
+    }
 });
 
 export default plans;

@@ -1,13 +1,11 @@
-import Subject from './subject';
+import Cell from './cell';
 
-export default class Todo extends Subject {
-    planId: number;
-    task: string;
+export default class Todo extends Cell {
+    planId: number | undefined;
+    task: string | undefined;
 
     constructor() {
         super("TODO");
-        this.planId = 0;
-        this.task = "";
     }
 }
 
@@ -16,6 +14,11 @@ export class TodoBuilder {
 
     constructor() {
         this.todo = new Todo();
+    }
+
+    id(id: number): TodoBuilder {
+        this.todo.id = id;
+        return this;
     }
 
     startDateTime(startDateTime: string): TodoBuilder {
@@ -28,12 +31,7 @@ export class TodoBuilder {
         return this;
     }
 
-    id(id: number): TodoBuilder {
-        this.todo.id = id;
-        return this;
-    }
-
-    status(status: number): TodoBuilder {
+    status(status: "Complete" | "Progress" | "Prepared"): TodoBuilder {
         this.todo.status = status;
         return this;
     }

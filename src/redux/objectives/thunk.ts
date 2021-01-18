@@ -69,27 +69,14 @@ async function getObjectives(email: string) {
         { params: { email: email }, auth: { username: "john@gmail.com", password: "q1w2e3r4" }});
 }
 
-async function postObjectives(param: { 
-    title: string, 
-    description: string, 
-    endDateTime: string, 
-    priority: number, 
-    status: number
-}) {
-    console.log(param);
+async function postObjectives(obj: Objective) {
+    console.log(obj);
 
-    return await axios.post<Objective>("http://localhost:8080/objective", param, { auth: { username: "john@gmail.com", password: "q1w2e3r4" }});
+    return await axios.post<Objective>("http://localhost:8080/api/v1/objective", obj, { auth: { username: "john@gmail.com", password: "q1w2e3r4" }});
 }
 
-async function putObjectives(param: {
-    id: number,
-    title: string,
-    description: string,
-    endDateTime: string,
-    priority: number,
-    status: number
-}) {
-    return await axios.put<Objective>("http://localhost:8080/objective/" + param.id, param);
+async function putObjectives(obj: Objective) {
+    return await axios.put<Objective>("http://localhost:8080/objective/" + obj.id, obj);
 }
 
 async function deleteObjectives(id: number) {

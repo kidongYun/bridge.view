@@ -1,15 +1,19 @@
-import Subject from './subject';
+import Cell from './cell';
+import Plan from './plan';
+import Priority from './priority';
 
-export default class Objective extends Subject {
-    title: string
-    description: string
-    priority: number
+export default class Objective extends Cell {
+    title: string | undefined
+    description: string | undefined
+    priorityId: number | undefined
+    parentId: number | undefined
+    childrenIds: Array<number>
+    planIds: Array<number>
 
     constructor() {
         super("OBJECTIVE");
-        this.title = "";
-        this.description = "";
-        this.priority = 0;
+        this.childrenIds = [];
+        this.planIds = [];
     }
 }
 
@@ -20,7 +24,12 @@ export class ObjectiveBuilder {
         this.objective = new Objective();
     }
 
-    type(type: "CELL" | "SUBJECT" | "OBJECTIVE" | "PLAN" | "TODO" | "DATE"): ObjectiveBuilder {
+    id(id: number): ObjectiveBuilder {
+        this.objective.id = id;
+        return this;
+    }
+
+    type(type: "CELL" | "OBJECTIVE" | "PLAN" | "TODO"): ObjectiveBuilder {
         this.objective.type = type;
         return this;
     }
@@ -35,12 +44,7 @@ export class ObjectiveBuilder {
         return this;
     }
 
-    id(id: number): ObjectiveBuilder {
-        this.objective.id = id;
-        return this;
-    }
-
-    status(status: number): ObjectiveBuilder {
+    status(status: "Complete" | "Progress" | "Prepared"): ObjectiveBuilder {
         this.objective.status = status;
         return this;
     }
@@ -55,8 +59,23 @@ export class ObjectiveBuilder {
         return this;
     }
 
-    priority(priority: number): ObjectiveBuilder {
-        this.objective.priority = priority;
+    priorityId(priorityId: number): ObjectiveBuilder {
+        this.objective.priorityId = priorityId;
+        return this;
+    }
+
+    parentId(parentId: number): ObjectiveBuilder {
+        this.objective.parentId = parentId;
+        return this;
+    }
+
+    childrenIds(childrenIds: Array<number>): ObjectiveBuilder {
+        this.objective.childrenIds = childrenIds;
+        return this;
+    }
+
+    planIds(planIds: Array<number>): ObjectiveBuilder {
+        this.objective.planIds = planIds;
         return this;
     }
 

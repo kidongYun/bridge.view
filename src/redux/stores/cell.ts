@@ -1,12 +1,12 @@
 export default class Cell {
-    type: "CELL" | "SUBJECT" | "OBJECTIVE" | "PLAN" | "TODO" | "DATE"
-    startDateTime: string
-    endDateTime: string
+    id: number | undefined
+    type: "CELL" | "OBJECTIVE" | "PLAN" | "TODO"
+    startDateTime: string | undefined
+    endDateTime: string | undefined
+    status: "Complete" | "Progress" | "Prepared" | undefined
 
-    constructor(type: "CELL" | "SUBJECT" | "OBJECTIVE" | "PLAN" | "TODO" | "DATE") {
+    constructor(type: "CELL" | "OBJECTIVE" | "PLAN" | "TODO") {
         this.type = type;
-        this.startDateTime = "0000-00-00";
-        this.endDateTime = "0000-00-00";
     }
 }
 
@@ -17,7 +17,12 @@ export class CellBuilder {
         this.cell = new Cell("CELL");
     }
 
-    type(type: "CELL" | "SUBJECT" | "OBJECTIVE" | "PLAN" | "TODO" | "DATE"): CellBuilder {
+    id(id: number): CellBuilder {
+        this.cell.id = id;
+        return this;
+    }
+
+    type(type: "CELL" | "OBJECTIVE" | "PLAN" | "TODO"): CellBuilder {
         this.cell.type = type;
         return this;
     }
@@ -29,6 +34,11 @@ export class CellBuilder {
 
     endDateTime(endDateTime: string): CellBuilder {
         this.cell.endDateTime = endDateTime;
+        return this;
+    }
+
+    status(status: "Complete" | "Progress" | "Prepared"): CellBuilder {
+        this.cell.status = status;
         return this;
     }
 

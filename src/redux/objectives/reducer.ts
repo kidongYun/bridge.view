@@ -15,12 +15,18 @@ const objectives = createReducer<Response<Cell[]>, ObjectivesAction>(new Respons
         body: action.payload.data
     }),
     [OBJECTIVES_ERROR_ACTION]: (state, action) => {
-
-        console.log(action);
-
+        if(action.payload.response === undefined) {
+            return {
+                ...state,
+                status: undefined,
+                body: action.payload.message
+            }
+        }
+        
         return {
             ...state,
-            status: action.payload.response!.status
+            status: action.payload.response.status,
+            body: action.payload.response.data
         }
     }
 });

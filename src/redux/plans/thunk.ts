@@ -38,12 +38,6 @@ async function getPlans(date: boolean) {
     return await axios.get<Cell[]>("http://localhost:8080/plan", { params: { date: date }});
 }
 
-export async function putPlans(planPut: {
-    id: number,
-    objectiveId: number,
-    content: string,
-    startDateTime: string,
-    status: number
-}) {
-    return await axios.put("http://localhost:8080/plan/" + planPut.id, planPut);
+export async function putPlans(plan: Plan) {
+    return await axios.put("http://localhost:8080/plan/" + plan.id, plan);
 }

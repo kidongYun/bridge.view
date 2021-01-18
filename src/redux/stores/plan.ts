@@ -1,13 +1,11 @@
-import Subject from './subject';
+import Cell from './cell';
 
-export default class Plan extends Subject {
-    objectiveId: number
-    content: string
+export default class Plan extends Cell {
+    objectiveId: number | undefined
+    content: string | undefined
 
     constructor() {
         super("PLAN");
-        this.objectiveId = 0;
-        this.content = "";
     }
 }
 
@@ -18,7 +16,12 @@ export class PlanBuilder {
         this.plan = new Plan();
     }
 
-    type(type: "CELL" | "SUBJECT" | "OBJECTIVE" | "PLAN" | "TODO" | "DATE"): PlanBuilder {
+    id(id: number): PlanBuilder {
+        this.plan.id = id;
+        return this;
+    }
+
+    type(type: "CELL" | "OBJECTIVE" | "PLAN" | "TODO"): PlanBuilder {
         this.plan.type = type;
         return this;
     }
@@ -33,12 +36,7 @@ export class PlanBuilder {
         return this;
     }
 
-    id(id: number): PlanBuilder {
-        this.plan.id = id;
-        return this;
-    }
-
-    status(status: number): PlanBuilder {
+    status(status: "Complete" | "Progress" | "Prepared"): PlanBuilder {
         this.plan.status = status;
         return this;
     }
