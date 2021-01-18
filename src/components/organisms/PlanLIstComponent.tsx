@@ -1,6 +1,5 @@
 import React from 'react'
 import Component from '../templates/Component'
-import * as util from '../../service/Utility'
 
 import useObjectives from '../../redux/objectives/hook'
 import usePlans from '../../redux/plans/hook'

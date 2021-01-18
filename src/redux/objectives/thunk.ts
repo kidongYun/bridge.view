@@ -66,7 +66,7 @@ export function deleteObjectivesThunk(id: number): ThunkAction<void, RootState, 
 
 async function getObjectives(email: string) {
     return await axios.get<Cell[]>("http://localhost:8080/api/v1/objective/email/" + email, 
-        { params: { email: email }, auth: { username: "john@gmail.com", password: "q1w2e3r4" }});
+        { params: { email: email }, withCredentials: true });
 }
 
 async function postObjectives(obj: Objective) {
