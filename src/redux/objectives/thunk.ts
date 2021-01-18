@@ -6,7 +6,7 @@ import Cell from '../stores/cell'
 import Objective from '../stores/objective'
 import { objectivesAsyncAction } from './action'
 
-export function getObjectivesThunk(date: boolean): ThunkAction<void, RootState, null, ObjectivesAction> {
+export function getObjectivesThunk(): ThunkAction<void, RootState, null, ObjectivesAction> {
     return async dispatch => {
         const { request, success, failure } = objectivesAsyncAction;
         dispatch(request());

@@ -2,9 +2,9 @@ import { createReducer } from 'typesafe-actions'
 import { ObjectivesAction } from './type'
 import { OBJECTIVES_REQ_ACTION, OBJECTIVES_SUCCESS_ACTION, OBJECTIVES_ERROR_ACTION } from './action'
 import Response from '../stores/response';
-import Cell from '../stores/cell'
+import Objective from '../stores/objective'
 
-const objectives = createReducer<Response<Cell[]>, ObjectivesAction>(new Response(), {
+const objectives = createReducer<Response<Objective[]>, ObjectivesAction>(new Response(), {
     [OBJECTIVES_REQ_ACTION]: state => ({
         ...state,
         status: undefined
@@ -22,7 +22,7 @@ const objectives = createReducer<Response<Cell[]>, ObjectivesAction>(new Respons
                 body: action.payload.message
             }
         }
-        
+
         return {
             ...state,
             status: action.payload.response.status,

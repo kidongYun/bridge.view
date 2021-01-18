@@ -1,7 +1,6 @@
 import Cell from "../redux/stores/cell";
 import { ObjectiveBuilder } from "../redux/stores/objective";
 import { PlanBuilder } from "../redux/stores/plan";
-import { DateBuilder } from "../redux/stores/date";
 import { TodoBuilder } from "../redux/stores/todo";
 
 export function parse(src: any) {
@@ -20,7 +19,7 @@ export function parse(src: any) {
                 .id(src[i].id)
                 .title(src[i].title)
                 .description(src[i].description)
-                .priority(src[i].priority)
+                .priorityId(src[i].priority)
                 .build()
             )
         }
@@ -45,15 +44,6 @@ export function parse(src: any) {
                 .id(src[i].id)
                 .planId(src[i].planId)
                 .task(src[i].task)
-                .build()
-            )
-        }
-
-        if(src[i].type === "DATE") {
-            cells.push(
-                new DateBuilder()
-                .startDateTime(src[i].startDateTime)
-                .endDateTime(src[i].endDateTime)
                 .build()
             )
         }

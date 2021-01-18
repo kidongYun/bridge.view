@@ -8,12 +8,8 @@ import useCell from '../../redux/cell/hook'
 import usePage from '../../redux/page/hook'
 
 import PlanComponent from '../molecules/PlanComponent';
-import DateComponent from '../molecules/DateComponent';
-
-import Cell from '../../redux/stores/cell';
 import Objective from '../../redux/stores/objective';
 import Plan, { PlanBuilder } from '../../redux/stores/plan';
-import Date from '../../redux/stores/date'
 
 import { TemplateBuilder } from '../../redux/stores/template';
 
@@ -30,42 +26,35 @@ const PlanListComponent: React.FC<PlanListProps> = (props) => {
         getPlans(true);
     }, [])
 
-    const plans: Cell[] = util.parse(selectPlans.body)
-    const objectives: Cell[] = util.parse(selectObjectives.body)
-
     let plansView = <></>;
-    if(plans !== undefined) {
+    if(selectPlans !== undefined) {
 
         plansView = 
         <> 
         {
-            plans.map(cell => {
-                if(cell instanceof Plan && cell.type === "PLAN") {
+            selectPlans.map(plan => {
+                if(plan instanceof Plan && plan.type === "PLAN") {
                     let objective: Objective | undefined = undefined;
                     
-                    objectives!.map(obj => {
+                    selectObjectives!.map(obj => {
                         if(obj instanceof Objective && obj.type === "OBJECTIVE") {
-                            if(obj.id === cell.objectiveId) {
+                            if(obj.id === plan.objectiveId) {
                                 objective = obj;
                             }
                         }
                     })
 
-                    return <PlanComponent plan={cell} objective={objective!} onClick={() => {
+                    return <PlanComponent plan={plan} objective={objective!} onClick={() => {
                         if(window.innerWidth >= 1000) {
                             setLeft(new TemplateBuilder().display(true).component("PlanHandle").build());
                         } else {
                             setDialog(new TemplateBuilder().display(true).component("PlanHandle").build());
                         }
 
-                        setPlan(new PlanBuilder().type(cell.type)
-                        .id(cell.id).objectiveId(cell.objectiveId).content(cell.content)
-                        .status(cell.status).startDateTime(cell.startDateTime).build())
+                        setPlan(new PlanBuilder().type(plan.type)
+                        .id(plan.id!).objectiveId(plan.objectiveId!).content(plan.content!)
+                        .status(plan.status!).startDateTime(plan.startDateTime!).build())
                     }} />
-                }
-
-                if(cell instanceof Date && cell.type === "DATE") {
-                    return <DateComponent date={cell.endDateTime.substring(0, 7)} />
                 }
             })
         }

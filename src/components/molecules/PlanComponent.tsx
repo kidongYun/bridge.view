@@ -2,7 +2,6 @@ import React from 'react'
 import Objective from '../../redux/stores/objective'
 import Plan from '../../redux/stores/plan'
 import LabelComponent from '../atoms/LabelComponent'
-import ImageComponent from '../atoms/ImageComponent'
 import Component from '../templates/Component'
 
 interface PlanProps {
@@ -29,7 +28,7 @@ const PlanComponent: React.FC<PlanProps> = (props) => {
         onClick={props.onClick}>
         <Component width="10%" borderRight="1px solid #dddddd">
             <Component width="50%" height="50%">
-                <LabelComponent label={props.objective.priority + ""} size="20pt" weight="bold"/>
+                <LabelComponent label={props.objective.priorityId + ""} size="20pt" weight="bold"/>
             </Component>
         </Component>
         <Component direction="column">

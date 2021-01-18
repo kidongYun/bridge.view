@@ -29,7 +29,7 @@ const ObjectiveComponent: React.FC<ObjectiveProps> = (props) => {
         <Component>
             <Component width="10%" minWidth="80px" borderRight="1px solid #dddddd">
                 <Component width="50%" height="50%" >
-                    <LabelComponent label={props.objective.priority + ""} size="20pt" weight="bold"/>
+                    <LabelComponent label={props.objective.priorityId + ""} size="20pt" weight="bold"/>
                 </Component>
             </Component>
             <Component direction="column">

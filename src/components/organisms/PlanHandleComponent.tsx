@@ -24,18 +24,10 @@ const PlanHandleComponent: React.FC<PlanHandleProps> = () => {
 
     console.log(selectCell);
 
-    let id: number = -1;
-    let objectiveId: number = -1;
-    let content: string = "";
-    let startDateTime: string = "";
-    let status: number = 0;
+    let plan: Plan = new Plan();
     
     if(selectCell instanceof Plan && selectCell.type === "PLAN") {
-        id = selectCell.id;
-        objectiveId = selectCell.objectiveId;
-        content = selectCell.content;
-        startDateTime = selectCell.startDateTime;
-        status = selectCell.status;
+        plan = selectCell;
     }
 
     let view = 
@@ -51,10 +43,10 @@ const PlanHandleComponent: React.FC<PlanHandleProps> = () => {
 
         <Component>
             <TextareaComponent
-                value={content}
+                value={plan.content}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     const { value } = event.target;
-                    content = value;
+                    plan.content = value;
                 }}
             />
         </Component>
@@ -77,9 +69,6 @@ const PlanHandleComponent: React.FC<PlanHandleProps> = () => {
                 theme="primary" 
                 text="Modify"
                 onClick={() => {
-
-                    const plan: Plan = new PlanBuilder().id(id).objectiveId(objectiveId)
-                    .content(content).startDateTime(startDateTime).status(status).build()
 
                     putPlans(plan);
             

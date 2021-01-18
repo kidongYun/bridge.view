@@ -1,9 +1,6 @@
 import React from 'react'
 import Component from '../templates/Component'
-import * as util from '../../service/Utility'
-
 import Objective from '../../redux/stores/objective'
-import Date from '../../redux/stores/date';
 
 import useObjectives from '../../redux/objectives/hook'
 import useCell from '../../redux/cell/hook'
@@ -11,8 +8,6 @@ import usePage from '../../redux/page/hook'
 
 import ObjectiveComponent from '../molecules/ObjectiveComponent'
 import AddComponent from '../molecules/AddComponent';
-import DateComponent from '../molecules/DateComponent';
-import Cell from '../../redux/stores/cell';
 import { ObjectiveBuilder } from '../../redux/stores/objective'
 import { TemplateBuilder } from '../../redux/stores/template';
 
@@ -24,17 +19,15 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = () => {
     const { setDialog, setLeft } = usePage();
 
     React.useEffect(() => {
-        getObjectives(true);
+        getObjectives();
     }, [])
 
-    const objectives: Cell[] = util.parse(selectObjectives.body)
-
     let objectivesView = <></>;
-    if(objectives !== undefined) {
+    if(selectObjectives !== undefined) {
         objectivesView = 
         <>
         {
-            objectives.map(cell => {
+            selectObjectives.map(cell => {
                 if(cell instanceof Objective && cell.type === "OBJECTIVE") {
                     return <ObjectiveComponent
                         objective={cell}
@@ -45,15 +38,11 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = () => {
                                 setDialog(new TemplateBuilder().display(true).component("ObjectiveHandle").build());
                             }
 
-                            setObjective(new ObjectiveBuilder().type(cell.type)
-                            .endDateTime(cell.endDateTime).id(cell.id).title(cell.title)
-                            .description(cell.description).priority(cell.priority).build());
+                            setObjective(new ObjectiveBuilder().id(cell.id!).type(cell.type)
+                            .endDateTime(cell.endDateTime!).title(cell.title!)
+                            .description(cell.description!).priorityId(cell.priorityId!).build());
                         }}
                     />
-                }
-
-                if(cell instanceof Date && cell.type === "DATE") {
-                    return <DateComponent date={cell.endDateTime.substring(0, 10)} />
                 }
             })
         }
