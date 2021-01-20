@@ -21,12 +21,12 @@ export class TodoBuilder {
         return this;
     }
 
-    startDateTime(startDateTime: string): TodoBuilder {
+    startDateTime(startDateTime: Date): TodoBuilder {
         this.todo.startDateTime = startDateTime;
         return this;
     }
 
-    endDateTime(endDateTime: string): TodoBuilder {
+    endDateTime(endDateTime: Date): TodoBuilder {
         this.todo.endDateTime = endDateTime;
         return this;
     }

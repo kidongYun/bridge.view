@@ -5,11 +5,13 @@ import Objective from '../../redux/stores/objective'
 import useObjectives from '../../redux/objectives/hook'
 import useCell from '../../redux/cell/hook'
 import usePage from '../../redux/page/hook'
+import useSign from '../../redux/sign/hook'
 
 import ObjectiveComponent from '../molecules/ObjectiveComponent'
 import AddComponent from '../molecules/AddComponent';
 import { ObjectiveBuilder } from '../../redux/stores/objective'
 import { TemplateBuilder } from '../../redux/stores/template';
+import Sign from '../../redux/stores/sign'
 
 interface ObjectiveListProps {}
 
@@ -17,9 +19,12 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = () => {
     const { selectObjectives, getObjectives } = useObjectives();
     const { setObjective, flush } = useCell();
     const { setDialog, setLeft } = usePage();
+    const { selectSign } = useSign();
 
     React.useEffect(() => {
-        getObjectives();
+        if(selectSign.body instanceof Sign) {
+            getObjectives(selectSign.body);
+        }
     }, [])
 
     let objectivesView = <></>;

@@ -5,13 +5,14 @@ import { ObjectivesAction } from './type'
 import Cell from '../stores/cell'
 import Objective from '../stores/objective'
 import { objectivesAsyncAction } from './action'
+import Sign from '../stores/sign'
 
-export function getObjectivesThunk(): ThunkAction<void, RootState, null, ObjectivesAction> {
+export function getObjectivesThunk(sign: Sign): ThunkAction<void, RootState, null, ObjectivesAction> {
     return async dispatch => {
         const { request, success, failure } = objectivesAsyncAction;
         dispatch(request());
         try {
-            const response = await getObjectives("john@gmail.com");
+            const response = await getObjectives(sign);
             dispatch(success(response));
         } catch (e) {
             dispatch(failure(e));
@@ -19,66 +20,64 @@ export function getObjectivesThunk(): ThunkAction<void, RootState, null, Objecti
     }
 }
 
-export function postObjectivesThunk(param: Objective): ThunkAction<void, RootState, null, ObjectivesAction> {
+export function postObjectivesThunk(obj: Objective, sign: Sign): ThunkAction<void, RootState, null, ObjectivesAction> {
     return async dispatch => {
         const { request, success, failure } = objectivesAsyncAction;
         dispatch(request());
         try {
-            await postObjectives(param);
-        } catch (e) {
-            dispatch(failure(e));
-        } finally {
-            const response = await getObjectives("john@gmail.com");
-            dispatch(success(response));
-        }
-    }
-}
-
-export function putObjectivesThunk(param: Objective): ThunkAction<void, RootState, null, ObjectivesAction> {
-    return async dispatch => {
-        const { request, success, failure } = objectivesAsyncAction;
-        dispatch(request());
-        try {
-            await putObjectives(param);
+            await postObjectives({ endDateTime: obj.endDateTime!.toISOString(), email: sign.email!, title: obj.title!, description: obj.description!, priorityId: obj.priorityId! }, sign.token!);
         } catch (e) {
             dispatch(failure(e));
         } finally {
-            const response = await getObjectives("john@gmail.com");
+            const response = await getObjectives(sign);
             dispatch(success(response));
         }
     }
 }
 
-export function deleteObjectivesThunk(id: number): ThunkAction<void, RootState, null, ObjectivesAction> {
+export function putObjectivesThunk(obj: Objective, sign: Sign): ThunkAction<void, RootState, null, ObjectivesAction> {
     return async dispatch => {
         const { request, success, failure } = objectivesAsyncAction;
         dispatch(request());
         try {
-            await deleteObjectives(id);
+            await putObjectives(obj, sign.token!);
         } catch (e) {
             dispatch(failure(e));
         } finally {
-            const response = await getObjectives("john@gmail.com");
+            const response = await getObjectives(sign);
             dispatch(success(response));
         }
     }
 }
 
-async function getObjectives(email: string) {
-    return await axios.get<Cell[]>("http://localhost:8080/api/v1/objective/email/" + email, 
-        { params: { email: email }, auth: { username: "john@gmail.com", password: "q1w2e3r4" }});
+export function deleteObjectivesThunk(id: number, sign: Sign): ThunkAction<void, RootState, null, ObjectivesAction> {
+    return async dispatch => {
+        const { request, success, failure } = objectivesAsyncAction;
+        dispatch(request());
+        try {
+            await deleteObjectives(id, sign.token!);
+        } catch (e) {
+            dispatch(failure(e));
+        } finally {
+            const response = await getObjectives(sign);
+            dispatch(success(response));
+        }
+    }
 }
 
-async function postObjectives(obj: Objective) {
-    console.log(obj);
-
-    return await axios.post<Objective>("http://localhost:8080/api/v1/objective", obj, { auth: { username: "john@gmail.com", password: "q1w2e3r4" }});
+async function getObjectives(sign: Sign) {
+    return await axios.get<Cell[]>("http://localhost:8080/api/v1/objective/email/" + sign.email, 
+        { params: { email: sign.email }, headers: { "x-auth-token": sign.token }});
 }
 
-async function putObjectives(obj: Objective) {
-    return await axios.put<Objective>("http://localhost:8080/objective/" + obj.id, obj);
+async function postObjectives(post: { endDateTime: string, email: string, title: string, description: string, priorityId: number }, token: string) {
+    return await axios.post<Objective>("http://localhost:8080/api/v1/objective", post, { headers: { "x-auth-token": token }});
 }
 
-async function deleteObjectives(id: number) {
-    return await axios.delete("http://localhost:8080/objective/" + id, { data: id });
+async function putObjectives(obj: Objective, token: string) {
+    return await axios.put<Objective>("http://localhost:8080/objective/" + obj.id, obj, { headers: { "x-auth-token": token }});
+}
+
+async function deleteObjectives(id: number, token: string) {
+    return await axios.delete("http://localhost:8080/objective/" + id, { data: id, headers: { "x-auth-token": token }});
 }

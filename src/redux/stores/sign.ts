@@ -1,11 +1,6 @@
 export default class Sign {
-    email: string
-    password: string
-
-    constructor() {
-        this.email = '';
-        this.password = '';
-    }
+    email?: string 
+    token?: string
 }
 
 export class SignBuilder {
@@ -20,8 +15,8 @@ export class SignBuilder {
         return this;
     }
 
-    password(password: string): SignBuilder {
-        this._sign.password = password;
+    token(token: string): SignBuilder {
+        this._sign.token = token;
         return this;
     }
 

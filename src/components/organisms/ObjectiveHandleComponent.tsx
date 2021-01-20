@@ -11,9 +11,11 @@ import useCell from '../../redux/cell/hook'
 import usePage from '../../redux/page/hook'
 import useNoti from '../../redux/noti/hook'
 import useObjectives from '../../redux/objectives/hook'
+import useSign from '../../redux/sign/hook'
 
 import { TemplateBuilder } from '../../redux/stores/template'
 import Objective, { ObjectiveBuilder } from '../../redux/stores/objective'
+import Sign from '../../redux/stores/sign'
 
 interface ObjectiveHandleProps {}
 
@@ -22,14 +24,18 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
     const { setDialog, setLeft } = usePage();
     const { showNoti, hideNoti } = useNoti();
     const { postObjectives, putObjectives, deleteObjectives } = useObjectives();
+    const { selectSign } = useSign();
 
     let postOrPut: string = "POST";
-
     let objective: Objective = new Objective();
+    let sign: Sign = new Sign();
+
+    if(selectSign.body instanceof Sign) {
+        sign = selectSign.body;
+    }
 
     if(selectCell instanceof Objective && selectCell.type === "OBJECTIVE") {
         postOrPut = "PUT";
-
         objective = selectCell;
     }
 
@@ -47,7 +53,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                         return;
                     }
 
-                    postObjectives(objective);
+                    postObjectives(objective, sign);
                     showNoti("Objective is Created", "success");
                     setTimeout(hideNoti, 2300);
 
@@ -72,7 +78,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                         return;
                     }
 
-                    putObjectives(objective);
+                    putObjectives(objective, sign);
                     showNoti("Objective is Updated", "success");
                     setTimeout(hideNoti, 2300);
 
@@ -88,7 +94,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                 theme="danger" 
                 text="Remove"
                 onClick={() => {
-                    deleteObjectives(objective.id!);
+                    deleteObjectives(objective.id!, sign);
                     showNoti("Objective is removed", "success");
                     setTimeout(hideNoti, 2300);
 
@@ -182,7 +188,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                 placeholder="2020-07-21"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     const { value } = event.target;
-                    objective.endDateTime = value;
+                    objective.endDateTime = new Date(value);
                 }} 
             />
         </Component>

@@ -10,11 +10,18 @@ const sign = createReducer<Response<Sign>, SignAction>(new Response(), {
         status: undefined,
         body: undefined
     }),
-    [SIGN_IN_SUCCESS_ACTION]: (state, action) => ({
-        ...state,
-        status: action.payload.status,
-        body: action.payload.data
-    }),
+    [SIGN_IN_SUCCESS_ACTION]: (state, action) => {
+        let sign: Sign = new Sign();
+
+        sign.email = action.payload.data.email;
+        sign.token = action.payload.data.token;
+
+        return {
+            ...state,
+            status: action.payload.status,
+            body: sign
+        }
+    },
     [SIGN_IN_ERROR_ACTION]: (state, action) => {
         if(action.payload.response === undefined) {
             return {

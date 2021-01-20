@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../configureStore';
 import Objective from '../stores/objective';
+import Sign from '../stores/sign';
 import { getObjectivesThunk, postObjectivesThunk, putObjectivesThunk, deleteObjectivesThunk } from './thunk'
 
 export default function useObjectives() {
@@ -12,10 +13,10 @@ export default function useObjectives() {
     }
 
     const dispatch = useDispatch();
-    const getObjectives = () => { dispatch(getObjectivesThunk()) }
-    const postObjectives = (param: Objective) => { dispatch(postObjectivesThunk(param)) }
-    const putObjectives = (param: Objective) => { dispatch(putObjectivesThunk(param)) }
-    const deleteObjectives = (id: number) => { dispatch(deleteObjectivesThunk(id)) }
+    const getObjectives = (sign: Sign) => { dispatch(getObjectivesThunk(sign)) }
+    const postObjectives = (param: Objective, sign: Sign) => { dispatch(postObjectivesThunk(param, sign)) }
+    const putObjectives = (param: Objective, sign: Sign) => { dispatch(putObjectivesThunk(param, sign)) }
+    const deleteObjectives = (id: number, sign: Sign) => { dispatch(deleteObjectivesThunk(id, sign)) }
 
     return {
         selectObjectives,

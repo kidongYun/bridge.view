@@ -1,9 +1,9 @@
 export default class Cell {
-    id: number | undefined
+    id?: number
     type: "CELL" | "OBJECTIVE" | "PLAN" | "TODO"
-    startDateTime: string | undefined
-    endDateTime: string | undefined
-    status: "Complete" | "Progress" | "Prepared" | undefined
+    startDateTime?: Date
+    endDateTime?: Date
+    status?: "Complete" | "Progress" | "Prepared"
 
     constructor(type: "CELL" | "OBJECTIVE" | "PLAN" | "TODO") {
         this.type = type;
@@ -27,12 +27,12 @@ export class CellBuilder {
         return this;
     }
 
-    startDateTime(startDateTime: string): CellBuilder {
+    startDateTime(startDateTime: Date): CellBuilder {
         this.cell.startDateTime = startDateTime;
         return this;
     }
 
-    endDateTime(endDateTime: string): CellBuilder {
+    endDateTime(endDateTime: Date): CellBuilder {
         this.cell.endDateTime = endDateTime;
         return this;
     }

@@ -26,12 +26,12 @@ export class PlanBuilder {
         return this;
     }
 
-    startDateTime(startDateTime: string): PlanBuilder {
+    startDateTime(startDateTime: Date): PlanBuilder {
         this.plan.startDateTime = startDateTime;
         return this;
     }
     
-    endDateTime(endDateTime: string): PlanBuilder {
+    endDateTime(endDateTime: Date): PlanBuilder {
         this.plan.endDateTime = endDateTime;
         return this;
     }
