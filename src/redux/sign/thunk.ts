@@ -44,7 +44,7 @@ export function signThunk(): ThunkAction<void, RootState, null, SignAction> {
 }
 
 async function callSignIn(param: { email: string, password: string }) {
-    return await axios.post("http://localhost:8080/api/v1/sign/in", param);
+    return await axios.post("http://localhost:8080/api/v1/sign/in", param, { auth: { username: param.email, password: param.password }});
 }
 
 async function callSignUp(param: { email: string, password: string }) {
