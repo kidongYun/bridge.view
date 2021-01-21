@@ -2,13 +2,11 @@ import React, { useState } from 'react'
 import Component from '../templates/Component'
 
 import usePage from '../../redux/page/hook'
-import useNoti from '../../redux/noti/hook';
 import useSign from '../../redux/sign/hook';
 
 import TextComponent from '../atoms/TextComponent'
 import LabelComponent from '../atoms/LabelComponent'
 import ButtonComponent from '../atoms/ButtonComponent'
-import { TemplateBuilder } from '../../redux/stores/template';
 
 interface SignProps {
 }
@@ -18,8 +16,8 @@ const SignComponent: React.FC<SignProps> = ({
     const { setDialog } = usePage();
     const { selectSign, signIn, signUp } = useSign();
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("john@gmail.com");
+    const [password, setPassword] = useState("q1w2e3r4");
     
     let view =
     <Component 

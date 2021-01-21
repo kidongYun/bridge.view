@@ -27,6 +27,9 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
     const { selectSign } = useSign();
 
     const [objective, setObjective] = useState<Objective>(new Objective);
+    const [year, setYear] = useState("");
+    const [month, setMonth] = useState("");
+    const [date, setDate] = useState("");
 
     let sign: Sign = new Sign();
 
@@ -48,9 +51,10 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                 theme="primary" 
                 text="Add"
                 onClick={() => {
-
+                    
                     if(objective.title === undefined || objective.description === undefined
                         || objective.endDateTime === undefined || objective.priorityId === undefined) {
+                        console.log(objective);
                         return;
                     }
 
@@ -171,8 +175,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                         { title: "Minor", value: "2" }
                     ]}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        const { value } = event.target;
-                        objective.priorityId = Number.parseInt(value);
+                        setObjective({...objective, priorityId: Number.parseInt(event.target.value)})
                     }} 
                 />
             </Component>
@@ -184,14 +187,36 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
             </Component>
         </Component>
 
-        <Component height="50%">
-            <TextComponent 
-                placeholder="2020-07-21"
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    const { value } = event.target;
-                    objective.endDateTime = new Date(value);
-                }} 
-            />
+        <Component height="50%" verticalAlign="flex-start">
+            <Component>
+                <TextComponent 
+                    value={year}
+                    placeholder="year"
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        setYear(event.target.value);
+                    }} 
+                />
+
+                <Component width="50%"/>
+
+                <TextComponent 
+                    value={month}
+                    placeholder="month"
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        setMonth(event.target.value);
+                    }} 
+                />
+
+                <Component width="50%"/>
+
+                <TextComponent 
+                    value={date}
+                    placeholder="date"
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        setDate(event.target.value);
+                    }} 
+                />
+            </Component>
         </Component>
 
         <Component  borderTop="solid 1px #eeeeee">
