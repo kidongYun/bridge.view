@@ -4,6 +4,6 @@ export default class Response<T> {
 
     constructor() {
         this.status = undefined;
-        this.body = undefined;
+        this.body = "";
     }
 }

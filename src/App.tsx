@@ -7,8 +7,6 @@ import useSign from '../src/redux/sign/hook'
 const App = () => {
     const { selectSign } = useSign();
 
-    console.log(selectSign);
-
     let view = <></>;
 
     if(selectSign.status !== 200) {

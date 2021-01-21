@@ -17,6 +17,8 @@ import useNoti from '../redux/noti/hook'
 import usePlans from '../redux/plans/hook'
 import useSign from '../redux/sign/hook'
 
+import Sign from '../redux/stores/sign'
+
 import { TemplateBuilder } from '../redux/stores/template';
 
 interface MainProps {}
@@ -27,7 +29,10 @@ const MainLayout: React.FC<MainProps> = () => {
     const { selectPlans } = usePlans();
     const { selectSign } = useSign();
 
-    console.log(selectSign);
+    let email: string = "Login";
+    if(selectSign.body instanceof Sign) {
+        email = selectSign.body.email!
+    }
 
     let noti = <></>;
     if(selectNoti.visible) {
@@ -67,7 +72,7 @@ const MainLayout: React.FC<MainProps> = () => {
         rightButtons={[
             { 
                 theme: "primary", 
-                text: "Login", 
+                text: email, 
                 onClick: () => { setDialog(new TemplateBuilder().display(true).component("Sign").build())}
             }
         ]} 

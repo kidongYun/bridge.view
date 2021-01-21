@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Component from '../templates/Component'
 
 import LabelComponent from '../atoms/LabelComponent'
@@ -14,7 +14,7 @@ import useObjectives from '../../redux/objectives/hook'
 import useSign from '../../redux/sign/hook'
 
 import { TemplateBuilder } from '../../redux/stores/template'
-import Objective, { ObjectiveBuilder } from '../../redux/stores/objective'
+import Objective from '../../redux/stores/objective'
 import Sign from '../../redux/stores/sign'
 
 interface ObjectiveHandleProps {}
@@ -26,17 +26,18 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
     const { postObjectives, putObjectives, deleteObjectives } = useObjectives();
     const { selectSign } = useSign();
 
-    let postOrPut: string = "POST";
-    let objective: Objective = new Objective();
+    const [objective, setObjective] = useState<Objective>(new Objective);
+
     let sign: Sign = new Sign();
 
     if(selectSign.body instanceof Sign) {
         sign = selectSign.body;
     }
 
+    let postOrPut: string = "POST";
     if(selectCell instanceof Objective && selectCell.type === "OBJECTIVE") {
         postOrPut = "PUT";
-        objective = selectCell;
+        setObjective(selectCell);
     }
 
     let buttons = <></>;
@@ -116,12 +117,12 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
         width="80%">
 
         <Component borderBottom="solid 1px #eeeeee">
-            <LabelComponent label="목표" size="20pt" />
+            <LabelComponent weight="bold" label="Objective" size="20pt" color="#333333" />
         </Component>
 
         <Component height="50%" horizontalAlign="flex-start" verticalAlign="flex-end">
             <Component width="auto" height="auto">
-                <LabelComponent label="목표"/>
+                <LabelComponent weight="bold" label="Goal" size="15pt" color="#333333" />
             </Component>
         </Component>
 
@@ -129,10 +130,9 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
             <Component height="auto">
                 <TextComponent
                     value={objective.title}
-                    placeholder="목표를 입력해주세요"
+                    placeholder="Insert your goal"
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        const { value } = event.target; 
-                        objective.title = value; 
+                        setObjective({...objective, title: event.target.value})
                     }}
                 />     
             </Component> 
@@ -140,18 +140,17 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
 
         <Component height="50%" horizontalAlign="flex-start" verticalAlign="flex-end">
             <Component width="auto" height="auto">
-                <LabelComponent label="설명"/>
+                <LabelComponent weight="bold" label="Description" size="15pt" color="#333333"/>
             </Component>
         </Component>
 
         <Component height="200%" verticalAlign="flex-start">
             <Component height="auto">
                 <TextareaComponent 
-                    placeholder="어떤 목표인지 자세히 알려주세요"
+                    placeholder="Tell me about what your goal is"
                     value={objective.description}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        const { value } = event.target;
-                        objective.description = value;
+                        setObjective({...objective, description: event.target.value })
                     }}
                 />
             </Component>
@@ -159,7 +158,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
 
         <Component height="50%" horizontalAlign="flex-start" verticalAlign="flex-end">
             <Component width="auto" height="auto">
-                <LabelComponent label="중요도"/>
+                <LabelComponent weight="bold" label="Priority" size="15pt" color="#333333"/>
             </Component>
         </Component>
 
@@ -180,7 +179,9 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
         </Component>
 
         <Component height="50%" horizontalAlign="flex-start" verticalAlign="flex-end">
-            <Component width="auto" height="auto"><LabelComponent label="기한" /></Component>
+            <Component width="auto" height="auto">
+                <LabelComponent weight="bold" label="Deadline" size="15pt" color="#333333" />
+            </Component>
         </Component>
 
         <Component height="50%">
