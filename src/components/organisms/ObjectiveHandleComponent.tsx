@@ -118,7 +118,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
         direction="column" 
         marginLeft="auto" 
         marginRight="auto" 
-        width="80%">
+        width="80%" >
 
         <Component borderBottom="solid 1px #eeeeee">
             <LabelComponent weight="bold" label="Objective" size="20pt" color="#333333" />
