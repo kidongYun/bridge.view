@@ -136,7 +136,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                     value={objective.title}
                     placeholder="Insert your goal"
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        setObjective({...objective, title: event.target.value})
+                        // setObjective({...objective, title: event.target.value})
                     }}
                 />     
             </Component> 
@@ -154,7 +154,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                     placeholder="Tell me about what your goal is"
                     value={objective.description}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        setObjective({...objective, description: event.target.value })
+                        // setObjective({...objective, description: event.target.value })
                     }}
                 />
             </Component>
@@ -175,7 +175,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                         { title: "Minor", value: "2" }
                     ]}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        setObjective({...objective, priorityId: Number.parseInt(event.target.value)})
+                        // setObjective({...objective, priorityId: Number.parseInt(event.target.value)})
                     }} 
                 />
             </Component>
@@ -193,7 +193,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                     value={year}
                     placeholder="year"
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        setYear(event.target.value);
+                        // setYear(event.target.value);
                     }} 
                 />
 
@@ -203,7 +203,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                     value={month}
                     placeholder="month"
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        setMonth(event.target.value);
+                        // setMonth(event.target.value);
                     }} 
                 />
 
@@ -213,7 +213,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                     value={date}
                     placeholder="date"
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        setDate(event.target.value);
+                        // setDate(event.target.value);
                     }} 
                 />
             </Component>
@@ -230,7 +230,6 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                     } else {
                         setDialog(new TemplateBuilder().display(false).build());
                     }
-
                 }}
             />
             {buttons}
