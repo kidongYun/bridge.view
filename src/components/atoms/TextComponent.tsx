@@ -10,7 +10,6 @@ interface TextProps {
 }
 
 const TextComponent: React.FC<TextProps> = (props) => {
-    console.log(props);
     
     let view =
     <Component>

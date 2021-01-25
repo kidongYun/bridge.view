@@ -27,7 +27,7 @@ const TextareaComponent: React.FC<TextareaProps> = (props) => {
 TextareaComponent.defaultProps = {
     value: "",
     placeholder: "",
-    rows: "10",
+    rows: "5",
     onChange: () => {}
 }
 

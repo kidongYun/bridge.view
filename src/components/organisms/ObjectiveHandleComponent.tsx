@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Component from '../templates/Component'
 
 import LabelComponent from '../atoms/LabelComponent'
@@ -27,24 +27,10 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
     const { selectSign } = useSign();
 
     const [objective, setObjective] = useState<Objective>(new Objective());
-    const handleObjective = useCallback((obj) => {
-        return () => setObjective(obj);
-    }, [])
 
     const [year, setYear] = useState("");
-    const handleYear = useCallback((year) => {
-        return () => setYear(year);
-    }, [])
-
     const [month, setMonth] = useState("");
-    const handleMonth = useCallback((month) => {
-        return () => setMonth(month);
-    }, [])
-
     const [date, setDate] = useState("");
-    const handleDate = useCallback((date) => {
-        return () => setDate(date);
-    }, [])
 
     let sign: Sign = new Sign();
 
@@ -53,9 +39,12 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
     }
 
     let postOrPut: string = "POST";
-    if(selectCell instanceof Objective && selectCell.type === "OBJECTIVE") {
-        postOrPut = "PUT";
-    }
+    useEffect(() => {
+        if(selectCell instanceof Objective && selectCell.type === "OBJECTIVE") {
+            postOrPut = "PUT";
+            setObjective(selectCell);
+        }
+    }, []);
 
     let buttons = <></>;
     if(postOrPut == "POST") {
@@ -65,10 +54,10 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                 theme="primary" 
                 text="Add"
                 onClick={() => {
+                    objective.endDateTime = new Date(year + "-" + month + "-" + date);
                     
                     if(objective.title === undefined || objective.description === undefined
                         || objective.endDateTime === undefined || objective.priorityId === undefined) {
-                        console.log(objective);
                         return;
                     }
 
@@ -132,109 +121,110 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
         direction="column" 
         marginLeft="auto" 
         marginRight="auto" 
-        width="80%" >
+        width="80%">
 
-        <Component borderBottom="solid 1px #eeeeee">
+        <Component height="100px" borderBottom="solid 1px #eeeeee">
             <LabelComponent weight="bold" label="Objective" size="20pt" color="#333333" />
         </Component>
 
-        <Component height="50%" horizontalAlign="flex-start" verticalAlign="flex-end">
-            <Component width="auto" height="auto">
-                <LabelComponent weight="bold" label="Goal" size="15pt" color="#333333" />
+        <Component direction="column" paddingTop="10px">
+            <Component height="70px" horizontalAlign="flex-start" verticalAlign="flex-end">
+                <Component width="auto" height="auto">
+                    <LabelComponent weight="bold" label="Goal" size="15pt" color="#333333" />
+                </Component>
+             </Component>
+
+            <Component height="150px" verticalAlign="flex-start">
+                <Component height="auto">
+                    <TextComponent
+                        value={objective.title}
+                        placeholder="Insert your goal"
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                            setObjective({...objective, title: event.target.value});
+                        }}
+                    />     
+                </Component> 
+            </Component>
+
+            <Component height="70px" horizontalAlign="flex-start" verticalAlign="flex-end">
+                <Component width="auto" height="auto">
+                    <LabelComponent weight="bold" label="Description" size="15pt" color="#333333"/>
+                </Component>
+            </Component>
+
+            <Component height="350px" verticalAlign="flex-start">
+                <Component height="auto">
+                    <TextareaComponent
+                        value={objective.description}
+                        placeholder="Tell me about what your goal is"
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                            setObjective({...objective, description: event.target.value })
+                        }}
+                    />
+                </Component>
+            </Component>
+
+            <Component height="70px" horizontalAlign="flex-start" verticalAlign="flex-end">
+                <Component width="auto" height="auto">
+                    <LabelComponent weight="bold" label="Priority" size="15pt" color="#333333"/>
+                </Component>
+            </Component>
+
+            <Component height="150px" verticalAlign="flex-start">
+                <Component height="auto">
+                    <SelectComponent
+                        value={objective.priorityId + ""}
+                        options={[
+                            { title: "Major", value: "1" },
+                            { title: "Minor", value: "2" }
+                        ]}
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                            setObjective({...objective, priorityId: Number.parseInt(event.target.value)})
+                        }} 
+                    />
+                </Component>
+            </Component>
+
+            <Component height="70px" horizontalAlign="flex-start" verticalAlign="flex-end">
+                <Component width="auto" height="auto">
+                    <LabelComponent weight="bold" label="Deadline" size="15pt" color="#333333" />
+                </Component>
+            </Component>
+
+            <Component height="150px" verticalAlign="flex-start">
+                <Component>
+                    <TextComponent 
+                        value={year}
+                        placeholder="year"
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                            setYear(event.target.value);
+                        }} 
+                    />
+
+                    <Component width="50%"/>
+
+                    <TextComponent 
+                        value={month}
+                        placeholder="month"
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                            setMonth(event.target.value);
+                        }} 
+                    />
+
+                    <Component width="50%"/>
+
+                    <TextComponent 
+                        value={date}
+                        placeholder="date"
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                            setDate(event.target.value);
+                        }} 
+                    />
+                </Component>
             </Component>
         </Component>
 
-        <Component height="50%" verticalAlign="flex-start">
-            <Component height="auto">
-                <TextComponent
-                    value={objective.title}
-                    placeholder="Insert your goal"
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        handleObjective({...objective, title: event.target.value }).call;
-                    }}
-                />     
-            </Component> 
-        </Component>
-
-        <Component height="50%" horizontalAlign="flex-start" verticalAlign="flex-end">
-            <Component width="auto" height="auto">
-                <LabelComponent weight="bold" label="Description" size="15pt" color="#333333"/>
-            </Component>
-        </Component>
-
-        <Component height="200%" verticalAlign="flex-start">
-            <Component height="auto">
-                <TextareaComponent 
-                    placeholder="Tell me about what your goal is"
-                    value={objective.description}
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        handleObjective({...objective, description: event.target.value })
-                    }}
-                />
-            </Component>
-        </Component>
-
-        <Component height="50%" horizontalAlign="flex-start" verticalAlign="flex-end">
-            <Component width="auto" height="auto">
-                <LabelComponent weight="bold" label="Priority" size="15pt" color="#333333"/>
-            </Component>
-        </Component>
-
-        <Component height="50%" verticalAlign="flex-start">
-            <Component height="auto">
-                <SelectComponent
-                    value={objective.priorityId + ""}
-                    options={[
-                        { title: "Major", value: "1" },
-                        { title: "Minor", value: "2" }
-                    ]}
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        handleObjective({...objective, priorityId: Number.parseInt(event.target.value)})
-                    }} 
-                />
-            </Component>
-        </Component>
-
-        <Component height="50%" horizontalAlign="flex-start" verticalAlign="flex-end">
-            <Component width="auto" height="auto">
-                <LabelComponent weight="bold" label="Deadline" size="15pt" color="#333333" />
-            </Component>
-        </Component>
-
-        <Component height="50%" verticalAlign="flex-start">
-            <Component>
-                <TextComponent 
-                    value={year}
-                    placeholder="year"
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        handleYear(event.target.value);
-                    }} 
-                />
-
-                <Component width="50%"/>
-
-                <TextComponent 
-                    value={month}
-                    placeholder="month"
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        handleMonth(event.target.value);
-                    }} 
-                />
-
-                <Component width="50%"/>
-
-                <TextComponent 
-                    value={date}
-                    placeholder="date"
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        handleDate(event.target.value);
-                    }} 
-                />
-            </Component>
-        </Component>
-
-        <Component  borderTop="solid 1px #eeeeee">
-            <Component width="300%"></Component>
+        <Component height="100px" borderTop="solid 1px #eeeeee" horizontalAlign="flex-end">
             <ButtonComponent 
                 theme="secondary" 
                 text="Cancel" 
