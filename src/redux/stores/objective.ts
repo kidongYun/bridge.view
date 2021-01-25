@@ -3,10 +3,10 @@ import Plan from './plan';
 import Priority from './priority';
 
 export default class Objective extends Cell {
-    title: string | undefined
-    description: string | undefined
-    priorityId: number | undefined
-    parentId: number | undefined
+    title?: string
+    description?: string
+    priorityId?: number
+    parentId?: number
     childrenIds: Array<number>
     planIds: Array<number>
 
@@ -14,6 +14,10 @@ export default class Objective extends Cell {
         super("OBJECTIVE");
         this.childrenIds = [];
         this.planIds = [];
+    }
+
+    static empty() {
+        return new ObjectiveBuilder().build();
     }
 }
 

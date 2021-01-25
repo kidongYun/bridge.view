@@ -8,6 +8,10 @@ export default class Cell {
     constructor(type: "CELL" | "OBJECTIVE" | "PLAN" | "TODO") {
         this.type = type;
     }
+
+    static empty() {
+        return new CellBuilder().build();
+    }
 }
 
 export class CellBuilder {

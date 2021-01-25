@@ -1,6 +1,10 @@
 export default class Sign {
     email?: string 
     token?: string
+
+    static empty() {
+        return new SignBuilder().build();
+    }
 }
 
 export class SignBuilder {

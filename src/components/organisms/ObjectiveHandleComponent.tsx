@@ -14,7 +14,7 @@ import useObjectives from '../../redux/objectives/hook'
 import useSign from '../../redux/sign/hook'
 
 import { TemplateBuilder } from '../../redux/stores/template'
-import Objective from '../../redux/stores/objective'
+import Objective, { ObjectiveBuilder } from '../../redux/stores/objective'
 import Sign from '../../redux/stores/sign'
 
 interface ObjectiveHandleProps {}
@@ -27,6 +27,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
     const { selectSign } = useSign();
 
     const [objective, setObjective] = useState<Objective>(new Objective());
+    const [postOrPut, setPostOrPut] = useState("POST");
 
     const [year, setYear] = useState("");
     const [month, setMonth] = useState("");
@@ -38,10 +39,13 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
         sign = selectSign.body;
     }
 
-    let postOrPut: string = "POST";
+    console.log(selectCell);
+
     useEffect(() => {
+        setObjective(Objective.empty());
+
         if(selectCell instanceof Objective && selectCell.type === "OBJECTIVE") {
-            postOrPut = "PUT";
+            setPostOrPut("PUT");
             setObjective(selectCell);
 
             if(selectCell.endDateTime === undefined) {
@@ -52,12 +56,8 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
             setYear(deadline.substring(0, 4));
             setMonth(deadline.substring(5, 7));
             setDate(deadline.substring(8, 10));
-
-            console.log(postOrPut);
         }
-    }, []);
-
-    console.log(postOrPut);
+    }, [selectCell]);
 
     let buttons = <></>;
     if(postOrPut === "POST") {

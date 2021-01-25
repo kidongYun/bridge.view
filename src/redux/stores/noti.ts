@@ -8,6 +8,10 @@ export default class Noti {
         this.type = "secondary"
         this.visible = false;
     }
+
+    static empty() {
+        return new NotiBuilder().build();
+    }
 }
 
 export class NotiBuilder {

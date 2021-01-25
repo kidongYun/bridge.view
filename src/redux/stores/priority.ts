@@ -2,6 +2,10 @@ export default class Priority {
     id: number | undefined
     level: number | undefined
     description: string | undefined
+
+    static empty() {
+        return new PriorityBuilder().build();
+    }
 }
 
 export class PriorityBuilder {

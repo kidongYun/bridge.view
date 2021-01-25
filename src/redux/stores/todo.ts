@@ -1,11 +1,15 @@
 import Cell from './cell';
 
 export default class Todo extends Cell {
-    planId: number | undefined;
-    task: string | undefined;
+    planId?: number
+    task?: string
 
     constructor() {
         super("TODO");
+    }
+
+    static empty() {
+        return new TodoBuilder().build();
     }
 }
 

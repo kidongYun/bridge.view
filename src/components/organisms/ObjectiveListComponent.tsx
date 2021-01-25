@@ -64,7 +64,7 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = () => {
                 } else {
                     setDialog(new TemplateBuilder().display(true).component("ObjectiveHandle").build());
                 }
-
+                
                 flush();
             }}
         />

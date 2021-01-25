@@ -1,11 +1,15 @@
 import Cell from './cell';
 
 export default class Plan extends Cell {
-    objectiveId: number | undefined
-    content: string | undefined
+    objectiveId?: number
+    content?: string
 
     constructor() {
         super("PLAN");
+    }
+
+    static empty() {
+        return new PlanBuilder().build();
     }
 }
 

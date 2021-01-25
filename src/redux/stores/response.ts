@@ -1,6 +1,6 @@
 export default class Response<T> {
-    status: number | undefined
-    body: T | string | undefined
+    status?: number
+    body?: T | string
 
     constructor() {
         this.status = undefined;
