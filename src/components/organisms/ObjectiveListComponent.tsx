@@ -29,8 +29,7 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = () => {
 
     let objectivesView = <></>;
     if(selectObjectives !== undefined) {
-        console.log(selectObjectives);
-
+        
         objectivesView = 
         <>
         {
@@ -46,7 +45,7 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = () => {
                             }
 
                             setObjective(new ObjectiveBuilder().id(obj.id!).type(obj.type)
-                            .endDateTime(obj.endDateTime!).title(obj.title!)
+                            .endDateTime(new Date(obj.endDateTime!)).title(obj.title!)
                             .description(obj.description!).priorityId(obj.priorityId!).build());
                         }}
                     />

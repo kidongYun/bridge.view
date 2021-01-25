@@ -43,11 +43,24 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
         if(selectCell instanceof Objective && selectCell.type === "OBJECTIVE") {
             postOrPut = "PUT";
             setObjective(selectCell);
+
+            if(selectCell.endDateTime === undefined) {
+                return;
+            }
+            
+            const deadline: string = selectCell.endDateTime.toISOString();
+            setYear(deadline.substring(0, 4));
+            setMonth(deadline.substring(5, 7));
+            setDate(deadline.substring(8, 10));
+
+            console.log(postOrPut);
         }
     }, []);
 
+    console.log(postOrPut);
+
     let buttons = <></>;
-    if(postOrPut == "POST") {
+    if(postOrPut === "POST") {
         buttons = 
         <>
             <ButtonComponent 
@@ -73,7 +86,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                 }}
             />
         </>;
-    } else if(postOrPut == "PUT") {
+    } else if(postOrPut === "PUT") {
         buttons =
         <>
             <ButtonComponent 
