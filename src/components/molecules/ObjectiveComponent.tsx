@@ -1,6 +1,5 @@
 import React from 'react'
 import LabelComponent from '../atoms/LabelComponent'
-import ImageComponent from '../atoms/ImageComponent'
 import Component from '../templates/Component'
 import Objective from '../../redux/stores/objective'
 

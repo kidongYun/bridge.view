@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Component from '../templates/Component'
 import Objective from '../../redux/stores/objective'
 
@@ -21,7 +21,7 @@ const ObjectiveListComponent: React.FC<ObjectiveListProps> = () => {
     const { setDialog, setLeft } = usePage();
     const { selectSign } = useSign();
 
-    React.useEffect(() => {
+    useEffect(() => {
         if(selectSign.body instanceof Sign) {
             getObjectives(selectSign.body);
         }

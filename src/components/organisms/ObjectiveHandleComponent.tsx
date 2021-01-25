@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import Component from '../templates/Component'
 
 import LabelComponent from '../atoms/LabelComponent'
@@ -27,9 +27,24 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
     const { selectSign } = useSign();
 
     const [objective, setObjective] = useState<Objective>(new Objective());
+    const handleObjective = useCallback((obj) => {
+        return () => setObjective(obj);
+    }, [])
+
     const [year, setYear] = useState("");
+    const handleYear = useCallback((year) => {
+        return () => setYear(year);
+    }, [])
+
     const [month, setMonth] = useState("");
+    const handleMonth = useCallback((month) => {
+        return () => setMonth(month);
+    }, [])
+
     const [date, setDate] = useState("");
+    const handleDate = useCallback((date) => {
+        return () => setDate(date);
+    }, [])
 
     let sign: Sign = new Sign();
 
@@ -40,7 +55,6 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
     let postOrPut: string = "POST";
     if(selectCell instanceof Objective && selectCell.type === "OBJECTIVE") {
         postOrPut = "PUT";
-        setObjective(selectCell);
     }
 
     let buttons = <></>;
@@ -136,7 +150,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                     value={objective.title}
                     placeholder="Insert your goal"
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        // setObjective({...objective, title: event.target.value})
+                        handleObjective({...objective, title: event.target.value }).call;
                     }}
                 />     
             </Component> 
@@ -154,7 +168,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                     placeholder="Tell me about what your goal is"
                     value={objective.description}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        // setObjective({...objective, description: event.target.value })
+                        handleObjective({...objective, description: event.target.value })
                     }}
                 />
             </Component>
@@ -175,7 +189,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                         { title: "Minor", value: "2" }
                     ]}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        // setObjective({...objective, priorityId: Number.parseInt(event.target.value)})
+                        handleObjective({...objective, priorityId: Number.parseInt(event.target.value)})
                     }} 
                 />
             </Component>
@@ -193,7 +207,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                     value={year}
                     placeholder="year"
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        // setYear(event.target.value);
+                        handleYear(event.target.value);
                     }} 
                 />
 
@@ -203,7 +217,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                     value={month}
                     placeholder="month"
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        // setMonth(event.target.value);
+                        handleMonth(event.target.value);
                     }} 
                 />
 
@@ -213,7 +227,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
                     value={date}
                     placeholder="date"
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        // setDate(event.target.value);
+                        handleDate(event.target.value);
                     }} 
                 />
             </Component>

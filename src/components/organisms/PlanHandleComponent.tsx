@@ -11,7 +11,7 @@ import usePlans from '../../redux/plans/hook'
 import useNoti from '../../redux/noti/hook'
 
 import { TemplateBuilder } from '../../redux/stores/template';
-import Plan, { PlanBuilder } from '../../redux/stores/plan'
+import Plan from '../../redux/stores/plan'
 
 
 interface PlanHandleProps {}
