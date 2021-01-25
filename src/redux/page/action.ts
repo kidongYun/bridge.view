@@ -1,4 +1,3 @@
-import Page, { PageBuilder } from "../stores/page"
 import Template from "../stores/template"
 
 export const SET_DIALOG_ACTION = 'SET_DIALOG_ACTION' as const

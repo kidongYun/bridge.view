@@ -14,7 +14,6 @@ import SignComponent from '../components/organisms/SignComponent'
 
 import usePage from '../redux/page/hook'
 import useNoti from '../redux/noti/hook'
-import usePlans from '../redux/plans/hook'
 import useSign from '../redux/sign/hook'
 
 import Sign from '../redux/stores/sign'
@@ -26,7 +25,6 @@ interface MainProps {}
 const MainLayout: React.FC<MainProps> = () => {
     const { selectPage, setCenter, setDialog } = usePage();
     const { selectNoti } = useNoti();
-    const { selectPlans } = usePlans();
     const { selectSign } = useSign();
 
     let email: string = "Login";

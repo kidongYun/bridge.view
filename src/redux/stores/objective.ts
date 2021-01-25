@@ -1,6 +1,4 @@
 import Cell from './cell';
-import Plan from './plan';
-import Priority from './priority';
 
 export default class Objective extends Cell {
     title?: string

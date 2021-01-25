@@ -14,7 +14,7 @@ import useObjectives from '../../redux/objectives/hook'
 import useSign from '../../redux/sign/hook'
 
 import { TemplateBuilder } from '../../redux/stores/template'
-import Objective, { ObjectiveBuilder } from '../../redux/stores/objective'
+import Objective from '../../redux/stores/objective'
 import Sign from '../../redux/stores/sign'
 
 interface ObjectiveHandleProps {}
@@ -39,10 +39,12 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
         sign = selectSign.body;
     }
 
-    console.log(selectCell);
-
     useEffect(() => {
         setObjective(Objective.empty());
+        setPostOrPut("POST");
+        setYear("");
+        setMonth("");
+        setDate("");
 
         if(selectCell instanceof Objective && selectCell.type === "OBJECTIVE") {
             setPostOrPut("PUT");

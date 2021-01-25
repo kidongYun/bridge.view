@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Component from '../templates/Component'
 
-import usePage from '../../redux/page/hook'
 import useSign from '../../redux/sign/hook';
 
 import TextComponent from '../atoms/TextComponent'
@@ -13,7 +12,6 @@ interface SignProps {
 
 const SignComponent: React.FC<SignProps> = ({
 }) => {
-    const { setDialog } = usePage();
     const { selectSign, signIn, signUp } = useSign();
 
     const [email, setEmail] = useState("john@gmail.com");
