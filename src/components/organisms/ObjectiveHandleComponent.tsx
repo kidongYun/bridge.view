@@ -33,7 +33,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
     const [month, setMonth] = useState("");
     const [date, setDate] = useState("");
 
-    let sign: Sign = new Sign();
+    let sign: Sign = Sign.empty();
 
     if(selectSign.body instanceof Sign) {
         sign = selectSign.body;

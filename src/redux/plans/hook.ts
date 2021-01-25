@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../configureStore';
 import Plan from '../stores/plan';
+import Sign from '../stores/sign';
 import { getPlansThunk, putPlansThunk } from './thunk'
 
 export default function usePlans() {
@@ -12,8 +13,8 @@ export default function usePlans() {
     }
     
     const dispatch = useDispatch();
-    const getPlans = (date: boolean) => { dispatch(getPlansThunk(date)) }
-    const putPlans = (param: Plan) => { dispatch(putPlansThunk(param)) }
+    const getPlans = (sign: Sign) => { dispatch(getPlansThunk(sign)) }
+    const putPlans = (plan: Plan, sign: Sign) => { dispatch(putPlansThunk(plan, sign)) }
 
     return {
         selectPlans,

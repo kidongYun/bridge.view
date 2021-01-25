@@ -5,13 +5,14 @@ import { PlansAction } from './type'
 import Cell from '../stores/cell'
 import { plansAsyncAction } from './action'
 import Plan from '../stores/plan'
+import Sign from '../stores/sign'
 
-export function getPlansThunk(date: boolean): ThunkAction<void, RootState, null, PlansAction> {
+export function getPlansThunk(sign: Sign): ThunkAction<void, RootState, null, PlansAction> {
     return async dispatch => {
         const { request, success, failure } = plansAsyncAction;
         dispatch(request());
         try {
-            const response = await getPlans(date);
+            const response = await getPlans(sign);
             dispatch(success(response));
         } catch (e) {
             dispatch(failure(e));
@@ -19,25 +20,35 @@ export function getPlansThunk(date: boolean): ThunkAction<void, RootState, null,
     }
 }
 
-export function putPlansThunk(param: Plan): ThunkAction<void, RootState, null, PlansAction> {
+export function putPlansThunk(plan: Plan, sign: Sign): ThunkAction<void, RootState, null, PlansAction> {
     return async dispatch => {
         const { request, success, failure } = plansAsyncAction;
         dispatch(request());
         try {
-            await putPlans(param);
+            await putPlans({ 
+                id: plan.id!, 
+                startDateTime: plan.startDateTime!.toISOString(), 
+                endDateTime: plan.endDateTime!.toISOString(), 
+                status: plan.status!, 
+                email: sign.email!,
+                content: plan.content!,
+                objectiveId: plan.objectiveId! 
+            }, sign.token!);
+            
         } catch (e) {
             dispatch(failure(e));
         } finally {
-            const response = await getPlans(true);
+            const response = await getPlans(sign);
             dispatch(success(response));
         }
     }
 }
 
-async function getPlans(date: boolean) {
-    return await axios.get<Cell[]>("http://localhost:8080/plan", { params: { date: date }});
+async function getPlans(sign: Sign) {
+    return await axios.get<Cell[]>("http://localhost:8080/api/v1/plan/email/" + sign.email, 
+    { params: { email: sign.email }, headers: { "x-auth-token": sign.token }});
 }
 
-export async function putPlans(plan: Plan) {
-    return await axios.put("http://localhost:8080/plan/" + plan.id, plan);
+export async function putPlans(put: { id: number, startDateTime: string, endDateTime: string, status: string, email: string, content: string, objectiveId: number }, token: string) {
+    return await axios.put("http://localhost:8080/api/v1/plan/" + put.id, put, { headers: { "x-auth-token": token }});
 }

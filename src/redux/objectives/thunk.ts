@@ -25,7 +25,14 @@ export function postObjectivesThunk(obj: Objective, sign: Sign): ThunkAction<voi
         const { request, success, failure } = objectivesAsyncAction;
         dispatch(request());
         try {
-            await postObjectives({ endDateTime: obj.endDateTime!.toISOString(), email: sign.email!, title: obj.title!, description: obj.description!, priorityId: obj.priorityId! }, sign.token!);
+            await postObjectives({ 
+                endDateTime: obj.endDateTime!.toISOString(), 
+                email: sign.email!, 
+                title: obj.title!, 
+                description: obj.description!, 
+                priorityId: obj.priorityId! 
+            }, sign.token!);
+            
         } catch (e) {
             dispatch(failure(e));
         } finally {
@@ -40,7 +47,15 @@ export function putObjectivesThunk(obj: Objective, sign: Sign): ThunkAction<void
         const { request, success, failure } = objectivesAsyncAction;
         dispatch(request());
         try {
-            await putObjectives(obj, sign.token!);
+            await putObjectives({ 
+                id: obj.id!, 
+                endDateTime: obj.endDateTime!.toISOString(), 
+                email: sign.email!, 
+                title: obj.title!, 
+                description: obj.description!, 
+                priorityId: obj.priorityId! 
+            }, sign.token!);
+
         } catch (e) {
             dispatch(failure(e));
         } finally {
@@ -74,10 +89,10 @@ async function postObjectives(post: { endDateTime: string, email: string, title:
     return await axios.post<Objective>("http://localhost:8080/api/v1/objective", post, { headers: { "x-auth-token": token }});
 }
 
-async function putObjectives(obj: Objective, token: string) {
-    return await axios.put<Objective>("http://localhost:8080/objective/" + obj.id, obj, { headers: { "x-auth-token": token }});
+async function putObjectives(put: { id: number, endDateTime: string, email: string, title: string, description: string, priorityId: number }, token: string) {
+    return await axios.put<Objective>("http://localhost:8080/api/v1/objective/" + put.id, put, { headers: { "x-auth-token": token }});
 }
 
 async function deleteObjectives(id: number, token: string) {
-    return await axios.delete("http://localhost:8080/objective/" + id, { data: id, headers: { "x-auth-token": token }});
+    return await axios.delete("http://localhost:8080/api/v1/objective/" + id, { data: id, headers: { "x-auth-token": token }});
 }

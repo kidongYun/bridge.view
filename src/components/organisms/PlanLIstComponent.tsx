@@ -5,10 +5,12 @@ import useObjectives from '../../redux/objectives/hook'
 import usePlans from '../../redux/plans/hook'
 import useCell from '../../redux/cell/hook'
 import usePage from '../../redux/page/hook'
+import useSign from '../../redux/sign/hook'
 
 import PlanComponent from '../molecules/PlanComponent';
 import Objective from '../../redux/stores/objective';
 import Plan, { PlanBuilder } from '../../redux/stores/plan';
+import Sign from '../../redux/stores/sign';
 
 import { TemplateBuilder } from '../../redux/stores/template';
 
@@ -20,10 +22,15 @@ const PlanListComponent: React.FC<PlanListProps> = (props) => {
     const { selectPlans, getPlans } = usePlans();
     const { setPlan } = useCell();
     const { setDialog, setLeft } = usePage();
+    const { selectSign } = useSign();
 
     React.useEffect(() => {
-        getPlans(true);
+        if(selectSign.body instanceof Sign) {
+            getPlans(selectSign.body);
+        }
     }, [])
+
+    console.log(selectPlans);
 
     let plansView = <></>;
     if(selectPlans !== undefined) {

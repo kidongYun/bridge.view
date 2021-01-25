@@ -29,7 +29,7 @@ const plans = createReducer<Response<Plan[]>, PlansAction>(new Response(), {
         return {
             ...state,
             status: action.payload.status,
-            body: action.payload.data
+            body: plans
         }
     },
     [PLANS_ERROR_ACTION]: (state, action) => {

@@ -9,22 +9,29 @@ import useCell from '../../redux/cell/hook'
 import usePage from '../../redux/page/hook'
 import usePlans from '../../redux/plans/hook'
 import useNoti from '../../redux/noti/hook'
+import useSign from '../../redux/sign/hook'
 
 import { TemplateBuilder } from '../../redux/stores/template';
 import Plan from '../../redux/stores/plan'
+import Sign from '../../redux/stores/sign'
 
 
 interface PlanHandleProps {}
 
 const PlanHandleComponent: React.FC<PlanHandleProps> = () => {
     const { selectCell } = useCell();
+    const { selectSign } = useSign();
     const { setDialog, setLeft } = usePage();
     const { showNoti, hideNoti } = useNoti();
     const { putPlans } = usePlans();
 
-    console.log(selectCell);
+    let sign: Sign = Sign.empty();
 
-    let plan: Plan = new Plan();
+    if(selectSign.body instanceof Sign) {
+        sign = selectSign.body;
+    }
+
+    let plan: Plan = Plan.empty();
     
     if(selectCell instanceof Plan && selectCell.type === "PLAN") {
         plan = selectCell;
@@ -37,22 +44,29 @@ const PlanHandleComponent: React.FC<PlanHandleProps> = () => {
         marginRight="auto"
         width="80%">
 
-        <Component borderBottom="solid 1px #eeeeee">
-            <LabelComponent label="Plan" size="20pt" />
+        <Component height="100px" borderBottom="solid 1px #eeeeee">
+            <LabelComponent weight="bold" label="Plan" size="20pt" color="#333333" />
         </Component>
 
-        <Component>
-            <TextareaComponent
-                value={plan.content}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    const { value } = event.target;
-                    plan.content = value;
-                }}
-            />
+        <Component direction="column" paddingTop="10px">
+            <Component height="70px" horizontalAlign="flex-start" verticalAlign="flex-end">
+                <Component width="auto" height="auto">
+                    <LabelComponent weight="bold" label="Content" size="15pt" color="#333333" />
+                </Component>
+            </Component>
+
+            <Component height="150px" verticalAlign="flex-start">
+                <TextareaComponent
+                    value={plan.content}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                        const { value } = event.target;
+                        plan.content = value;
+                    }}
+                />
+            </Component>
         </Component>
 
-        <Component  borderTop="solid 1px #eeeeee">
-            <Component width="300%"></Component>
+        <Component height="100px" borderTop="solid 1px #eeeeee" horizontalAlign="flex-end">
             <ButtonComponent 
                 theme="secondary" 
                 text="Cancel" 
@@ -70,7 +84,7 @@ const PlanHandleComponent: React.FC<PlanHandleProps> = () => {
                 text="Modify"
                 onClick={() => {
 
-                    putPlans(plan);
+                    putPlans(plan, sign);
             
                     showNoti("Plan is Updated", "success");
                     setTimeout(hideNoti, 2300);
