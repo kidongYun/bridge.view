@@ -30,8 +30,6 @@ const PlanListComponent: React.FC<PlanListProps> = (props) => {
         }
     }, [])
 
-    console.log(selectPlans);
-
     let plansView = <></>;
     if(selectPlans !== undefined) {
 

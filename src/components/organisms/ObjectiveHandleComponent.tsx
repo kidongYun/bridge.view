@@ -207,7 +207,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
             </Component>
 
             <Component height="150px" verticalAlign="flex-start">
-                <Component>
+                <Component width="auto" height="auto">
                     <TextComponent 
                         value={year}
                         placeholder="year"
