@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Component from '../templates/Component'
 
 import TextareaComponent from '../atoms/TextareaComponent'
@@ -15,7 +15,6 @@ import { TemplateBuilder } from '../../redux/stores/template';
 import Plan from '../../redux/stores/plan'
 import Sign from '../../redux/stores/sign'
 
-
 interface PlanHandleProps {}
 
 const PlanHandleComponent: React.FC<PlanHandleProps> = () => {
@@ -25,17 +24,21 @@ const PlanHandleComponent: React.FC<PlanHandleProps> = () => {
     const { showNoti, hideNoti } = useNoti();
     const { putPlans } = usePlans();
 
+    const [plan, setPlan] = useState(Plan.empty());
+
     let sign: Sign = Sign.empty();
 
     if(selectSign.body instanceof Sign) {
         sign = selectSign.body;
     }
 
-    let plan: Plan = Plan.empty();
+    // let plan: Plan = Plan.empty();
     
-    if(selectCell instanceof Plan && selectCell.type === "PLAN") {
-        plan = selectCell;
-    }
+    useEffect(() => {
+        if(selectCell instanceof Plan && selectCell.type === "PLAN") {
+            setPlan(selectCell);
+        }
+    }, [selectCell])
 
     let view = 
     <Component
@@ -59,8 +62,7 @@ const PlanHandleComponent: React.FC<PlanHandleProps> = () => {
                 <TextareaComponent
                     value={plan.content}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        const { value } = event.target;
-                        plan.content = value;
+                        setPlan({ ...plan, content: event.target.value })
                     }}
                 />
             </Component>
@@ -83,7 +85,7 @@ const PlanHandleComponent: React.FC<PlanHandleProps> = () => {
                 theme="primary" 
                 text="Modify"
                 onClick={() => {
-
+                    console.log("putPlans!!!!");
                     putPlans(plan, sign);
             
                     showNoti("Plan is Updated", "success");

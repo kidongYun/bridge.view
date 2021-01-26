@@ -22,14 +22,16 @@ export function getPlansThunk(sign: Sign): ThunkAction<void, RootState, null, Pl
 
 export function putPlansThunk(plan: Plan, sign: Sign): ThunkAction<void, RootState, null, PlansAction> {
     return async dispatch => {
+        console.log("putPlansThunk");
         const { request, success, failure } = plansAsyncAction;
         dispatch(request());
         try {
-            await putPlans({ 
+            console.log("putPlansThunk!!!");
+            console.log(plan.startDateTime);
+
+            await putPlans({
                 id: plan.id!, 
-                startDateTime: plan.startDateTime!.toISOString(), 
-                endDateTime: plan.endDateTime!.toISOString(), 
-                status: plan.status!, 
+                startDateTime: plan.startDateTime + "", 
                 email: sign.email!,
                 content: plan.content!,
                 objectiveId: plan.objectiveId! 
@@ -49,6 +51,7 @@ async function getPlans(sign: Sign) {
     { params: { email: sign.email }, headers: { "x-auth-token": sign.token }});
 }
 
-export async function putPlans(put: { id: number, startDateTime: string, endDateTime: string, status: string, email: string, content: string, objectiveId: number }, token: string) {
+async function putPlans(put: { id: number, startDateTime: string, email: string, content: string, objectiveId: number }, token: string) {
+    console.log("hello");
     return await axios.put("http://localhost:8080/api/v1/plan/" + put.id, put, { headers: { "x-auth-token": token }});
 }

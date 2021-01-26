@@ -26,7 +26,7 @@ const ObjectiveHandleComponent: React.FC<ObjectiveHandleProps> = () => {
     const { postObjectives, putObjectives, deleteObjectives } = useObjectives();
     const { selectSign } = useSign();
 
-    const [objective, setObjective] = useState<Objective>(new Objective());
+    const [objective, setObjective] = useState<Objective>(Objective.empty());
     const [postOrPut, setPostOrPut] = useState("POST");
 
     const [year, setYear] = useState("");
