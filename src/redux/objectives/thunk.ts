@@ -81,7 +81,7 @@ export function deleteObjectivesThunk(id: number, sign: Sign): ThunkAction<void,
 }
 
 async function getObjectives(sign: Sign) {
-    return await axios.get<Cell[]>("http://localhost:8080/api/v1/objective/email/" + sign.email, 
+    return await axios.get<Cell[]>("http://localhost:8080/api/v1/objective/", 
         { params: { email: sign.email }, headers: { "x-auth-token": sign.token }});
 }
 
