@@ -1,4 +1,4 @@
-
+import { combineReducers } from 'redux';
 
 import objectives from './objectives/reducer'
 import plans from './plans/reducer'
